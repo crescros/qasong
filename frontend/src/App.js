@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import { Container, IconButton, Typography, TextField } from "@material-ui/core"
-import { PlayArrow } from "@material-ui/icons"
+import { Container, Typography } from "@material-ui/core"
 import { getYoutubeIdFromSearch } from './functions'
 import Video from './components/Video'
 import VideoSearch from './components/VideoSearch'
 
 const App = () => {
-
     const [searchTerm, setSearchTerm] = useState('')
     const [videoId, setVideoId] = useState(undefined)
-
 
     const handleSearchTermInput = (e) => {
         setSearchTerm(e.target.value)
@@ -20,7 +17,6 @@ const App = () => {
         const response = await getYoutubeIdFromSearch(searchTerm)
         setVideoId(response.data)
     }
-
 
     return (<Container>
         <Typography variant='h1'>Music App</Typography>
