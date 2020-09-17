@@ -1,6 +1,8 @@
 // import dependencies
 const express = require('express');
 const cors = require('cors')
+const axios = require('axios')
+require('dotenv').config();
 
 // initialize express
 const app = express();
@@ -10,8 +12,10 @@ app.use(express.static('public'))
 
 
 app.get('/api/search', (req, res) => {
-    const searchTerm = req.query.search        
-    const apiKey = "AIzaSyDhCHzOQKYw8tajxF33m04RmxLNrufEUnI"
+    const searchTerm = req.query.q        
+    const apiKey = process.env.YOUTUBE_API_KEY
+
+    console.log(process.env)
 
     if (!apiKey){
         res.send('Error: config file missing youtube API key')
@@ -20,8 +24,7 @@ app.get('/api/search', (req, res) => {
 
     axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${searchTerm}&key=${apiKey}`).then(response => {
         const youtubeID = response.data.items[0].id.videoId
-        const youtubeURL = 'https://www.youtube.com/watch?v=' + youtubeID
-        res.send(youtubeURL)
+        res.send(youtubeID)
     })
 })
 
