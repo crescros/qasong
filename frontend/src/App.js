@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { Container, Button, Typography } from "@material-ui/core"
 
 export class App extends Component {
     render() {
-        return (
-           <p>Hello from React!</p>
+        return (<Container>
+            <Typography>Music App</Typography>
+        </Container>
         );
     }
 }
