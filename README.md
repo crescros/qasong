@@ -6,6 +6,10 @@
 
 `npm i`
 
+### run express server
+
+`npm start`
+
 # REACT
 
 ### enter react folder
@@ -13,13 +17,15 @@
 `cd frontend`
 
 ### install react
-
+inside of `frontend` folder,
 `npm i`
 
 ### start dev server
 
+inside of `frontend` folder,
 `npm start`
 
 ### build react into static asset in public folder
 
+inside of `frontend` folder,
 `npm run build`
