@@ -9,13 +9,9 @@ const app = express();
 app.use(cors())
 app.use(express.static('public'))
 
-
-
 app.get('/api/search', (req, res) => {
     const searchTerm = req.query.q        
     const apiKey = process.env.YOUTUBE_API_KEY
-
-    console.log(process.env)
 
     if (!apiKey){
         res.send('Error: config file missing youtube API key')
