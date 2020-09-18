@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { Typography, Grid, CssBaseline, Container } from "@material-ui/core"
+import { Grid, CssBaseline, Container } from "@material-ui/core"
 import { getYoutubeIdFromSearch } from './functions'
 import Video from './components/Video'
-import VideoSearch from './components/VideoSearch'
 import AppBar from './components/AppBar';
 import VideoCard from './components/videoCard'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-
 
 const App = () => {
     const [ searchTerm, setSearchTerm ] = useState('');
