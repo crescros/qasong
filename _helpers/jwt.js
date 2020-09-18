@@ -4,9 +4,6 @@ const expressJwt = require('express-jwt');
 module.exports = jwt;
 
 function jwt() {
-
-
-
     return expressJwt({ secret: process.env.SECRET,  algorithms: ['RS256']  }).unless({
         path:[
             /favicon.ico/, // for dev
