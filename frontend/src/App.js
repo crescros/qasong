@@ -10,7 +10,7 @@ import { ThemeProvider } from '@material-ui/styles';
 
 const App = () => {
     const [ searchTerm, setSearchTerm ] = useState('');
-    const [ videoId, setVideoId ] = useState(undefined);
+    const [ videos, setVideos ] = useState([]);
 
     const handleSearchTermInput = (e) => {
         setSearchTerm(e.target.value);
@@ -19,8 +19,9 @@ const App = () => {
     const handleSubmitVideoSearch = async (e) => {
         e.preventDefault();
         const response = await getYoutubeIdFromSearch(searchTerm);
-        setVideoId(response.data);
+        setVideos(response.data);
     }
+
     const darkTheme = createMuiTheme({
         palette: {
             type: 'dark'
@@ -32,13 +33,19 @@ const App = () => {
             <CssBaseline />
             <AppBar />
                 <Grid container>
-                    <Grid item xs = { 12 }>
-                        <VideoSearch onSubmit = { handleSubmitVideoSearch } handleSearchTermInput = { handleSearchTermInput } />
-                    </Grid>    
-                    <Grid item xs = { 12 }>
-                        <Video id = { videoId } />                
-                    </Grid>
+                <Grid item xs={12}>
+
+                    <VideoSearch onSubmit={handleSubmitVideoSearch} handleSearchTermInput={handleSearchTermInput} />
                 </Grid>
+                {
+                    videos.map(video => {
+                        return <Grid item xs={12}>
+                            <Typography variant="h6">{video.snippet.title}</Typography>
+                            <Typography>{video.snippet.description}</Typography>
+                        </Grid>
+                    })
+                }
+            </Grid>
         </ThemeProvider>
     ); 
 }
