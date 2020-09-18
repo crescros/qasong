@@ -1,6 +1,14 @@
+# npm
 node_modules
-dist/bundle.js
 package-lock.json
+
+# react
+dist/bundle.js
+
+# cypress
+cypress/videos
+cypress/screenshots
+
+# music-app
 .env
 data
-cypress/videos
