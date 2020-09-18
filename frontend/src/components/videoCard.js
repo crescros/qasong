@@ -48,7 +48,7 @@ export default function ImgMediaCard({ title, description, thumbnailUrl, id, set
     [playing])
 
     return (
-        <Card className={classes.root}>
+        <Card className={classes.root} bgcolor={"secondary"}>
             <CardActionArea> 
                 <CardMedia
                     component="img"
@@ -67,7 +67,7 @@ export default function ImgMediaCard({ title, description, thumbnailUrl, id, set
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button onClick={handlePlayButton} size="small" color="primary">
+                <Button onClick={handlePlayButton} size="small" color = { playing ? "secondary" : "primary"}>
                     { playing ? "Stop" : "Play" }
                 </Button>
                 <Button size="small" color="primary">
