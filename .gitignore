@@ -1,4 +1,5 @@
 node_modules
-dist/*
+dist/bundle.js
 package-lock.json
 .env
+data
