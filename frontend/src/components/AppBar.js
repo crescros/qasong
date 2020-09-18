@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import VideoSearch from './VideoSearch'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar({ handleSubmitVideoSearch, handleSearchTermInput }) {
     const classes = useStyles();
 
     return (
@@ -31,7 +32,9 @@ export default function ButtonAppBar() {
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
                         Music App
-          </Typography>
+                    </Typography>
+                    <VideoSearch onSubmit={handleSubmitVideoSearch} handleSearchTermInput={handleSearchTermInput} />
+
                     <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
