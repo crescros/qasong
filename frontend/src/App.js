@@ -40,8 +40,8 @@ const App = () => {
                 {
                     videos.map(video => {
                         return <Grid item xs={12}>
-                            <Typography variant="h6">{video.snippet.title}</Typography>
-                            <Typography>{video.snippet.description}</Typography>
+                            <Typography variant="h6">{video.title}</Typography>
+                            <img src={video.snippet.thumbnails.default.url} />
                         </Grid>
                     })
                 }
