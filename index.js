@@ -30,8 +30,8 @@ app.get('/api/search', (req, res) => {
         return
     }
 
-    axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${searchTerm}&key=${apiKey}`).then(response => {
-        res.send(response.data.items)
+    axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${searchTerm}&key=${apiKey}`).then(response => {
+        res.send(JSON.stringify(response.data.items))
     })
 })
 
