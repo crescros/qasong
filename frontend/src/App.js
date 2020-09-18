@@ -36,28 +36,23 @@ const App = () => {
 
             {JSON.stringify(nowPlaying)}
             
-            <AppBar />
+            <AppBar
+                handleSubmitVideoSearch={handleSubmitVideoSearch}
+                handleSearchTermInput={handleSearchTermInput}
+            />
             <Grid
                 container
                 direction="column"
                 justify="center"
                 alignItems="center"
             >
-                <Grid item xs={12}>
-                    <VideoSearch onSubmit={handleSubmitVideoSearch} handleSearchTermInput={handleSearchTermInput} />
-                </Grid>
                 <Container>
                 {
-                    nowPlaying ?
-                        <VideoCard
-                            id={nowPlaying.id}
-                            title={nowPlaying.title}
-                            thumbnailUrl={nowPlaying.thumbnailUrl}
-                        /> : videos.map(video => {
+                    videos.map(video => {
                         const url = video.snippet.thumbnails.high.url || video.snippet.thumbnails.default.url
                         const title = video.snippet.title
 
-                        return <Grid item xs={12}>
+                        return <Grid item xs={4}>
                             <VideoCard
                                 id={video.id.videoId}
                                 thumbnailUrl={url}
@@ -66,6 +61,8 @@ const App = () => {
                                 setNowPlaying={setNowPlaying}
                             />
                         </Grid>
+
+                            
                     })
                 }
                 </Container>
