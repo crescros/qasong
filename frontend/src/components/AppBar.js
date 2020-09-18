@@ -1,12 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Grid from '@material-ui/core/Grid';
-
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import { AppBar, Grid, Toolbar, Typography, Button, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import VideoSearch from './VideoSearch'
 
@@ -27,7 +21,7 @@ export default function ButtonAppBar({ handleSubmitVideoSearch, handleSearchTerm
 
     return (
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar position="static" bgColor="secondary">
                 <Toolbar>
                     <Grid
                         container
@@ -43,7 +37,7 @@ export default function ButtonAppBar({ handleSubmitVideoSearch, handleSearchTerm
                         </Grid>
 
                         <Grid item xs={6}>
-                            { nowPlaying && <Typography>Now Playing: { nowPlaying.title }</Typography> }
+                            { nowPlaying && <Typography color='secondary'>Now Playing: { nowPlaying.title }</Typography> }
                         </Grid>
 
                         <Grid item xs={3}>

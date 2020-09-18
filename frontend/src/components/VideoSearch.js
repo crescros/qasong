@@ -1,6 +1,5 @@
 import React from 'react'
-import {  IconButton, TextField } from "@material-ui/core"
-import { PlayArrow } from "@material-ui/icons"
+import { TextField } from "@material-ui/core"
 
 function VideoSearch({onSubmit, handleSearchTermInput}) {
     return (
