@@ -13,7 +13,7 @@ const App = () => {
     const [ searchTerm, setSearchTerm ] = useState('');
     const [videos, setVideos] = useState([]);
     const [nowPlaying, setNowPlaying] = useState()    
-    
+
     const handleSearchTermInput = (e) => {
         setSearchTerm(e.target.value);
     }
@@ -34,19 +34,19 @@ const App = () => {
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
 
-            {JSON.stringify(nowPlaying)}
-            
             <AppBar
                 handleSubmitVideoSearch={handleSubmitVideoSearch}
                 handleSearchTermInput={handleSearchTermInput}
+                nowPlaying={nowPlaying}
+                setNowPlaying={setNowPlaying}
             />
+                <Container>
             <Grid
                 container
-                direction="column"
+                direction="row"
                 justify="center"
                 alignItems="center"
             >
-                <Container>
                 {
                     videos.map(video => {
                         const url = video.snippet.thumbnails.high.url || video.snippet.thumbnails.default.url
@@ -65,11 +65,11 @@ const App = () => {
                             
                     })
                 }
-                </Container>
             </Grid>
+                </Container>
             
             {
-                nowPlaying && <Video id={nowPlaying.id} />
+                nowPlaying && <Video id={nowPlaying.id} setNowPlaying = { setNowPlaying }/>
             }
         </ThemeProvider>
     ); 
