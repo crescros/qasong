@@ -3,3 +3,4 @@ dist/bundle.js
 package-lock.json
 .env
 data
+cypress/videos
