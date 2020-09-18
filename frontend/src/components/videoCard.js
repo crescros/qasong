@@ -32,9 +32,10 @@ export default function ImgMediaCard({ title, description, thumbnailUrl, id, set
         } else {
             setNowPlaying({
                 title: title,
-                id: id
+                description: description,
+                id: id,
+                thumbnailUrl: thumbnailUrl
             })
-
         }
     }
 
