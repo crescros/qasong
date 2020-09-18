@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -27,20 +27,28 @@ export default function ImgMediaCard({ title, description, thumbnailUrl, id, set
         setPlaying(!playing)
 
     
+       
+    }
+
+    useEffect(() => {
+
         if (playing) {
-            setNowPlaying()
-        } else {
             setNowPlaying({
                 title: title,
                 description: description,
                 id: id,
                 thumbnailUrl: thumbnailUrl
             })
+        } else {
+            setNowPlaying()
         }
-    }
+    
+        },
+
+    [playing])
 
     return (
-        <Card className={classes.root}>
+        <Card className={classes.root} bgcolor={"secondary"}>
             <CardActionArea> 
                 <CardMedia
                     component="img"
@@ -59,11 +67,11 @@ export default function ImgMediaCard({ title, description, thumbnailUrl, id, set
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button onClick={handlePlayButton} size="small" color="primary">
+                <Button onClick={handlePlayButton} size="small" color = { playing ? "secondary" : "primary"}>
                     { playing ? "Stop" : "Play" }
                 </Button>
                 <Button size="small" color="primary">
-                    Learn More
+                    Add to Queue
                 </Button>
             </CardActions>
 

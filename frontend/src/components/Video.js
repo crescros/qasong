@@ -1,7 +1,7 @@
 import React from 'react'
 import YouTube from 'react-youtube'
 
-function Video({ id }) {
+function Video({ id, setNowPlaying }) {
 
     const youtubePlayerOptions = {
         height: '0',
@@ -11,13 +11,18 @@ function Video({ id }) {
             autoplay: 1,
         }
     }
+    
+    function hanndleVideoEEENNNnnd() {
+        setNowPlaying(null)
+    }
 
     return (<>
         {
             id && <YouTube
                 videoId={id}
                 opts={youtubePlayerOptions}
-            />
+                onEnd={hanndleVideoEEENNNnnd}
+           />
         }
     </>
     )

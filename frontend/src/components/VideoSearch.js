@@ -6,7 +6,6 @@ function VideoSearch({onSubmit, handleSearchTermInput}) {
     return (
         <form onSubmit={onSubmit}>
             <TextField id="outlined-basic" label="Search" variant="outlined" onChange={handleSearchTermInput} />
-            <IconButton onClick = { onSubmit }  ><PlayArrow /></IconButton>
         </form>
     )
 }

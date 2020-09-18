@@ -13,7 +13,7 @@ const App = () => {
     const [ searchTerm, setSearchTerm ] = useState('');
     const [videos, setVideos] = useState([]);
     const [nowPlaying, setNowPlaying] = useState()    
-    
+
     const handleSearchTermInput = (e) => {
         setSearchTerm(e.target.value);
     }
@@ -34,30 +34,25 @@ const App = () => {
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
 
-            {JSON.stringify(nowPlaying)}
-            
-            <AppBar />
+            <AppBar
+                handleSubmitVideoSearch={handleSubmitVideoSearch}
+                handleSearchTermInput={handleSearchTermInput}
+                nowPlaying={nowPlaying}
+                setNowPlaying={setNowPlaying}
+            />
+                <Container>
             <Grid
                 container
-                direction="column"
+                direction="row"
                 justify="center"
                 alignItems="center"
             >
-                <Grid item xs={12}>
-                    <VideoSearch onSubmit={handleSubmitVideoSearch} handleSearchTermInput={handleSearchTermInput} />
-                </Grid>
-                <Container>
                 {
-                    nowPlaying ?
-                        <VideoCard
-                            id={nowPlaying.id}
-                            title={nowPlaying.title}
-                            thumbnailUrl={nowPlaying.thumbnailUrl}
-                        /> : videos.map(video => {
+                    videos.map(video => {
                         const url = video.snippet.thumbnails.high.url || video.snippet.thumbnails.default.url
                         const title = video.snippet.title
 
-                        return <Grid item xs={12}>
+                        return <Grid item xs={4}>
                             <VideoCard
                                 id={video.id.videoId}
                                 thumbnailUrl={url}
@@ -66,13 +61,15 @@ const App = () => {
                                 setNowPlaying={setNowPlaying}
                             />
                         </Grid>
+
+                            
                     })
                 }
-                </Container>
             </Grid>
+                </Container>
             
             {
-                nowPlaying && <Video id={nowPlaying.id} />
+                nowPlaying && <Video id={nowPlaying.id} setNowPlaying = { setNowPlaying }/>
             }
         </ThemeProvider>
     ); 
