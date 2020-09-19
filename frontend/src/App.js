@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, CssBaseline, Container } from "@material-ui/core"
+import { CssBaseline } from "@material-ui/core"
 import { getYoutubeIdFromSearch } from './functions'
 import Video from './components/Video'
 import AppBar from './components/AppBar';
