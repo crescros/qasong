@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid } from '@material-ui/core'
 import VideoCard from './VideoCard'
+import PoweredByYoutube from './PoweredByYoutube'
 
 function VideoGrid({ videos, nowPlaying, setNowPlaying }) {
 
