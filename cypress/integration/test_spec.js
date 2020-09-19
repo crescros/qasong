@@ -1,5 +1,5 @@
 describe('cypress tests', () => {
     it('is working', () => {
-      expect(1 + 1).to.equal(2)
+        expect(1 + 1).to.equal(2)
     })
-  })
+})

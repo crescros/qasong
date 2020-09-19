@@ -1,7 +1,6 @@
 ﻿const jwt = require("jsonwebtoken");
 const fs = require("fs");
-
-// users hardcoded for simplicity, store in a db for production applications
+const uuid = require('uuid')
 
 module.exports = {
     authenticate,
@@ -35,7 +34,12 @@ async function makeOne({ username, password }) {
     } else if (password.length < 8) {
         message = "Password must be at least 8 characters"
     } else {
+                
+        let dateCreated = new Date()
+
         users.push({
+            "id": uuid.v4(),
+            "date_created": dateCreated,
             "username": username,
             "password": password,
             "groups": ["member"]
