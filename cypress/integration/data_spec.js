@@ -1,5 +1,3 @@
-const fs = require('fs')
-
 describe('users array', () => {
 
     const pathToUsersData = './data/users.json'

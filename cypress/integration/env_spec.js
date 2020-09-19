@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 describe('.env file', () => {
     it('is exists', () => {
       expect(typeof Cypress.env()).to.not.equal(undefined)
