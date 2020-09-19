@@ -7,3 +7,14 @@ describe('seach endpoint', () => {
     })
 })
 
+describe('auth endpoint', () => {
+    it('authenticates test user with proper credentials', () => {
+        cy.request('/api/user/authenticate')
+            .then((response) => {
+                expect(response.body).to.exist
+                expect(response).to.exist
+            })
+    })
+})
+
+//
