@@ -38,7 +38,7 @@ const App = () => {
                 nowPlaying={nowPlaying}
                 setNowPlaying={setNowPlaying}
             />
-                <Container>
+
             <Grid
                 container
                 direction="row"
@@ -65,7 +65,6 @@ const App = () => {
                     })
                 }
             </Grid>
-                </Container>
             
             {
                 nowPlaying && <Video id={nowPlaying.id} setNowPlaying = { setNowPlaying }/>
