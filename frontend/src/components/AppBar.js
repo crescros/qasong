@@ -4,7 +4,7 @@ import NowPlayingInfo from './NowPlayingInfo';
 import VideoSearch from './VideoSearch';
 import LoginModal from './LoginModal';
 
-export default function ButtonAppBar({ handleSubmitVideoSearch, handleSearchTermInput, nowPlaying, setNowPlaying }) {
+export default function MusicAppBar({ handleSubmitVideoSearch, handleSearchTermInput, nowPlaying, setNowPlaying, queue }) {
 	return (
 		<AppBar position="static">
 			<Toolbar display="flex" style={{ justifyContent: 'space-between' }}>
@@ -13,7 +13,11 @@ export default function ButtonAppBar({ handleSubmitVideoSearch, handleSearchTerm
 					handleSearchTermInput={handleSearchTermInput}
 					handleSubmitVideoSearch={handleSubmitVideoSearch}
 				/>
-				<NowPlayingInfo title={nowPlaying && nowPlaying.title} setNowPlaying={setNowPlaying} />
+				<NowPlayingInfo
+					title={nowPlaying && nowPlaying.title} 
+					setNowPlaying={setNowPlaying}
+					queue = {queue} 
+				/>
 				<LoginModal />
 			</Toolbar>
 		</AppBar>

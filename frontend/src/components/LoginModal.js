@@ -42,7 +42,7 @@ function LoginModal() {
 	}
 	return (
 		<div>
-			<Button variant="outlined" color="secondary" onClick={handleOpen}>
+			<Button variant="outlined" onClick={handleOpen}>
 				Login
 			</Button>
 			<Modal
