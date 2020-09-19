@@ -3,7 +3,7 @@ import { Grid, CssBaseline, Container } from "@material-ui/core"
 import { getYoutubeIdFromSearch } from './functions'
 import Video from './components/Video'
 import AppBar from './components/AppBar';
-import VideoCard from './components/videoCard'
+import VideoCard from './components/VideoCard'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
@@ -50,12 +50,13 @@ const App = () => {
                         const url = video.snippet.thumbnails.high.url || video.snippet.thumbnails.default.url
                         const title = video.snippet.title
 
-                        return <Grid item xs={4}>
+                        return <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
                             <VideoCard
                                 id={video.id.videoId}
                                 thumbnailUrl={url}
                                 title={title}
                                 description={video.snippet.description}
+                                nowPlaying={nowPlaying}
                                 setNowPlaying={setNowPlaying}
                             />
                         </Grid>

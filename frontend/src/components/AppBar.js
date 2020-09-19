@@ -21,7 +21,7 @@ export default function ButtonAppBar({ handleSubmitVideoSearch, handleSearchTerm
 
     return (
         <div className={classes.root}>
-            <AppBar position="static" bgColor="secondary">
+            <AppBar position="static" bgcolor="secondary">
                 <Toolbar>
                     <Grid
                         container
@@ -37,7 +37,7 @@ export default function ButtonAppBar({ handleSubmitVideoSearch, handleSearchTerm
                         </Grid>
 
                         <Grid item xs={6}>
-                            { nowPlaying && <Typography color='secondary'>Now Playing: { nowPlaying.title }</Typography> }
+                            { nowPlaying && nowPlaying.title && <Typography color='secondary'>Now Playing: { nowPlaying.title }</Typography> }
                         </Grid>
 
                         <Grid item xs={3}>

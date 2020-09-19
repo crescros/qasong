@@ -1,42 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button ,Typography } from '@material-ui/core';
+import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
+        height: 340,
+        marginBottom: 20
     },
 });
 
-export default function ImgMediaCard({ title, description, thumbnailUrl, id, setNowPlaying }) {
+export default function ImgMediaCard({ title, description, thumbnailUrl, id, setNowPlaying, nowPlaying }) {
 
     const [playing, setPlaying] = useState(false)
 
     const classes = useStyles();
 
-
     function handlePlayButton() {
-        setPlaying(!playing)
-    }
-
-    useEffect(() => {
-
-        if (playing) {
+        if (!playing) {
             setNowPlaying({
                 title: title,
                 description: description,
                 id: id,
                 thumbnailUrl: thumbnailUrl
             })
+            setPlaying(true)
         } else {
-            setNowPlaying()
+            setNowPlaying({})
+            setPlaying(false)
         }
+    }
 
-    }, [playing])
+    useEffect(() => {
+        if (nowPlaying && nowPlaying.id !== id) {
+            setPlaying(false)
+        }
+    }, [nowPlaying])
 
     return (
-        <Card className={classes.root} bgcolor={"secondary"}>
-            <CardActionArea>
+        <Card className={classes.root} style={{ backgroundColor: playing && "red" }}>
+            <CardActionArea style={{height:"340px"}} onClick={handlePlayButton}  >
                 <CardMedia
                     component="img"
                     alt={title}
@@ -44,24 +47,14 @@ export default function ImgMediaCard({ title, description, thumbnailUrl, id, set
                     image={thumbnailUrl}
                     title={title}
                 />
-                <CardContent>
+                <CardContent
+                    style={{height:"200px"}}
+                >
                     <Typography gutterBottom variant="h5" component="h2">
                         {title}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {description}
-                    </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                <Button onClick={handlePlayButton} size="small" color={playing ? "secondary" : "primary"}>
-                    {playing ? "Stop" : "Play"}
-                </Button>
-                <Button size="small" color="primary">
-                    Add to Queue
-                </Button>
-            </CardActions>
-
-        </Card>
+        </Card >
     )
 };
