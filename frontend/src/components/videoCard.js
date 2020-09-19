@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles({
     root: {
@@ -32,7 +32,9 @@ export default function ImgMediaCard({ title, description, thumbnailUrl, id, set
     }
 
     useEffect(() => {
-        if (nowPlaying && nowPlaying.id !== id) {
+        if (nowPlaying && nowPlaying.id === id) {
+            setPlaying(true)
+        } else {
             setPlaying(false)
         }
     }, [nowPlaying])

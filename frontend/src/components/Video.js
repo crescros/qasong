@@ -16,7 +16,7 @@ function Video({ id, setNowPlaying }) {
         setNowPlaying(null)
     }
 
-    return (<>
+    return (<div>
         {
             id && <YouTube
                 videoId={id}
@@ -24,7 +24,7 @@ function Video({ id, setNowPlaying }) {
                 onEnd={hanndleVideoEEENNNnnd}
            />
         }
-    </>
+    </div>
     )
 }
 

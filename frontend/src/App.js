@@ -3,14 +3,14 @@ import { Grid, CssBaseline, Container } from "@material-ui/core"
 import { getYoutubeIdFromSearch } from './functions'
 import Video from './components/Video'
 import AppBar from './components/AppBar';
-import VideoCard from './components/VideoCard'
+import VideoGrid from './components/VideoGrid'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
 const App = () => {
-    const [ searchTerm, setSearchTerm ] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
     const [videos, setVideos] = useState([]);
-    const [nowPlaying, setNowPlaying] = useState()    
+    const [nowPlaying, setNowPlaying] = useState()
 
     const handleSearchTermInput = (e) => {
         setSearchTerm(e.target.value);
@@ -39,38 +39,19 @@ const App = () => {
                 setNowPlaying={setNowPlaying}
             />
 
-            <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-            >
-                {
-                    videos.map(video => {
-                        const url = video.snippet.thumbnails.high.url || video.snippet.thumbnails.default.url
-                        const title = video.snippet.title
+            <VideoGrid
+                videos={videos}
+                nowPlaying={nowPlaying}
+                setNowPlaying={setNowPlaying}
+            />
 
-                        return <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-                            <VideoCard
-                                id={video.id.videoId}
-                                thumbnailUrl={url}
-                                title={title}
-                                description={video.snippet.description}
-                                nowPlaying={nowPlaying}
-                                setNowPlaying={setNowPlaying}
-                            />
-                        </Grid>
+            <Video 
+                id={nowPlaying && nowPlaying.id} 
+                setNowPlaying={setNowPlaying}
+            />
 
-                            
-                    })
-                }
-            </Grid>
-            
-            {
-                nowPlaying && <Video id={nowPlaying.id} setNowPlaying = { setNowPlaying }/>
-            }
         </ThemeProvider>
-    ); 
+    );
 }
 
 export default App;

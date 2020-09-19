@@ -8,10 +8,6 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
-      },
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
       }
     ]
   },
@@ -19,7 +15,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx']
   },
   output: {
-    path: __dirname + '../public/',
+    path: __dirname + '/../public/',
     publicPath: '/',
     filename: 'bundle.js'
   },
