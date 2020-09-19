@@ -21,9 +21,7 @@ export function authenticateUser(username, password) {
         "password": password
     }
 
-    return axios.post(baseUrl + 'api/users/authenticate', {
-        "body": JSON.stringify(postBody)
-    }).then(result => {
+    return axios.post(baseUrl + 'api/users/authenticate', postBody).then(result => {
         return (result)
     })
 

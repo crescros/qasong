@@ -10,7 +10,13 @@ module.exports = {
 
 let users = JSON.parse(fs.readFileSync("data/users.json", "utf8"));
 
+// console.log(users.find((u) => u.username.toLowerCase() === username.toLowerCase() && u.password === password
+// ))
+
 async function authenticate({ username, password }) {
+
+    console.log(username)
+    console.log(password)
     const user = users.find(
         (u) => u.username.toLowerCase() === username.toLowerCase() && u.password === password
     );
