@@ -9,8 +9,7 @@ function NowPlayingInfo({ title, setNowPlaying }) {
 
     return (<>{
         title && <div>
-            <Typography style={{ margin: '0 20px' }}>Now Playing: {title}</Typography>
-            <Button onClick={handleClickStopButton} variant='outlined' color='secondary'>STOP</Button>
+            <Typography style={{ margin: '0 20px' }}>Now Playing: {title}   <Button onClick={handleClickStopButton} variant='outlined' color='secondary'>STOP</Button></Typography>
         </div>
     }
     </>
