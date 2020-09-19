@@ -1,7 +1,6 @@
 // import dependencies
 const express = require('express');
 const cors = require('cors')
-const axios = require('axios')
 const bodyParser = require('body-parser');
 const jwt = require('./_helpers/jwt');
 const errorHandler = require('./_helpers/error-handler');
@@ -19,22 +18,9 @@ app.use(jwt());
 
 
 app.use('/api/users', require('./users/users.controller'));
+app.use('/api/search', require('./search/search.controller'));
 
-// video search api endpoint
-app.get('/api/search', (req, res) => {
-    const searchTerm = req.query.q        
-    const apiKey = process.env.YOUTUBE_API_KEY
 
-    if (!apiKey){
-        res.send('Error: config file missing youtube API key')
-        return
-    }
-
-    axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=12&q=${searchTerm}&key=${apiKey}`).then(response => {
-   
-        res.send(response.data.items)
-    })
-})
 
 // global error handler
 app.use(errorHandler);

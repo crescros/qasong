@@ -10,10 +10,17 @@
 # If you would like to upload your .git directory, .gitignore file or files
 # from your .gitignore file, remove the corresponding line
 # below:
+
+# Git
 .git
-# .gitignore
+.gitignore
 
 # Node.js dependencies:
 node_modules/
 
+# Frontend
 frontend/
+
+# Testing
+cypress/
+cypress.json

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npx cypress run",
     "cy:open": "npx cypress open",
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "engines": {
     "node": "12.x"

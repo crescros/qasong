@@ -10,6 +10,11 @@
 
 `npm start`
 
+### run server tests
+
+while server is running,
+`npm test`
+
 # REACT
 
 ### enter react folder
@@ -17,6 +22,7 @@
 `cd frontend`
 
 ### install react
+
 inside of `frontend` folder,
 `npm i`
 
