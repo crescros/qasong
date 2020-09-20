@@ -9,7 +9,7 @@ router.post('/', makeOne);
 router.get('/', getAll);
 
 function getAll(req, res, next) {
-    con.query(`SELECT author, content FROM globalchat LIMIT 3000;`, (err, data) => {
+    con.query(`SELECT author, content FROM globalchat ORDER BY created_at DESC LIMIT 12;`, (err, data) => {
         if (err) {
             res.json(err)
         } else {

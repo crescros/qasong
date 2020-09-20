@@ -39,9 +39,18 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue }) {
 			})}
 
 			{videos.length == 0 && (
-				<Typography variant="h1" style={{ color: 'black' }}>
-					{process.env.REACT_APP_NAME.toUpperCase()}
-				</Typography>
+				<>
+					<Grid item xs={12}>
+						<Typography align='center' variant="h1" style={{ color: 'black' }} xs={12}>
+							{process.env.REACT_APP_NAME.toUpperCase()}
+						</Typography>
+					</Grid>
+					<Grid item xs={12}>
+						<Typography align='center' style={{ color: '#888888', letterSpacing:'2px', wordSpacing:'16px' }}>
+							{process.env.REACT_APP_TAGLINE}
+						</Typography>
+					</Grid>
+				</>
 			)}
 		</Grid>
 	);
