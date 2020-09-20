@@ -27,6 +27,7 @@ export function authenticateUser(username, password) {
     })
 
 }
+
 export function createUser(username, password) {
     const postBody = {
         "username": username,
@@ -39,4 +40,25 @@ export function createUser(username, password) {
         return (error)
     })
 
+}
+
+export function getGlobalChat(){
+    return axios.get(baseUrl + 'api/globalchat').then(result =>{
+        return (result)
+    }).catch(error =>{
+        return (error)
+    })
+}
+
+export function postGlobalChat(author, content){
+    const postBody = {
+        "author": author,
+        "content": content
+    }
+
+    return axios.post(baseUrl + 'api/globalchat', postBody).then(result => {
+        return (result)
+    }).catch(error => {
+        return (error)
+    })
 }

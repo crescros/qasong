@@ -1,7 +1,6 @@
 ﻿const express = require('express');
 const router = express.Router();
 
-
 const con = require('../database/connection.js');
 const jwt = require("jsonwebtoken");
 
@@ -10,9 +9,6 @@ router.post('/authenticate', authenticate);
 router.post('/changepassword', changePassword);
 router.post('/create', makeOne);
 router.get('/', getAll);
-
-con.connect();
-
 
 
 module.exports = router;

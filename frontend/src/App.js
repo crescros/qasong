@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { CssBaseline } from "@material-ui/core"
+import { CssBaseline, Button } from "@material-ui/core"
 import { getYoutubeIdFromSearch } from './functions'
 import Video from './components/Video'
 import AppBar from './components/AppBar';
 import VideoGrid from './components/VideoGrid'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import GlobalChat from './components/GlobalChat'
 
 const App = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -13,6 +14,7 @@ const App = () => {
     const [queue, setQueue] = useState([]);
     const [nowPlaying, setNowPlaying] = useState()
     const [user, setUser ] = useState()
+    const [globalChatOpen, setGlobalChatOpen] = useState(false)
 
     const handleSearchTermInput = (e) => {
         setSearchTerm(e.target.value);
@@ -66,6 +68,7 @@ const App = () => {
                 queue={queue}
                 setUser={setUser}
                 user={user}
+                setGlobalChatOpen={setGlobalChatOpen}
             />
 
             <VideoGrid
@@ -79,6 +82,13 @@ const App = () => {
             <Video
                 id={nowPlaying && nowPlaying.id}
                 setNowPlaying={setNowPlaying}
+            />
+
+            <GlobalChat 
+                user={user}
+                open={globalChatOpen}
+                setOpen= {setGlobalChatOpen}
+
             />
 
         </ThemeProvider>

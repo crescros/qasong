@@ -5,7 +5,7 @@ import { authenticateUser, createUser } from '../functions'
 import UserMenu from './UserMenu';
 import CreateUserModal from './CreateAccountModal'
 
-function UserSection({ user, setUser }) {
+function UserSection({ user, setUser, setGlobalChatOpen }) {
 	const [loginModalOpen, setLoginModalOpen] = useState(false);
 	const [createUserModalOpen, setCreateUserModalOpen] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -119,6 +119,7 @@ function UserSection({ user, setUser }) {
 				handleLogOut={handleLogOut}
 				handleMenuClose={handleMenuClose}
 				menuOpen={menuOpen}
+				setGlobalChatOpen={setGlobalChatOpen}
 			/>
 
 			<LoginModal
