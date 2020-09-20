@@ -1,11 +1,38 @@
-const { Client } = require('pg')
+var mysql = require('mysql');
 
-const client = new Client({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASS,
-  port: process.env.DB_PORT,
-})
+var con = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_DATABASE,
+    port: process.env.DB_PORT
+});
 
-module.exports = client
+
+module.exports = con
+
+// con.connect(function (err) {
+//     if (err) throw err;
+//     console.log("Connected!");
+
+
+
+//     con.query(`
+        
+//     SELECT * FROM mausers LIMIT 3;
+        
+        
+//         `, function (err, result) {
+//         if (err) throw err;
+//         console.log(result);
+
+
+
+
+
+//     })
+
+
+// });
+
+
