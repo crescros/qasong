@@ -1,26 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@material-ui/core';
 import LoginModal from './LoginModal';
-import { authenticateUser } from '../functions'
+import { authenticateUser, createUser } from '../functions'
 import UserMenu from './UserMenu';
+import CreateUserModal from './CreateAccountModal'
 
-function UserSection({ user, setUser }) {
-	const [modalOpen, setModalOpen] = useState(false);
+function UserSection({ user, setUser, setGlobalChatOpen }) {
+	const [loginModalOpen, setLoginModalOpen] = useState(false);
+	const [createUserModalOpen, setCreateUserModalOpen] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [error, setErorr] = useState(null)
-    const [anchorEl, setAnchorEl] = useState(null);
-	
+	const [message, setMessage] = useState(null)
+	const [loading, setLoading] = useState(false)
+	const [anchorEl, setAnchorEl] = useState(null);
+
 	useEffect(() => {
 		let storedUser = localStorage.getItem('user')
-		
+
 		if (storedUser) {
 			setUser(JSON.parse(storedUser))
 		}
 	}, [])
-	
+
 	function handleClick(event) {
 		if (!user) {
-			setModalOpen(true);
+			setLoginModalOpen(true);
 		} else {
 			setAnchorEl(event.currentTarget);
 			setMenuOpen(true)
@@ -32,20 +36,63 @@ function UserSection({ user, setUser }) {
 		const enteredUsername = e.target.email.value
 		const enteredPassword = e.target.password.value
 
+		setLoading(true)
 		const response = await authenticateUser(enteredUsername, enteredPassword)
 
 		if (response.status === 200) {
 			setUser(response.data)
 			localStorage.setItem('user', JSON.stringify(response.data))
-			handleModalClose()
+			handleLoginModalClose()
+			setLoading(false)
 		} else {
 			setErorr("There was an issue with your login attempt. Please try again")
+			setLoading(false)
 		}
 	}
 
-	function handleModalClose() {
+	async function handleCreateUserFormSubmit(e) {
+		e.preventDefault()
+		const enteredUsername = e.target.email.value
+		const enteredPassword = e.target.password.value
+		const enteredConfirmPassword = e.target.confirmpassword.value
+
+		if (enteredPassword !== enteredConfirmPassword) {
+
+			setErorr("passwords dont match")
+
+			return
+		} else {
+			setLoading(true)
+			const response = await createUser(enteredUsername, enteredPassword)
+			
+			if (response) {
+				setLoading(false)
+				setMessage("created user")
+				handleCreateUserModalClose()
+				setLoginModalOpen(true)
+			} else {
+				setLoading(false)
+				setErorr("couldn't create user")
+			}
+		}
+
+
+
+
+	}
+
+	function handleCreateUserClick() {
+		setLoginModalOpen(false)
+		setCreateUserModalOpen(true)
+	}
+
+	function handleLoginModalClose() {
 		setErorr()
-		setModalOpen(false);
+		setLoginModalOpen(false);
+	}
+	function handleCreateUserModalClose() {
+		setErorr()
+		setCreateUserModalOpen(false);
 	}
 
 	function handleMenuClose() {
@@ -61,24 +108,35 @@ function UserSection({ user, setUser }) {
 
 	return (
 		<div>
-			<Button 
-				variant="outlined" 
-				onClick={handleClick} 
+			<Button
+				variant="outlined"
+				onClick={handleClick}
 				children={user ? user.username : "Login"}
 			/>
 
 			<UserMenu
 				anchorEl={anchorEl}
-				handleLogOut={handleLogOut} 
-				handleMenuClose={handleMenuClose} 
-				menuOpen={menuOpen} 
+				handleLogOut={handleLogOut}
+				handleMenuClose={handleMenuClose}
+				menuOpen={menuOpen}
+				setGlobalChatOpen={setGlobalChatOpen}
 			/>
 
 			<LoginModal
-				modalOpen={modalOpen}
-				handleModalClose={handleModalClose}
+				loading={loading}
+				message={message}
+				modalOpen={loginModalOpen}
+				handleModalClose={handleLoginModalClose}
 				error={error}
-				handleLoginFormSubmit={handleLoginFormSubmit} 
+				handleLoginFormSubmit={handleLoginFormSubmit}
+				handleCreateUserClick={handleCreateUserClick}
+			/>
+
+			<CreateUserModal
+				modalOpen={createUserModalOpen}
+				handleModalClose={handleCreateUserModalClose}
+				error={error}
+				handleCreateUserFormSubmit={handleCreateUserFormSubmit}
 			/>
 		</div>
 	);

@@ -11,7 +11,6 @@ module.exports = () => {
     return prev;
   }, {});
 
-
   return {
     entry: './src/index.js',
     module: {
@@ -39,4 +38,5 @@ module.exports = () => {
       contentBase: '../public/',
       hot: true
     }
-  }}
+  }
+}

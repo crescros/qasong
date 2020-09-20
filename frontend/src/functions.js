@@ -1,13 +1,6 @@
 import axios from "axios"
 
-// IF PRODUCTION 
-// axios.defaults.baseUrl = './'
-// const baseUrl = './'
-
-// IF DEVELOPMENT
-
-// axios.defaults.baseUrl = 'http://localhost:3016/'
-const baseUrl = 'http://localhost:3016/'
+const baseUrl = process.env.REACT_APP_API_URL || './'
 
 export function getYoutubeIdFromSearch(search) {
 
@@ -33,4 +26,39 @@ export function authenticateUser(username, password) {
         return (error)
     })
 
+}
+
+export function createUser(username, password) {
+    const postBody = {
+        "username": username,
+        "password": password
+    }
+
+    return axios.post(baseUrl + 'api/users/create', postBody).then(result => {
+        return (result)
+    }).catch(error => {
+        return (error)
+    })
+
+}
+
+export function getGlobalChat(){
+    return axios.get(baseUrl + 'api/globalchat').then(result =>{
+        return (result)
+    }).catch(error =>{
+        return (error)
+    })
+}
+
+export function postGlobalChat(author, content){
+    const postBody = {
+        "author": author,
+        "content": content
+    }
+
+    return axios.post(baseUrl + 'api/globalchat', postBody).then(result => {
+        return (result)
+    }).catch(error => {
+        return (error)
+    })
 }

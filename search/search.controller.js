@@ -2,11 +2,11 @@
 const router = express.Router();
 const searchService = require('./search.service');
 
+
 // routes
 router.get('/', searchYoutube);
 
 module.exports = router;
-
 
 
 function searchYoutube(req, res, next) {

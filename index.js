@@ -6,6 +6,10 @@ const jwt = require('./_helpers/jwt');
 const errorHandler = require('./_helpers/error-handler');
 require('dotenv').config();
 require('rootpath')();
+const con = require('./database/connection.js');
+
+con.connect();
+
 
 // initialize express
 const app = express();
@@ -15,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(jwt());
 
+app.use('/api/globalchat', require('./globalchat/globalchat.controller'));
 app.use('/api/users', require('./users/users.controller'));
 app.use('/api/search', require('./search/search.controller'));
 

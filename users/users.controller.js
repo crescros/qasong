@@ -1,28 +1,79 @@
 ﻿const express = require('express');
 const router = express.Router();
-const userService = require('./user.service');
+
+const con = require('../database/connection.js');
+const jwt = require("jsonwebtoken");
 
 // routes
 router.post('/authenticate', authenticate);
 router.post('/changepassword', changePassword);
 router.post('/create', makeOne);
+router.get('/', getAll);
+
 
 module.exports = router;
 
 function authenticate(req, res, next) {
-    userService.authenticate(req.body)
-        .then(user => user ? res.json(user) : res.status(400).json({ message: 'Username or password is incorrect' }))
-        .catch(err => next(err));
+
+    let { username, password } = req.body
+    con.query(`SELECT name, id FROM mausers WHERE name='${username}' AND password='${password}';`, (err, data) => {
+
+        if (err) {
+            res.json(err)
+        } else if (!data[0]) {
+            res.status(400).json({ "message": "no user found" })
+        } else {
+
+            const token = jwt.sign({ sub: data[0].id }, process.env.SECRET);
+            const name = data[0].name
+
+            res.json({
+
+                "username": name,
+                "token": token
+            })
+        }
+    })
+}
+
+function getAll(req, res, next) {
+    con.query(`SELECT name FROM mausers LIMIT 3000;`, (err, data) => {
+        if (err) {
+            res.json(err)
+        } else {
+            res.json(data)
+        }
+    })
 }
 
 function makeOne(req, res, next) {
-    userService.makeOne(req.body)
-        .then(users => res.json(users))
-        .catch(err => next(err));
+    let { username, password } = req.body
+    con.query(`INSERT INTO mausers (name, password) VALUES('${username}', '${password}');`, (err, data) => {
+
+        if (err) {
+            res.json(err)
+        } else {
+
+            res.json({
+                "message": `user created`
+            })
+        }
+    })
 }
 
 function changePassword(req, res, next) {
-    userService.changePassword(req.body)
-        .then(msg => msg ? res.json({ message: msg }) : res.status(400).json({ message: 'Username or password is incorrect' }) )
-        .catch(err => next(err));
+    let { username, password, newPassword } = req.body
+
+
+    con.query(`UPDATE mausers SET password='${newPassword}' WHERE name='${username}' AND password='${password}'`, (err, data) => {
+
+        if (err) {
+            res.json(err)
+
+        } else {
+            res.json({ "message": "password changed" })
+        }
+    })
+
 }
+

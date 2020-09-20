@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 import { Menu, MenuItem } from '@material-ui/core'
 
-function UserMenu({ handleLogOut, handleMenuClose, menuOpen, anchorEl }) {
+function UserMenu({ handleLogOut, handleMenuClose, menuOpen, anchorEl, setGlobalChatOpen }) {
+
+
+    const handleOpenChat = () => {
+        setGlobalChatOpen(true)
+    }
 
     return (
         <Menu
@@ -10,8 +15,12 @@ function UserMenu({ handleLogOut, handleMenuClose, menuOpen, anchorEl }) {
             anchorEl={anchorEl}
             open={menuOpen}
             onClose={handleMenuClose}
-            children={<MenuItem onClick={handleLogOut}>Logout</MenuItem>}
-        />
+        >
+
+            <MenuItem onClick={handleLogOut}>Logout</MenuItem>
+            <MenuItem onClick={handleOpenChat}>Chat</MenuItem>
+        </Menu>
+
     )
 }
 

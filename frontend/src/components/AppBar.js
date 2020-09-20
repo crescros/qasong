@@ -11,7 +11,8 @@ export default function MusicAppBar({
 	setNowPlaying,
 	queue,
 	user,
-	setUser
+	setUser,
+	setGlobalChatOpen
 }) {
 	return (
 		<AppBar position="static">
@@ -38,6 +39,7 @@ export default function MusicAppBar({
 				<UserSection
 					user={user}
 					setUser={setUser}
+					setGlobalChatOpen={setGlobalChatOpen}
 				/>
 			</Toolbar>
 		</AppBar>
