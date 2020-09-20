@@ -7,6 +7,7 @@ const errorHandler = require('./_helpers/error-handler');
 require('dotenv').config();
 require('rootpath')();
 
+
 // initialize express
 const app = express();
 app.use(cors())

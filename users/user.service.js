@@ -1,28 +1,12 @@
-﻿const jwt = require("jsonwebtoken");
-const fs = require("fs");
-const uuid = require('uuid')
+﻿const uuid = require('uuid')
+
 
 module.exports = {
-    authenticate,
     makeOne,
     changePassword
 };
 
-let users = JSON.parse(fs.readFileSync("data/users.json", "utf8"));
 
-async function authenticate({ username, password }) {
-    const user = users.find(
-        (u) => u.username.toLowerCase() === username.toLowerCase() && u.password === password
-    );
-    if (user) {
-        const token = jwt.sign({ sub: user.id }, process.env.SECRET);
-        const { password, ...userWithoutPassword } = user;
-        return {
-            ...userWithoutPassword,
-            token,
-        };
-    }
-}
 
 async function makeOne({ username, password }) {
 
@@ -34,7 +18,7 @@ async function makeOne({ username, password }) {
     } else if (password.length < 8) {
         message = "Password must be at least 8 characters"
     } else {
-                
+
         let dateCreated = new Date()
 
         users.push({
@@ -53,7 +37,7 @@ async function makeOne({ username, password }) {
 
     return {
         "message": message,
-        "success": success 
+        "success": success
     }
 }
 
