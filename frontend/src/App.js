@@ -12,6 +12,7 @@ const App = () => {
     const [videos, setVideos] = useState([]);
     const [queue, setQueue] = useState([]);
     const [nowPlaying, setNowPlaying] = useState()
+    const [user, setUser ] = useState()
 
     const handleSearchTermInput = (e) => {
         setSearchTerm(e.target.value);
@@ -19,8 +20,8 @@ const App = () => {
 
     const handleSubmitVideoSearch = async (e) => {
         e.preventDefault();
-        const response = await getYoutubeIdFromSearch(searchTerm);
-        setVideos(response.data);
+        const results = await getYoutubeIdFromSearch(searchTerm);
+        setVideos(results);
     }
 
     useEffect(() => {
@@ -63,6 +64,8 @@ const App = () => {
                 nowPlaying={nowPlaying}
                 setNowPlaying={setNowPlaying}
                 queue={queue}
+                setUser={setUser}
+                user={user}
             />
 
             <VideoGrid

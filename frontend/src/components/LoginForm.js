@@ -1,31 +1,8 @@
-import React, { useState } from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
+import React from 'react';
+import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Typography, Container } from '@material-ui/core';
+import { Alert } from '@material-ui/lab/'
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { authenticateUser } from '../functions'
-
-function Copyright() {
-	return (
-		<Typography variant="body2" color="textSecondary" align="center">
-			{'Copyright © '}
-			<Link color="inherit" href="https://material-ui.com/">
-				Your Website
-			</Link>{' '}
-			{new Date().getFullYear()}
-			{'.'}
-		</Typography>
-	);
-}
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -47,18 +24,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-export default function SignIn() {
-
-	function handleFormSubmit(e){
-		e.preventDefault()
-		const enteredUsername = e.target.email.value
-		const enteredPassword = e.target.password.value
-
-		const response = authenticateUser(enteredUsername, enteredPassword)
-		
-
-		console.log(response)
-	}
+export default function SignIn({ handleLoginFormSubmit, error }) {
 
 	const classes = useStyles();
 
@@ -66,13 +32,20 @@ export default function SignIn() {
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
 			<div className={classes.paper}>
+				{
+					error && <Alert severity="error">{error}</Alert>
+				}
 				<Avatar className={classes.avatar}>
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component="h1" variant="h5">
 					Sign in
 				</Typography>
-				<form className={classes.form} noValidate onSubmit={handleFormSubmit}>
+				<form
+					className={classes.form} 
+					noValidate 
+					onSubmit={handleLoginFormSubmit}
+				>
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -95,10 +68,18 @@ export default function SignIn() {
 						id="password"
 						autoComplete="current-password"
 					/>
-					<FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-					<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-						Sign In
-					</Button>
+					<FormControlLabel 
+						control={<Checkbox value="remember" color="primary" />}
+						label="Remember me" 
+					/>
+					<Button 
+						type="submit" 
+						fullWidth 
+						variant="contained" 
+						color="primary" 
+						className={classes.submit}
+						children="Sign In"
+					/>
 					<Grid container>
 						<Grid item xs>
 							<Link href="#" variant="body2">
@@ -113,9 +94,6 @@ export default function SignIn() {
 					</Grid>
 				</form>
 			</div>
-			<Box mt={8}>
-				<Copyright />
-			</Box>
 		</Container>
 	);
 }

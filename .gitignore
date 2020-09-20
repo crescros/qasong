@@ -11,4 +11,5 @@ cypress/screenshots
 
 # music-app
 .env
+!frontend/.env
 data

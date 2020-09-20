@@ -15,6 +15,14 @@ export default function ImgMediaCard({ title, description, thumbnailUrl, id, set
     const [playing, setPlaying] = useState(false)
     const classes = useStyles();
 
+    useEffect(() => {
+        if (nowPlaying && nowPlaying.id === id) {
+            setPlaying(true)
+        } else {
+            setPlaying(false)
+        }
+    }, [nowPlaying])
+
     function handlePlayButton() {
         if (!playing) {
             setNowPlaying({
@@ -39,14 +47,6 @@ export default function ImgMediaCard({ title, description, thumbnailUrl, id, set
         }))
     }
 
-    useEffect(() => {
-        if (nowPlaying && nowPlaying.id === id) {
-            setPlaying(true)
-        } else {
-            setPlaying(false)
-        }
-    }, [nowPlaying])
-
     return (
         <Card className={classes.root} style={{ backgroundColor: playing && "#2ad156" }}>
             <CardActionArea style={{ height: "340px" }} onClick={handlePlayButton}  >
@@ -67,7 +67,7 @@ export default function ImgMediaCard({ title, description, thumbnailUrl, id, set
             </CardActionArea>
             <CardActions>
                 <Button onClick={handleAddQueue}>Add to Queue</Button>
-                <Button onClick={handlePlayButton}>{playing?"STOP":"PLAY"}</Button>
+                <Button onClick={handlePlayButton}>{playing ? "STOP" : "PLAY"}</Button>
             </CardActions>
         </Card >
     )

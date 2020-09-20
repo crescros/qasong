@@ -3,6 +3,7 @@ import YouTube from 'react-youtube'
 
 function Video({ id, setNowPlaying }) {
 
+    
     const youtubePlayerOptions = {
         height: '0',
         width: '0',
@@ -15,16 +16,14 @@ function Video({ id, setNowPlaying }) {
     function hanndleVideoEEENNNnnd() {
         setNowPlaying(null)
     }
-
-    return (<div>
-        {
-            id && <YouTube
-                videoId={id}
-                opts={youtubePlayerOptions}
-                onEnd={hanndleVideoEEENNNnnd}
-           />
-        }
-    </div>
+    
+    if (!id) return <div></div>
+    
+    return (<YouTube
+        videoId={id}
+        opts={youtubePlayerOptions}
+        onEnd={hanndleVideoEEENNNnnd}
+    />
     )
 }
 
