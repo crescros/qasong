@@ -7,7 +7,8 @@
     "test": "npx cypress run",
     "cy:open": "npx cypress open",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "deploy": "gcloud app deploy"
   },
   "engines": {
     "node": "12.x"

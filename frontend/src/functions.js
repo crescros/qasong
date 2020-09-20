@@ -1,13 +1,6 @@
 import axios from "axios"
 
-// IF PRODUCTION 
-// axios.defaults.baseUrl = './'
-// const baseUrl = './'
-
-// IF DEVELOPMENT
-
-// axios.defaults.baseUrl = 'http://localhost:3016/'
-const baseUrl = 'http://localhost:3016/'
+const baseUrl = process.env.REACT_APP_API_URL || './'
 
 export function getYoutubeIdFromSearch(search) {
 

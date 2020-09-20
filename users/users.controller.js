@@ -15,9 +15,6 @@ con.connect();
 
 
 
-
-
-
 module.exports = router;
 
 function authenticate(req, res, next) {
@@ -44,7 +41,7 @@ function authenticate(req, res, next) {
 }
 
 function getAll(req, res, next) {
-    con.query(`SELECT * FROM mausers LIMIT 3;`, (err, data) => {
+    con.query(`SELECT name FROM mausers LIMIT 3000;`, (err, data) => {
         if (err) {
             res.json(err)
         } else {
@@ -77,7 +74,6 @@ function changePassword(req, res, next) {
         if (err) {
             res.json(err)
 
-            console.log(err)
         } else {
             res.json({ "message": "password changed" })
         }
