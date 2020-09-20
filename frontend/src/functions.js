@@ -34,3 +34,16 @@ export function authenticateUser(username, password) {
     })
 
 }
+export function createUser(username, password) {
+    const postBody = {
+        "username": username,
+        "password": password
+    }
+
+    return axios.post(baseUrl + 'api/users/create', postBody).then(result => {
+        return (result)
+    }).catch(error => {
+        return (error)
+    })
+
+}

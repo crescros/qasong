@@ -1,7 +1,7 @@
 import React from 'react'
 import Modal from '@material-ui/core/Modal'
 import makeStyles from '@material-ui/styles/makeStyles'
-import LoginForm from './LoginForm'
+import CreateUserForm from './CreateUserForm'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function LoginModal({ modalOpen, handleModalClose, error, handleLoginFormSubmit, handleCreateUserClick }) {
+function CreateUserModal({ modalOpen, handleModalClose, error, handleCreateUserFormSubmit }) {
     const classes = useStyles();
 
     return (
@@ -25,14 +25,13 @@ function LoginModal({ modalOpen, handleModalClose, error, handleLoginFormSubmit,
             aria-describedby="simple-modal-description"
         >
             <div className={classes.paper}>
-                <LoginForm
-                    handleLoginFormSubmit={handleLoginFormSubmit}
+                <CreateUserForm
+                    handleCreateUserFormSubmit={handleCreateUserFormSubmit}
                     error={error}
-                    handleCreateUserClick={handleCreateUserClick}
                 />
             </div>
         </Modal>
     )
 }
 
-export default LoginModal
+export default CreateUserModal

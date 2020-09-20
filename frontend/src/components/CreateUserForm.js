@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Typography, Container } from '@material-ui/core';
+import { Avatar, Button, CssBaseline, TextField, Typography, Container } from '@material-ui/core';
 import { Alert } from '@material-ui/lab/'
 import { makeStyles } from '@material-ui/core/styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-export default function SignIn({ handleLoginFormSubmit, error, handleCreateUserClick }) {
+export default function SignIn({ handleCreateUserFormSubmit, error }) {
 
 	const classes = useStyles();
 
@@ -39,12 +39,12 @@ export default function SignIn({ handleLoginFormSubmit, error, handleCreateUserC
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component="h1" variant="h5">
-					Sign in
+					create an account for {process.env.REACT_APP_NAME}
 				</Typography>
 				<form
 					className={classes.form} 
 					noValidate 
-					onSubmit={handleLoginFormSubmit}
+					onSubmit={handleCreateUserFormSubmit}
 				>
 					<TextField
 						variant="outlined"
@@ -68,30 +68,27 @@ export default function SignIn({ handleLoginFormSubmit, error, handleCreateUserC
 						id="password"
 						autoComplete="current-password"
 					/>
-					<FormControlLabel 
-						control={<Checkbox value="remember" color="primary" />}
-						label="Remember me" 
+					<TextField
+						variant="outlined"
+						margin="normal"
+						required
+						fullWidth
+						name="confirmpassword"
+						label="Confirm Password"
+						type="password"
+						id="confirmpassword"
+						autoComplete="current-password"
 					/>
+
 					<Button 
 						type="submit" 
 						fullWidth 
 						variant="contained" 
 						color="primary" 
 						className={classes.submit}
-						children="Sign In"
+						children="Create Account"
 					/>
-					<Grid container>
-						<Grid item xs>
-							<Link href="#" variant="body2">
-								Forgot password?
-							</Link>
-						</Grid>
-						<Grid item>
-							<Link onClick={handleCreateUserClick} variant="body2">
-								{"Don't have an account? Sign Up"}
-							</Link>
-						</Grid>
-					</Grid>
+	
 				</form>
 			</div>
 		</Container>
