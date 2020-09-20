@@ -10,11 +10,14 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3)
+        padding: theme.spacing(2, 4, 3),
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)'
     }
 }));
 
-function CreateUserModal({ modalOpen, handleModalClose, error, handleCreateUserFormSubmit }) {
+function CreateUserModal({ modalOpen, handleModalClose, error, handleCreateUserFormSubmit, loading}) {
     const classes = useStyles();
 
     return (
@@ -28,6 +31,7 @@ function CreateUserModal({ modalOpen, handleModalClose, error, handleCreateUserF
                 <CreateUserForm
                     handleCreateUserFormSubmit={handleCreateUserFormSubmit}
                     error={error}
+                    loading={loading}
                 />
             </div>
         </Modal>

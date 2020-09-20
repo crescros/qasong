@@ -10,11 +10,14 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3)
+        padding: theme.spacing(2, 4, 3),
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)'
     }
 }));
 
-function LoginModal({ modalOpen, handleModalClose, error, handleLoginFormSubmit, handleCreateUserClick }) {
+function LoginModal({ modalOpen, handleModalClose, error, handleLoginFormSubmit, handleCreateUserClick, message, loading }) {
     const classes = useStyles();
 
     return (
@@ -28,7 +31,9 @@ function LoginModal({ modalOpen, handleModalClose, error, handleLoginFormSubmit,
                 <LoginForm
                     handleLoginFormSubmit={handleLoginFormSubmit}
                     error={error}
+                    message={message}
                     handleCreateUserClick={handleCreateUserClick}
+                    loading={loading}
                 />
             </div>
         </Modal>

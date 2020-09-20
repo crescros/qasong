@@ -10,6 +10,8 @@ function UserSection({ user, setUser }) {
 	const [createUserModalOpen, setCreateUserModalOpen] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [error, setErorr] = useState(null)
+	const [message, setMessage] = useState(null)
+	const [loading, setLoading] = useState(false)
 	const [anchorEl, setAnchorEl] = useState(null);
 
 	useEffect(() => {
@@ -34,14 +36,17 @@ function UserSection({ user, setUser }) {
 		const enteredUsername = e.target.email.value
 		const enteredPassword = e.target.password.value
 
+		setLoading(true)
 		const response = await authenticateUser(enteredUsername, enteredPassword)
 
 		if (response.status === 200) {
 			setUser(response.data)
 			localStorage.setItem('user', JSON.stringify(response.data))
 			handleLoginModalClose()
+			setLoading(false)
 		} else {
 			setErorr("There was an issue with your login attempt. Please try again")
+			setLoading(false)
 		}
 	}
 
@@ -57,11 +62,16 @@ function UserSection({ user, setUser }) {
 
 			return
 		} else {
+			setLoading(true)
 			const response = await createUser(enteredUsername, enteredPassword)
-
+			
 			if (response) {
-
+				setLoading(false)
+				setMessage("created user")
+				handleCreateUserModalClose()
+				setLoginModalOpen(true)
 			} else {
+				setLoading(false)
 				setErorr("couldn't create user")
 			}
 		}
@@ -112,6 +122,8 @@ function UserSection({ user, setUser }) {
 			/>
 
 			<LoginModal
+				loading={loading}
+				message={message}
 				modalOpen={loginModalOpen}
 				handleModalClose={handleLoginModalClose}
 				error={error}

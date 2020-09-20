@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Typography, Container } from '@material-ui/core';
+import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Typography, Container, CircularProgress } from '@material-ui/core';
 import { Alert } from '@material-ui/lab/'
 import { makeStyles } from '@material-ui/core/styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-export default function SignIn({ handleLoginFormSubmit, error, handleCreateUserClick }) {
+export default function SignIn({ handleLoginFormSubmit, error, handleCreateUserClick, message, loading }) {
 
 	const classes = useStyles();
 
@@ -32,6 +32,12 @@ export default function SignIn({ handleLoginFormSubmit, error, handleCreateUserC
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
 			<div className={classes.paper}>
+				{
+					loading && <CircularProgress />
+				}
+				{
+					message && <Alert severity="success">{message}</Alert>
+				}
 				{
 					error && <Alert severity="error">{error}</Alert>
 				}
