@@ -9,7 +9,13 @@ export default function TemporaryDrawer({ user, open, setOpen }) {
     const [enteredMessage, setEnteredMessage] = useState('')
 
     useEffect(() => {
+
         handleLoadChat()
+        const refreshRef = setInterval(handleLoadChat, process.env.REACT_APP_CHAT_REFRESH_RATE)
+
+        return () => {
+            clearInterval(refreshRef)
+        }
     }, [])
 
     const handleOpen = () => {
@@ -34,7 +40,6 @@ export default function TemporaryDrawer({ user, open, setOpen }) {
         getGlobalChat().then(data => {
             if (data) {
                 setChat(data.data)
-
             }
         })
     }
@@ -48,22 +53,35 @@ export default function TemporaryDrawer({ user, open, setOpen }) {
     }
 
     return (
-        <Drawer anchor="bottom" open={open} onClose={handleClose}>
-            <div style={{ maxHeight: '360px' }} >
-                <div style={{ display: 'flex', flexDirection: 'column-reverse' }}>
+        <Drawer anchor="right" open={open} onClose={handleClose}>
+            <div style={{ maxWidth: '360px', marginLeft: '20px', marginTop:'auto', wordWrap: 'break-word' }} >
+                <div style={{ display: 'flex', flexDirection: 'column-reverse', alignContent: 'flex-end'}}>
 
                     {chat && chat.map((msg, i) => {
-                        return <div>
-                            <Typography color={user.username === msg.author ? "default" : "secondary"}><Box display='inline' fontWeight="fontWeightBold">{msg.author}</Box>: {msg.content}</Typography>
-                            </div>
+
+                        let newAuthor = false
+
+                        if (i < chat.length - 1 && msg.author !== chat[i + 1].author) {
+                            newAuthor = true
+                        }
+
+                        return <div key={msg.id}>{
+                            newAuthor ? <><Typography color={user.username === msg.author ? "initial" : "secondary"} fontWeight="fontWeightBold">{msg.author} {msg.created_at}</Typography>
+                                <Typography style={{ marginLeft: '20px' }} color={user.username === msg.author ? "initial" : "secondary"}>{msg.content}</Typography></>
+                                : <Typography style={{ marginLeft: '20px' }} color={user.username === msg.author ? "initial" : "secondary"}>{msg.content}</Typography>
+
+                        }
+                        </div>
                     })}
                 </div>
                 <form onSubmit={handlePost}>
-                    <InputBase 
-                        startAdornment={<InputAdornment position="start" onClick={handlePost}><IconButton><SendIcon /></IconButton></InputAdornment>} 
+                    <InputBase
+                        startAdornment={<InputAdornment position="start" onClick={handlePost}><IconButton><SendIcon /></IconButton></InputAdornment>}
                         onChange={onMessageType}
-                         value={enteredMessage} 
-                         style={{ width: '100%' }} />
+                        value={enteredMessage}
+                        style={{ width: '100%' }} 
+                        autoFocus={true}    
+                    />
                 </form>
             </div>
         </Drawer>

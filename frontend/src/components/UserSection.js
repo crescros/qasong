@@ -18,6 +18,7 @@ function UserSection({ user, setUser, setGlobalChatOpen }) {
 		let storedUser = localStorage.getItem('user')
 
 		if (storedUser) {
+			console.log(storedUser)
 			setUser(JSON.parse(storedUser))
 		}
 	}, [])
@@ -41,6 +42,7 @@ function UserSection({ user, setUser, setGlobalChatOpen }) {
 
 		if (response.status === 200) {
 			setUser(response.data)
+			console.log(user)
 			localStorage.setItem('user', JSON.stringify(response.data))
 			handleLoginModalClose()
 			setLoading(false)
@@ -113,7 +115,6 @@ function UserSection({ user, setUser, setGlobalChatOpen }) {
 				onClick={handleClick}
 				children={user ? user.username : "Login"}
 			/>
-
 			<UserMenu
 				anchorEl={anchorEl}
 				handleLogOut={handleLogOut}

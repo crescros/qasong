@@ -4,7 +4,7 @@ describe('.env file', () => {
     })
 
     it('has secret with type: int', () => {
-        expect(typeof Cypress.env("SECRET")).to.equal("number")
+        expect(typeof Cypress.env("SECRET")).to.equal("string")
     })
 
     it('has youtube api key', () => {

@@ -10,7 +10,6 @@ router.post('/changepassword', changePassword);
 router.post('/create', makeOne);
 router.get('/', getAll);
 
-
 module.exports = router;
 
 function authenticate(req, res, next) {

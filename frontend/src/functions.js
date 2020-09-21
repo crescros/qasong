@@ -2,12 +2,15 @@ import axios from "axios"
 
 const baseUrl = process.env.REACT_APP_API_URL || './'
 
-export function getYoutubeIdFromSearch(search) {
+export function setDefaultToken (token) {
+    axios.defaults.headers.common['Authorization'] = "Bearer " + token
+}
 
+
+export function getYoutubeIdFromSearch(search) {
     if (!search){
         return []
     }
-
 
     return axios.get(baseUrl + 'api/search?q=' + search).then(result => {
         return (result.data)
@@ -21,6 +24,7 @@ export function authenticateUser(username, password) {
     }
 
     return axios.post(baseUrl + 'api/users/authenticate', postBody).then(result => {
+        setDefaultToken(result.data.token)
         return (result)
     }).catch(error => {
         return (error)
