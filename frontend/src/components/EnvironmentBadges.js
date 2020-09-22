@@ -28,8 +28,6 @@ function EnvironmentBadges() {
         { // this is the express node env
             !nodeEnvLabel &&  <Box display='inline' mr={1}><Chip display='inline'  mr={2} label={"⛔API: none⛔"} /></Box>
         }
-
-
         { // this is the react node env
             process.env.NODE_ENV !== 'production' && <Box display='inline' mr={1}><Chip display='inline' color='secondary' label={"REACT: " + process.env.NODE_ENV} /></Box>
         }
