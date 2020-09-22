@@ -5,9 +5,9 @@ let baseUrl
 if (process.env.NODE_ENV === 'production'){
     baseUrl = process.env.REACT_APP_API_URL_RELATIVE
 } else if (process.env.NODE_ENV === 'development'){
-    baseUrl = process.env.REACT_APP_API_URL_LOCAL
+    baseUrl = process.env.REACT_APP_API_URL_PROD
 } else {
-    baseUrl = process.env.REACT_APP_API_URL_LOCAL
+    baseUrl = process.env.REACT_APP_API_URL_PROD
 }
 
 export function setDefaultToken (token) {
