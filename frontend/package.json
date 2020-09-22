@@ -5,7 +5,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development" ,
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
     "build": "webpack -p --config ./webpack.config.js --mode production"
   },
   "babel": {
@@ -38,6 +38,7 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "axios": "^0.20.0",
     "babel-loader": "^8.1.0",
+    "dotenv": "^8.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-select": "^3.1.0",
