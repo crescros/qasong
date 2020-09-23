@@ -5,22 +5,20 @@ import { formatVideoTitle } from '../functions'
 
 const useStyles = makeStyles({
 	root: {
-		maxWidth: 345,
-		height: 320
+		width: 310,
+		height: 240
 	}
 });
 
 export default function ImgMediaCard({
 	title,
-	description,
 	thumbnailUrl,
 	id,
-	setNowPlaying,
 	nowPlaying,
-	queue,
-	setQueue
+	onClick,
+	i
 }) {
-	const [ playing, setPlaying ] = useState(false);
+	const [playing, setPlaying] = useState(false);
 	const classes = useStyles();
 
 	useEffect(
@@ -31,48 +29,24 @@ export default function ImgMediaCard({
 				setPlaying(false);
 			}
 		},
-		[ nowPlaying ]
+		[nowPlaying]
 	);
 
-	function handlePlayButton() {
-		if (!playing) {
-			setNowPlaying({
-				title: title,
-				description: description,
-				id: id,
-				thumbnailUrl: thumbnailUrl
-			});
-			setPlaying(true);
-		} else {
-			setNowPlaying({});
-			setPlaying(false);
-		}
-	}
 
-	function handleAddQueue() {
-		setQueue(
-			queue.concat({
-				title: title,
-				description: description,
-				id: id,
-				thumbnailUrl: thumbnailUrl
-			})
-		);
-	}
 
 	return (
 		<Card className={classes.root} style={{ backgroundColor: playing && '#2ad156', margin: '0px auto 20px auto' }}>
-			<CardActionArea style={{ height: '260px' }} onClick={handlePlayButton}>
+			<CardActionArea style={{ height: '200px' }} onClick={onClick}>
 				<CardMedia component="img" alt={title} height="140" image={thumbnailUrl} title={title} />
-				<CardContent style={{ height: '120px' }}>
-					<Typography gutterBottom variant="h5" component="h2">
+				<CardContent style={{ height: '80px' }}>
+					<Typography gutterBottom>
 						{formatVideoTitle(title)}
 					</Typography>
 				</CardContent>
 			</CardActionArea>
 			<CardActions>
-				<Button onClick={handleAddQueue}>Add to Queue</Button>
-				<Button onClick={handlePlayButton}>{playing ? 'STOP' : 'PLAY'}</Button>
+
+				{i == 0 && <Button color='secondary' variant='contained' onClick={onClick}>PLAY NEXT</Button>}
 			</CardActions>
 		</Card>
 	);

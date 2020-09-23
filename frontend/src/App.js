@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { CssBaseline, Button } from "@material-ui/core"
+import { CssBaseline, Box } from "@material-ui/core"
 import { getYoutubeIdFromSearch } from './functions'
 import Video from './components/Video'
 import AppBar from './components/AppBar';
@@ -7,13 +7,14 @@ import VideoGrid from './components/VideoGrid'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import GlobalChat from './components/GlobalChat'
+import NowPlayingInfo from './components/QueueSection'
 
 const App = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [videos, setVideos] = useState([]);
     const [queue, setQueue] = useState([]);
     const [nowPlaying, setNowPlaying] = useState()
-    const [user, setUser ] = useState()
+    const [user, setUser] = useState()
     const [globalChatOpen, setGlobalChatOpen] = useState(false)
 
     const handleSearchTermInput = (e) => {
@@ -71,25 +72,34 @@ const App = () => {
                 setGlobalChatOpen={setGlobalChatOpen}
             />
 
+            <NowPlayingInfo
+                title={nowPlaying && nowPlaying.title}
+                setNowPlaying={setNowPlaying}
+                queue={queue}
+                nowPlaying={nowPlaying}
+                setQueue={setQueue}
+            />
+
+            <Box textAlign="center">
+     
+            </Box>
+
             <VideoGrid
                 videos={videos}
                 nowPlaying={nowPlaying}
                 setNowPlaying={setNowPlaying}
                 queue={queue}
                 setQueue={setQueue}
+                handleSearchTermInput={handleSearchTermInput}
+                handleSubmitVideoSearch={handleSubmitVideoSearch}
             />
-
-            <Video
-                id={nowPlaying && nowPlaying.id}
-                setNowPlaying={setNowPlaying}
-            />
-
-            <GlobalChat 
+{/* 
+            <GlobalChat
                 user={user}
                 open={globalChatOpen}
-                setOpen= {setGlobalChatOpen}
+                setOpen={setGlobalChatOpen}
 
-            />
+            /> */}
 
         </ThemeProvider>
     );
