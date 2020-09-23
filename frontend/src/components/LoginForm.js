@@ -63,6 +63,7 @@ export default function SignIn({ handleLoginFormSubmit, error, handleCreateUserC
 						name="email"
 						autoComplete="email"
 						autoFocus
+						color="secondary"
 					/>
 					<TextField
 						variant="outlined"
@@ -74,25 +75,31 @@ export default function SignIn({ handleLoginFormSubmit, error, handleCreateUserC
 						type="password"
 						id="password"
 						autoComplete="current-password"
+						color="secondary"
 					/>
-					<FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+					<FormControlLabel control={<Checkbox value="remember" color="secondary" />} label="Remember me" />
 					<Button
 						d
 						type="submit"
 						fullWidth
 						variant="contained"
-						color="primary"
+						color="secondary"
 						className={classes.submit}
 						children="Sign In"
 					/>
 					<Grid container>
 						<Grid item xs>
-							<Link href="#" variant="body2" color="secondary">
+							<Link href="#" variant="body2" color="secondary" style={{ fontSize: '12px' }}>
 								Forgot password?
 							</Link>
 						</Grid>
-						<Grid item>
-							<Link onClick={handleCreateUserClick} variant="body2" color="secondary">
+						<Grid item xs>
+							<Link
+								onClick={handleCreateUserClick}
+								variant="body2"
+								color="secondary"
+								style={{ fontSize: '12px' }}
+							>
 								{"Don't have an account? Sign Up"}
 							</Link>
 						</Grid>

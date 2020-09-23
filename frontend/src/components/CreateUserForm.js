@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar, Button, CssBaseline, TextField, Typography, Container, CircularProgress } from '@material-ui/core';
-import { Alert } from '@material-ui/lab/'
+import { Alert } from '@material-ui/lab/';
 import { makeStyles } from '@material-ui/core/styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
@@ -21,34 +21,29 @@ const useStyles = makeStyles((theme) => ({
 	},
 	submit: {
 		margin: theme.spacing(3, 0, 2)
+	},
+
+	title: {
+		fontSize: '20px'
 	}
 }));
 
 export default function SignIn({ handleCreateUserFormSubmit, error, loading }) {
-
 	const classes = useStyles();
 
 	return (
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
 			<div className={classes.paper}>
-				{
-					loading && <CircularProgress />
-				}
-				{
-					error && <Alert severity="error">{error}</Alert>
-				}
+				{loading && <CircularProgress />}
+				{error && <Alert severity="error">{error}</Alert>}
 				<Avatar className={classes.avatar}>
 					<LockOutlinedIcon />
 				</Avatar>
-				<Typography component="h1" variant="h5">
-					create an account for {process.env.REACT_APP_NAME}
+				<Typography className={classes.title} component="h1" variant="h5">
+					create a {process.env.REACT_APP_NAME} account.
 				</Typography>
-				<form
-					className={classes.form} 
-					noValidate 
-					onSubmit={handleCreateUserFormSubmit}
-				>
+				<form className={classes.form} noValidate onSubmit={handleCreateUserFormSubmit}>
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -59,6 +54,7 @@ export default function SignIn({ handleCreateUserFormSubmit, error, loading }) {
 						name="email"
 						autoComplete="email"
 						autoFocus
+						color="secondary"
 					/>
 					<TextField
 						variant="outlined"
@@ -70,6 +66,7 @@ export default function SignIn({ handleCreateUserFormSubmit, error, loading }) {
 						type="password"
 						id="password"
 						autoComplete="current-password"
+						color="secondary"
 					/>
 					<TextField
 						variant="outlined"
@@ -81,17 +78,17 @@ export default function SignIn({ handleCreateUserFormSubmit, error, loading }) {
 						type="password"
 						id="confirmpassword"
 						autoComplete="current-password"
+						color="secondary"
 					/>
 
-					<Button 
-						type="submit" 
-						fullWidth 
-						variant="contained" 
-						color="primary" 
+					<Button
+						type="submit"
+						fullWidth
+						variant="contained"
+						color="secondary"
 						className={classes.submit}
 						children="Create Account"
 					/>
-	
 				</form>
 			</div>
 		</Container>
