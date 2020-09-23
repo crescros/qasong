@@ -3,7 +3,7 @@ import { CssBaseline, Box } from "@material-ui/core"
 import { getYoutubeIdFromSearch } from './functions'
 import Video from './components/Video'
 import AppBar from './components/AppBar';
-import VideoGrid from './components/VideoGrid'
+import VideoGrid from './components/VideoGrid';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import GlobalChat from './components/GlobalChat'
@@ -37,25 +37,26 @@ const App = () => {
     }, [nowPlaying]
     )
 
-    const darkTheme = createMuiTheme({
-        palette: {
-            primary: {
-                light: '#241b3d',
-                main: '#241b3d',
-                dark: '#241b3d',
-                contrastText: '#fff',
-            },
+	const darkTheme = createMuiTheme({
+		palette: {
+			primary: {
+				light: '#241b3d',
+				main: '#5c37c4',
+				dark: '#303030',
+				contrastText: '#fff'
+			},
 
-            secondary: {
-                light: '#2ad156',
-                main: '#2ad156',
-                dark: '#2ad156',
-                contrastText: '#fff',
-            },
+			secondary: {
+				light: '#ffffff',
+				main: '#2ad156',
+				dark: '#2ad156',
+				contrastText: '#fff'
+			},
 
-            type: 'dark'
-        }
-    });
+			type: 'dark'
+		}
+	});
+
 
     return (
         <ThemeProvider theme={darkTheme}>

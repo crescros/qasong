@@ -4,6 +4,8 @@ import QueueItem from './QueueCard'
 import Video from './Video'
 
 
+
+
 function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
 
     const handleClickStopButton = () => {
@@ -14,6 +16,8 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
             setQueue(queue.slice(1));
         }
     }
+
+
 
     return (<>{
         (queue.length > 0 || nowPlaying) && <div>
@@ -30,9 +34,8 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
             <Grid style={{ overflowX: 'scroll', flexWrap: 'nowrap' }} container direction="row" justify="start" alignItems="flex-start">
                 {queue.map((item, i) => <Grid item md={4}
                     lg={3}
-                    xl={2}><QueueItem {...item} onClick={handleClickStopButton} queue={queue} i={i} /></Grid>)}
+                    xl={2}><QueueItem {...item} onClick={handleClickStopButton} queue={queue} i={i}  /></Grid>)}
             </Grid>
-
         </div>
     }
     </>
