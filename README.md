@@ -1,5 +1,3 @@
-This is a test.
-
 # music-app
 
 ## EXPRESS
