@@ -25,7 +25,7 @@ function getAll(req, res, next) {
 
 function makeOne(req, res, next) {
     let { author, content } = req.body
-    con.query(`INSERT INTO globalchat (author, content) VALUES('${author}', '${content}');`, (err, data) => {
+    con.query(`INSERT INTO globalchat (author, content) VALUES('${con.escape(author)}', '${con.escape(content)}');`, (err, data) => {
         if (err) {
             res.json(err)
         } else {

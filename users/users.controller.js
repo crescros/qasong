@@ -15,7 +15,7 @@ module.exports = router;
 function authenticate(req, res, next) {
 
     let { username, password } = req.body
-    con.query(`SELECT name, id FROM mausers WHERE name='${username}' AND password='${password}';`, (err, data) => {
+    con.query(`SELECT name, id FROM mausers WHERE name='${con.escape(username)}' AND password='${con.escape(password)}';`, (err, data) => {
 
         if (err) {
             res.json(err)
@@ -47,7 +47,7 @@ function getAll(req, res, next) {
 
 function makeOne(req, res, next) {
     let { username, password } = req.body
-    con.query(`INSERT INTO mausers (name, password) VALUES('${username}', '${password}');`, (err, data) => {
+    con.query(`INSERT INTO mausers (name, password) VALUES('${con.escape(username)}', '${con.escape(password)}');`, (err, data) => {
 
         if (err) {
             res.json(err)
@@ -64,7 +64,7 @@ function changePassword(req, res, next) {
     let { username, password, newPassword } = req.body
 
 
-    con.query(`UPDATE mausers SET password='${newPassword}' WHERE name='${username}' AND password='${password}'`, (err, data) => {
+    con.query(`UPDATE mausers SET password='${con.escape(newPassword)}' WHERE name='${con.escape(username)}' AND password='${con.escape(password)}'`, (err, data) => {
 
         if (err) {
             res.json(err)

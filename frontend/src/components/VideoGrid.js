@@ -17,23 +17,27 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue, handleS
 					const gridItem = (
 						<Grid
 							item
-							xs={6}
-							sm={4}
-							md={3}
-							lg={2}
+							xs={12}
+							sm={6}
+							md={4}
+							lg={3}
 							xl={2}
 							key={video.id.videoId}
+							p={2}
 							children={
-								<VideoCard
-									id={video.id.videoId}
-									thumbnailUrl={url}
-									title={title}
-									description={video.snippet.description}
-									nowPlaying={nowPlaying}
-									setNowPlaying={setNowPlaying}
-									queue={queue}
-									setQueue={setQueue}
-								/>
+								<Box m={1}>
+									<VideoCard
+
+										id={video.id.videoId}
+										thumbnailUrl={url}
+										title={title}
+										description={video.snippet.description}
+										nowPlaying={nowPlaying}
+										setNowPlaying={setNowPlaying}
+										queue={queue}
+										setQueue={setQueue}
+									/>
+								</Box>
 							}
 						/>
 					);

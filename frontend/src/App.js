@@ -94,13 +94,13 @@ const App = () => {
                 handleSearchTermInput={handleSearchTermInput}
                 handleSubmitVideoSearch={handleSubmitVideoSearch}
             />
-{/* 
+
             <GlobalChat
                 user={user}
                 open={globalChatOpen}
                 setOpen={setGlobalChatOpen}
 
-            /> */}
+            />
 
         </ThemeProvider>
     );

@@ -1,6 +1,5 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
-import NowPlayingInfo from './QueueSection';
 import VideoSearch from './VideoSearch';
 import UserSection from './UserSection';
 import EnvironmentBadges from './EnvironmentBadges'
@@ -20,7 +19,6 @@ export default function MusicAppBar({
 				style={{ justifyContent: 'space-between' }}
 			>
 				<div>
-
 					<Typography
 						display='inline'
 						style={{ marginRight: '20px' }}
