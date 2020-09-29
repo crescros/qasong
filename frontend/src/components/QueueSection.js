@@ -3,9 +3,6 @@ import { Typography, Button, Grid, Box } from '@material-ui/core'
 import QueueItem from './QueueCard'
 import Video from './Video'
 
-
-
-
 function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
 
     const handleClickStopButton = () => {
@@ -16,8 +13,6 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
             setQueue(queue.slice(1));
         }
     }
-
-
 
     return (<>{
         (queue.length > 0 || nowPlaying) && <div>

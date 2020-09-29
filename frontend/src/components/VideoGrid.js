@@ -1,11 +1,8 @@
 import React from 'react';
 import { Grid, Typography, Box } from '@material-ui/core';
 import VideoCard from './VideoCard';
-import VideoSearch from './VideoSearch'
 
-console.log(process.env);
-
-function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue, handleSearchTermInput, handleSubmitVideoSearch }) {
+function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue, }) {
 	return (
 		<Box style={{ marginTop: '60px' }}>
 			{(queue.length > 0 && nowPlaying) && <Box m={2}><Typography>Search Results</Typography></Box>}
