@@ -79,7 +79,6 @@ export default function ImgMediaCard({
 				<IconButton size={"small"} onClick={handleAddQueue}>
 					<QueueIcon />
 				</IconButton>
-				<Button onClick={handlePlayButton}>{playing ? 'STOP' : 'PLAY'}</Button>
 				<IconButton onClick={handlePlayButton}>
 					{playing ? <PauseIcon/> : <PlayArrowIcon />}
 				</IconButton>
