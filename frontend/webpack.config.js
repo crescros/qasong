@@ -1,3 +1,4 @@
+const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
 
@@ -26,7 +27,7 @@ module.exports = () => {
       extensions: ['*', '.js', '.jsx']
     },
     output: {
-      path: __dirname + '../public/',
+      path: path.resolve(__dirname, '../public/'),
       publicPath: '/',
       filename: 'bundle.js'
     },

@@ -1,4 +1,5 @@
-# music-app
+# Artistify
+Consumes Youtube Data API and provides a new interface for playing and queing music.
 
 ## EXPRESS
 

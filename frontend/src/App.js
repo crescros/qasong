@@ -1,41 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { CssBaseline, Button } from '@material-ui/core';
-import { getYoutubeIdFromSearch } from './functions';
-import Video from './components/Video';
+import React, { useState, useEffect } from "react";
+import { CssBaseline, Box } from "@material-ui/core"
+import { getYoutubeIdFromSearch } from './functions'
+import Video from './components/Video'
 import AppBar from './components/AppBar';
 import VideoGrid from './components/VideoGrid';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import GlobalChat from './components/GlobalChat';
+import GlobalChat from './components/GlobalChat'
+import NowPlayingInfo from './components/QueueSection'
 
 const App = () => {
-	const [ searchTerm, setSearchTerm ] = useState('');
-	const [ videos, setVideos ] = useState([]);
-	const [ queue, setQueue ] = useState([]);
-	const [ nowPlaying, setNowPlaying ] = useState();
-	const [ user, setUser ] = useState();
-	const [ globalChatOpen, setGlobalChatOpen ] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [videos, setVideos] = useState([]);
+    const [queue, setQueue] = useState([]);
+    const [nowPlaying, setNowPlaying] = useState()
+    const [user, setUser] = useState()
+    const [globalChatOpen, setGlobalChatOpen] = useState(false)
 
-	const handleSearchTermInput = (e) => {
-		setSearchTerm(e.target.value);
-	};
+    const handleSearchTermInput = (e) => {
+        setSearchTerm(e.target.value);
+    }
 
-	const handleSubmitVideoSearch = async (e) => {
-		e.preventDefault();
-		const results = await getYoutubeIdFromSearch(searchTerm);
-		setVideos(results);
-	};
+    const handleSubmitVideoSearch = async (e) => {
+        e.preventDefault();
+        const results = await getYoutubeIdFromSearch(searchTerm);
+        setVideos(results);
+    }
 
-	useEffect(
-		() => {
-			if (!nowPlaying && queue.length > 0) {
-				const nextInQueue = queue[0];
-				setNowPlaying(nextInQueue);
-				setQueue(queue.slice(1));
-			}
-		},
-		[ nowPlaying ]
-	);
+    useEffect(() => {
+        if (!nowPlaying && queue.length > 0) {
+            const nextInQueue = queue[0];
+            setNowPlaying(nextInQueue);
+            setQueue(queue.slice(1));
+        }
+
+    }, [nowPlaying]
+    )
 
 	const darkTheme = createMuiTheme({
 		palette: {
@@ -57,34 +57,53 @@ const App = () => {
 		}
 	});
 
-	return (
-		<ThemeProvider theme={darkTheme}>
-			<CssBaseline />
 
-			<AppBar
-				handleSubmitVideoSearch={handleSubmitVideoSearch}
-				handleSearchTermInput={handleSearchTermInput}
-				nowPlaying={nowPlaying}
-				setNowPlaying={setNowPlaying}
-				queue={queue}
-				setUser={setUser}
-				user={user}
-				setGlobalChatOpen={setGlobalChatOpen}
-			/>
+    return (
+        <ThemeProvider theme={darkTheme}>
+            <CssBaseline />
 
-			<VideoGrid
-				videos={videos}
-				nowPlaying={nowPlaying}
-				setNowPlaying={setNowPlaying}
-				queue={queue}
-				setQueue={setQueue}
-			/>
+            <AppBar
+                handleSubmitVideoSearch={handleSubmitVideoSearch}
+                handleSearchTermInput={handleSearchTermInput}
+                nowPlaying={nowPlaying}
+                setNowPlaying={setNowPlaying}
+                queue={queue}
+                setUser={setUser}
+                user={user}
+                setGlobalChatOpen={setGlobalChatOpen}
+            />
 
-			<Video id={nowPlaying && nowPlaying.id} setNowPlaying={setNowPlaying} />
+            <NowPlayingInfo
+                title={nowPlaying && nowPlaying.title}
+                setNowPlaying={setNowPlaying}
+                queue={queue}
+                nowPlaying={nowPlaying}
+                setQueue={setQueue}
+            />
 
-			<GlobalChat user={user} open={globalChatOpen} setOpen={setGlobalChatOpen} />
-		</ThemeProvider>
-	);
-};
+            <Box textAlign="center">
+     
+            </Box>
+
+            <VideoGrid
+                videos={videos}
+                nowPlaying={nowPlaying}
+                setNowPlaying={setNowPlaying}
+                queue={queue}
+                setQueue={setQueue}
+                handleSearchTermInput={handleSearchTermInput}
+                handleSubmitVideoSearch={handleSubmitVideoSearch}
+            />
+
+            <GlobalChat
+                user={user}
+                open={globalChatOpen}
+                setOpen={setGlobalChatOpen}
+
+            />
+
+        </ThemeProvider>
+    );
+}
 
 export default App;

@@ -16,11 +16,9 @@ function UserMenu({ handleLogOut, handleMenuClose, menuOpen, anchorEl, setGlobal
             open={menuOpen}
             onClose={handleMenuClose}
         >
-
             <MenuItem onClick={handleLogOut}>Logout</MenuItem>
             <MenuItem onClick={handleOpenChat}>Chat</MenuItem>
         </Menu>
-
     )
 }
 

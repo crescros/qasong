@@ -14,7 +14,6 @@ function EnvironmentBadges() {
     const handleLoadEnvironment = () => {
         getNodeEnvironment().then(response => {
             if (response && response.data) {
-                console.log(response.data)
                 setNodeEnvLabel(response.data)
             }
         })
