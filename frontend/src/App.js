@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CssBaseline, Box } from "@material-ui/core"
 import { getYoutubeIdFromSearch } from './functions'
-import Video from './components/Video'
 import AppBar from './components/AppBar';
 import VideoGrid from './components/VideoGrid';
 import { createMuiTheme } from '@material-ui/core/styles';

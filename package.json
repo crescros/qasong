@@ -8,6 +8,7 @@
     "cy:open": "npx cypress open",
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "build": "cd frontend && npm run build",
     "deploy": "gcloud app deploy"
   },
   "engines": {

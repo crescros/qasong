@@ -28,10 +28,9 @@ export default function MusicAppBar({
 				style={{ justifyContent: 'space-between' }}
 			>
 				<div>
-				<IconButton href='#' >
+					<IconButton href='#' >
 						<img src='.\icon-logo.svg' height='48px' />
 					</IconButton>
-
 
 					<Typography
 						display='inline'
@@ -49,8 +48,6 @@ export default function MusicAppBar({
 					handleSearchTermInput={handleSearchTermInput}
 					handleSubmitVideoSearch={handleSubmitVideoSearch}
 				/>
-
-
 
 				<UserSection
 					user={user}
