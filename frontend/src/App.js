@@ -53,7 +53,7 @@ const App = () => {
 				contrastText: '#fff'
 			},
 
-			type: 'dark'
+			type: 'light'
 		}
 	});
 
