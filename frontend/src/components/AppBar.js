@@ -30,7 +30,7 @@ export default function MusicAppBar({
 						children={process.env.REACT_APP_NAME}
 					/>
 					<IconButton href='https://discord.gg/Xkpvnz9' target='_blank'>
-						<img src='https://discord.com/assets/94db9c3c1eba8a38a1fcf4f223294185.png' height='32px' />
+						<img src='https://discord.com/assets/e7a3b51fdac2aa5ec71975d257d5c405.png' height='32px' />
 					</IconButton>
 					<EnvironmentBadges />
 				</div>

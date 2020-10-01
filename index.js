@@ -17,7 +17,7 @@ app.use(cors())
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(jwt())
+app.use(jwt()) 
 app.use(errorHandler)
 
 // define routes
