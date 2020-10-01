@@ -40,20 +40,20 @@ const App = () => {
 	const darkTheme = createMuiTheme({
 		palette: {
 			primary: {
-				light: '#241b3d',
-				main: '#5c37c4',
-				dark: '#303030',
+			
+				main: '#2a3257',
+				dark: '#0e132e',
+				
 				contrastText: '#fff'
 			},
 
 			secondary: {
-				light: '#ffffff',
 				main: '#2ad156',
-				dark: '#2ad156',
+			
 				contrastText: '#fff'
 			},
 
-			type: 'light'
+			type: 'dark'
 		}
 	});
 
