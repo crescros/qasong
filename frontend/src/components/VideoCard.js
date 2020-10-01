@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button, IconButton } from '@material-ui/core';
+import { 
+	PlayArrow as PlayArrowIcon,
+	Pause as PauseIcon,
+	Queue as QueueIcon,
+} from "@material-ui/icons";
 import { formatVideoTitle } from '../functions'
 
 const useStyles = makeStyles({
@@ -71,8 +76,13 @@ export default function ImgMediaCard({
 				</CardContent>
 			</CardActionArea>
 			<CardActions>
-				<Button onClick={handleAddQueue}>Add to Queue</Button>
+				<IconButton size={"small"} onClick={handleAddQueue}>
+					<QueueIcon />
+				</IconButton>
 				<Button onClick={handlePlayButton}>{playing ? 'STOP' : 'PLAY'}</Button>
+				<IconButton onClick={handlePlayButton}>
+					{playing ? <PauseIcon/> : <PlayArrowIcon />}
+				</IconButton>
 			</CardActions>
 		</Card>
 	);
