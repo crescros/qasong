@@ -44,8 +44,8 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue, }) {
 
 				{videos.length == 0 && (
 					<>
-						<Grid item xs={12}>
-							<Typography align='center' variant="h1" style={{ color: 'black' }} xs={12}>
+						<Grid item xs={6}>
+							<Typography align='center' variant="h1" style={{ color: 'black', fontSize: '8vw' }} xs={12}>
 								{process.env.REACT_APP_NAME.toUpperCase()}
 							</Typography>
 						</Grid>
