@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button, Grid } from '@material-ui/core';
 import { formatVideoTitle } from '../functions'
 
@@ -8,13 +7,6 @@ const style = {
 	cursor: 'move',
 	display: 'inline-block'
 };
-
-const useStyles = makeStyles({
-	root: {
-		width: 310,
-		height: 240
-	}
-});
 
 export default function ImgMediaCard({
 	title,
@@ -26,7 +18,6 @@ export default function ImgMediaCard({
 	moveCard
 }) {
 	const [playing, setPlaying] = useState(false);
-	const classes = useStyles();
 
 	useEffect(
 		() => {
@@ -90,7 +81,7 @@ export default function ImgMediaCard({
 	drag(drop(ref));
 
 	return (
-			<Card ref={ref} className={classes.root} style={{ backgroundColor: playing && '#2ad156', margin: '0px auto 20px auto', ...style, opacity }}>
+			<Card ref={ref} style={{ backgroundColor: playing && '#2ad156', ...style, opacity }}>
 				<CardActionArea style={{ height: '200px' }} onClick={onClick}>
 					<CardMedia component="img" alt={title} height="140" image={thumbnailUrl} title={title} />
 					<CardContent style={{ height: '80px' }}>

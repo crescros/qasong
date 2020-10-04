@@ -24,7 +24,6 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue, }) {
 							children={
 								<Box m={1}>
 									<VideoCard
-
 										id={video.id.videoId}
 										thumbnailUrl={url}
 										title={title}

@@ -26,16 +26,14 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
                 [hoverIndex, 0, dragCard],
             ],
         }));
+
     }, [queue]);
 
     return (<>{
         (queue.length > 0 || nowPlaying) &&
 
         <div>
-            <Video
-                id={nowPlaying && nowPlaying.id}
-                setNowPlaying={setNowPlaying}
-            />
+
             <Box m={3} >
                 <Typography variant='h5'>
                     {queue.length > 0 && `${queue.length} songs queued`}
@@ -43,8 +41,7 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
             </Box>
 
             <DndProvider backend={HTML5Backend}>
-                    {queue.map((item, index) =><QueueItem key={item.id} {...item} onClick={handleClickStopButton} queue={queue} index={index} moveCard={moveCard} />)}
-
+                    {queue.map((item, index) =><QueueItem key={item.qid} {...item} onClick={handleClickStopButton} queue={queue} index={index} moveCard={moveCard} />)}
             </DndProvider>
         </div>
     }

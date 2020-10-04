@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button, IconButton } from '@material-ui/core';
+import uuid from 'react-uuid'
+
 import { 
 	PlayArrow as PlayArrowIcon,
 	Pause as PauseIcon,
@@ -60,6 +62,7 @@ export default function ImgMediaCard({
 				title: title,
 				description: description,
 				id: id,
+				qid: uuid(),
 				thumbnailUrl: thumbnailUrl
 			})
 		);
