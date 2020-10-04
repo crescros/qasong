@@ -16,6 +16,9 @@
 .gitignore
 .gitattributes
 
+#GitHub
+.github
+
 
 # Node.js dependencies:
 node_modules/

@@ -1,6 +1,10 @@
 import React from 'react'
 import { Typography, Button, Grid, Box } from '@material-ui/core'
 import QueueItem from './QueueCard'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import update from 'immutability-helper'
+
 import Video from './Video'
 
 function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
@@ -15,7 +19,9 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
     }
 
     return (<>{
-        (queue.length > 0 || nowPlaying) && <div>
+        (queue.length > 0 || nowPlaying) &&
+
+        <div>
             <Video
                 id={nowPlaying && nowPlaying.id}
                 setNowPlaying={setNowPlaying}
@@ -26,11 +32,13 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
                 </Typography>
             </Box>
 
-            <Grid style={{ overflowX: 'scroll', flexWrap: 'nowrap' }} container direction="row" justify="start" alignItems="flex-start">
-                {queue.map((item, i) => <Grid item md={4}
-                    lg={3}
-                    xl={2}><QueueItem {...item} onClick={handleClickStopButton} queue={queue} i={i}  /></Grid>)}
-            </Grid>
+            <DndProvider backend={HTML5Backend}>
+                <Grid style={{ overflowX: 'scroll', flexWrap: 'nowrap' }} container direction="row" justify="start" alignItems="flex-start">
+                    {queue.map((item, i) => <Grid item md={4}
+                        lg={3}
+                        xl={2}><QueueItem {...item} onClick={handleClickStopButton} queue={queue} i={i} /></Grid>)}
+                </Grid>
+            </DndProvider>
         </div>
     }
     </>
