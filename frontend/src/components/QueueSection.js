@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Typography, Button, Grid, Box } from '@material-ui/core'
 import QueueItem from './QueueCard'
 import { DndProvider } from 'react-dnd'
@@ -18,6 +18,16 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
         }
     }
 
+    const moveCard = useCallback((dragIndex, hoverIndex) => {
+        const dragCard = queue[dragIndex];
+        setQueue(update(queue, {
+            $splice: [
+                [dragIndex, 1],
+                [hoverIndex, 0, dragCard],
+            ],
+        }));
+    }, [queue]);
+
     return (<>{
         (queue.length > 0 || nowPlaying) &&
 
@@ -33,11 +43,8 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
             </Box>
 
             <DndProvider backend={HTML5Backend}>
-                <Grid style={{ overflowX: 'scroll', flexWrap: 'nowrap' }} container direction="row" justify="start" alignItems="flex-start">
-                    {queue.map((item, i) => <Grid item md={4}
-                        lg={3}
-                        xl={2}><QueueItem {...item} onClick={handleClickStopButton} queue={queue} i={i} /></Grid>)}
-                </Grid>
+                    {queue.map((item, index) =><QueueItem key={item.id} {...item} onClick={handleClickStopButton} queue={queue} index={index} moveCard={moveCard} />)}
+
             </DndProvider>
         </div>
     }
