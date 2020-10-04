@@ -55,3 +55,7 @@ inside of `frontend` folder,
 
 inside of `frontend` folder,
 `npm run build`
+
+## Join Our Support Server
+
+to communicate with other contributors : https://discord.gg/b2gEwT8
