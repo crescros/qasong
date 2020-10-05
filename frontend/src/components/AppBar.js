@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-
 export default function MusicAppBar({
 	handleSubmitVideoSearch,
 	handleSearchTermInput,
@@ -48,12 +47,12 @@ export default function MusicAppBar({
 					handleSearchTermInput={handleSearchTermInput}
 					handleSubmitVideoSearch={handleSubmitVideoSearch}
 				/>
-
+{/* 
 				<UserSection
 					user={user}
 					setUser={setUser}
 					setGlobalChatOpen={setGlobalChatOpen}
-				/>
+				/> */}
 			</Toolbar>
 		</AppBar>
 	);
