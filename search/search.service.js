@@ -426,12 +426,18 @@ const searchFixture = {
     ]
 }
 
-
 async function searchYoutube({ searchTerm, apiKey }) {
-    return searchFixture.items
-    return axios
-        .get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=12&q=${searchTerm}&key=${apiKey}`)
+
+    if (process.env.USE_MOCK_SEARCH_DATA === 1){
+        return searchFixture.items
+    } else {
+        return axios
+        .get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=24&q=${searchTerm}&key=${apiKey}`)
         .then((response) => {
             return response.data.items;
+        })
+        .catch(e => {
+            console.log("ERROR", e.response.data.error.code, e.response.data.error.message)
         });
+    }
 }

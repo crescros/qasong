@@ -9,13 +9,11 @@ if (process.env.NODE_ENV === 'production'){
     
 } else {
     baseUrl = process.env.REACT_APP_API_URL_PROD
-    
 }
 
 export function setDefaultToken (token) {
     axios.defaults.headers.common['Authorization'] = "Bearer " + token
 }
-
 
 export function getYoutubeIdFromSearch(search) {
     if (!search){
@@ -39,7 +37,6 @@ export function authenticateUser(username, password) {
     }).catch(error => {
         return error
     })
-
 }
 
 export function createUser(username, password) {
@@ -53,7 +50,6 @@ export function createUser(username, password) {
     }).catch(error => {
         return error
     })
-
 }
 
 export function getGlobalChat(){
@@ -89,6 +85,6 @@ export function formatVideoTitle(name){
     if (name.length < 40 ){
         return name
     } else {
-        return name.slice(40) + "..."
+        return name.substr(0, 40) + "..."
     }
 }

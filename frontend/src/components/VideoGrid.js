@@ -9,6 +9,7 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue, }) {
 			<Grid container direction="row" justify="center" alignItems="center">
 				{videos.map((video) => {
 					const url = video.snippet.thumbnails.high.url || video.snippet.thumbnails.default.url;
+					const smallUrl = video.snippet.thumbnails.default.url
 					const title = video.snippet.title;
 
 					const gridItem = (
@@ -24,9 +25,9 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue, }) {
 							children={
 								<Box m={1}>
 									<VideoCard
-
 										id={video.id.videoId}
 										thumbnailUrl={url}
+										smallThumbnailUrl={smallUrl}
 										title={title}
 										description={video.snippet.description}
 										nowPlaying={nowPlaying}

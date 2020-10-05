@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button, IconButton } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, IconButton } from '@material-ui/core';
+import uuid from 'react-uuid'
+
 import { 
 	PlayArrow as PlayArrowIcon,
 	Pause as PauseIcon,
@@ -11,7 +13,7 @@ import { formatVideoTitle } from '../functions'
 const useStyles = makeStyles({
 	root: {
 		maxWidth: 345,
-		height: 320
+		height: 280
 	}
 });
 
@@ -19,6 +21,7 @@ export default function ImgMediaCard({
 	title,
 	description,
 	thumbnailUrl,
+	smallThumbnailUrl,
 	id,
 	setNowPlaying,
 	nowPlaying,
@@ -60,17 +63,19 @@ export default function ImgMediaCard({
 				title: title,
 				description: description,
 				id: id,
-				thumbnailUrl: thumbnailUrl
+				qid: uuid(),
+				thumbnailUrl: thumbnailUrl,
+				smallThumbnailUrl: smallThumbnailUrl
 			})
 		);
 	}
 
 	return (
 		<Card className={classes.root} style={{ backgroundColor: playing && '#2ad156', margin: '0px auto 20px auto' }}>
-			<CardActionArea style={{ height: '260px' }} onClick={handlePlayButton}>
+			<CardActionArea style={{ height: '220px' }} onClick={handlePlayButton}>
 				<CardMedia component="img" alt={title} height="140" image={thumbnailUrl} title={title} />
-				<CardContent style={{ height: '120px' }}>
-					<Typography gutterBottom variant="h5" component="h2">
+				<CardContent style={{ height: '90px' }}>
+					<Typography gutterBottom variant="h6">
 						{formatVideoTitle(title)}
 					</Typography>
 				</CardContent>
