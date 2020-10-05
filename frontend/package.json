@@ -6,7 +6,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "build": "npm version minor && webpack -p --config ./webpack.config.js --mode production"
+    "build": "webpack -p --config ./webpack.config.js --mode production && npm version minor"
   },
   "babel": {
     "presets": [

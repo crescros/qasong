@@ -10,7 +10,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "build": "cd frontend && npm run build",
-    "deploy": "npm version minor && gcloud app deploy"
+    "deploy": "gcloud app deploy && npm version minor"
   },
   "engines": {
     "node": "12.x"
