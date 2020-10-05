@@ -39,7 +39,15 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
             </Box>
 
             <DndProvider backend={HTML5Backend}>
-                    {queue.map((item, index) =><QueueItem key={item.qid} {...item} onClick={handleClickStopButton} queue={queue} setQueue={setQueue} index={index} moveCard={moveCard} />)}
+                    {queue.map((item, index) =><QueueItem 
+                        {...item} 
+                        key={item.qid} 
+                        queue={queue} 
+                        setQueue={setQueue} 
+                        index={index} 
+                        onClick={handleClickStopButton} 
+                        moveCard={moveCard} 
+                    />)}
             </DndProvider>
         </div>
     }
