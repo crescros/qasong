@@ -1,6 +1,6 @@
 {
   "name": "artistify-server",
-  "version": "0.4.0",
+  "version": "0.1.0",
   "description": "serve artistify-frontend to clients, and provide video search functionality from youtube data api",
   "homepage": "https://github.com/callbacc/Artistify",
   "main": "index.js",
@@ -10,7 +10,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "build": "cd frontend && npm run build",
-    "deploy": "gcloud app deploy"
+    "deploy": "npm version minor && gcloud app deploy"
   },
   "engines": {
     "node": "12.x"

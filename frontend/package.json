@@ -1,12 +1,12 @@
 {
   "name": "artistify-frontend",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "search, play and queue music from youtube",
   "author": "artistify-team",
   "main": "webpack.config.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "build": "webpack -p --config ./webpack.config.js --mode production"
+    "build": "npm version minor && webpack -p --config ./webpack.config.js --mode production"
   },
   "babel": {
     "presets": [
