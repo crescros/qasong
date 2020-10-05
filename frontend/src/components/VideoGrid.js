@@ -8,9 +8,9 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue, }) {
 			{(queue.length > 0 && nowPlaying) && <Box m={2}><Typography>Search Results</Typography></Box>}
 			<Grid container direction="row" justify="center" alignItems="center">
 				{videos.map((video) => {
-					const url = video.snippet.thumbnails.high.url || video.snippet.thumbnails.default.url;
-					const smallUrl = video.snippet.thumbnails.default.url
-					const title = video.snippet.title;
+					const url = video.snippet.thumbnails.high.url || video.snippet.thumbnails.default.url
+					const smallUrl = video.snippet.thumbnails.default ? video.snippet.thumbnails.default.url : ''
+					const title = video.snippet.title
 
 					const gridItem = (
 						<Grid
