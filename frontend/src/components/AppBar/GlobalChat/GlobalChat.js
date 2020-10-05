@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { Drawer, IconButton, Typography, InputBase, InputAdornment, Box } from '@material-ui/core';
-import { postGlobalChat, getGlobalChat } from '../functions'
+import { postGlobalChat, getGlobalChat } from '../../../functions'
 import SendIcon from '@material-ui/icons/Send';
 
 export default function TemporaryDrawer({ user, open, setOpen }) {

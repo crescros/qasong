@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@material-ui/core';
-import LoginModal from './LoginModal';
-import { authenticateUser, createUser } from '../functions'
+import LoginModal from '../../LoginModal';
+import { authenticateUser, createUser } from '../../../functions'
 import UserMenu from './UserMenu';
-import CreateUserModal from './CreateAccountModal'
+import CreateUserModal from '../../CreateAccountModal'
 
 function UserSection({ user, setUser, setGlobalChatOpen }) {
 	const [loginModalOpen, setLoginModalOpen] = useState(false);

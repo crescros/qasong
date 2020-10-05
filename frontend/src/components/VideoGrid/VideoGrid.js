@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Typography, Box } from '@material-ui/core';
-import VideoCard from './VideoCard';
+import VideoCard from './VideoCard/VideoCard';
 
 function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue, }) {
 	return (

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { CssBaseline, Box } from "@material-ui/core"
 import { getYoutubeIdFromSearch } from './functions'
-import AppBar from './components/AppBar';
-import VideoGrid from './components/VideoGrid';
-import Video from './components/Video'
+import AppBar from './components/AppBar/AppBar';
+import VideoGrid from './components/VideoGrid/VideoGrid';
+import Video from './components/Video/Video'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import GlobalChat from './components/GlobalChat'
-import QueueSection from './components/QueueSection'
+import QueueSection from './components/QueueSection/QueueSection'
 
 const App = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -102,12 +101,6 @@ const App = () => {
                 handleSearchTermInput={handleSearchTermInput}
                 handleSubmitVideoSearch={handleSubmitVideoSearch}
             />
-
-            {/* <GlobalChat
-                user={user}
-                open={globalChatOpen}
-                setOpen={setGlobalChatOpen}
-            /> */}
 
         </ThemeProvider>
     );
