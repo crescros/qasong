@@ -6,7 +6,8 @@ import ClearIcon from '@material-ui/icons/Clear';
 
 const style = {
 	cursor: 'move',
-	display: 'inline-block'
+	display: 'inline-block',
+	width: "200px"
 };
 
 export default function ImgMediaCard({
