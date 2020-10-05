@@ -98,12 +98,11 @@ const App = () => {
                 handleSubmitVideoSearch={handleSubmitVideoSearch}
             />
 
-            <GlobalChat
+            {/* <GlobalChat
                 user={user}
                 open={globalChatOpen}
                 setOpen={setGlobalChatOpen}
-
-            />
+            /> */}
 
         </ThemeProvider>
     );
