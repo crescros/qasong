@@ -25,6 +25,7 @@ const App = () => {
     const handleSubmitVideoSearch = async (e) => {
         e.preventDefault();
         const results = await getYoutubeIdFromSearch(searchTerm);
+        console.log(results)
         setVideos(results);
     }
 

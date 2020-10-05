@@ -5,8 +5,6 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import update from 'immutability-helper'
 
-import Video from './Video'
-
 function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
 
     const handleClickStopButton = () => {
@@ -41,7 +39,7 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
             </Box>
 
             <DndProvider backend={HTML5Backend}>
-                    {queue.map((item, index) =><QueueItem key={item.qid} {...item} onClick={handleClickStopButton} queue={queue} index={index} moveCard={moveCard} />)}
+                    {queue.map((item, index) =><QueueItem key={item.qid} {...item} onClick={handleClickStopButton} queue={queue} setQueue={setQueue} index={index} moveCard={moveCard} />)}
             </DndProvider>
         </div>
     }

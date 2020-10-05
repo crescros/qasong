@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button, IconButton } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, IconButton } from '@material-ui/core';
 import uuid from 'react-uuid'
 
 import { 
@@ -21,6 +21,7 @@ export default function ImgMediaCard({
 	title,
 	description,
 	thumbnailUrl,
+	smallThumbnailUrl,
 	id,
 	setNowPlaying,
 	nowPlaying,
@@ -63,7 +64,8 @@ export default function ImgMediaCard({
 				description: description,
 				id: id,
 				qid: uuid(),
-				thumbnailUrl: thumbnailUrl
+				thumbnailUrl: thumbnailUrl,
+				smallThumbnailUrl: smallThumbnailUrl
 			})
 		);
 	}
@@ -73,7 +75,7 @@ export default function ImgMediaCard({
 			<CardActionArea style={{ height: '260px' }} onClick={handlePlayButton}>
 				<CardMedia component="img" alt={title} height="140" image={thumbnailUrl} title={title} />
 				<CardContent style={{ height: '120px' }}>
-					<Typography gutterBottom variant="h5" component="h2">
+					<Typography gutterBottom variant="h6">
 						{formatVideoTitle(title)}
 					</Typography>
 				</CardContent>

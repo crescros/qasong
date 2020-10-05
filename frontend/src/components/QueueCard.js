@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button, Grid } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button, IconButton } from '@material-ui/core';
 import { formatVideoTitle } from '../functions'
+import ClearIcon from '@material-ui/icons/Clear';
 
 const style = {
 	cursor: 'move',
@@ -11,13 +12,18 @@ const style = {
 export default function ImgMediaCard({
 	title,
 	thumbnailUrl,
+	smallThumbnailUrl,
 	id,
 	nowPlaying,
 	onClick,
 	index,
-	moveCard
+	moveCard,
+	qid,
+	queue,
+	setQueue
 }) {
 	const [playing, setPlaying] = useState(false);
+	const ref = useRef(null);
 
 	useEffect(
 		() => {
@@ -30,7 +36,12 @@ export default function ImgMediaCard({
 		[nowPlaying]
 	);
 
-	const ref = useRef(null);
+	const removeQueueItem = () => {
+		setQueue(queue.filter(item => {
+			return item.qid !== qid
+		}))
+	}
+
 	const [, drop] = useDrop({
 		accept: "card",
 		hover(item, monitor) {
@@ -83,7 +94,7 @@ export default function ImgMediaCard({
 	return (
 			<Card ref={ref} style={{ backgroundColor: playing && '#2ad156', ...style, opacity }}>
 				<CardActionArea style={{ height: '200px' }} onClick={onClick}>
-					<CardMedia component="img" alt={title} height="140" image={thumbnailUrl} title={title} />
+					<CardMedia component="img" alt={title} height="140" image={smallThumbnailUrl} title={title} />
 					<CardContent style={{ height: '80px' }}>
 						<Typography gutterBottom>
 							{formatVideoTitle(title)}
@@ -91,8 +102,8 @@ export default function ImgMediaCard({
 					</CardContent>
 				</CardActionArea>
 				<CardActions>
-
 					{index == 0 && <Button color='secondary' variant='contained' onClick={onClick}>PLAY NEXT</Button>}
+					<IconButton color='secondary' onClick={removeQueueItem} style={{color: 'red'}}><ClearIcon/></IconButton>
 				</CardActions>
 			</Card>
 	);
