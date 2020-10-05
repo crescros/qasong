@@ -85,6 +85,6 @@ export function formatVideoTitle(name){
     if (name.length < 40 ){
         return name
     } else {
-        return name.slice(40) + "..."
+        return name.substr(0, 40) + "..."
     }
 }
