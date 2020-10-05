@@ -21,12 +21,12 @@
   },
   "author": {
     "name": "Artistify Team",
-    "email": "ikwalston@comcast.net",
+    "email": "alexa.matei@icloud.com",
     "url": "https://discord.gg/34zqp3M"
   },
   "bugs": {
     "url": "https://github.com/callbacc/Artistify/issues",
-    "email": "ikwalston@comcast.net"
+    "email": "alexa.matei@icloud.com"
   },
   "license": "ISC",
   "devDependencies": {

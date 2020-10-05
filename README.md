@@ -1,5 +1,4 @@
 # Artistify
-Consumes Youtube Data API and provides a new interface for playing and queing music.
 
 ## ENVIRONMENT 
 
@@ -8,10 +7,10 @@ A `.env` file must be added to the root directory of this project.
 Your `.env` file must look like this:
 
 ```
-YOUTUBE_API_KEY=<your youtube data api key goes here>
-SECRET=<this should be some random string, it is used to sign JWTs>
-
 NODE_ENV=development
+SECRET=<this should be some random string, it is used to sign JWTs>
+USE_MOCK_SEARCH_DATA=0
+YOUTUBE_API_KEY=<your youtube data api key goes here>
 
 DB_HOST=<optional database connection for user auth>
 DB_DATABASE=<optional database connection for user auth>
