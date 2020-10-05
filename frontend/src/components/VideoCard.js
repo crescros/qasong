@@ -13,7 +13,7 @@ import { formatVideoTitle } from '../functions'
 const useStyles = makeStyles({
 	root: {
 		maxWidth: 345,
-		height: 320
+		height: 280
 	}
 });
 
@@ -72,9 +72,9 @@ export default function ImgMediaCard({
 
 	return (
 		<Card className={classes.root} style={{ backgroundColor: playing && '#2ad156', margin: '0px auto 20px auto' }}>
-			<CardActionArea style={{ height: '260px' }} onClick={handlePlayButton}>
+			<CardActionArea style={{ height: '220px' }} onClick={handlePlayButton}>
 				<CardMedia component="img" alt={title} height="140" image={thumbnailUrl} title={title} />
-				<CardContent style={{ height: '120px' }}>
+				<CardContent style={{ height: '90px' }}>
 					<Typography gutterBottom variant="h6">
 						{formatVideoTitle(title)}
 					</Typography>
