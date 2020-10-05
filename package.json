@@ -1,7 +1,8 @@
 {
-  "name": "music-app-server",
+  "name": "artistify-server",
   "version": "0.2.0",
-  "description": "",
+  "description": "serve artistify-frontend to clients, and provide video search functionality from youtube data api",
+  "homepage": "https://github.com/callbacc/Artistify",
   "main": "index.js",
   "scripts": {
     "test": "npx cypress run",
@@ -9,12 +10,24 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "build": "cd frontend && npm run build",
-    "deploy": "gcloud app deploy"
+    "deploy": "gcloud app deploy && npm version minor"
   },
   "engines": {
     "node": "12.x"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:callbacc/Artistify.git"
+  },
+  "author": {
+    "name": "Artistify Team",
+    "email": "alexa.matei@icloud.com",
+    "url": "https://discord.gg/34zqp3M"
+  },
+  "bugs": {
+    "url": "https://github.com/callbacc/Artistify/issues",
+    "email": "alexa.matei@icloud.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.4",
@@ -26,6 +39,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
+    "immutability-helper": "^3.1.1",
     "mysql": "^2.18.1",
     "rootpath": "^0.1.2",
     "uuid": "^8.3.0"

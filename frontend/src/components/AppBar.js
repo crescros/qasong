@@ -5,13 +5,6 @@ import UserSection from './UserSection';
 import EnvironmentBadges from './EnvironmentBadges'
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-	navBar: {
-		backgroundColor: theme.palette.primary.dark
-	}
-}));
-
-
 export default function MusicAppBar({
 	handleSubmitVideoSearch,
 	handleSearchTermInput,
@@ -19,10 +12,8 @@ export default function MusicAppBar({
 	setUser,
 	setGlobalChatOpen
 }) {
-	const classes = useStyles();
-
 	return (
-		<AppBar position="static" className={classes.navBar}>
+		<AppBar position="static">
 			<Toolbar
 				display="flex"
 				style={{ justifyContent: 'space-between' }}
@@ -38,7 +29,7 @@ export default function MusicAppBar({
 						children={process.env.REACT_APP_NAME}
 					/>
 
-					<IconButton href='https://discord.gg/Xkpvnz9' target='_blank'>
+					<IconButton href='https://discord.gg/b2gEwT8' target='_blank'>
 						<img src='https://discord.com/assets/e7a3b51fdac2aa5ec71975d257d5c405.png' height='32px' />
 					</IconButton>
 					<EnvironmentBadges />
@@ -48,13 +39,14 @@ export default function MusicAppBar({
 					handleSearchTermInput={handleSearchTermInput}
 					handleSubmitVideoSearch={handleSubmitVideoSearch}
 				/>
-
+{/* 
 				<UserSection
 					user={user}
 					setUser={setUser}
 					setGlobalChatOpen={setGlobalChatOpen}
-				/>
+				/> */}
 			</Toolbar>
 		</AppBar>
 	);
 }
+

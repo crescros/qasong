@@ -5,17 +5,15 @@ let baseUrl
 if (process.env.NODE_ENV === 'production'){
     baseUrl = process.env.REACT_APP_API_URL_RELATIVE
 } else if (process.env.NODE_ENV === 'development'){
-    baseUrl = process.env.REACT_APP_API_URL_PROD
+    baseUrl = process.env.REACT_APP_API_URL_LOCAL
     
 } else {
-    baseUrl = process.env.REACT_APP_API_URL_PROD
-    
+    baseUrl = process.env.REACT_APP_API_URL_LOCAL
 }
 
 export function setDefaultToken (token) {
     axios.defaults.headers.common['Authorization'] = "Bearer " + token
 }
-
 
 export function getYoutubeIdFromSearch(search) {
     if (!search){
@@ -39,7 +37,6 @@ export function authenticateUser(username, password) {
     }).catch(error => {
         return error
     })
-
 }
 
 export function createUser(username, password) {
@@ -53,7 +50,6 @@ export function createUser(username, password) {
     }).catch(error => {
         return error
     })
-
 }
 
 export function getGlobalChat(){
@@ -89,6 +85,6 @@ export function formatVideoTitle(name){
     if (name.length < 40 ){
         return name
     } else {
-        return name.slice(40) + "..."
+        return name.substr(0, 40) + "..."
     }
 }

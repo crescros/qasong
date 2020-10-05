@@ -3,7 +3,7 @@ node_modules
 package-lock.json
 
 # react
-dist/bundle.js
+public/bundle.js
 
 # cypress
 cypress/videos
