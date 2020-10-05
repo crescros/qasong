@@ -14,7 +14,7 @@ const App = () => {
     const [videos, setVideos] = useState([]);
     const [queue, setQueue] = useState([]);
     const [nowPlaying, setNowPlaying] = useState()
-    const [showQueue, setShowQueue] = useState()
+    const [showQueue, setShowQueue] = useState(false)
     const [user, setUser] = useState()
     const [globalChatOpen, setGlobalChatOpen] = useState(false)
 
@@ -39,25 +39,25 @@ const App = () => {
     }, [nowPlaying]
     )
 
-	const darkTheme = createMuiTheme({
-		palette: {
-			primary: {
-			
-				main: '#2a3257',
-				dark: '#0e132e',
-				
-				contrastText: '#fff'
-			},
+    const darkTheme = createMuiTheme({
+        palette: {
+            primary: {
 
-			secondary: {
-				main: '#2ad156',
-			
-				contrastText: '#fff'
-			},
+                main: '#2a3257',
+                dark: '#0e132e',
 
-			type: 'dark'
-		}
-	});
+                contrastText: '#fff'
+            },
+
+            secondary: {
+                main: '#2ad156',
+
+                contrastText: '#fff'
+            },
+
+            type: 'dark'
+        }
+    });
 
 
     return (
@@ -73,6 +73,8 @@ const App = () => {
                 setUser={setUser}
                 user={user}
                 setGlobalChatOpen={setGlobalChatOpen}
+                setShowQueue={setShowQueue}
+                showQueue={showQueue}
             />
 
             <Video
@@ -80,13 +82,16 @@ const App = () => {
                 setNowPlaying={setNowPlaying}
             />
 
-            <QueueSection
-                title={nowPlaying && nowPlaying.title}
-                setNowPlaying={setNowPlaying}
-                queue={queue}
-                nowPlaying={nowPlaying}
-                setQueue={setQueue}
-            />
+            {
+                showQueue &&
+                <QueueSection
+                    title={nowPlaying && nowPlaying.title}
+                    setNowPlaying={setNowPlaying}
+                    queue={queue}
+                    nowPlaying={nowPlaying}
+                    setQueue={setQueue}
+                />
+            }
 
             <VideoGrid
                 videos={videos}
