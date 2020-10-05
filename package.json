@@ -1,7 +1,8 @@
 {
-  "name": "music-app-server",
+  "name": "artistify-server",
   "version": "0.2.0",
-  "description": "",
+  "description": "serve artistify-frontend to clients, and provide video search functionality from youtube data api",
+  "homepage": "https://github.com/callbacc/Artistify",
   "main": "index.js",
   "scripts": {
     "test": "npx cypress run",
@@ -14,7 +15,19 @@
   "engines": {
     "node": "12.x"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:callbacc/Artistify.git"
+  },
+  "author": {
+    "name": "Artistify Team",
+    "email": "ikwalston@comcast.net",
+    "url": "https://discord.gg/34zqp3M"
+  },
+  "bugs": {
+    "url": "https://github.com/callbacc/Artistify/issues",
+    "email": "ikwalston@comcast.net"
+  },
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.4",

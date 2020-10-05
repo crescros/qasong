@@ -1,8 +1,8 @@
 {
-  "hopeage": "./",
-  "name": "music-app-frontend",
+  "name": "artistify-frontend",
   "version": "0.1.1",
-  "description": "",
+  "description": "search, play and queue music from youtube",
+  "author": "artistify-team",
   "main": "webpack.config.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
