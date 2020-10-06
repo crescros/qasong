@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import makeStyles from '@material-ui/styles/makeStyles';
-import CreateUserForm from './CreateUserForm';
+import CreateUserForm from './CreateAccountForm';
 
 const useStyles = makeStyles((theme) => ({
 	paper: {

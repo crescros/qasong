@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Typography, Button, Grid, Box } from '@material-ui/core'
-import QueueItem from './QueueCard'
+import QueueItem from './QueueCard/QueueCard'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import update from 'immutability-helper'

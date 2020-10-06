@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button, IconButton } from '@material-ui/core';
-import { formatVideoTitle } from '../functions'
+import { formatVideoTitle } from '../../../functions'
 import ClearIcon from '@material-ui/icons/Clear';
 
 const style = {
@@ -93,19 +93,19 @@ export default function ImgMediaCard({
 	drag(drop(ref));
 
 	return (
-			<Card ref={ref} style={{ backgroundColor: playing && '#2ad156', ...style, opacity }}>
-				<CardActionArea style={{ height: '200px' }} onClick={onClick}>
-					<CardMedia component="img" alt={title} height="140" image={smallThumbnailUrl} title={title} />
-					<CardContent style={{ height: '80px' }}>
-						<Typography gutterBottom>
-							{formatVideoTitle(title)}
-						</Typography>
-					</CardContent>
-				</CardActionArea>
-				<CardActions>
-					{index == 0 && <Button color='secondary' variant='contained' onClick={onClick}>PLAY NEXT</Button>}
-					<IconButton color='secondary' onClick={removeQueueItem} style={{color: 'red'}}><ClearIcon/></IconButton>
-				</CardActions>
-			</Card>
+		<Card ref={ref} style={{ backgroundColor: playing && '#2ad156', ...style, opacity }}>
+			<CardActionArea style={{ height: '200px' }} onClick={onClick}>
+				<CardMedia component="img" alt={title} height="140" image={smallThumbnailUrl} title={title} />
+				<CardContent style={{ height: '80px' }}>
+					<Typography gutterBottom>
+						{formatVideoTitle(title)}
+					</Typography>
+				</CardContent>
+			</CardActionArea>
+			<CardActions style={{display: "flex", justifyContent:'flex-end'}}>
+				{index == 0 && <Button color='secondary' variant='contained' onClick={onClick}>PLAY NEXT</Button>}
+				<IconButton edge='end' color='secondary' onClick={removeQueueItem} style={{ color: 'red' }}><ClearIcon /></IconButton>
+			</CardActions>
+		</Card>
 	);
 }

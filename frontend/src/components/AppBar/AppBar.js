@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, IconButton, MenuItem, Menu, Badge } from '@material-ui/core';
-import VideoSearch from './VideoSearch';
-import EnvironmentBadges from './EnvironmentBadges';
+import VideoSearch from './VideoSearch/VideoSearch';
+import EnvironmentBadges from './EnvironmentBadges/EnvironmentBadges';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 

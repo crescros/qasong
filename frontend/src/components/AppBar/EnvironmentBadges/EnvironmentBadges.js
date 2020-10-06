@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Chip, Box } from '@material-ui/core'
-import { getNodeEnvironment } from '../functions'
+import { getNodeEnvironment } from '../../../functions'
 
 
 function EnvironmentBadges() {
