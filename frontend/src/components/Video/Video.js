@@ -1,5 +1,5 @@
-import React from "react"
-import YouTube from "react-youtube"
+import React from "react";
+import YouTube from "react-youtube";
 
 function Video({ id, setNowPlaying }) {
   const youtubePlayerOptions = {
@@ -12,17 +12,17 @@ function Video({ id, setNowPlaying }) {
       iv_load_policy: 0,
       modestbranding: 1,
     },
-  }
+  };
 
   function hanndleVideoEEENNNnnd() {
-    setNowPlaying(null)
+    setNowPlaying(null);
   }
 
-  if (!id) return <div></div>
+  if (!id) return <div></div>;
 
   return (
     <YouTube videoId={id} opts={youtubePlayerOptions} onEnd={hanndleVideoEEENNNnnd} />
-  )
+  );
 }
 
-export default Video
+export default Video;

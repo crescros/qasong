@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { makeStyles } from "@material-ui/core/styles"
+import React, { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   Card,
   CardActionArea,
@@ -8,21 +8,21 @@ import {
   CardMedia,
   Typography,
   IconButton,
-} from "@material-ui/core"
-import uuid from "react-uuid"
+} from "@material-ui/core";
+import uuid from "react-uuid";
 import {
   PlayArrow as PlayArrowIcon,
   Pause as PauseIcon,
   Queue as QueueIcon,
-} from "@material-ui/icons"
-import { formatVideoTitle } from "../../../functions"
+} from "@material-ui/icons";
+import { formatVideoTitle } from "../../../functions";
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
     height: 280,
   },
-})
+});
 
 export default function ImgMediaCard({
   title,
@@ -35,16 +35,16 @@ export default function ImgMediaCard({
   queue,
   setQueue,
 }) {
-  const [playing, setPlaying] = useState(false)
-  const classes = useStyles()
+  const [playing, setPlaying] = useState(false);
+  const classes = useStyles();
 
   useEffect(() => {
     if (nowPlaying && nowPlaying.id === id) {
-      setPlaying(true)
+      setPlaying(true);
     } else {
-      setPlaying(false)
+      setPlaying(false);
     }
-  }, [nowPlaying])
+  }, [nowPlaying]);
 
   function handlePlayButton() {
     if (!playing) {
@@ -53,11 +53,11 @@ export default function ImgMediaCard({
         description: description,
         id: id,
         thumbnailUrl: thumbnailUrl,
-      })
-      setPlaying(true)
+      });
+      setPlaying(true);
     } else {
-      setNowPlaying({})
-      setPlaying(false)
+      setNowPlaying({});
+      setPlaying(false);
     }
   }
 
@@ -71,7 +71,7 @@ export default function ImgMediaCard({
         thumbnailUrl: thumbnailUrl,
         smallThumbnailUrl: smallThumbnailUrl,
       })
-    )
+    );
   }
 
   return (
@@ -105,5 +105,5 @@ export default function ImgMediaCard({
         </IconButton>
       </CardActions>
     </Card>
-  )
+  );
 }

@@ -1,23 +1,23 @@
-import React, { useCallback } from "react"
-import { Typography, Box } from "@material-ui/core"
-import QueueItem from "./QueueCard/QueueCard"
-import { DndProvider } from "react-dnd"
-import { HTML5Backend } from "react-dnd-html5-backend"
-import update from "immutability-helper"
+import React, { useCallback } from "react";
+import { Typography, Box } from "@material-ui/core";
+import QueueItem from "./QueueCard/QueueCard";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import update from "immutability-helper";
 
 function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
   const handleClickStopButton = () => {
     if (title) {
-      setNowPlaying()
+      setNowPlaying();
     } else {
-      setNowPlaying(queue[0])
-      setQueue(queue.slice(1))
+      setNowPlaying(queue[0]);
+      setQueue(queue.slice(1));
     }
-  }
+  };
 
   const moveCard = useCallback(
     (dragIndex, hoverIndex) => {
-      const dragCard = queue[dragIndex]
+      const dragCard = queue[dragIndex];
       setQueue(
         update(queue, {
           $splice: [
@@ -25,10 +25,10 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
             [hoverIndex, 0, dragCard],
           ],
         })
-      )
+      );
     },
     [queue]
-  )
+  );
 
   return (
     <>
@@ -56,7 +56,7 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
         </div>
       )}
     </>
-  )
+  );
 }
 
-export default QueueSection
+export default QueueSection;
