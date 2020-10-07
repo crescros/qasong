@@ -1,4 +1,4 @@
-describe('users array', () => {
+xdescribe('users array', () => {
 
     const pathToUsersData = './data/users.json'
 
