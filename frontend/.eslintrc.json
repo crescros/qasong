@@ -6,7 +6,8 @@
   "globals": {
     "process": "readonly",
     "open": "readonly",
-    "localStorage": "readonly"
+    "localStorage": "readonly",
+    "document": "readonly"
   },
   "extends": [
     "eslint:recommended",
