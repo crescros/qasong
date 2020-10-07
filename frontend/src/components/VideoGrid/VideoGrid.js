@@ -1,6 +1,6 @@
-import React from "react"
-import { Grid, Typography, Box } from "@material-ui/core"
-import VideoCard from "./VideoCard/VideoCard"
+import React from "react";
+import { Grid, Typography, Box } from "@material-ui/core";
+import VideoCard from "./VideoCard/VideoCard";
 
 function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue }) {
   return (
@@ -12,9 +12,9 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue }) {
       )}
       <Grid container direction="row" justify="center" alignItems="center">
         {videos.map((video) => {
-          const url = video.thumbnail
-          const smallUrl = video.thumbnail
-          const title = video.title
+          const url = video.thumbnail;
+          const smallUrl = video.thumbnail;
+          const title = video.title;
 
           return (
             <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={video.videoId} p={2}>
@@ -32,7 +32,7 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue }) {
                 />
               </Box>
             </Grid>
-          )
+          );
         })}
 
         {videos.length == 0 && (
@@ -63,7 +63,7 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue }) {
         )}
       </Grid>
     </Box>
-  )
+  );
 }
 
-export default VideoGrid
+export default VideoGrid;
