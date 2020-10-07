@@ -1,4 +1,5 @@
-﻿const express = require("express")
+﻿/* eslint-disable no-unused-vars */
+const express = require("express")
 const router = express.Router()
 
 const con = require("../database/connection.js")
@@ -57,7 +58,7 @@ function makeOne(req, res, next) {
         res.json(err)
       } else {
         res.json({
-          message: `user created`,
+          message: "user created",
         })
       }
     }

@@ -4,8 +4,8 @@ const cors = require("cors")
 const bodyParser = require("body-parser")
 const jwt = require("./_helpers/jwt")
 const errorHandler = require("./_helpers/error-handler")
-const dotenv = require("dotenv").config()
-const rootpath = require("rootpath")()
+require("dotenv").config()
+require("rootpath")()
 
 // database connection
 // const con = require('./database/connection.js')
