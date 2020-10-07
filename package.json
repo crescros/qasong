@@ -10,7 +10,9 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "build": "cd frontend && npm run build",
-    "deploy": "gcloud app deploy && npm version minor"
+    "deploy": "gcloud app deploy && npm version minor",
+    "lint": "eslint .",
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
   },
   "engines": {
     "node": "12.x"
@@ -30,8 +32,12 @@
   },
   "license": "ISC",
   "devDependencies": {
+    "cypress-dotenv": "^1.2.2",
+    "eslint": "^7.10.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
     "nodemon": "^2.0.4",
-    "cypress-dotenv": "^1.2.2"
+    "prettier": "^2.1.2"
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -43,5 +49,20 @@
     "mysql": "^2.18.1",
     "rootpath": "^0.1.2",
     "uuid": "^8.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run format"
+    }
+  },
+  "lint-staged": {
+    "*.+(js|jsx)": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.+(json|css|md)": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
