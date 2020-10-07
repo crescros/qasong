@@ -38,7 +38,7 @@ function authenticate(req, res, next) {
 }
 
 function getAll(req, res, next) {
-  con.query(`SELECT name FROM mausers LIMIT 3000;`, (err, data) => {
+  con.query("SELECT name FROM mausers LIMIT 3000;", (err, data) => {
     if (err) {
       res.json(err);
     } else {

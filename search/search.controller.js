@@ -13,7 +13,7 @@ function searchYoutube(req, res, next) {
   if (!searchTerm) {
     res.status(400).json({
       message:
-        'no search term provided. use query parameter "q" to include a search term',
+        "no search term provided. use query parameter \"q\" to include a search term",
     });
   }
 
