@@ -1,0 +1,38 @@
+{
+  "env": {
+    "node": true,
+    "es2021": true
+  },
+  "globals": {
+    "process": "readonly",
+    "open": "readonly",
+    "localStorage": "readonly"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "max-len": ["warn", 90],
+    "react/jsx-uses-react": "error",
+    "no-var": "error",
+    "quotes": ["warn", "double"],
+    "react/prop-types": "off",
+    "no-useless-concat": "off"
+  }
+}
