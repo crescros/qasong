@@ -1,6 +1,6 @@
 {
   "name": "artistify-server",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "serve artistify-frontend to clients, and provide video search functionality from youtube data api",
   "homepage": "https://github.com/callbacc/Artistify",
   "main": "index.js",
