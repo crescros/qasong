@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "globals": {
+    "process": "readonly"
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 12
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "max-len": ["warn", 90],
+    "no-var": "error",
+    "quotes": ["warn", "double"],
+    "no-console": "warn"
+  }
+}

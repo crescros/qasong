@@ -1,6 +1,6 @@
 # Artistify
 
-## ENVIRONMENT 
+## ENVIRONMENT
 
 A `.env` file must be added to the root directory of this project.
 

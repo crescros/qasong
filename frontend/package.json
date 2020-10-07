@@ -6,7 +6,10 @@
   "main": "webpack.config.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "build": "webpack -p --config ./webpack.config.js --mode production && npm version minor"
+    "build": "webpack -p --config ./webpack.config.js --mode production && npm version minor",
+    "lint": "eslint ./src/**/*.js ./src/**/*.jsx --no-error-on-unmatched-pattern",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
   },
   "babel": {
     "presets": [
@@ -51,5 +54,18 @@
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.3",
+    "husky": "^4.3.0",
+    "prettier": "^2.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run format"
+    }
   }
 }
