@@ -10,11 +10,13 @@ import QueueSection from "./components/QueueSection/QueueSection";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const [videos, setVideos] = useState([]);
   const [queue, setQueue] = useState([]);
   const [nowPlaying, setNowPlaying] = useState();
   const [showQueue, setShowQueue] = useState(false);
   const [user, setUser] = useState();
+  const [isFetching, setIsFetching] = useState(false);
   // const [globalChatOpen, setGlobalChatOpen] = useState(false)
 
   const handleSearchTermInput = (e) => {
@@ -23,9 +25,14 @@ const App = () => {
 
   const handleSubmitVideoSearch = async (e) => {
     e.preventDefault();
-    const results = await getYoutubeIdFromSearch(searchTerm);
+    if (isFetching) return;
+    setIsFetching(true);
+    const results = await getYoutubeIdFromSearch({ query: searchTerm, currentPage });
     console.log("Results: ", results);
-    setVideos(results);
+    setIsFetching(false);
+    setCurrentPage((state) => state + 1);
+    setVideos((state) => [...state, ...results]);
+    window.onscroll = null;
   };
 
   useEffect(() => {
@@ -36,24 +43,18 @@ const App = () => {
     }
   }, [nowPlaying]);
 
-  const darkTheme = createMuiTheme({
-    palette: {
-      primary: {
-        main: "#2a3257",
-        dark: "#0e132e",
-
-        contrastText: "#fff",
-      },
-
-      secondary: {
-        main: "#2ad156",
-
-        contrastText: "#fff",
-      },
-
-      type: "dark",
-    },
-  });
+  useEffect(() => {
+    window.onscroll = (e) => {
+      const { scrollTop, offsetHeight } = document.documentElement;
+      const BUFFER = 100;
+      if (window.innerHeight + scrollTop >= offsetHeight - BUFFER) {
+        handleSubmitVideoSearch(e);
+      }
+    };
+    return () => {
+      window.onscroll = null;
+    };
+  }, [handleSubmitVideoSearch]);
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -72,7 +73,7 @@ const App = () => {
         showQueue={showQueue}
       />
 
-      <Video id={nowPlaying && nowPlaying.id} setNowPlaying={setNowPlaying} />
+      <Video id={nowPlaying?.id} setNowPlaying={setNowPlaying} />
 
       {showQueue && (
         <QueueSection
@@ -98,3 +99,22 @@ const App = () => {
 };
 
 export default App;
+
+const darkTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#2a3257",
+      dark: "#0e132e",
+
+      contrastText: "#fff",
+    },
+
+    secondary: {
+      main: "#2ad156",
+
+      contrastText: "#fff",
+    },
+
+    type: "dark",
+  },
+});

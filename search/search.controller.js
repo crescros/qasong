@@ -8,9 +8,12 @@ router.get("/", searchYoutube);
 module.exports = router;
 
 function searchYoutube(req, res, next) {
-  const searchTerm = req.query.q;
+  const searchObj = {
+    query: req.query.q,
+    currentPage: req.query.c
+  };
 
-  if (!searchTerm) {
+  if (!searchObj.query) {
     res.status(400).json({
       message:
         "no search term provided. use query parameter \"q\" to include a search term",
@@ -18,9 +21,7 @@ function searchYoutube(req, res, next) {
   }
 
   searchService
-    .searchYoutube({
-      searchTerm: searchTerm,
-    })
+    .searchYoutube(searchObj)
     .then((results) =>
       results
         ? res.json(results.videos)

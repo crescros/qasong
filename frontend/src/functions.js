@@ -15,11 +15,13 @@ export function setDefaultToken(token) {
 }
 
 export function getYoutubeIdFromSearch(search) {
-  if (!search) {
+  if (!search.query) {
     return [];
   }
 
-  return axios.get(baseUrl + "api/search?q=" + search).then((result) => {
+  const { query, currentPage } = search;
+  const URL = `${baseUrl}api/search?q=${query}&c=${currentPage}`;
+  return axios.get(URL).then((result) => {
     return result.data;
   });
 }
