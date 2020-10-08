@@ -3,6 +3,8 @@ import { Typography, Box } from "@material-ui/core";
 import QueueItem from "./QueueCard/QueueCard";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { TouchBackend } from "react-dnd-touch-backend";
+import { isMobile } from "react-device-detect";
 import update from "immutability-helper";
 
 function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
@@ -40,7 +42,7 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
             </Typography>
           </Box>
 
-          <DndProvider backend={HTML5Backend}>
+          <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
             {queue.map((item, index) => (
               <QueueItem
                 {...item}
