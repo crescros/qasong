@@ -11,7 +11,7 @@
     "dev": "nodemon index.js",
     "build": "cd frontend && npm run build",
     "deploy": "gcloud app deploy && npm version minor",
-    "lint": "eslint .",
+    "lint": "eslint . --fix && cd frontend && eslint . --fix",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
   },
   "engines": {

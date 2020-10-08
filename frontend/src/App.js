@@ -31,6 +31,15 @@ const App = () => {
   };
 
   useEffect(() => {
+    const storedQueue = localStorage.getItem("queue");
+
+    if (storedQueue) {
+      const queue = JSON.parse(storedQueue);
+      setQueue(queue);
+    }
+  }, []);
+
+  useEffect(() => {
     if (!nowPlaying && queue.length > 0) {
       const nextInQueue = queue[0];
       setNowPlaying(nextInQueue);
