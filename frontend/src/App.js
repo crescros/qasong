@@ -38,6 +38,10 @@ const App = () => {
     }
   }, [nowPlaying]);
 
+  useEffect(() => {
+    localStorage.setItem("queue", JSON.stringify(queue));
+  }, [queue]);
+
   const darkTheme = createMuiTheme({
     palette: {
       primary: {

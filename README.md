@@ -1,5 +1,10 @@
 # Artistify
 
+Artistify provides an alternate user interface for listening to music from youtube.
+
+Learn more about our project at [artistify.us](http://artistify.us)
+
+
 ## ENVIRONMENT
 
 A `.env` file must be added to the root directory of this project.
