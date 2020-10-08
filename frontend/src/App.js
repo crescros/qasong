@@ -9,8 +9,8 @@ import { ThemeProvider } from "@material-ui/styles";
 import QueueSection from "./components/QueueSection/QueueSection";
 
 const App = () => {
+  const VIDEO_LIMIT = 30;
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
   const [videos, setVideos] = useState([]);
   const [queue, setQueue] = useState([]);
   const [nowPlaying, setNowPlaying] = useState();
@@ -27,11 +27,11 @@ const App = () => {
     e.preventDefault();
     if (isFetching) return;
     setIsFetching(true);
-    const results = await getYoutubeIdFromSearch({ query: searchTerm, currentPage });
+    const LIMIT = VIDEO_LIMIT + videos.length;
+    const results = await getYoutubeIdFromSearch({ query: searchTerm, limit: LIMIT });
     console.log("Results: ", results);
     setIsFetching(false);
-    setCurrentPage((state) => state + 1);
-    setVideos((state) => [...state, ...results]);
+    setVideos(results);
     window.onscroll = null;
   };
 

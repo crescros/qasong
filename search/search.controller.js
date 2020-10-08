@@ -10,7 +10,7 @@ module.exports = router;
 function searchYoutube(req, res, next) {
   const searchObj = {
     query: req.query.q,
-    currentPage: req.query.c
+    limit: req.query.l
   };
 
   if (!searchObj.query) {
@@ -24,7 +24,7 @@ function searchYoutube(req, res, next) {
     .searchYoutube(searchObj)
     .then((results) =>
       results
-        ? res.json(results.videos)
+          ? res.json(results.items.filter((item) => item.type === "video"))
         : res.status(400).json({ message: "couldn't get search results" })
     )
     .catch((err) => next(err));

@@ -1,4 +1,4 @@
-﻿const yts = require("yt-search");
+﻿const yts = require("ytsr");
 
 module.exports = {
   searchYoutube,
@@ -6,17 +6,13 @@ module.exports = {
 
 const searchFixture = require("./searchFixture.json"); // Test data
 
-async function searchYoutube({ query, currentPage }) {
+async function searchYoutube({ query, limit }) {
   if (process.env.USE_MOCK_SEARCH_DATA === "1") {
     return searchFixture.items;
   }
-  currentPage = Number(currentPage);
   const options = {
-    query,
-    currentPage,
-    pageStart: currentPage,
-    pageEnd: currentPage + 1,
+    limit
   }
 
-  return yts(options);
+  return yts(query, options);
 }

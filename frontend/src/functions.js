@@ -19,8 +19,8 @@ export function getYoutubeIdFromSearch(search) {
     return [];
   }
 
-  const { query, currentPage } = search;
-  const URL = `${baseUrl}api/search?q=${query}&c=${currentPage}`;
+  const { query, limit } = search;
+  const URL = `${baseUrl}api/search?q=${query}&l=${limit}`;
   return axios.get(URL).then((result) => {
     return result.data;
   });
