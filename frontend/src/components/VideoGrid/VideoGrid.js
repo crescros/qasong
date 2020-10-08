@@ -17,10 +17,10 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue }) {
           const title = video.title;
 
           return (
-            <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={video.videoId} p={2}>
+            <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={video.link} p={2}>
               <Box m={1}>
                 <VideoCard
-                  id={video.videoId}
+                  id={video.link}
                   thumbnailUrl={url}
                   smallThumbnailUrl={smallUrl}
                   title={title}

@@ -19,8 +19,10 @@ export function getYoutubeIdFromSearch(search) {
     return [];
   }
 
-  const { query, limit } = search;
-  const URL = `${baseUrl}api/search?q=${query}&l=${limit}`;
+  const { query, limit, ref } = search;
+  // TODO: "ref" contains a "page" param, which is supposed to be part of "ref".
+  // Maybe somehow this can be encoded so the "page" param doesn't get lost in translation?
+  const URL = `${baseUrl}api/search?q=${query}&l=${limit}&r=${ref}`;
   return axios.get(URL).then((result) => {
     return result.data;
   });
@@ -98,9 +100,17 @@ export function getNodeEnvironment() {
 }
 
 export function formatVideoTitle(name) {
-  if (name.length < 40) {
+  if (name?.length < 40) {
     return name;
   } else {
-    return name.substr(0, 40) + "...";
+    return name?.substr(0, 40) + "...";
   }
+}
+
+/*
+ * @param {Object[]} items - Array of items.
+ * @return {Array} Videos or empty array.
+ */
+export function filteredVideoResults(items) {
+  return items.map((item) => item).filter((item) => item.type === "video");
 }

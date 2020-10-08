@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CssBaseline } from "@material-ui/core";
-import { getYoutubeIdFromSearch } from "./functions";
+import { getYoutubeIdFromSearch, filteredVideoResults } from "./functions";
 import AppBar from "./components/AppBar/AppBar";
 import VideoGrid from "./components/VideoGrid/VideoGrid";
 import Video from "./components/Video/Video";
@@ -8,10 +8,15 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import QueueSection from "./components/QueueSection/QueueSection";
 
+const initialResults = {
+  items: [],
+  nextpageRef: "",
+};
+
 const App = () => {
   const VIDEO_LIMIT = 30;
   const [searchTerm, setSearchTerm] = useState("");
-  const [videos, setVideos] = useState([]);
+  const [results, setResults] = useState(initialResults);
   const [queue, setQueue] = useState([]);
   const [nowPlaying, setNowPlaying] = useState();
   const [showQueue, setShowQueue] = useState(false);
@@ -27,11 +32,19 @@ const App = () => {
     e.preventDefault();
     if (isFetching) return;
     setIsFetching(true);
-    const LIMIT = VIDEO_LIMIT + videos.length;
-    const results = await getYoutubeIdFromSearch({ query: searchTerm, limit: LIMIT });
-    console.log("Results: ", results);
+    const query = { ref: results.nextpageRef, query: searchTerm, limit: VIDEO_LIMIT };
+    const response = await getYoutubeIdFromSearch(query);
+    console.log("Results: ", response);
     setIsFetching(false);
-    setVideos(results);
+    const videos = filteredVideoResults(response.items);
+    // new results overwrite old resuls, except for videos which are
+    // concatonated into the video array
+    // TODO: move to utility function
+    setResults((state) => ({
+      ...state,
+      ...response,
+      items: [...state.items, ...videos],
+    }));
     window.onscroll = null;
   };
 
@@ -46,6 +59,7 @@ const App = () => {
   useEffect(() => {
     window.onscroll = (e) => {
       const { scrollTop, offsetHeight } = document.documentElement;
+      // BUFFER determines how far from the bottom of the screen to run function
       const BUFFER = 100;
       if (window.innerHeight + scrollTop >= offsetHeight - BUFFER) {
         handleSubmitVideoSearch(e);
@@ -73,11 +87,11 @@ const App = () => {
         showQueue={showQueue}
       />
 
-      <Video id={nowPlaying?.id} setNowPlaying={setNowPlaying} />
+      <Video id={nowPlaying?.link} setNowPlaying={setNowPlaying} />
 
       {showQueue && (
         <QueueSection
-          title={nowPlaying && nowPlaying.title}
+          title={nowPlaying?.title}
           setNowPlaying={setNowPlaying}
           queue={queue}
           nowPlaying={nowPlaying}
@@ -86,7 +100,7 @@ const App = () => {
       )}
 
       <VideoGrid
-        videos={videos}
+        videos={results.items}
         nowPlaying={nowPlaying}
         setNowPlaying={setNowPlaying}
         queue={queue}

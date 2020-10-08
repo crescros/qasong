@@ -39,7 +39,7 @@ export default function ImgMediaCard({
   const classes = useStyles();
 
   useEffect(() => {
-    if (nowPlaying && nowPlaying.id === id) {
+    if (nowPlaying?.id === id) {
       setPlaying(true);
     } else {
       setPlaying(false);
