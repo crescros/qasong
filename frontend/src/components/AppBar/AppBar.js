@@ -8,11 +8,13 @@ import {
   MenuItem,
   Menu,
   Badge,
+  Box,
 } from "@material-ui/core";
 import VideoSearch from "./VideoSearch/VideoSearch";
 import EnvironmentBadges from "./EnvironmentBadges/EnvironmentBadges";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -61,6 +63,7 @@ export default function PrimarySearchAppBar({
   showQueue,
   setShowQueue,
   queue,
+  isLoading,
 }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -192,6 +195,9 @@ export default function PrimarySearchAppBar({
             handleSearchTermInput={handleSearchTermInput}
             handleSubmitVideoSearch={handleSubmitVideoSearch}
           />
+          <Box mx={2}>
+            {isLoading && <CircularProgress color="secondary" size="32px" />}
+          </Box>
           <div className={classes.grow} />
           {/* Desktop Github Icon  */}
           <div className={classes.sectionDesktop}>

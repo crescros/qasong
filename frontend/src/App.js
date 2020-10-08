@@ -15,6 +15,7 @@ const App = () => {
   const [nowPlaying, setNowPlaying] = useState();
   const [showQueue, setShowQueue] = useState(false);
   const [user, setUser] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   // const [globalChatOpen, setGlobalChatOpen] = useState(false)
 
   const handleSearchTermInput = (e) => {
@@ -22,10 +23,11 @@ const App = () => {
   };
 
   const handleSubmitVideoSearch = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     const results = await getYoutubeIdFromSearch(searchTerm);
-    console.log("Results: ", results);
     setVideos(results);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -70,6 +72,7 @@ const App = () => {
         // setGlobalChatOpen={setGlobalChatOpen}
         setShowQueue={setShowQueue}
         showQueue={showQueue}
+        isLoading={isLoading}
       />
 
       <Video id={nowPlaying && nowPlaying.id} setNowPlaying={setNowPlaying} />
