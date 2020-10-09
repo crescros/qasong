@@ -31,24 +31,23 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
         (queue.length > 0 || nowPlaying) &&
 
         <div>
+                <Box m={3} >
+                    <Typography variant='h5'>
+                        {queue.length > 0 && `${queue.length} songs queued`}
+                    </Typography>
+                </Box>
 
-            <Box m={3} >
-                <Typography variant='h5'>
-                    {queue.length > 0 && `${queue.length} songs queued`}
-                </Typography>
-            </Box>
-
-            <DndProvider backend={HTML5Backend}>
-                    {queue.map((item, index) =><QueueItem 
-                        {...item} 
-                        key={item.qid} 
-                        queue={queue} 
-                        setQueue={setQueue} 
-                        index={index} 
-                        onClick={handleClickStopButton} 
-                        moveCard={moveCard} 
-                    />)}
-            </DndProvider>
+                <DndProvider backend={HTML5Backend}>
+                        {queue.map((item, index) =><QueueItem 
+                            {...item} 
+                            key={item.qid} 
+                            queue={queue} 
+                            setQueue={setQueue} 
+                            index={index} 
+                            onClick={handleClickStopButton} 
+                            moveCard={moveCard} 
+                            />)}
+                </DndProvider>
         </div>
     }
     </>

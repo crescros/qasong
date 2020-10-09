@@ -93,7 +93,7 @@ export default function ImgMediaCard({
 	drag(drop(ref));
 
 	return (
-		<Card ref={ref} style={{ backgroundColor: playing && '#2ad156', ...style, opacity }}>
+		<Card ref={ref} style={{marginLeft: '41.5px', marginTop: '25px', backgroundColor: playing && '#2ad156', ...style, opacity }}>
 			<CardActionArea style={{ height: '200px' }} onClick={onClick}>
 				<CardMedia component="img" alt={title} height="140" image={smallThumbnailUrl} title={title} />
 				<CardContent style={{ height: '80px' }}>

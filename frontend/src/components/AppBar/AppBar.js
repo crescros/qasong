@@ -1,10 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, IconButton, MenuItem, Menu, Badge } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, IconButton, MenuItem, Menu, Badge, FormControlLabel } from '@material-ui/core';
 import VideoSearch from './VideoSearch/VideoSearch';
 import EnvironmentBadges from './EnvironmentBadges/EnvironmentBadges';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
+import Switch from "@material-ui/core/Switch";
+
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -48,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function PrimarySearchAppBar({ handleSearchTermInput, handleSubmitVideoSearch, showQueue, setShowQueue, queue }) {
+export default function PrimarySearchAppBar({ handleSearchTermInput, handleSubmitVideoSearch, showQueue, setShowQueue, queue, darkMode, setDarkMode }) {
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -56,9 +58,7 @@ export default function PrimarySearchAppBar({ handleSearchTermInput, handleSubmi
 	const isMenuOpen = Boolean(anchorEl);
 	const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-	const handleProfileMenuOpen = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
+	
 
 	const handleMobileMenuClose = () => {
 		setMobileMoreAnchorEl(null);
@@ -92,7 +92,6 @@ export default function PrimarySearchAppBar({ handleSearchTermInput, handleSubmi
 			onClose={handleMenuClose}
 		>
 			<MenuItem onClick={handleMenuClose}>Join Us</MenuItem>
-			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
 		</Menu>
 	);
 
@@ -113,7 +112,14 @@ export default function PrimarySearchAppBar({ handleSearchTermInput, handleSubmi
 			open={isMobileMenuOpen}
 			onClose={handleMobileMenuClose}
 		>
-
+			
+			<MenuItem>
+				{/* dark mode slider mobile */}
+				<IconButton color="inherit">
+					<Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
+				</IconButton>
+				<p>Dark Mode</p>
+			</MenuItem>
 			{/* Mobile Github icon */}
 			<MenuItem onClick={() => { open("https://github.com/callbacc/Artistify", "_blank") }}>
 				<IconButton color="inherit">
@@ -170,14 +176,22 @@ export default function PrimarySearchAppBar({ handleSearchTermInput, handleSubmi
 						children={process.env.REACT_APP_NAME}
 					/>
 					{/* Search bar */}
-					<VideoSearch
+					<VideoSearch 
 						handleSearchTermInput={handleSearchTermInput}
 						handleSubmitVideoSearch={handleSubmitVideoSearch}
+						style={{
+							margin: '0 auto',
+							maxWidth: 800
+						  }}
 					/>
 					<div className={classes.grow} />
-					{/* Desktop Github Icon  */}
+					
 					<div className={classes.sectionDesktop}>
-
+						{/* Darkmode slider */}
+						<IconButton>
+							<FormControlLabel control={<Switch  checked={darkMode} onChange={() => setDarkMode(!darkMode)} />} label="DarkMode" color="red" />
+						</IconButton>
+						{/* queue button  */}
 						<IconButton
 							edge="end"
 							color={showQueue ? "secondary" : "inherit"}
@@ -188,7 +202,7 @@ export default function PrimarySearchAppBar({ handleSearchTermInput, handleSubmi
 								<QueueMusicIcon style={{ fontSize: "40px" }} />
 							</Badge>
 						</IconButton>
-
+						{/* Github Icon button */}
 						<IconButton
 							edge="end"
 							color="inherit"
