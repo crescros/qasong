@@ -1,36 +1,41 @@
-const appRoot = require("app-root-path");
-const winston = require("winston");
+/* eslint-disable max-len */
+let appRoot = require("app-root-path");
+let winston = require("winston");
 
-// -------Log Formatting----------- //
-
-// Logging Timezone
-const TIME_ZONE = process.env.TIME_ZONE||Intl.DateTimeFormat().resolvedOptions().timeZone;
+// define the custom settings for each transport (file, console)
+const TIME_ZONE =
+  process.env.TIME_ZONE || Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 const timezoned = () => {
   return new Date().toLocaleString("en-US", {
-    timeZone: TIME_ZONE
+    timeZone: TIME_ZONE,
   });
 };
 
-const commonFormatOptions = [
-  winston.format.timestamp({format: timezoned}),
-]
+const commonFormatOptions = [winston.format.timestamp({ format: timezoned })];
 
 const consoleLoggerFormat = winston.format.combine(
   ...commonFormatOptions,
-  winston.format.colorize({ all: true }),
+  winston.format.colorize({}),
   winston.format.align(),
-  winston.format.printf(info => `${info.timestamp} ${info.level} ${info.message}`),
+  winston.format.printf((info) => {
+    const { timestamp, level, message } = info;
+    // eslint-disable-next-line max-len
+    const match = /(?<route>\w+ \/\w+.*) HTTP\/(1.1|2|2.2)"\s(?<statusCode>\d{3})/.exec(
+      info.message
+    );
+    if (match) {
+      const { route, statusCode } = match.groups;
+      if (Number(statusCode) >= 400) {
+        return `${timestamp} ${level} \u001b[31m${route} ${statusCode}\u001b[39m ${message}`;
+      }
+      return `${timestamp} ${level} \u001b[33m${route} ${statusCode}\u001b[39m ${message}`;
+    }
+    return `${timestamp} ${level} ${message}`;
+  })
 );
 
-const fileLoggerFormat = winston.format.combine(
-  ...commonFormatOptions,
-  // winston.format.align(),
-  winston.format.printf(info => JSON.stringify(info)),
-);
-
-// ----- LOG OPTIONS ----- //
-const options = {
+let options = {
   file: {
     level: "info",
     filename: `${appRoot}/logs/app.log`,
@@ -39,39 +44,41 @@ const options = {
     maxsize: 5242880, // 5MB
     maxFiles: 5,
     colorize: false,
-    format: fileLoggerFormat
   },
   console: {
+    level: "debug",
     handleExceptions: true,
-    json: true,
+    json: false,
     colorize: true,
-    format: consoleLoggerFormat
+    format: consoleLoggerFormat,
   },
 };
 
-// ----- Initialize the Logger ------ //
-const transports = [
-  new winston.transports.Console(options.console),
-]
+const transports = [new winston.transports.Console(options.console)];
 
 if (process.env.NODE_ENV === "production") {
-  transports.push((new winston.transports.File(options.file)))
+  transports.push(new winston.transports.File(options.file));
 }
 
-const logger = winston.createLogger({
+// instantiate a new Winston Logger with the settings defined above
+let logger = new winston.createLogger({
   transports: transports,
   exitOnError: false, // do not exit on handled exceptions
 });
 
-
 logger.stream = {
   // eslint-disable-next-line no-unused-vars
-  write: function(message, encoding) {
+  write(message, encoding) {
     logger.info(message);
   },
 };
 
+process.on("uncaughtException", (err) => {
+  logger.error(err);
+});
 
-logger.info(`Logging TimeZone is set to: ${TIME_ZONE}`)
+process.on("unhandledRejection", (err) => {
+  logger.error(err);
+});
 
-module.exports = winston;
+module.exports = logger;
