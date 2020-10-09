@@ -12,7 +12,7 @@ function searchYoutube(req, res, next) {
   const searchTerm = req.query.q;
 
   if (!searchTerm) {
-    res.status(400).json({
+    return res.status(400).json({
       message:
         "no search term provided. use query parameter \"q\" to include a search term",
     });
@@ -33,9 +33,8 @@ function searchYoutube(req, res, next) {
 function searchYoutubeById(req, res, next) {
   const ids = req.query.queue;
 
-
   if (!ids) {
-    res.status(400).json({
+    return res.status(400).json({
       message:
         "no search term provided. use query parameter \"q\" to include a search term",
     });
