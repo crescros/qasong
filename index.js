@@ -19,7 +19,7 @@ const winston = require("./_helpers/winston");
 const app = express()
 app.use(cors())
 app.use(morgan("combined", {
-  stream: winston.stream
+  stream: winston.stream.write
 }))
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: false }))

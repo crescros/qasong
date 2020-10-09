@@ -33,7 +33,6 @@ function searchYoutube(req, res, next) {
 function searchYoutubeById(req, res, next) {
   const ids = req.query.queue;
 
-
   if (!ids) {
     res.status(400).json({
       message:

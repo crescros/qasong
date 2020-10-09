@@ -1,7 +1,6 @@
 ﻿const yts = require("yt-search");
 const { v4: uuidv4 } = require("uuid");
 
-
 module.exports = {
   searchYoutube,
   searchYoutubeById,
@@ -30,7 +29,6 @@ async function searchYoutubeById({ ids }) {
   })
 
   return Promise.all(videos).then(values => {
-
     const queueValues = values.map(value =>{
       return {
         "id": value.videoId,

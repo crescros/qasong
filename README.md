@@ -2,6 +2,8 @@
 
 Artistify provides an alternate user interface for listening to music from youtube.
 
+This project is currently under development.
+
 Learn more about our project at [artistify.us](http://artistify.us)
 
 
