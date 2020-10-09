@@ -6,51 +6,51 @@ import EnvironmentBadges from './EnvironmentBadges/EnvironmentBadges';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import Switch from "@material-ui/core/Switch";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 
 const useStyles = makeStyles((theme) => ({
-	grow: {
-		flexGrow: 1,
-	},
-	menuButton: {
-		marginRight: theme.spacing(2),
-	},
-	title: {
-		display: 'none',
-		[theme.breakpoints.up('sm')]: {
-			display: 'block',
-		},
-	},
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
+    },
+  },
 
-
-	inputRoot: {
-		color: 'inherit',
-	},
-	inputInput: {
-		padding: theme.spacing(1, 1, 1, 0),
-		// vertical padding + font size from searchIcon
-		paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-		transition: theme.transitions.create('width'),
-		width: '100%',
-		[theme.breakpoints.up('md')]: {
-			width: '20ch',
-		},
-	},
-	sectionDesktop: {
-		display: 'none',
-		[theme.breakpoints.up('md')]: {
-			display: 'flex',
-		},
-	},
-	sectionMobile: {
-		display: 'flex',
-		[theme.breakpoints.up('md')]: {
-			display: 'none',
-		},
-	},
+  inputRoot: {
+    color: "inherit",
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch",
+    },
+  },
+  sectionDesktop: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+    },
+  },
+  sectionMobile: {
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+  },
 }));
 
-export default function PrimarySearchAppBar({ handleSearchTermInput, handleSubmitVideoSearch, showQueue, setShowQueue, queue, darkMode, setDarkMode }) {
+export default function PrimarySearchAppBar({ handleSearchTermInput, handleSubmitVideoSearch, showQueue, setShowQueue, queue, darkMode, setDarkMode, isLoading }) {
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -184,6 +184,11 @@ export default function PrimarySearchAppBar({ handleSearchTermInput, handleSubmi
 							maxWidth: 800
 						  }}
 					/>
+
+          <Box mx={2}>
+            {isLoading && <CircularProgress color="secondary" size="32px" />}
+          </Box>
+
 					<div className={classes.grow} />
 					
 					<div className={classes.sectionDesktop}>

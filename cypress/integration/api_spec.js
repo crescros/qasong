@@ -1,13 +1,11 @@
-describe('seach endpoint', () => {
-    it('responds', () => {
-        cy.request('/api/search?q=hello')
-            .then((response) => {
-                expect(response.body).to.exist
-                expect(response.status).to.equal(200)
-            })
-    })
-})
-
+describe("seach endpoint", () => {
+  it("responds", () => {
+    cy.request("/api/search?q=hello").then((response) => {
+      expect(response.body).to.exist;
+      expect(response.status).to.equal(200);
+    });
+  });
+});
 
 // describe('users:create endpoint', () => {
 //     it('creates a new user if name does not yet exist', () => {
@@ -48,4 +46,3 @@ describe('seach endpoint', () => {
 //             })
 //     })
 // })
-
