@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-let appRoot = require('app-root-path');
+let appRoot = require("app-root-path");
 let winston = require("winston");
 
 // define the custom settings for each transport (file, console)
@@ -16,21 +16,21 @@ const commonFormatOptions = [winston.format.timestamp({ format: timezoned })];
 
 const consoleLoggerFormat = winston.format.combine(
   ...commonFormatOptions,
-  winston.format.colorize({
-
-  }),
+  winston.format.colorize({}),
   winston.format.align(),
   winston.format.printf((info) => {
     const { timestamp, level, message } = info;
     // eslint-disable-next-line max-len
-    const match = /(?<route>\w+ \/\w+.*) HTTP\/(1.1|2|2.2)"\s(?<statusCode>\d{3})/.exec(info.message);
+    const match = /(?<route>\w+ \/\w+.*) HTTP\/(1.1|2|2.2)"\s(?<statusCode>\d{3})/.exec(
+      info.message
+    );
     if (match) {
       const { route, statusCode } = match.groups;
       if (Number(statusCode) >= 400) {
         return `${timestamp} ${level} \u001b[31m${route} ${statusCode}\u001b[39m ${message}`;
       }
       return `${timestamp} ${level} \u001b[33m${route} ${statusCode}\u001b[39m ${message}`;
-    } 
+    }
     return `${timestamp} ${level} ${message}`;
   })
 );
@@ -50,13 +50,11 @@ let options = {
     handleExceptions: true,
     json: false,
     colorize: true,
-    format: consoleLoggerFormat
+    format: consoleLoggerFormat,
   },
 };
 
-const transports = [
-  new winston.transports.Console(options.console)
-];
+const transports = [new winston.transports.Console(options.console)];
 
 if (process.env.NODE_ENV === "production") {
   transports.push(new winston.transports.File(options.file));
@@ -77,10 +75,10 @@ logger.stream = {
 
 process.on("uncaughtException", (err) => {
   logger.error(err);
-})
+});
 
 process.on("unhandledRejection", (err) => {
   logger.error(err);
-})
+});
 
 module.exports = logger;

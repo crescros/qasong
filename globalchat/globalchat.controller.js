@@ -12,7 +12,7 @@ router.get("/", getAll);
 function getAll(req, res, next) {
   con.query(
     "SELECT id, created_at, author, content FROM globalchat" +
-    " ORDER BY created_at DESC LIMIT 80;",
+      " ORDER BY created_at DESC LIMIT 80;",
     (err, data) => {
       if (err) {
         res.json(err);
