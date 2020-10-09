@@ -40,15 +40,22 @@
     "prettier": "^2.1.2"
   },
   "dependencies": {
+    "app-root-path": "^3.0.0",
     "axios": "^0.20.0",
+    "connect-redis": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
+    "express-session": "^1.17.1",
     "immutability-helper": "^3.1.1",
+    "morgan": "^1.10.0",
     "mysql": "^2.18.1",
+    "redis": "^3.0.2",
     "rootpath": "^0.1.2",
-    "uuid": "^8.3.0"
+    "uuid": "^8.3.0",
+    "winston": "^3.3.3",
+    "yt-search": "^2.3.2"
   },
   "husky": {
     "hooks": {

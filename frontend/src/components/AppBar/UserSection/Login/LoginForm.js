@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import {
   Avatar,
   Button,
@@ -11,10 +11,10 @@ import {
   Typography,
   Container,
   CircularProgress,
-} from "@material-ui/core"
-import { Alert } from "@material-ui/lab/"
-import { makeStyles } from "@material-ui/core/styles"
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
+} from "@material-ui/core";
+import { Alert } from "@material-ui/lab/";
+import { makeStyles } from "@material-ui/core/styles";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-}))
+}));
 
 export default function SignIn({
   handleLoginFormSubmit,
@@ -43,7 +43,7 @@ export default function SignIn({
   message,
   loading,
 }) {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs">
@@ -122,5 +122,5 @@ export default function SignIn({
         </form>
       </div>
     </Container>
-  )
+  );
 }

@@ -1,7 +1,7 @@
-import React from "react"
-import SearchIcon from "@material-ui/icons/Search"
-import { makeStyles, fade } from "@material-ui/core/styles"
-import { InputBase } from "@material-ui/core"
+import React from "react";
+import SearchIcon from "@material-ui/icons/Search";
+import { makeStyles, fade } from "@material-ui/core/styles";
+import { InputBase } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -43,10 +43,10 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-}))
+}));
 
 function VideoSearch({ handleSubmitVideoSearch, handleSearchTermInput }) {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <div className={classes.search}>
@@ -65,7 +65,7 @@ function VideoSearch({ handleSubmitVideoSearch, handleSearchTermInput }) {
         />
       </form>
     </div>
-  )
+  );
 }
 
-export default VideoSearch
+export default VideoSearch;

@@ -1,5 +1,5 @@
-import React from "react"
-import { Menu, MenuItem } from "@material-ui/core"
+import React from "react";
+import { Menu, MenuItem } from "@material-ui/core";
 
 function UserMenu({
   handleLogOut,
@@ -9,8 +9,8 @@ function UserMenu({
   setGlobalChatOpen,
 }) {
   const handleOpenChat = () => {
-    setGlobalChatOpen(true)
-  }
+    setGlobalChatOpen(true);
+  };
 
   return (
     <Menu
@@ -23,7 +23,7 @@ function UserMenu({
       <MenuItem onClick={handleLogOut}>Logout</MenuItem>
       <MenuItem onClick={handleOpenChat}>Chat</MenuItem>
     </Menu>
-  )
+  );
 }
 
-export default UserMenu
+export default UserMenu;

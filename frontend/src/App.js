@@ -1,40 +1,40 @@
-import React, { useState, useEffect } from "react"
-import { CssBaseline } from "@material-ui/core"
-import { getYoutubeIdFromSearch } from "./functions"
-import AppBar from "./components/AppBar/AppBar"
-import VideoGrid from "./components/VideoGrid/VideoGrid"
-import Video from "./components/Video/Video"
-import { createMuiTheme } from "@material-ui/core/styles"
-import { ThemeProvider } from "@material-ui/styles"
-import QueueSection from "./components/QueueSection/QueueSection"
+import React, { useState, useEffect } from "react";
+import { CssBaseline } from "@material-ui/core";
+import { getYoutubeIdFromSearch } from "./functions";
+import AppBar from "./components/AppBar/AppBar";
+import VideoGrid from "./components/VideoGrid/VideoGrid";
+import Video from "./components/Video/Video";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+import QueueSection from "./components/QueueSection/QueueSection";
 
 const App = () => {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [videos, setVideos] = useState([])
-  const [queue, setQueue] = useState([])
-  const [nowPlaying, setNowPlaying] = useState()
-  const [showQueue, setShowQueue] = useState(false)
-  const [user, setUser] = useState()
+  const [searchTerm, setSearchTerm] = useState("");
+  const [videos, setVideos] = useState([]);
+  const [queue, setQueue] = useState([]);
+  const [nowPlaying, setNowPlaying] = useState();
+  const [showQueue, setShowQueue] = useState(false);
+  const [user, setUser] = useState();
   // const [globalChatOpen, setGlobalChatOpen] = useState(false)
 
   const handleSearchTermInput = (e) => {
-    setSearchTerm(e.target.value)
-  }
+    setSearchTerm(e.target.value);
+  };
 
   const handleSubmitVideoSearch = async (e) => {
-    e.preventDefault()
-    const results = await getYoutubeIdFromSearch(searchTerm)
-    console.log("Results: ", results)
-    setVideos(results)
-  }
+    e.preventDefault();
+    const results = await getYoutubeIdFromSearch(searchTerm);
+    console.log("Results: ", results);
+    setVideos(results);
+  };
 
   useEffect(() => {
     if (!nowPlaying && queue.length > 0) {
-      const nextInQueue = queue[0]
-      setNowPlaying(nextInQueue)
-      setQueue(queue.slice(1))
+      const nextInQueue = queue[0];
+      setNowPlaying(nextInQueue);
+      setQueue(queue.slice(1));
     }
-  }, [nowPlaying])
+  }, [nowPlaying]);
 
   const darkTheme = createMuiTheme({
     palette: {
@@ -53,7 +53,7 @@ const App = () => {
 
       type: "dark",
     },
-  })
+  });
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -94,7 +94,7 @@ const App = () => {
         handleSubmitVideoSearch={handleSubmitVideoSearch}
       />
     </ThemeProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;

@@ -13,3 +13,5 @@ cypress/screenshots
 .env
 !frontend/.env
 data
+
+# Logging
