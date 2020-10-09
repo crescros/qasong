@@ -51,6 +51,10 @@
     "mysql": "^2.18.1",
     "react-uuid": "^1.0.2",
     "rootpath": "^0.1.2",
+<<<<<<< HEAD
+    "uuid": "^8.3.0",
+    "yt-search": "^2.3.2"
+=======
     "uuid": "^8.3.1",
     "winston": "^3.3.3",
     "yt-search": "^2.3.2"
@@ -69,5 +73,6 @@
       "prettier --write",
       "git add"
     ]
+>>>>>>> 0383f24c1d531b275a4995d92e5f2cd2e00e2058
   }
 }

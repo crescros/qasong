@@ -99,42 +99,20 @@ export default function ImgMediaCard({
   const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
 
-  return (
-    <Card
-      ref={ref}
-      style={{
-        backgroundColor: playing && "#2ad156",
-        ...style,
-        opacity,
-      }}
-    >
-      <CardActionArea style={{ height: "200px" }} onClick={onClick}>
-        <CardMedia
-          component="img"
-          alt={title}
-          height="140"
-          image={smallThumbnailUrl}
-          title={title}
-        />
-        <CardContent style={{ height: "80px" }}>
-          <Typography gutterBottom>{formatVideoTitle(title)}</Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions style={{ display: "flex", justifyContent: "flex-end" }}>
-        {index == 0 && (
-          <Button color="secondary" variant="contained" onClick={onClick}>
-            PLAY NEXT
-          </Button>
-        )}
-        <IconButton
-          edge="end"
-          color="secondary"
-          onClick={removeQueueItem}
-          style={{ color: "red" }}
-        >
-          <ClearIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
-  );
+	return (
+		<Card ref={ref} style={{marginLeft: '41.5px', marginTop: '25px', backgroundColor: playing && '#2ad156', ...style, opacity }}>
+			<CardActionArea style={{ height: '200px' }} onClick={onClick}>
+				<CardMedia component="img" alt={title} height="140" image={smallThumbnailUrl} title={title} />
+				<CardContent style={{ height: '80px' }}>
+					<Typography gutterBottom>
+						{formatVideoTitle(title)}
+					</Typography>
+				</CardContent>
+			</CardActionArea>
+			<CardActions style={{display: "flex", justifyContent:'flex-end'}}>
+				{index == 0 && <Button color='secondary' variant='contained' onClick={onClick}>PLAY NEXT</Button>}
+				<IconButton edge='end' color='secondary' onClick={removeQueueItem} style={{ color: 'red' }}><ClearIcon /></IconButton>
+			</CardActions>
+		</Card>
+	);
 }

@@ -57,6 +57,23 @@ const App = () => {
       setQueue(queue.slice(1));
     }
   }, [nowPlaying]);
+  const [darkMode, setDarkMode] = useState(false)
+  const darkTheme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#000000",
+        dark: "#0e132e",
+
+        contrastText: "#fff",
+      },
+
+      secondary: {
+        main: "#2ad156",
+        dark: "#fff",
+        contrastText: "#fff",
+      },
+    }
+  })
 
   useEffect(() => {
     if (queue && queue.length > 0) {
@@ -67,23 +84,11 @@ const App = () => {
     }
   }, [queue]);
 
-  const darkTheme = createMuiTheme({
-    palette: {
-      primary: {
-        main: "#2a3257",
-        dark: "#0e132e",
-        contrastText: "#fff",
-      },
-      secondary: {
-        main: "#2ad156",
-        contrastText: "#fff",
-      },
-      type: "dark",
-    },
-  });
+  const lightTheme = createMuiTheme({})
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <Paper style={{ height: "100vh"}}>
       <CssBaseline />
 
       <AppBar
@@ -97,20 +102,22 @@ const App = () => {
         // setGlobalChatOpen={setGlobalChatOpen}
         setShowQueue={setShowQueue}
         showQueue={showQueue}
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
         isLoading={isLoading}
-      />
-
+        />
+	        
       <Video id={nowPlaying && nowPlaying.id} setNowPlaying={setNowPlaying} />
 
       {showQueue && (
-        <QueueSection
+          <QueueSection
           title={nowPlaying && nowPlaying.title}
           setNowPlaying={setNowPlaying}
           queue={queue}
           nowPlaying={nowPlaying}
           setQueue={setQueue}
         />
-      )}
+        )}
 
       <VideoGrid
         videos={videos}
@@ -120,7 +127,8 @@ const App = () => {
         setQueue={setQueue}
         handleSearchTermInput={handleSearchTermInput}
         handleSubmitVideoSearch={handleSubmitVideoSearch}
-      />
+        />
+        </Paper>
     </ThemeProvider>
   );
 };
