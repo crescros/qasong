@@ -51,23 +51,7 @@
     "mysql": "^2.18.1",
     "react-uuid": "^1.0.2",
     "rootpath": "^0.1.2",
-    "uuid": "^8.3.1",
-    "winston": "^3.3.3",
+    "uuid": "^8.3.0",
     "yt-search": "^2.3.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run format && npm run lint"
-    }
-  },
-  "lint-staged": {
-    "*.+(js|jsx)": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.+(json|css|md)": [
-      "prettier --write",
-      "git add"
-    ]
   }
 }

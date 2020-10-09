@@ -103,6 +103,8 @@ export default function ImgMediaCard({
     <Card
       ref={ref}
       style={{
+        marginLeft: "41.5px",
+        marginTop: "25px",
         backgroundColor: playing && "#2ad156",
         ...style,
         opacity,

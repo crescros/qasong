@@ -6,6 +6,7 @@ import VideoGrid from "./components/VideoGrid/VideoGrid";
 import Video from "./components/Video/Video";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
+import Paper from "@material-ui/core/Paper";
 import QueueSection from "./components/QueueSection/QueueSection";
 import queryString from "query-string";
 
@@ -57,6 +58,23 @@ const App = () => {
       setQueue(queue.slice(1));
     }
   }, [nowPlaying]);
+  const [darkMode, setDarkMode] = useState(false);
+  const darkTheme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#000000",
+        dark: "#0e132e",
+
+        contrastText: "#fff",
+      },
+
+      secondary: {
+        main: "#2ad156",
+        dark: "#fff",
+        contrastText: "#fff",
+      },
+    },
+  });
 
   useEffect(() => {
     if (queue && queue.length > 0) {
@@ -67,60 +85,51 @@ const App = () => {
     }
   }, [queue]);
 
-  const darkTheme = createMuiTheme({
-    palette: {
-      primary: {
-        main: "#2a3257",
-        dark: "#0e132e",
-        contrastText: "#fff",
-      },
-      secondary: {
-        main: "#2ad156",
-        contrastText: "#fff",
-      },
-      type: "dark",
-    },
-  });
+  const lightTheme = createMuiTheme({});
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <Paper style={{ height: "100vh" }}>
+        <CssBaseline />
 
-      <AppBar
-        handleSubmitVideoSearch={handleSubmitVideoSearch}
-        handleSearchTermInput={handleSearchTermInput}
-        nowPlaying={nowPlaying}
-        setNowPlaying={setNowPlaying}
-        queue={queue}
-        setUser={setUser}
-        user={user}
-        // setGlobalChatOpen={setGlobalChatOpen}
-        setShowQueue={setShowQueue}
-        showQueue={showQueue}
-        isLoading={isLoading}
-      />
-
-      <Video id={nowPlaying && nowPlaying.id} setNowPlaying={setNowPlaying} />
-
-      {showQueue && (
-        <QueueSection
-          title={nowPlaying && nowPlaying.title}
+        <AppBar
+          handleSubmitVideoSearch={handleSubmitVideoSearch}
+          handleSearchTermInput={handleSearchTermInput}
+          nowPlaying={nowPlaying}
           setNowPlaying={setNowPlaying}
           queue={queue}
-          nowPlaying={nowPlaying}
-          setQueue={setQueue}
+          setUser={setUser}
+          user={user}
+          // setGlobalChatOpen={setGlobalChatOpen}
+          setShowQueue={setShowQueue}
+          showQueue={showQueue}
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          isLoading={isLoading}
         />
-      )}
 
-      <VideoGrid
-        videos={videos}
-        nowPlaying={nowPlaying}
-        setNowPlaying={setNowPlaying}
-        queue={queue}
-        setQueue={setQueue}
-        handleSearchTermInput={handleSearchTermInput}
-        handleSubmitVideoSearch={handleSubmitVideoSearch}
-      />
+        <Video id={nowPlaying && nowPlaying.id} setNowPlaying={setNowPlaying} />
+
+        {showQueue && (
+          <QueueSection
+            title={nowPlaying && nowPlaying.title}
+            setNowPlaying={setNowPlaying}
+            queue={queue}
+            nowPlaying={nowPlaying}
+            setQueue={setQueue}
+          />
+        )}
+
+        <VideoGrid
+          videos={videos}
+          nowPlaying={nowPlaying}
+          setNowPlaying={setNowPlaying}
+          queue={queue}
+          setQueue={setQueue}
+          handleSearchTermInput={handleSearchTermInput}
+          handleSubmitVideoSearch={handleSubmitVideoSearch}
+        />
+      </Paper>
     </ThemeProvider>
   );
 };
