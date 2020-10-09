@@ -31,7 +31,6 @@ app.use(errorHandler);
 
 
 // define routes
-// app.use('/api/globalchat', require('./globalchat/globalchat.controller'))
 // app.use('/api/users', require('./users/users.controller'))
 app.use("/api/search", require("./search/search.controller"));
 app.use("/api/env", (req, res) => res.send(process.env.NODE_ENV));

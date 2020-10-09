@@ -18,7 +18,6 @@ const App = () => {
   const [showQueue, setShowQueue] = useState(false);
   const [user, setUser] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  // const [globalChatOpen, setGlobalChatOpen] = useState(false)
 
   const handleSearchTermInput = (e) => {
     setSearchTerm(e.target.value);
