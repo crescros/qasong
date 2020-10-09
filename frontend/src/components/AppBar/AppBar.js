@@ -216,10 +216,11 @@ export default function PrimarySearchAppBar({
             {/* Darkmode slider */}
             <IconButton>
               <FormControlLabel
+                style={{ color: "white" }}
                 control={
                   <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
                 }
-                label="DarkMode"
+                label={darkMode ? "dark mode" : "light mode"}
                 color="red"
               />
             </IconButton>

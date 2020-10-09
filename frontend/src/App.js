@@ -73,6 +73,8 @@ const App = () => {
         dark: "#fff",
         contrastText: "#fff",
       },
+
+      type: "dark",
     },
   });
 
