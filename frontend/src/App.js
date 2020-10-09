@@ -32,18 +32,22 @@ const App = () => {
   };
 
   useEffect(() => {
-    const storedQueue = localStorage.getItem("queue");
-    let parsed = queryString.parse(location.search);
+    (async () => {
+      const storedQueue = localStorage.getItem("queue");
+      let parsed = queryString.parse(location.search);
 
-    if (parsed.queue) {
-      let linkedQueue = getQueueFromIds(parsed.queue);
-      setQueue(linkedQueue);
-    } else {
-      if (storedQueue) {
-        const queue = JSON.parse(storedQueue);
-        setQueue(queue);
+      if (parsed.queue && parsed.queue.length > 0) {
+        let linkedQueue = await getQueueFromIds(queryString.stringify(parsed));
+        setQueue(linkedQueue);
+        setShowQueue(true);
+      } else {
+        if (storedQueue) {
+          const queue = JSON.parse(storedQueue);
+          setQueue(queue);
+          setShowQueue(true);
+        }
       }
-    }
+    })();
   }, []);
 
   useEffect(() => {
@@ -55,13 +59,12 @@ const App = () => {
   }, [nowPlaying]);
 
   useEffect(() => {
-    localStorage.setItem("queue", JSON.stringify(queue));
-
-    let parsed = queryString.parse(location.search);
-
-    parsed.queue = queue.map((song) => song.id);
-
-    history.pushState(parsed, "queue", "?" + queryString.stringify(parsed));
+    if (queue && queue.length > 0) {
+      localStorage.setItem("queue", JSON.stringify(queue));
+      let parsed = queryString.parse(location.search);
+      parsed.queue = queue.map((song) => song.id);
+      history.pushState(parsed, "queue", "?" + queryString.stringify(parsed));
+    }
   }, [queue]);
 
   const darkTheme = createMuiTheme({

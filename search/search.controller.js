@@ -45,9 +45,6 @@ function searchYoutubeById(req, res, next) {
       ids: ids,
     })
     .then((results) => {
-
-      console.log(results)
-
       results
         ? res.json(results)
         : res.status(400).json({ message: "couldn't get search results" })

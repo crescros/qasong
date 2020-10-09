@@ -104,7 +104,7 @@ export function formatVideoTitle(name) {
 }
 
 export function getQueueFromIds(search) {
-  return axios.get(baseUrl + "api/search/id?q=" + search).then((result) => {
+  return axios.get(baseUrl + "api/search/ids?" + search).then((result) => {
     return result.data;
   });
 }
