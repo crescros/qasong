@@ -73,7 +73,7 @@ const App = () => {
         contrastText: "#fff",
       },
     }
-  },
+  })
 
   useEffect(() => {
     if (queue && queue.length > 0) {
