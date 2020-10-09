@@ -23,21 +23,12 @@ async function searchYoutubeById({ ids }) {
     ids = [ids];
   }
 
-<<<<<<< HEAD
   const videos = ids.map( id =>{
     return yts({videoId: id})
   })
 
   return Promise.all(videos).then(values => {
     const queueValues = values.map(value =>{
-=======
-  const videos = ids.map((id) => {
-    return yts({ videoId: id });
-  });
-
-  return Promise.all(videos).then((values) => {
-    const queueValues = values.map((value) => {
->>>>>>> 5fe61abc8959b729735a5f48b57ecc84548b006a
       return {
         id: value.videoId,
         title: value.title,
