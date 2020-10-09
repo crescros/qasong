@@ -1,36 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import {CardContent, CardMedia, IconButton, Typography } from '@material-ui/core';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import PauseIcon from '@material-ui/icons/Pause';
-import QueueIcon from '@material-ui/icons/Queue';
+import React, { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import { CardContent, CardMedia, IconButton, Typography } from "@material-ui/core";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import PauseIcon from "@material-ui/icons/Pause";
+import QueueIcon from "@material-ui/icons/Queue";
 import { formatVideoTitle } from "../../../functions";
 import uuid from "react-uuid";
-import { Autorenew } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
     maxWidth: 365,
     height: 130,
     margin: "0px auto 20px auto",
   },
   details: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
   },
   content: {
-    flex: '1 0 auto',
+    flex: "1 0 auto",
   },
   cover: {
     width: 151,
     height: 140,
-    marginLeft: 'auto', 
+    marginLeft: "auto",
   },
   controls: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
     paddingLeft: theme.spacing(1),
     paddingBottom: theme.spacing(1),
   },
@@ -43,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MediaControlCard  ({
+export default function MediaControlCard({
   title,
   description,
   thumbnailUrl,
@@ -53,9 +52,8 @@ export default function MediaControlCard  ({
   nowPlaying,
   queue,
   setQueue,
-}){
+}) {
   const classes = useStyles();
-  const theme = useTheme();
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
@@ -94,10 +92,8 @@ export default function MediaControlCard  ({
     );
   }
 
-
   return (
-    <Card className={classes.root} style={{backgroundColor: playing && "#2ad156",}}>
-
+    <Card className={classes.root} style={{ backgroundColor: playing && "#2ad156" }}>
       <div className={classes.details}>
         <CardContent className={classes.content} style={{ height: "60px" }}>
           <Typography className={classes.titleSize} component="h5" variant="h5">
