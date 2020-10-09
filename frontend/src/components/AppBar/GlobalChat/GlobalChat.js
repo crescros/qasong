@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 
 import {
   Drawer,
@@ -6,54 +6,54 @@ import {
   Typography,
   InputBase,
   InputAdornment,
-} from "@material-ui/core"
-import { postGlobalChat, getGlobalChat } from "../../../functions"
-import SendIcon from "@material-ui/icons/Send"
+} from "@material-ui/core";
+import { postGlobalChat, getGlobalChat } from "../../../functions";
+import SendIcon from "@material-ui/icons/Send";
 
 export default function TemporaryDrawer({ user, open, setOpen }) {
-  const [chat, setChat] = useState([])
-  const [enteredMessage, setEnteredMessage] = useState("")
+  const [chat, setChat] = useState([]);
+  const [enteredMessage, setEnteredMessage] = useState("");
 
   useEffect(() => {
-    handleLoadChat()
+    handleLoadChat();
     const refreshRef = setInterval(
       handleLoadChat,
       process.env.REACT_APP_CHAT_REFRESH_RATE
-    )
+    );
 
     return () => {
-      clearInterval(refreshRef)
-    }
-  }, [])
+      clearInterval(refreshRef);
+    };
+  }, []);
 
   const handleClose = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   const handlePost = (e) => {
-    setEnteredMessage("")
-    e.preventDefault()
+    setEnteredMessage("");
+    e.preventDefault();
     postGlobalChat(user.username, enteredMessage).then((data) => {
       if (data) {
-        handleLoadChat()
+        handleLoadChat();
       }
-    })
-  }
+    });
+  };
 
   const handleLoadChat = () => {
     getGlobalChat().then((data) => {
       if (data) {
-        setChat(data.data)
+        setChat(data.data);
       }
-    })
-  }
+    });
+  };
 
   const onMessageType = (e) => {
-    setEnteredMessage(e.target.value)
-  }
+    setEnteredMessage(e.target.value);
+  };
 
   if (!user) {
-    return <div></div>
+    return <div></div>;
   }
 
   return (
@@ -75,10 +75,10 @@ export default function TemporaryDrawer({ user, open, setOpen }) {
         >
           {chat &&
             chat.map((msg, i) => {
-              let newAuthor = false
+              let newAuthor = false;
 
               if (i < chat.length - 1 && msg.author !== chat[i + 1].author) {
-                newAuthor = true
+                newAuthor = true;
               }
 
               return (
@@ -107,7 +107,7 @@ export default function TemporaryDrawer({ user, open, setOpen }) {
                     </Typography>
                   )}
                 </div>
-              )
+              );
             })}
         </div>
         <form onSubmit={handlePost}>
@@ -127,5 +127,5 @@ export default function TemporaryDrawer({ user, open, setOpen }) {
         </form>
       </div>
     </Drawer>
-  )
+  );
 }

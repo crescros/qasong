@@ -1,6 +1,6 @@
 {
   "name": "artistify-server",
-  "version": "0.3.0",
+  "version": "0.5.0",
   "description": "serve artistify-frontend to clients, and provide video search functionality from youtube data api",
   "homepage": "https://github.com/callbacc/Artistify",
   "main": "index.js",
@@ -11,7 +11,7 @@
     "dev": "nodemon index.js",
     "build": "cd frontend && npm run build",
     "deploy": "gcloud app deploy && npm version minor",
-    "lint": "eslint .",
+    "lint": "eslint . --fix && cd frontend && eslint . --fix",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
   },
   "engines": {
@@ -49,8 +49,9 @@
     "immutability-helper": "^3.1.1",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
+    "react-uuid": "^1.0.2",
     "rootpath": "^0.1.2",
-    "uuid": "^8.3.0",
+    "uuid": "^8.3.1",
     "winston": "^3.3.3",
     "yt-search": "^2.3.2"
   },

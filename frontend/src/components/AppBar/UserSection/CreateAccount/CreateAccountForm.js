@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import {
   Avatar,
   Button,
@@ -7,10 +7,10 @@ import {
   Typography,
   Container,
   CircularProgress,
-} from "@material-ui/core"
-import { Alert } from "@material-ui/lab/"
-import { makeStyles } from "@material-ui/core/styles"
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
+} from "@material-ui/core";
+import { Alert } from "@material-ui/lab/";
+import { makeStyles } from "@material-ui/core/styles";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,10 +34,10 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: "20px",
   },
-}))
+}));
 
 export default function SignIn({ handleCreateUserFormSubmit, error, loading }) {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs">
@@ -101,5 +101,5 @@ export default function SignIn({ handleCreateUserFormSubmit, error, loading }) {
         </form>
       </div>
     </Container>
-  )
+  );
 }
