@@ -46,7 +46,8 @@ function searchYoutubeById(req, res, next) {
     .then((results) => {
       results
         ? res.json(results)
-        : res.status(400).json({ message: "couldn't get search results" });
-    })
+        : res.status(400).json({ message: "couldn't get search results" })
+    }
+    )
     .catch((err) => next(err));
 }

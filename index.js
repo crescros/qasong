@@ -8,6 +8,7 @@ const morgan = require("morgan");
 require("dotenv").config();
 require("rootpath")();
 
+
 const winston = require("./_helpers/winston");
 
 // database connection
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(jwt());
 app.use(errorHandler);
+
 
 // define routes
 // app.use('/api/globalchat', require('./globalchat/globalchat.controller'))
