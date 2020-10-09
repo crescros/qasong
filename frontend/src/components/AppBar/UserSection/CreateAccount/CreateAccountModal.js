@@ -1,7 +1,7 @@
-import React from "react"
-import Modal from "@material-ui/core/Modal"
-import makeStyles from "@material-ui/styles/makeStyles"
-import CreateUserForm from "./CreateAccountForm"
+import React from "react";
+import Modal from "@material-ui/core/Modal";
+import makeStyles from "@material-ui/styles/makeStyles";
+import CreateUserForm from "./CreateAccountForm";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     left: "50%",
     transform: "translate(-50%, -50%)",
   },
-}))
+}));
 
 function CreateUserModal({
   modalOpen,
@@ -24,7 +24,7 @@ function CreateUserModal({
   handleCreateUserFormSubmit,
   loading,
 }) {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <Modal
@@ -41,7 +41,7 @@ function CreateUserModal({
         />
       </div>
     </Modal>
-  )
+  );
 }
 
-export default CreateUserModal
+export default CreateUserModal;

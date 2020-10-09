@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react"
-import { Chip, Box } from "@material-ui/core"
-import { getNodeEnvironment } from "../../../functions"
+import React, { useState, useEffect } from "react";
+import { Chip, Box } from "@material-ui/core";
+import { getNodeEnvironment } from "../../../functions";
 
 function EnvironmentBadges() {
-  const [nodeEnvLabel, setNodeEnvLabel] = useState()
+  const [nodeEnvLabel, setNodeEnvLabel] = useState();
 
   useEffect(() => {
-    handleLoadEnvironment()
-  }, [])
+    handleLoadEnvironment();
+  }, []);
 
   const handleLoadEnvironment = () => {
     getNodeEnvironment().then((response) => {
       if (response && response.data) {
-        setNodeEnvLabel(response.data)
+        setNodeEnvLabel(response.data);
       }
-    })
-  }
+    });
+  };
 
   return (
     <>
@@ -48,7 +48,7 @@ function EnvironmentBadges() {
         )
       }
     </>
-  )
+  );
 }
 
-export default EnvironmentBadges
+export default EnvironmentBadges;

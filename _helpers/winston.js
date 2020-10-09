@@ -4,29 +4,28 @@ const winston = require("winston");
 // -------Log Formatting----------- //
 
 // Logging Timezone
-const TIME_ZONE = process.env.TIME_ZONE||Intl.DateTimeFormat().resolvedOptions().timeZone;
+const TIME_ZONE =
+  process.env.TIME_ZONE || Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 const timezoned = () => {
   return new Date().toLocaleString("en-US", {
-    timeZone: TIME_ZONE
+    timeZone: TIME_ZONE,
   });
 };
 
-const commonFormatOptions = [
-  winston.format.timestamp({format: timezoned}),
-]
+const commonFormatOptions = [winston.format.timestamp({ format: timezoned })];
 
 const consoleLoggerFormat = winston.format.combine(
   ...commonFormatOptions,
   winston.format.colorize({ all: true }),
   winston.format.align(),
-  winston.format.printf(info => `${info.timestamp} ${info.level} ${info.message}`),
+  winston.format.printf((info) => `${info.timestamp} ${info.level} ${info.message}`)
 );
 
 const fileLoggerFormat = winston.format.combine(
   ...commonFormatOptions,
   // winston.format.align(),
-  winston.format.printf(info => JSON.stringify(info)),
+  winston.format.printf((info) => JSON.stringify(info))
 );
 
 // ----- LOG OPTIONS ----- //
@@ -39,23 +38,21 @@ const options = {
     maxsize: 5242880, // 5MB
     maxFiles: 5,
     colorize: false,
-    format: fileLoggerFormat
+    format: fileLoggerFormat,
   },
   console: {
     handleExceptions: true,
     json: true,
     colorize: true,
-    format: consoleLoggerFormat
+    format: consoleLoggerFormat,
   },
 };
 
 // ----- Initialize the Logger ------ //
-const transports = [
-  new winston.transports.Console(options.console),
-]
+const transports = [new winston.transports.Console(options.console)];
 
 if (process.env.NODE_ENV === "production") {
-  transports.push((new winston.transports.File(options.file)))
+  transports.push(new winston.transports.File(options.file));
 }
 
 const logger = winston.createLogger({
@@ -63,15 +60,13 @@ const logger = winston.createLogger({
   exitOnError: false, // do not exit on handled exceptions
 });
 
-
 logger.stream = {
   // eslint-disable-next-line no-unused-vars
-  write: function(message, encoding) {
+  write: function (message, encoding) {
     logger.info(message);
   },
 };
 
-
-logger.info(`Logging TimeZone is set to: ${TIME_ZONE}`)
+logger.info(`Logging TimeZone is set to: ${TIME_ZONE}`);
 
 module.exports = winston;

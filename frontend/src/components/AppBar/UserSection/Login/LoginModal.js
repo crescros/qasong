@@ -1,7 +1,7 @@
-import React from "react"
-import Modal from "@material-ui/core/Modal"
-import makeStyles from "@material-ui/styles/makeStyles"
-import LoginForm from "./LoginForm"
+import React from "react";
+import Modal from "@material-ui/core/Modal";
+import makeStyles from "@material-ui/styles/makeStyles";
+import LoginForm from "./LoginForm";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     left: "50%",
     transform: "translate(-50%, -50%)",
   },
-}))
+}));
 
 function LoginModal({
   modalOpen,
@@ -26,7 +26,7 @@ function LoginModal({
   message,
   loading,
 }) {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <Modal
@@ -45,7 +45,7 @@ function LoginModal({
         />
       </div>
     </Modal>
-  )
+  );
 }
 
-export default LoginModal
+export default LoginModal;

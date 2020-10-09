@@ -1,6 +1,6 @@
-const expressJwt = require("express-jwt")
+const expressJwt = require("express-jwt");
 
-module.exports = jwt
+module.exports = jwt;
 
 function jwt() {
   return expressJwt({ secret: process.env.SECRET, algorithms: ["RS256"] }).unless({
@@ -11,5 +11,5 @@ function jwt() {
       new RegExp("/api/users/create"),
       new RegExp("/api/globalchat"),
     ],
-  })
+  });
 }

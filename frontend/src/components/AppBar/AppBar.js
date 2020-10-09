@@ -1,5 +1,5 @@
-import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   AppBar,
   Toolbar,
@@ -8,11 +8,11 @@ import {
   MenuItem,
   Menu,
   Badge,
-} from "@material-ui/core"
-import VideoSearch from "./VideoSearch/VideoSearch"
-import EnvironmentBadges from "./EnvironmentBadges/EnvironmentBadges"
-import MoreIcon from "@material-ui/icons/MoreVert"
-import QueueMusicIcon from "@material-ui/icons/QueueMusic"
+} from "@material-ui/core";
+import VideoSearch from "./VideoSearch/VideoSearch";
+import EnvironmentBadges from "./EnvironmentBadges/EnvironmentBadges";
+import MoreIcon from "@material-ui/icons/MoreVert";
+import QueueMusicIcon from "@material-ui/icons/QueueMusic";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
-}))
+}));
 
 export default function PrimarySearchAppBar({
   handleSearchTermInput,
@@ -62,31 +62,31 @@ export default function PrimarySearchAppBar({
   setShowQueue,
   queue,
 }) {
-  const classes = useStyles()
-  const [anchorEl, setAnchorEl] = React.useState(null)
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  const isMenuOpen = Boolean(anchorEl)
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   // const handleProfileMenuOpen = (event) => {
   //   setAnchorEl(event.currentTarget)
   // }
 
   const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null)
-  }
+    setMobileMoreAnchorEl(null);
+  };
 
   const handleMenuClose = () => {
-    setAnchorEl(null)
-    handleMobileMenuClose()
-  }
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
 
   const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget)
-  }
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
 
-  const menuId = "primary-search-account-menu"
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -106,9 +106,9 @@ export default function PrimarySearchAppBar({
       <MenuItem onClick={handleMenuClose}>Join Us</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
-  )
+  );
 
-  const mobileMenuId = "primary-search-account-menu-mobile"
+  const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -128,7 +128,7 @@ export default function PrimarySearchAppBar({
       {/* Mobile Github icon */}
       <MenuItem
         onClick={() => {
-          open("https://github.com/callbacc/Artistify", "_blank")
+          open("https://github.com/callbacc/Artistify", "_blank");
         }}
       >
         <IconButton color="inherit">
@@ -143,7 +143,7 @@ export default function PrimarySearchAppBar({
       {/* Discord icon mobile onClick={handleProfileMenuOpen}*/}
       <MenuItem
         onClick={() => {
-          open("https://discord.gg/b2gEwT8", "_blank")
+          open("https://discord.gg/b2gEwT8", "_blank");
         }}
       >
         <IconButton target="_blank">
@@ -165,7 +165,7 @@ export default function PrimarySearchAppBar({
         <p>Queue</p>
       </MenuItem>
     </Menu>
-  )
+  );
 
   return (
     <div className={classes.grow}>
@@ -251,5 +251,5 @@ export default function PrimarySearchAppBar({
       {renderMobileMenu}
       {renderMenu}
     </div>
-  )
+  );
 }
