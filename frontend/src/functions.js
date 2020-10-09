@@ -102,3 +102,9 @@ export function formatVideoTitle(name) {
     return name.substr(0, 40) + "...";
   }
 }
+
+export function getQueueFromIds(search) {
+  return axios.get(baseUrl + "api/search/id?q=" + search).then((result) => {
+    return result.data;
+  });
+}

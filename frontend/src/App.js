@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { CssBaseline } from "@material-ui/core";
-import { getYoutubeIdFromSearch } from "./functions";
+import { getYoutubeIdFromSearch, getQueueFromIds } from "./functions";
 import AppBar from "./components/AppBar/AppBar";
 import VideoGrid from "./components/VideoGrid/VideoGrid";
 import Video from "./components/Video/Video";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import QueueSection from "./components/QueueSection/QueueSection";
+import queryString from "query-string";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -32,10 +33,16 @@ const App = () => {
 
   useEffect(() => {
     const storedQueue = localStorage.getItem("queue");
+    let parsed = queryString.parse(location.search);
 
-    if (storedQueue) {
-      const queue = JSON.parse(storedQueue);
-      setQueue(queue);
+    if (parsed.queue) {
+      let linkedQueue = getQueueFromIds(parsed.queue);
+      setQueue(linkedQueue);
+    } else {
+      if (storedQueue) {
+        const queue = JSON.parse(storedQueue);
+        setQueue(queue);
+      }
     }
   }, []);
 
@@ -49,6 +56,12 @@ const App = () => {
 
   useEffect(() => {
     localStorage.setItem("queue", JSON.stringify(queue));
+
+    let parsed = queryString.parse(location.search);
+
+    parsed.queue = queue.map((song) => song.id);
+
+    history.pushState(parsed, "queue", "?" + queryString.stringify(parsed));
   }, [queue]);
 
   const darkTheme = createMuiTheme({
@@ -56,16 +69,12 @@ const App = () => {
       primary: {
         main: "#2a3257",
         dark: "#0e132e",
-
         contrastText: "#fff",
       },
-
       secondary: {
         main: "#2ad156",
-
         contrastText: "#fff",
       },
-
       type: "dark",
     },
   });
