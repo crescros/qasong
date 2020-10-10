@@ -17,12 +17,12 @@ async function searchYoutubeById({ ids }) {
     ids = [ids];
   }
 
-  const videos = ids.map(id => {
-    return yts({ videoId: id })
-  })
+  const videos = ids.map((id) => {
+    return yts({ videoId: id });
+  });
 
-  return Promise.all(videos).then(values => {
-    const queueValues = values.map(value => {
+  return Promise.all(videos).then((values) => {
+    const queueValues = values.map((value) => {
       return {
         id: value.videoId,
         title: value.title,

@@ -8,7 +8,6 @@ const morgan = require("morgan");
 require("dotenv").config();
 require("rootpath")();
 
-
 const winston = require("./_helpers/winston");
 
 // database connection
