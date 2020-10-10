@@ -18,7 +18,8 @@ const App = () => {
   const [showQueue, setShowQueue] = useState(false);
   const [user, setUser] = useState();
   const [isLoading, setIsLoading] = useState(false);
-
+  const [darkMode, setDarkMode] = useState(false);
+  
   const handleSearchTermInput = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -33,11 +34,17 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
-      const storedQueue = localStorage.getItem("queue");
-      let parsed = queryString.parse(location.search);
+      const userDarkMode = localStorage.getItem("userDarkMode")
 
-      if (parsed.queue && parsed.queue.length > 0) {
-        let linkedQueue = await getQueueFromIds(queryString.stringify(parsed));
+      if (userDarkMode === "true"){
+        setDarkMode(true)
+      }
+
+      const storedQueue = localStorage.getItem("queue");
+      let parsedQueue = queryString.parse(location.search);
+
+      if (parsedQueue.queue && parsedQueue.queue.length > 0) {
+        let linkedQueue = await getQueueFromIds(queryString.stringify(parsedQueue));
         setQueue(linkedQueue);
         setShowQueue(true);
       } else {
@@ -57,13 +64,18 @@ const App = () => {
       setQueue(queue.slice(1));
     }
   }, [nowPlaying]);
-  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(()=>{
+    console.log('hello')
+    localStorage.setItem("userDarkMode", JSON.stringify(darkMode))
+  }, [darkMode])
+
+
   const darkTheme = createMuiTheme({
     palette: {
       primary: {
         main: "#000000",
         dark: "#0e132e",
-
         contrastText: "#fff",
       },
 
