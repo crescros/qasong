@@ -23,15 +23,13 @@ app.use(
     stream: winston.stream,
   })
 );
-app.use(express.static("public"));
+app.use(express.static("../public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(jwt());
 app.use(errorHandler);
 
-
 // define routes
-// app.use('/api/users', require('./users/users.controller'))
 app.use("/api/search", require("./search/search.controller"));
 app.use("/api/env", (req, res) => res.send(process.env.NODE_ENV));
 

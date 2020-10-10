@@ -1,6 +1,6 @@
 {
   "name": "artistify-frontend",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "search, play and queue music from youtube",
   "author": "artistify-team",
   "main": "webpack.config.js",
@@ -65,10 +65,5 @@
     "eslint-plugin-react": "^7.21.3",
     "husky": "^4.3.0",
     "prettier": "^2.1.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint && npm run format"
-    }
   }
 }

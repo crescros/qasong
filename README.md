@@ -14,52 +14,37 @@ Your `.env` file must look like this:
 
 ```
 NODE_ENV=development
-SECRET=<this should be some random string, it is used to sign JWTs>
-USE_MOCK_SEARCH_DATA=0
-YOUTUBE_API_KEY=<your youtube data api key goes here>
-
-DB_HOST=<optional database connection for user auth>
-DB_DATABASE=<optional database connection for user auth>
-DB_USER=<optional database connection for user auth>
-DB_PORT=<optional database connection for user auth>
-DB_PASS=<optional database connection for user auth>
+SECRET=random-string-this-could-be-anything
 ```
 
-## EXPRESS
-
-### install express
-
-`npm i`
-
-### run express server
+## STARTING THE SERVER IN PRODUCTION MODE
 
 `npm start`
 
-### run server tests
+the server will be available at http://localhost:3016
 
-while server is running,
-`npm test`
+## STARTING THE SERVER AND FRONTEND IN DEVELOPMENT MODE
 
-# REACT
+`npm run dev`
 
-### enter react folder
+the server will be available at http://localhost:3016
+the frontend development server will be at http://localhost:8080
 
-`cd frontend`
-
-### install react
-
-inside of `frontend` folder,
-`npm i`
-
-### start dev server
-
-inside of `frontend` folder,
-`npm start`
+## DEPLOYMENT
 
 ### build react into static asset in public folder
 
-inside of `frontend` folder,
 `npm run build`
+
+### run tests
+
+`npm test`
+
+### deploy to google cloud
+
+`npm deploy`
+
+## Contact
 
 ## Join Our Support Server
 

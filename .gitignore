@@ -2,6 +2,9 @@
 node_modules
 package-lock.json
 
+# vs code
+./vscode
+
 # react
 public/bundle.js
 
