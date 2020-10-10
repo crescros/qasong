@@ -9,18 +9,20 @@ import { ThemeProvider } from "@material-ui/styles";
 import Paper from "@material-ui/core/Paper";
 import QueueSection from "./components/QueueSection/QueueSection";
 import queryString from "query-string";
+import { isMobile } from "react-device-detect";
+
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [videos, setVideos] = useState([]);
   const [queue, setQueue] = useState([]);
-  const [currentQid, setCurrentQid ] = useState()
+  const [currentQid, setCurrentQid] = useState()
   const [nowPlaying, setNowPlaying] = useState();
   const [showQueue, setShowQueue] = useState(false);
   const [user, setUser] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-  
+
   const handleSearchTermInput = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -37,7 +39,7 @@ const App = () => {
     (async () => {
       const userDarkMode = localStorage.getItem("userDarkMode")
 
-      if (userDarkMode === "true"){
+      if (userDarkMode === "true") {
         setDarkMode(true)
       }
 
@@ -60,20 +62,20 @@ const App = () => {
 
   useEffect(() => {
 
-    if (nowPlaying && nowPlaying.qid){
+    if (nowPlaying && nowPlaying.qid) {
       setCurrentQid(nowPlaying.qid)
     }
 
-    
+
 
     if (!nowPlaying && queue.length > 0) {
 
 
-      if(currentQid){
+      if (currentQid) {
         const i = queue.findIndex(item => item.qid === currentQid)
         const nextInQueue = queue[i + 1]
         setNowPlaying(nextInQueue);
-      } else { 
+      } else {
         const nextInQueue = queue[0];
         setNowPlaying(nextInQueue);
         // setQueue(queue.slice(1));
@@ -81,7 +83,7 @@ const App = () => {
     }
   }, [nowPlaying]);
 
-  useEffect(()=>{
+  useEffect(() => {
     localStorage.setItem("userDarkMode", JSON.stringify(darkMode))
   }, [darkMode])
 
@@ -135,8 +137,16 @@ const App = () => {
           setDarkMode={setDarkMode}
           isLoading={isLoading}
         />
-
-        <Video id={nowPlaying && nowPlaying.id} setNowPlaying={setNowPlaying} />
+        {
+          nowPlaying && (
+            <>
+              <div style={isMobile ? { position: "fixed", left: "0", right: "0" } : {}}>
+                <Video id={nowPlaying && nowPlaying.id} setNowPlaying={setNowPlaying} />
+              </div>
+              {isMobile && <div style={{ height: "100px" }}></div>}
+            </>
+          )
+        }
 
         {showQueue && (
           <QueueSection

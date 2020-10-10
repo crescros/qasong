@@ -1,6 +1,7 @@
 import React from "react";
 import YouTube from "react-youtube";
 
+
 function Video({ id, setNowPlaying }) {
   const youtubePlayerOptions = {
     height: "100",
@@ -14,15 +15,13 @@ function Video({ id, setNowPlaying }) {
     },
   };
 
-  function hanndleVideoEEENNNnnd() {
+  function handleVideoEnd() {
     setNowPlaying(null);
   }
 
   if (!id) return <div></div>;
 
-  return (
-    <YouTube videoId={id} opts={youtubePlayerOptions} onEnd={hanndleVideoEEENNNnnd} />
-  );
+  return (<YouTube videoId={id} opts={youtubePlayerOptions} onEnd={handleVideoEnd} /> );
 }
 
 export default Video;
