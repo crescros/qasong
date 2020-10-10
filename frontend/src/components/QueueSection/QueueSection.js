@@ -16,6 +16,13 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
       setQueue(queue.slice(1));
     }
   };
+  const handleClickQueueItem = (qid) => {
+
+    
+      setNowPlaying(queue.find(item=>item.qid===qid));
+      setQueue(queue.filter(item=>item.qid!==qid));
+ 
+  };
 
   const moveCard = useCallback(
     (dragIndex, hoverIndex) => {
@@ -51,6 +58,7 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
                 setQueue={setQueue}
                 index={index}
                 onClick={handleClickStopButton}
+                onClickImage={handleClickQueueItem}
                 moveCard={moveCard}
               />
             ))}

@@ -26,6 +26,7 @@ export default function ImgMediaCard({
   id,
   nowPlaying,
   onClick,
+  onClickImage,
   index,
   moveCard,
   qid,
@@ -111,7 +112,7 @@ export default function ImgMediaCard({
         opacity,
       }}
     >
-      <CardActionArea style={{ height: "100px" }} onClick={onClick}>
+      <CardActionArea style={{ height: "100px" }} onClick={()=>onClickImage(qid)}>
         <CardMedia
           component="img"
           alt={title}
