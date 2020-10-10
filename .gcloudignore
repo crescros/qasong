@@ -29,5 +29,5 @@ package-lock.json
 frontend/
 
 # Testing
-cypress/
-cypress.json
+server/cypress/
+server/cypress.json

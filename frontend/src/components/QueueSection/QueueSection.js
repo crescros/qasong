@@ -3,6 +3,8 @@ import { Typography, Box } from "@material-ui/core";
 import QueueItem from "./QueueCard/QueueCard";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { TouchBackend } from "react-dnd-touch-backend";
+import { isMobile } from "react-device-detect";
 import update from "immutability-helper";
 
 function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
@@ -13,6 +15,13 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
       setNowPlaying(queue[0]);
       setQueue(queue.slice(1));
     }
+  };
+  const handleClickQueueItem = (qid) => {
+
+    
+      setNowPlaying(queue.find(item=>item.qid===qid));
+      setQueue(queue.filter(item=>item.qid!==qid));
+ 
   };
 
   const moveCard = useCallback(
@@ -40,7 +49,7 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
             </Typography>
           </Box>
 
-          <DndProvider backend={HTML5Backend}>
+          <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
             {queue.map((item, index) => (
               <QueueItem
                 {...item}
@@ -49,6 +58,7 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
                 setQueue={setQueue}
                 index={index}
                 onClick={handleClickStopButton}
+                onClickImage={handleClickQueueItem}
                 moveCard={moveCard}
               />
             ))}

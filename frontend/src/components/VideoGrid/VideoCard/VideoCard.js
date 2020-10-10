@@ -1,30 +1,48 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardActions,
-  CardMedia,
-  Typography,
-  IconButton,
-} from "@material-ui/core";
-import uuid from "react-uuid";
-import {
-  PlayArrow as PlayArrowIcon,
-  Pause as PauseIcon,
-  Queue as QueueIcon,
-} from "@material-ui/icons";
+import Card from "@material-ui/core/Card";
+import { CardContent, CardMedia, IconButton, Typography } from "@material-ui/core";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import PauseIcon from "@material-ui/icons/Pause";
+import QueueIcon from "@material-ui/icons/Queue";
 import { formatVideoTitle } from "../../../functions";
+import uuid from "react-uuid";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
-    height: 280,
+    display: "flex",
+    maxWidth: 365,
+    height: 130,
+    margin: "0px auto 20px auto",
   },
-});
+  details: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  content: {
+    flex: "1 0 auto",
+  },
+  cover: {
+    width: 151,
+    height: 140,
+    marginLeft: "auto",
+  },
+  controls: {
+    display: "flex",
+    alignItems: "center",
+    paddingLeft: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+  },
+  playIcon: {
+    height: 38,
+    width: 38,
+  },
+  titleSize: {
+    fontSize: 16,
+  },
+}));
 
-export default function ImgMediaCard({
+export default function MediaControlCard({
   title,
   description,
   thumbnailUrl,
@@ -35,8 +53,8 @@ export default function ImgMediaCard({
   queue,
   setQueue,
 }) {
-  const [playing, setPlaying] = useState(false);
   const classes = useStyles();
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     if (nowPlaying && nowPlaying.id === id) {
@@ -75,35 +93,29 @@ export default function ImgMediaCard({
   }
 
   return (
-    <Card
-      className={classes.root}
-      style={{
-        backgroundColor: playing && "#2ad156",
-        margin: "0px auto 20px auto",
-      }}
-    >
-      <CardActionArea style={{ height: "220px" }} onClick={handlePlayButton}>
-        <CardMedia
-          component="img"
-          alt={title}
-          height="140"
-          image={thumbnailUrl}
-          title={title}
-        />
-        <CardContent style={{ height: "90px" }}>
-          <Typography gutterBottom variant="h6">
+    <Card className={classes.root} style={{ backgroundColor: playing && "#2ad156" }}>
+      <div className={classes.details}>
+        <CardContent className={classes.content} style={{ height: "60px" }}>
+          <Typography className={classes.titleSize} component="h5" variant="h5">
             {formatVideoTitle(title)}
           </Typography>
         </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <IconButton size={"small"} onClick={handleAddQueue}>
-          <QueueIcon />
-        </IconButton>
-        <IconButton onClick={handlePlayButton}>
-          {playing ? <PauseIcon /> : <PlayArrowIcon />}
-        </IconButton>
-      </CardActions>
+        <div className={classes.controls}>
+          <IconButton size={"small"} onClick={handleAddQueue}>
+            <QueueIcon />
+          </IconButton>
+          <IconButton onClick={handlePlayButton}>
+            {playing ? <PauseIcon /> : <PlayArrowIcon />}
+          </IconButton>
+        </div>
+      </div>
+      <CardMedia
+        className={classes.cover}
+        component="img"
+        alt={title}
+        image={thumbnailUrl}
+        title={title}
+      />
     </Card>
   );
 }

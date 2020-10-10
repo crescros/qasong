@@ -1,3 +1,5 @@
+// this file is currently not in use
+
 const mysql = require("mysql");
 
 const con = mysql.createConnection({

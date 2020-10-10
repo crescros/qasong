@@ -2,14 +2,20 @@
 node_modules
 package-lock.json
 
+# vs code
+./vscode
+
 # react
 public/bundle.js
 
 # cypress
-cypress/videos
-cypress/screenshots
+server/cypress/videos
+server/cypress/screenshots
 
 # music-app
 .env
 !frontend/.env
 data
+
+# Logging
+logs/*

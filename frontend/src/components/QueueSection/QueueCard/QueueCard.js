@@ -12,11 +12,12 @@ import {
 } from "@material-ui/core";
 import { formatVideoTitle } from "../../../functions";
 import ClearIcon from "@material-ui/icons/Clear";
+import SkipNextIcon from '@material-ui/icons/SkipNext';
 
 const style = {
   cursor: "move",
   display: "inline-block",
-  width: "200px",
+  width: "100px",
 };
 
 export default function ImgMediaCard({
@@ -25,6 +26,7 @@ export default function ImgMediaCard({
   id,
   nowPlaying,
   onClick,
+  onClickImage,
   index,
   moveCard,
   qid,
@@ -103,28 +105,30 @@ export default function ImgMediaCard({
     <Card
       ref={ref}
       style={{
+        marginLeft: "41.5px",
+        marginTop: "25px",
         backgroundColor: playing && "#2ad156",
         ...style,
         opacity,
       }}
     >
-      <CardActionArea style={{ height: "200px" }} onClick={onClick}>
+      <CardActionArea style={{ height: "100px" }} onClick={()=>onClickImage(qid)}>
         <CardMedia
           component="img"
           alt={title}
-          height="140"
+          height="70"
           image={smallThumbnailUrl}
           title={title}
         />
-        <CardContent style={{ height: "80px" }}>
-          <Typography gutterBottom>{formatVideoTitle(title)}</Typography>
+        <CardContent style={{ height: "40px" }}>
+          <Typography style={{fontSize:"9px"}} gutterBottom>{formatVideoTitle(title)}</Typography>
         </CardContent>
       </CardActionArea>
       <CardActions style={{ display: "flex", justifyContent: "flex-end" }}>
         {index == 0 && (
-          <Button color="secondary" variant="contained" onClick={onClick}>
-            PLAY NEXT
-          </Button>
+          <IconButton size="small" style={{fontSize:"9px"}} color="secondary" variant="contained" onClick={onClick}>
+            <SkipNextIcon />
+          </IconButton>
         )}
         <IconButton
           edge="end"

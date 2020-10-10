@@ -8,11 +8,15 @@ import {
   MenuItem,
   Menu,
   Badge,
+  FormControlLabel,
+  Box,
 } from "@material-ui/core";
 import VideoSearch from "./VideoSearch/VideoSearch";
 import EnvironmentBadges from "./EnvironmentBadges/EnvironmentBadges";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
+import Switch from "@material-ui/core/Switch";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -61,6 +65,9 @@ export default function PrimarySearchAppBar({
   showQueue,
   setShowQueue,
   queue,
+  darkMode,
+  setDarkMode,
+  isLoading,
 }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -68,10 +75,6 @@ export default function PrimarySearchAppBar({
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  // const handleProfileMenuOpen = (event) => {
-  //   setAnchorEl(event.currentTarget)
-  // }
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -104,7 +107,6 @@ export default function PrimarySearchAppBar({
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Join Us</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
 
@@ -125,6 +127,13 @@ export default function PrimarySearchAppBar({
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <MenuItem>
+        {/* dark mode slider mobile */}
+        <IconButton color="inherit">
+          <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
+        </IconButton>
+        <p>Dark Mode</p>
+      </MenuItem>
       {/* Mobile Github icon */}
       <MenuItem
         onClick={() => {
@@ -191,10 +200,31 @@ export default function PrimarySearchAppBar({
           <VideoSearch
             handleSearchTermInput={handleSearchTermInput}
             handleSubmitVideoSearch={handleSubmitVideoSearch}
+            style={{
+              margin: "0 auto",
+              maxWidth: 800,
+            }}
           />
+
+          <Box mx={2}>
+            {isLoading && <CircularProgress color="secondary" size="32px" />}
+          </Box>
+
           <div className={classes.grow} />
-          {/* Desktop Github Icon  */}
+
           <div className={classes.sectionDesktop}>
+            {/* Darkmode slider */}
+            <IconButton>
+              <FormControlLabel
+                style={{ color: "white" }}
+                control={
+                  <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
+                }
+                label={darkMode ? "dark mode" : "light mode"}
+                color="red"
+              />
+            </IconButton>
+            {/* queue button  */}
             <IconButton
               edge="end"
               color={showQueue ? "secondary" : "inherit"}
@@ -205,7 +235,7 @@ export default function PrimarySearchAppBar({
                 <QueueMusicIcon style={{ fontSize: "40px" }} />
               </Badge>
             </IconButton>
-
+            {/* Github Icon button */}
             <IconButton
               edge="end"
               color="inherit"
