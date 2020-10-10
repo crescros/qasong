@@ -4,11 +4,9 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const jwt = require("./_helpers/jwt");
 const errorHandler = require("./_helpers/error-handler");
-const morgan = require("morgan");
 require("dotenv").config();
 require("rootpath")();
 
-const winston = require("./_helpers/winston");
 
 // database connection
 // const con = require('./database/connection.js')
@@ -17,12 +15,12 @@ const winston = require("./_helpers/winston");
 // initialize express
 const app = express();
 app.use(cors());
-app.use(
-  morgan("combined", {
-    stream: winston.stream,
-  })
-);
-app.use(express.static("../public"));
+// app.use(
+//   morgan("combined", {
+//     stream: winston.stream,
+//   })
+// );
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(jwt());

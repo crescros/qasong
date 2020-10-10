@@ -1,12 +1,12 @@
 {
   "name": "artistify-frontend",
-  "version": "0.8.0",
+  "version": "0.11.0",
   "description": "search, play and queue music from youtube",
   "author": "artistify-team",
   "main": "webpack.config.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "build": "webpack -p --config ./webpack.config.js --mode production && npm version minor",
+    "build": "webpack -p --config ./webpack.config.js --mode production",
     "lint": "eslint ./src/**/*.js ./src/**/*.jsx --no-error-on-unmatched-pattern",
     "lint:fix": "eslint --fix",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""

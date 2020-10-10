@@ -5,13 +5,13 @@
   "homepage": "https://github.com/callbacc/Artistify",
   "main": "index.js",
   "scripts": {
-    "start": "cd server && npm i && npm start",
+    "start": "node ./server/index.js",
     "build": "cd frontend && npm run build",
     "test": "cd server &&  npm run test",
-    "deploy": "gcloud app deploy && npm version minor",
+    "deploy": "npm run build && gcloud app deploy",
     "dev": "concurrently --kill-others \"npm run dev:frontend\"  \"npm run dev:server\"",
     "dev:frontend": "cd frontend && npm i && npm start",
-    "dev:server": "cd server && npm i && npm run dev",
+    "dev:server": "npm i && nodemon ./server/index.js",
     "lint": "cd server && npm run lint && cd ../frontend && npm run lint",
     "format": "cd server && npm run format && cd ../frontend && npm run format",
     "lint:fix": "cd server && eslint . --fix && cd ../frontend && eslint . --fix"
@@ -38,7 +38,23 @@
     "cypress-dotenv": "^1.2.2",
     "eslint": "^7.10.0",
     "husky": "^4.3.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2"
+  },
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "axios": "^0.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "immutability-helper": "^3.1.1",
+    "mysql": "^2.18.1",
+    "react-uuid": "^1.0.2",
+    "rootpath": "^0.1.2",
+    "uuid": "^8.3.0",
+    "yt-search": "^2.3.2"
   },
   "husky": {
     "hooks": {
