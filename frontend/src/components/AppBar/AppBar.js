@@ -17,7 +17,7 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
 import Switch from "@material-ui/core/Switch";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { isMobile } from "react-device-detect";
+import { isMobile } from "react-device-detect"
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -178,7 +178,7 @@ export default function PrimarySearchAppBar({
   );
 
   return (
-    <div className={classes.grow} style={{marginBottom : isMobile?"74px":"0"}}>
+    <div className={classes.grow}>
       <AppBar position={isMobile?"fixed":"static"}>
         <Toolbar>
           {/* Icon-logo */}

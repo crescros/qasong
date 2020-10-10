@@ -9,8 +9,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import Paper from "@material-ui/core/Paper";
 import QueueSection from "./components/QueueSection/QueueSection";
 import queryString from "query-string";
-import { isMobile } from "react-device-detect";
-
+import { isMobile } from "react-device-detect"
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -119,7 +118,9 @@ const App = () => {
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <Paper style={{ height: "100vh" }}>
+
+      { isMobile && <div style={{height: "72px"}}></div>}
+    
         <CssBaseline />
 
         <AppBar
@@ -166,7 +167,6 @@ const App = () => {
           handleSearchTermInput={handleSearchTermInput}
           handleSubmitVideoSearch={handleSubmitVideoSearch}
         />
-      </Paper>
     </ThemeProvider>
   );
 };
