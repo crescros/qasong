@@ -51,3 +51,7 @@ the frontend development server will be at http://localhost:8080
 ### Join Our Support Server
 
 to communicate with other contributors : https://discord.gg/b2gEwT8
+
+
+homepage ./public
+build node_modules may be wrong

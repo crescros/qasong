@@ -25,7 +25,6 @@ export default function ImgMediaCard({
   smallThumbnailUrl,
   id,
   nowPlaying,
-  onClick,
   onClickImage,
   index,
   moveCard,
@@ -33,16 +32,8 @@ export default function ImgMediaCard({
   queue,
   setQueue,
 }) {
-  const [playing, setPlaying] = useState(false);
-  const ref = useRef(null);
 
-  useEffect(() => {
-    if (nowPlaying && nowPlaying.id === id) {
-      setPlaying(true);
-    } else {
-      setPlaying(false);
-    }
-  }, [nowPlaying]);
+  const ref = useRef(null);
 
   const removeQueueItem = () => {
     setQueue(
@@ -101,13 +92,15 @@ export default function ImgMediaCard({
   const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
 
+
+
   return (
     <Card
       ref={ref}
       style={{
         marginLeft: "41.5px",
         marginTop: "25px",
-        backgroundColor: playing && "#2ad156",
+        backgroundColor: (nowPlaying && nowPlaying.qid) === qid && "#2ad156",
         ...style,
         opacity,
       }}
@@ -125,11 +118,6 @@ export default function ImgMediaCard({
         </CardContent>
       </CardActionArea>
       <CardActions style={{ display: "flex", justifyContent: "flex-end" }}>
-        {index == 0 && (
-          <IconButton size="small" style={{fontSize:"9px"}} color="secondary" variant="contained" onClick={onClick}>
-            <SkipNextIcon />
-          </IconButton>
-        )}
         <IconButton
           edge="end"
           color="secondary"

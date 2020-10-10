@@ -7,21 +7,10 @@ import { TouchBackend } from "react-dnd-touch-backend";
 import { isMobile } from "react-device-detect";
 import update from "immutability-helper";
 
-function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
-  const handleClickStopButton = () => {
-    if (title) {
-      setNowPlaying();
-    } else {
-      setNowPlaying(queue[0]);
-      setQueue(queue.slice(1));
-    }
-  };
-  const handleClickQueueItem = (qid) => {
+function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
 
-    
+  const handleClickQueueItem = (qid) => {
       setNowPlaying(queue.find(item=>item.qid===qid));
-      setQueue(queue.filter(item=>item.qid!==qid));
- 
   };
 
   const moveCard = useCallback(
@@ -57,7 +46,7 @@ function QueueSection({ title, nowPlaying, setNowPlaying, queue, setQueue }) {
                 queue={queue}
                 setQueue={setQueue}
                 index={index}
-                onClick={handleClickStopButton}
+                nowPlaying={nowPlaying}
                 onClickImage={handleClickQueueItem}
                 moveCard={moveCard}
               />

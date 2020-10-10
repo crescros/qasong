@@ -14,6 +14,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [videos, setVideos] = useState([]);
   const [queue, setQueue] = useState([]);
+  const [currentQid, setCurrentQid ] = useState()
   const [nowPlaying, setNowPlaying] = useState();
   const [showQueue, setShowQueue] = useState(false);
   const [user, setUser] = useState();
@@ -58,15 +59,29 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+
+    if (nowPlaying && nowPlaying.qid){
+      setCurrentQid(nowPlaying.qid)
+    }
+
+    
+
     if (!nowPlaying && queue.length > 0) {
-      const nextInQueue = queue[0];
-      setNowPlaying(nextInQueue);
-      setQueue(queue.slice(1));
+
+
+      if(currentQid){
+        const i = queue.findIndex(item => item.qid === currentQid)
+        const nextInQueue = queue[i + 1]
+        setNowPlaying(nextInQueue);
+      } else { 
+        const nextInQueue = queue[0];
+        setNowPlaying(nextInQueue);
+        // setQueue(queue.slice(1));
+      }
     }
   }, [nowPlaying]);
 
   useEffect(()=>{
-    console.log('hello')
     localStorage.setItem("userDarkMode", JSON.stringify(darkMode))
   }, [darkMode])
 
@@ -125,7 +140,6 @@ const App = () => {
 
         {showQueue && (
           <QueueSection
-            title={nowPlaying && nowPlaying.title}
             setNowPlaying={setNowPlaying}
             queue={queue}
             nowPlaying={nowPlaying}
