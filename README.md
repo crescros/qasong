@@ -30,6 +30,8 @@ the server will be available at http://localhost:3016
 the server will be available at http://localhost:3016
 the frontend development server will be at http://localhost:8080
 
+**the first time you run this, it will take a while as it installs all the packages needed from the server and frontend**
+
 ## DEPLOYMENT
 
 ### build react into static asset in public folder
@@ -46,6 +48,6 @@ the frontend development server will be at http://localhost:8080
 
 ## Contact
 
-## Join Our Support Server
+### Join Our Support Server
 
 to communicate with other contributors : https://discord.gg/b2gEwT8
