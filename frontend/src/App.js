@@ -56,12 +56,12 @@ const App = () => {
       }
 
       // get queue from url  
-      let parsedQueue = queryString.parse(location.search);
-      if (parsedQueue.queue && parsedQueue.queue.length > 0) {
+      let parsedParams = queryString.parse(location.search);
+      if (parsedParams.queue && parsedParams.queue.length > 0) {
 
-        setQueueName(parsedQueue.queueName)
+        setQueueName(parsedParams.queueName)
         setIsLoadingQueue(true)
-        let linkedQueue = await getQueueFromIds(queryString.stringify(parsedQueue));
+        let linkedQueue = await getQueueFromIds(queryString.stringify({ queue: parsedParams.queue }));
         setIsLoadingQueue(false)
         setQueue(linkedQueue);
         setShowQueue(true);
@@ -111,7 +111,7 @@ const App = () => {
     parsed.queue = queue.map((song) => song.id);
     history.pushState(parsed, "queue", "?" + queryString.stringify(parsed));
 
-    if (queue.length <= 0){
+    if (queue.length <= 0) {
       setShowQueue(false)
     }
   }, [queue]);
@@ -146,6 +146,8 @@ const App = () => {
     });
     setIsLoading(false);
   };
+
+  const showHomeScreen = !(videos.results && videos.results.length > 0) && showQueue === false && !isLoadingQueue
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
@@ -227,7 +229,7 @@ const App = () => {
       />
 
       {
-        !(videos.results && videos.results.length > 0) && showQueue === false && <HomeScreen />
+        showHomeScreen && <HomeScreen {...{handleSubmitVideoSearch, handleSearchTermInput, searchTerm}} />
       }
     </ThemeProvider>
   );

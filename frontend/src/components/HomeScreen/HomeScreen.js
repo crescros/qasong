@@ -1,7 +1,8 @@
 import React from 'react'
 import { Box, Grid, Typography } from "@material-ui/core"
+import VideoSearch from "../AppBar/VideoSearch/VideoSearch"
 
-function HomeScreen() {
+function HomeScreen({ handleSearchTermInput, handleSubmitVideoSearch, searchTerm }) {
     return (
         <Box mt={4}>
             <Grid container direction="row" justify="center" alignItems="center">
@@ -26,6 +27,17 @@ function HomeScreen() {
                     >
                         {process.env.REACT_APP_TAGLINE}
                     </Typography>
+                </Grid>
+                <Grid item xs={12} container justify="center">
+                    <VideoSearch
+                        handleSearchTermInput={handleSearchTermInput}
+                        handleSubmitVideoSearch={handleSubmitVideoSearch}
+                        searchTerm={searchTerm}
+                        style={{
+                            margin: "0 auto",
+                            maxWidth: 800,
+                        }}
+                    />
                 </Grid>
             </Grid>
         </Box>
