@@ -145,6 +145,9 @@ const App = () => {
       results: results
     });
     setIsLoading(false);
+    if(isMobile){
+      setShowQueue(false)
+    }
   };
 
   // show home screen if theres no search results, queue, or loading screen
