@@ -17,8 +17,8 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
 import Switch from "@material-ui/core/Switch";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import ReplyIcon from '@material-ui/icons/Reply';
-import Tooltip from '@material-ui/core/Tooltip'
+import ReplyIcon from "@material-ui/icons/Reply";
+import Tooltip from "@material-ui/core/Tooltip";
 import { isMobile } from "react-device-detect";
 
 const useStyles = makeStyles((theme) => ({
@@ -73,7 +73,7 @@ export default function PrimarySearchAppBar({
   darkMode,
   setDarkMode,
   isLoading,
-  setVideos
+  setVideos,
 }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -96,13 +96,13 @@ export default function PrimarySearchAppBar({
   };
 
   const handleLogoClick = () => {
-    setSearchTerm("")
-    setVideos([])
-    setShowQueue(false)
-  }
+    setSearchTerm("");
+    setVideos([]);
+    setShowQueue(false);
+  };
 
   const handleCopyCurrentURL = () => {
-    var dummy = document.createElement("textarea");
+    let dummy = document.createElement("textarea");
 
     document.body.appendChild(dummy);
 
@@ -110,7 +110,7 @@ export default function PrimarySearchAppBar({
     dummy.select();
     document.execCommand("copy");
     document.body.removeChild(dummy);
-  }
+  };
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -151,15 +151,19 @@ export default function PrimarySearchAppBar({
       onClose={handleMobileMenuClose}
     >
       {/* QUEUE */}
-      <Tooltip title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}>
+      <Tooltip
+        title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}
+      >
         <Box>
           <MenuItem
             disabled={queue.length === 0}
-            onClick={() => setShowQueue(!showQueue)}>
+            onClick={() => setShowQueue(!showQueue)}
+          >
             <IconButton
               disabled={queue.length === 0}
               target="_blank"
-              color={showQueue ? "secondary" : "inherit"}>
+              color={showQueue ? "secondary" : "inherit"}
+            >
               <Badge badgeContent={queue.length} color="secondary">
                 <QueueMusicIcon style={{ fontSize: "40px" }} />
               </Badge>
@@ -169,15 +173,12 @@ export default function PrimarySearchAppBar({
         </Box>
       </Tooltip>
       {/* share  */}
-      <Tooltip title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}>
+      <Tooltip
+        title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}
+      >
         <Box>
-          <MenuItem
-            disabled={queue.length === 0}
-            onClick={handleCopyCurrentURL}
-          >
-            <IconButton
-              target="_blank"
-            >
+          <MenuItem disabled={queue.length === 0} onClick={handleCopyCurrentURL}>
+            <IconButton target="_blank">
               <ReplyIcon />
             </IconButton>
             <p>Copy Link to Queue</p>
@@ -186,7 +187,7 @@ export default function PrimarySearchAppBar({
       </Tooltip>
 
       {/* dark mode */}
-      <MenuItem onClick={() => setDarkMode(!darkMode)} >
+      <MenuItem onClick={() => setDarkMode(!darkMode)}>
         {/* dark mode slider mobile */}
         <Switch checked={darkMode} />
         <p>Dark Mode</p>
@@ -212,10 +213,7 @@ export default function PrimarySearchAppBar({
           <EnvironmentBadges />
 
           {/* Artistify name from frontend .env */}
-          <Typography
-            display="inline"
-            style={{ marginRight: "20px" }}
-          >
+          <Typography display="inline" style={{ marginRight: "20px" }}>
             {process.env.REACT_APP_NAME}
           </Typography>
           {/* Search bar */}
@@ -240,17 +238,18 @@ export default function PrimarySearchAppBar({
             <FormControlLabel
               style={{ color: "white" }}
               control={
-                <Switch
-                  checked={darkMode}
-                  onChange={() => setDarkMode(!darkMode)}
-                />
+                <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
               }
               label={darkMode ? "dark mode" : "light mode"}
               color="red"
             />
 
             {/* queue button  */}
-            <Tooltip title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}>
+            <Tooltip
+              title={
+                queue.length === 0 ? "Search for songs and add them to your queue" : ""
+              }
+            >
               <Box>
                 <IconButton
                   disabled={queue.length === 0}
@@ -268,7 +267,11 @@ export default function PrimarySearchAppBar({
             </Tooltip>
 
             {/* share button */}
-            <Tooltip title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}>
+            <Tooltip
+              title={
+                queue.length === 0 ? "Search for songs and add them to your queue" : ""
+              }
+            >
               <Box mt={1}>
                 <IconButton
                   edge="end"

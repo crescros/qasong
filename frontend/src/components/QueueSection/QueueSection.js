@@ -8,9 +8,8 @@ import { isMobile } from "react-device-detect";
 import update from "immutability-helper";
 
 function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
-
   const handleClickQueueItem = (qid) => {
-      setNowPlaying(queue.find(item=>item.qid===qid));
+    setNowPlaying(queue.find((item) => item.qid === qid));
   };
 
   const moveCard = useCallback(

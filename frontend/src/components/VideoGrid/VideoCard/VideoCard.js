@@ -101,10 +101,10 @@ export default function MediaControlCard({
           </Typography>
         </CardContent>
         <div className={classes.controls}>
-          <IconButton size={"small"} onClick={handleAddQueue}>
+          <IconButton size="small" onClick={handleAddQueue} title="add to queue">
             <QueueIcon />
           </IconButton>
-          <IconButton onClick={handlePlayButton}>
+          <IconButton size="small" onClick={handlePlayButton} title={ playing ? "play" : "stop" } >
             {playing ? <PauseIcon /> : <PlayArrowIcon />}
           </IconButton>
         </div>

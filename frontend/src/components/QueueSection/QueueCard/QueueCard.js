@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import {
   Card,
@@ -7,7 +7,6 @@ import {
   CardActions,
   CardMedia,
   Typography,
-  Button,
   IconButton,
 } from "@material-ui/core";
 import { formatVideoTitle } from "../../../functions";
@@ -31,7 +30,6 @@ export default function ImgMediaCard({
   queue,
   setQueue,
 }) {
-
   const ref = useRef(null);
 
   const removeQueueItem = () => {
@@ -91,8 +89,6 @@ export default function ImgMediaCard({
   const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
 
-
-
   return (
     <Card
       ref={ref}
@@ -104,7 +100,7 @@ export default function ImgMediaCard({
         opacity,
       }}
     >
-      <CardActionArea style={{ height: "100px" }} onClick={()=>onClickImage(qid)}>
+      <CardActionArea style={{ height: "100px" }} onClick={() => onClickImage(qid)}>
         <CardMedia
           component="img"
           alt={title}
@@ -113,7 +109,9 @@ export default function ImgMediaCard({
           title={title}
         />
         <CardContent style={{ height: "40px" }}>
-          <Typography style={{fontSize:"9px"}} gutterBottom>{formatVideoTitle(title)}</Typography>
+          <Typography style={{ fontSize: "9px" }} gutterBottom>
+            {formatVideoTitle(title)}
+          </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions style={{ display: "flex", justifyContent: "flex-end" }}>

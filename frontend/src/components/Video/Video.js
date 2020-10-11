@@ -20,7 +20,7 @@ function Video({ id, setNowPlaying }) {
 
   if (!id) return <div></div>;
 
-  return (<YouTube videoId={id} opts={youtubePlayerOptions} onEnd={handleVideoEnd} /> );
+  return <YouTube videoId={id} opts={youtubePlayerOptions} onEnd={handleVideoEnd} />;
 }
 
 export default Video;
