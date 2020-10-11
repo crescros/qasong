@@ -6,6 +6,7 @@ import {
   CardContent,
   CardActions,
   CardMedia,
+  Tooltip,
   Typography,
   IconButton,
 } from "@material-ui/core";
@@ -19,16 +20,16 @@ const style = {
 };
 
 export default function ImgMediaCard({
-  title,
-  smallThumbnailUrl,
   id,
+  index,
   nowPlaying,
   onClickImage,
-  index,
   moveCard,
   qid,
   queue,
   setQueue,
+  smallThumbnailUrl,
+  title,
 }) {
   const ref = useRef(null);
 
@@ -114,15 +115,19 @@ export default function ImgMediaCard({
           </Typography>
         </CardContent>
       </CardActionArea>
+
       <CardActions style={{ display: "flex", justifyContent: "flex-end" }}>
-        <IconButton
-          edge="end"
-          color="secondary"
-          onClick={removeQueueItem}
-          style={{ color: "red" }}
-        >
-          <ClearIcon />
-        </IconButton>
+        <Tooltip title="remove from queue">
+          <IconButton
+            edge="end"
+            color="secondary"
+            onClick={removeQueueItem}
+            size="small"
+            style={{ color: "red" }}
+          >
+            <ClearIcon />
+          </IconButton>
+        </Tooltip>
       </CardActions>
     </Card>
   );

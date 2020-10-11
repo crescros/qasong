@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import { Typography, Box } from "@material-ui/core";
+import React, { useCallback, useState } from "react";
+import { Typography, Box, TextField, Grid } from "@material-ui/core";
 import QueueItem from "./QueueCard/QueueCard";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -7,10 +7,24 @@ import { TouchBackend } from "react-dnd-touch-backend";
 import { isMobile } from "react-device-detect";
 import update from "immutability-helper";
 
-function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
+function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue, queueName, setQueueName }) {
+  const [tempQueueName, setTempQueueName] = useState(queueName)
+
   const handleClickQueueItem = (qid) => {
     setNowPlaying(queue.find((item) => item.qid === qid));
   };
+
+  const handleQueueNameChange = (e) => {
+    setTempQueueName(e.target.value)
+  }
+
+  const handleQueueNameSubmit = (e) => {
+    e.preventDefault()
+    setQueueName(tempQueueName)
+    if(!tempQueueName){
+      setTempQueueName("New Queue")
+    }
+  }
 
   const moveCard = useCallback(
     (dragIndex, hoverIndex) => {
@@ -27,14 +41,39 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
     [queue]
   );
 
+  const editingQueueName = tempQueueName === queueName
+
   return (
     <>
       {(queue.length > 0 || nowPlaying) && (
         <div>
           <Box m={3}>
-            <Typography variant="h5">
-              {queue.length > 0 && `${queue.length} songs queued`}
-            </Typography>
+            <Grid container
+              alignItems="flex-end">
+              <Grid item>
+                <Typography variant="h5">
+                  {queue.length > 0 && `${queue.length} songs - `}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Box ml={2}>
+                  <form onSubmit={handleQueueNameSubmit}>
+
+                    <TextField
+                      id="queue-name"
+                      autoFocus={true}
+                      label={`Queue Name${editingQueueName ? "" : "(editing)"}`}
+                      defaultValue={tempQueueName}
+                      onChange={handleQueueNameChange}
+                      // InputProps={{
+                      //   readOnly: true,
+                      // }}
+                      variant={editingQueueName ? "standard" : "filled"}
+                    />
+                  </form>
+                </Box>
+              </Grid>
+            </Grid>
           </Box>
 
           <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
