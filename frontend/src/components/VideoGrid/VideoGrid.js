@@ -28,8 +28,8 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue }) {
                   id={video.videoId}
                   thumbnailUrl={url}
                   smallThumbnailUrl={smallUrl}
-                  title={title}
                   description={video.description}
+                  title={title}
                   nowPlaying={nowPlaying}
                   setNowPlaying={setNowPlaying}
                   queue={queue}

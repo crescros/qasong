@@ -56,7 +56,7 @@ function VideoSearch({ handleSubmitVideoSearch, handleSearchTermInput, searchTer
       <form onSubmit={handleSubmitVideoSearch}>
         <InputBase
           onChange={handleSearchTermInput}
-          placeholder="Search…"
+          placeholder="search music…"
           autoFocus={true}
           value={searchTerm}
           classes={{

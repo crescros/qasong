@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { CssBaseline, Typography, CircularProgress, Box, Grid } from "@material-ui/core";
+import { CssBaseline } from "@material-ui/core";
 import { getYoutubeIdFromSearch, getQueueFromIds } from "./functions";
 import AppBar from "./components/AppBar/AppBar";
 import VideoGrid from "./components/VideoGrid/VideoGrid";
-import Video from "./components/Video/Video";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import QueueSection from "./components/QueueSection/QueueSection";
 import queryString from "query-string";
 import { isMobile } from "react-device-detect";
 import HomeScreen from "./components/HomeScreen/HomeScreen"
+import QueueLoadingScreen from "./components/QueueSection/QueueLoadingScreen/QueueLoadingScreen";
+import VideoArea from "./components/VideoArea/VideoArea"
 
 const App = () => {
   const darkTheme = createMuiTheme({
@@ -45,8 +46,8 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [queueName, setQueueName] = useState("New Queue")
 
+  // runs once when app is rendered
   useEffect(() => {
-    // runs once when app is rendered
     (async () => {
 
       // set dark mode from local storage
@@ -58,7 +59,6 @@ const App = () => {
       // get queue from url  
       let parsedParams = queryString.parse(location.search);
       if (parsedParams.queue && parsedParams.queue.length > 0) {
-
         setQueueName(parsedParams.queueName)
         setIsLoadingQueue(true)
         let linkedQueue = await getQueueFromIds(queryString.stringify({ queue: parsedParams.queue }));
@@ -116,25 +116,25 @@ const App = () => {
     }
   }, [queue]);
 
+  // write queue name to localstorage and query params
   useEffect(() => {
-    if (!queueName) {
-      setQueueName("New Queue")
-    } else {
-
+    if (queueName) {
       localStorage.setItem("queueName", queueName)
       let parsed = queryString.parse(location.search);
       parsed.queueName = queueName
       history.pushState(parsed, "queue", "?" + queryString.stringify(parsed));
       document.title = process.env.REACT_APP_NAME + " - " + queueName
+    } else {
+      setQueueName("New Queue")
     }
-
-
   }, [queueName])
 
+  // event listener for search input
   const handleSearchTermInput = (e) => {
     setSearchTerm(e.target.value);
   };
 
+  // event listener for search submit
   const handleSubmitVideoSearch = async (e) => {
     setIsLoading(true);
     e.preventDefault();
@@ -147,6 +147,7 @@ const App = () => {
     setIsLoading(false);
   };
 
+  // show home screen if theres no search results, queue, or loading screen
   const showHomeScreen = !(videos.results && videos.results.length > 0) && showQueue === false && !isLoadingQueue
 
   return (
@@ -156,81 +157,70 @@ const App = () => {
       {isMobile && <div style={{ height: "72px" }}></div>}
 
       <AppBar
-        handleSubmitVideoSearch={handleSubmitVideoSearch}
-        handleSearchTermInput={handleSearchTermInput}
-        nowPlaying={nowPlaying}
-        setNowPlaying={setNowPlaying}
-        queue={queue}
-        setUser={setUser}
-        user={user}
-        setShowQueue={setShowQueue}
-        showQueue={showQueue}
-        darkMode={darkMode}
-        setDarkMode={setDarkMode}
-        isLoading={isLoading}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        setVideos={setVideos}
+        {...{
+          handleSubmitVideoSearch,
+          handleSearchTermInput,
+          nowPlaying,
+          setNowPlaying,
+          queue,
+          setUser,
+          user,
+          setShowQueue,
+          showQueue,
+          darkMode,
+          setDarkMode,
+          isLoading,
+          searchTerm,
+          setSearchTerm,
+          setVideos,
+        }}
       />
-      {nowPlaying && (
-        <>
-          <div
-            style={
-              isMobile
-                ? {
-                  position: "fixed",
-                  left: "0",
-                  right: "0",
-                  background: "black",
-                  zIndex: "100",
-                }
-                : {}
-            }
-          >
-            <Video id={nowPlaying && nowPlaying.id} setNowPlaying={setNowPlaying} />
-          </div>
-          {isMobile && <div style={{ height: "100px" }}></div>}
-        </>
-      )}
 
+      <VideoArea
+        {...{
+          nowPlaying,
+          setNowPlaying
+        }}
+      />
 
-      {
-        isLoadingQueue && <Box m={2}>
-          <Grid container justify="center">
-            <Grid item>
-              <Typography>Loading Queue...</Typography>
-            </Grid>
-            <Grid item>
-              <CircularProgress color="secondary" size="32px" />
-            </Grid>
-          </Grid>
-        </Box>
-      }
+      <QueueLoadingScreen
+        {...{
+          isLoadingQueue
+        }}
+      />
 
-      {showQueue && (
-        <QueueSection
-          setNowPlaying={setNowPlaying}
-          queue={queue}
-          nowPlaying={nowPlaying}
-          setQueue={setQueue}
-          queueName={queueName}
-          setQueueName={setQueueName}
-        />
-      )}
+      <QueueSection
+        {...{
+          setNowPlaying,
+          queue,
+          nowPlaying,
+          setQueue,
+          queueName,
+          setQueueName,
+          showQueue
+        }}
+      />
 
       <VideoGrid
-        videos={videos}
-        nowPlaying={nowPlaying}
-        setNowPlaying={setNowPlaying}
-        queue={queue}
-        setQueue={setQueue}
-        handleSearchTermInput={handleSearchTermInput}
-        handleSubmitVideoSearch={handleSubmitVideoSearch}
+        {...{
+          videos,
+          nowPlaying,
+          setNowPlaying,
+          queue,
+          setQueue,
+          handleSearchTermInput,
+          handleSubmitVideoSearch,
+        }}
       />
 
-      {
-        showHomeScreen && <HomeScreen {...{handleSubmitVideoSearch, handleSearchTermInput, searchTerm}} />
-      }
+      <HomeScreen
+        {...{
+          handleSubmitVideoSearch,
+          handleSearchTermInput,
+          searchTerm,
+          showHomeScreen
+        }}
+      />
     </ThemeProvider>
   );
 };

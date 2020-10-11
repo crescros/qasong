@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   AppBar,
+  CircularProgress,
   Toolbar,
   Typography,
   IconButton,
@@ -10,15 +11,14 @@ import {
   Badge,
   FormControlLabel,
   Box,
+  Switch,
+  Tooltip
 } from "@material-ui/core";
 import VideoSearch from "./VideoSearch/VideoSearch";
 import EnvironmentBadges from "./EnvironmentBadges/EnvironmentBadges";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
-import Switch from "@material-ui/core/Switch";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import ReplyIcon from "@material-ui/icons/Reply";
-import Tooltip from "@material-ui/core/Tooltip";
 import { isMobile } from "react-device-detect";
 
 const useStyles = makeStyles((theme) => ({

@@ -7,7 +7,12 @@ import { TouchBackend } from "react-dnd-touch-backend";
 import { isMobile } from "react-device-detect";
 import update from "immutability-helper";
 
-function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue, queueName, setQueueName }) {
+function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue, queueName, setQueueName, showQueue }) {
+
+  if(!showQueue){
+    return <div></div>
+  }
+  
   const [tempQueueName, setTempQueueName] = useState(queueName)
 
   const handleClickQueueItem = (qid) => {

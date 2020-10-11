@@ -2,7 +2,12 @@ import React from 'react'
 import { Box, Grid, Typography } from "@material-ui/core"
 import VideoSearch from "../AppBar/VideoSearch/VideoSearch"
 
-function HomeScreen({ handleSearchTermInput, handleSubmitVideoSearch, searchTerm }) {
+function HomeScreen({ handleSearchTermInput, handleSubmitVideoSearch, searchTerm, showHomeScreen }) {
+
+    if (!showHomeScreen){
+        return <div></div>
+    }
+
     return (
         <Box mt={4}>
             <Grid container direction="row" justify="center" alignItems="center">
