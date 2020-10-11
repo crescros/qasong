@@ -17,7 +17,9 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
 import Switch from "@material-ui/core/Switch";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { isMobile } from "react-device-detect"
+import ReplyIcon from '@material-ui/icons/Reply';
+import Tooltip from '@material-ui/core/Tooltip'
+import { isMobile } from "react-device-detect";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -63,12 +65,15 @@ const useStyles = makeStyles((theme) => ({
 export default function PrimarySearchAppBar({
   handleSearchTermInput,
   handleSubmitVideoSearch,
+  searchTerm,
+  setSearchTerm,
   showQueue,
   setShowQueue,
   queue,
   darkMode,
   setDarkMode,
   isLoading,
+  setVideos
 }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -89,6 +94,23 @@ export default function PrimarySearchAppBar({
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  const handleLogoClick = () => {
+    setSearchTerm("")
+    setVideos([])
+    setShowQueue(false)
+  }
+
+  const handleCopyCurrentURL = () => {
+    var dummy = document.createElement("textarea");
+
+    document.body.appendChild(dummy);
+
+    dummy.value = location.href;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+  }
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -128,61 +150,57 @@ export default function PrimarySearchAppBar({
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        {/* dark mode slider mobile */}
-        <IconButton color="inherit">
-          <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
-        </IconButton>
-        <p>Dark Mode</p>
-      </MenuItem>
-      {/* Mobile Github icon */}
-      <MenuItem
-        onClick={() => {
-          open("https://github.com/callbacc/Artistify", "_blank");
-        }}
-      >
-        <IconButton color="inherit">
-          <img
-            src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-1.png&r=255&g=255&b=255"
-            height="32px"
-          />
-        </IconButton>
-        <p>GitHub</p>
-      </MenuItem>
-
-      {/* Discord icon mobile onClick={handleProfileMenuOpen}*/}
-      <MenuItem
-        onClick={() => {
-          open("https://discord.gg/b2gEwT8", "_blank");
-        }}
-      >
-        <IconButton target="_blank">
-          <img
-            src="https://discord.com/assets/28174a34e77bb5e5310ced9f95cb480b.png"
-            height="32px"
-          />
-        </IconButton>
-        <p>Discord</p>
-      </MenuItem>
-
       {/* QUEUE */}
-      <MenuItem onClick={() => setShowQueue(!showQueue)}>
-        <IconButton target="_blank" color={showQueue ? "secondary" : "inherit"}>
-          <Badge badgeContent={queue.length} color="secondary">
-            <QueueMusicIcon style={{ fontSize: "40px" }} />
-          </Badge>
-        </IconButton>
-        <p>Queue</p>
+      <Tooltip title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}>
+        <Box>
+          <MenuItem
+            disabled={queue.length === 0}
+            onClick={() => setShowQueue(!showQueue)}>
+            <IconButton
+              disabled={queue.length === 0}
+              target="_blank"
+              color={showQueue ? "secondary" : "inherit"}>
+              <Badge badgeContent={queue.length} color="secondary">
+                <QueueMusicIcon style={{ fontSize: "40px" }} />
+              </Badge>
+            </IconButton>
+            <p>{showQueue ? "Hide Queue" : "Show Queue"}</p>
+          </MenuItem>
+        </Box>
+      </Tooltip>
+      {/* share  */}
+      <Tooltip title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}>
+        <Box>
+          <MenuItem
+            disabled={queue.length === 0}
+            onClick={handleCopyCurrentURL}
+          >
+            <IconButton
+              target="_blank"
+            >
+              <ReplyIcon />
+            </IconButton>
+            <p>Copy Link to Queue</p>
+          </MenuItem>
+        </Box>
+      </Tooltip>
+
+      {/* dark mode */}
+      <MenuItem onClick={() => setDarkMode(!darkMode)} >
+        {/* dark mode slider mobile */}
+        <Switch checked={darkMode} />
+        <p>Dark Mode</p>
       </MenuItem>
     </Menu>
   );
 
   return (
     <div className={classes.grow}>
-      <AppBar position={isMobile?"fixed":"static"}>
+      <AppBar position={isMobile ? "fixed" : "static"}>
         <Toolbar>
           {/* Icon-logo */}
           <IconButton
+            onClick={handleLogoClick}
             edge="start"
             className={classes.menuButton}
             color="inherit"
@@ -194,13 +212,17 @@ export default function PrimarySearchAppBar({
           <EnvironmentBadges />
 
           {/* Artistify name from frontend .env */}
-          <Typography display="inline" style={{ marginRight: "20px" }}>
+          <Typography
+            display="inline"
+            style={{ marginRight: "20px" }}
+          >
             {process.env.REACT_APP_NAME}
           </Typography>
           {/* Search bar */}
           <VideoSearch
             handleSearchTermInput={handleSearchTermInput}
             handleSubmitVideoSearch={handleSubmitVideoSearch}
+            searchTerm={searchTerm}
             style={{
               margin: "0 auto",
               maxWidth: 800,
@@ -215,52 +237,51 @@ export default function PrimarySearchAppBar({
 
           <div className={classes.sectionDesktop}>
             {/* Darkmode slider */}
-            <IconButton>
-              <FormControlLabel
-                style={{ color: "white" }}
-                control={
-                  <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
-                }
-                label={darkMode ? "dark mode" : "light mode"}
-                color="red"
-              />
-            </IconButton>
-            {/* queue button  */}
-            <IconButton
-              edge="end"
-              color={showQueue ? "secondary" : "inherit"}
-              onClick={() => setShowQueue(!showQueue)}
-              target="_blank"
-            >
-              <Badge badgeContent={queue.length} color="secondary">
-                <QueueMusicIcon style={{ fontSize: "40px" }} />
-              </Badge>
-            </IconButton>
-            {/* Github Icon button */}
-            <IconButton
-              edge="end"
-              color="inherit"
-              href="https://github.com/callbacc/Artistify"
-              target="_blank"
-            >
-              <img
-                src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-github-1.png&r=255&g=255&b=255"
-                height="32px"
-              />
-            </IconButton>
+            <FormControlLabel
+              style={{ color: "white" }}
+              control={
+                <Switch
+                  checked={darkMode}
+                  onChange={() => setDarkMode(!darkMode)}
+                />
+              }
+              label={darkMode ? "dark mode" : "light mode"}
+              color="red"
+            />
 
-            {/* Discord icon desktop */}
-            <IconButton
-              edge="end"
-              color="inherit"
-              href="https://discord.gg/b2gEwT8"
-              target="_blank"
-            >
-              <img
-                src="https://discord.com/assets/28174a34e77bb5e5310ced9f95cb480b.png"
-                height="32px"
-              />
-            </IconButton>
+            {/* queue button  */}
+            <Tooltip title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}>
+              <Box>
+                <IconButton
+                  disabled={queue.length === 0}
+                  edge="end"
+                  title={showQueue ? "hide queue" : "show queue"}
+                  color={showQueue ? "secondary" : "inherit"}
+                  onClick={() => setShowQueue(!showQueue)}
+                  target="_blank"
+                >
+                  <Badge badgeContent={queue.length} color="secondary">
+                    <QueueMusicIcon style={{ fontSize: "40px" }} />
+                  </Badge>
+                </IconButton>
+              </Box>
+            </Tooltip>
+
+            {/* share button */}
+            <Tooltip title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}>
+              <Box mt={1}>
+                <IconButton
+                  edge="end"
+                  title="Copy Link to Current Queue"
+                  disabled={queue.length === 0}
+                  onClick={handleCopyCurrentURL}
+                  target="_blank"
+                  color={queue.length === 0 ? "inherit" : "secondary"}
+                >
+                  <ReplyIcon />
+                </IconButton>
+              </Box>
+            </Tooltip>
           </div>
 
           {/* More Icon/button */}

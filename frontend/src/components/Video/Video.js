@@ -1,7 +1,6 @@
 import React from "react";
 import YouTube from "react-youtube";
 
-
 function Video({ id, setNowPlaying }) {
   const youtubePlayerOptions = {
     height: "100",

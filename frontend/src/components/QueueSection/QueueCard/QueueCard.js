@@ -12,7 +12,6 @@ import {
 } from "@material-ui/core";
 import { formatVideoTitle } from "../../../functions";
 import ClearIcon from "@material-ui/icons/Clear";
-import SkipNextIcon from '@material-ui/icons/SkipNext';
 
 const style = {
   cursor: "move",
