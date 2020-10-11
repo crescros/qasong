@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { CssBaseline } from "@material-ui/core";
+import { isMobile } from "react-device-detect";
+import queryString from "query-string";
 import { getYoutubeIdFromSearch, getQueueFromIds } from "./functions";
-import AppBar from "./components/AppBar/AppBar";
-import VideoGrid from "./components/VideoGrid/VideoGrid";
+import { CssBaseline } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import QueueSection from "./components/QueueSection/QueueSection";
-import queryString from "query-string";
-import { isMobile } from "react-device-detect";
+import AppBar from "./components/AppBar/AppBar";
 import HomeScreen from "./components/HomeScreen/HomeScreen"
 import QueueLoadingScreen from "./components/QueueSection/QueueLoadingScreen/QueueLoadingScreen";
+import QueueSection from "./components/QueueSection/QueueSection";
 import VideoArea from "./components/VideoArea/VideoArea"
+import VideoGrid from "./components/VideoGrid/VideoGrid";
 
 const App = () => {
   const darkTheme = createMuiTheme({
@@ -34,17 +34,17 @@ const App = () => {
   const lightTheme = createMuiTheme({});
 
   // APPLICATION LEVEL STATE
-  const [searchTerm, setSearchTerm] = useState("");
-  const [videos, setVideos] = useState([]);
-  const [queue, setQueue] = useState([]);
   const [currentQid, setCurrentQid] = useState();
-  const [nowPlaying, setNowPlaying] = useState();
-  const [showQueue, setShowQueue] = useState(false);
-  const [user, setUser] = useState();
+  const [darkMode, setDarkMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingQueue, setIsLoadingQueue] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [nowPlaying, setNowPlaying] = useState();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [queue, setQueue] = useState([]);
   const [queueName, setQueueName] = useState("New Queue")
+  const [showQueue, setShowQueue] = useState(false);
+  const [user, setUser] = useState();
+  const [videos, setVideos] = useState([]);
 
   // runs once when app is rendered
   useEffect(() => {
@@ -161,21 +161,21 @@ const App = () => {
 
       <AppBar
         {...{
-          handleSubmitVideoSearch,
-          handleSearchTermInput,
-          nowPlaying,
-          setNowPlaying,
-          queue,
-          setUser,
-          user,
-          setShowQueue,
-          showQueue,
           darkMode,
-          setDarkMode,
+          handleSearchTermInput,
+          handleSubmitVideoSearch,
           isLoading,
+          nowPlaying,
+          queue,
           searchTerm,
+          setDarkMode,
+          setNowPlaying,
           setSearchTerm,
+          setShowQueue,
+          setUser,
           setVideos,
+          showQueue,
+          user,
         }}
       />
 
@@ -194,11 +194,11 @@ const App = () => {
 
       <QueueSection
         {...{
-          setNowPlaying,
-          queue,
           nowPlaying,
-          setQueue,
+          queue,
           queueName,
+          setNowPlaying,
+          setQueue,
           setQueueName,
           showQueue
         }}
@@ -206,13 +206,13 @@ const App = () => {
 
       <VideoGrid
         {...{
-          videos,
-          nowPlaying,
-          setNowPlaying,
-          queue,
-          setQueue,
           handleSearchTermInput,
           handleSubmitVideoSearch,
+          nowPlaying,
+          queue,
+          setNowPlaying,
+          setQueue,
+          videos,
         }}
       />
 
