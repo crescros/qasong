@@ -14,15 +14,13 @@ function Video({ id, setNowPlaying }) {
     },
   };
 
-  function hanndleVideoEEENNNnnd() {
+  function handleVideoEnd() {
     setNowPlaying(null);
   }
 
   if (!id) return <div></div>;
 
-  return (
-    <YouTube videoId={id} opts={youtubePlayerOptions} onEnd={hanndleVideoEEENNNnnd} />
-  );
+  return <YouTube videoId={id} opts={youtubePlayerOptions} onEnd={handleVideoEnd} />;
 }
 
 export default Video;

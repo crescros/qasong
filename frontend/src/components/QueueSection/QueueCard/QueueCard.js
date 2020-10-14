@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import {
   Card,
@@ -6,13 +6,12 @@ import {
   CardContent,
   CardActions,
   CardMedia,
+  Tooltip,
   Typography,
-  Button,
   IconButton,
 } from "@material-ui/core";
 import { formatVideoTitle } from "../../../functions";
 import ClearIcon from "@material-ui/icons/Clear";
-import SkipNextIcon from '@material-ui/icons/SkipNext';
 
 const style = {
   cursor: "move",
@@ -21,28 +20,18 @@ const style = {
 };
 
 export default function ImgMediaCard({
-  title,
-  smallThumbnailUrl,
   id,
-  nowPlaying,
-  onClick,
-  onClickImage,
   index,
+  nowPlaying,
+  onClickImage,
   moveCard,
   qid,
   queue,
   setQueue,
+  smallThumbnailUrl,
+  title,
 }) {
-  const [playing, setPlaying] = useState(false);
   const ref = useRef(null);
-
-  useEffect(() => {
-    if (nowPlaying && nowPlaying.id === id) {
-      setPlaying(true);
-    } else {
-      setPlaying(false);
-    }
-  }, [nowPlaying]);
 
   const removeQueueItem = () => {
     setQueue(
@@ -107,12 +96,12 @@ export default function ImgMediaCard({
       style={{
         marginLeft: "41.5px",
         marginTop: "25px",
-        backgroundColor: playing && "#2ad156",
+        backgroundColor: (nowPlaying && nowPlaying.qid) === qid && "#2ad156",
         ...style,
         opacity,
       }}
     >
-      <CardActionArea style={{ height: "100px" }} onClick={()=>onClickImage(qid)}>
+      <CardActionArea style={{ height: "100px" }} onClick={() => onClickImage(qid)}>
         <CardMedia
           component="img"
           alt={title}
@@ -121,23 +110,24 @@ export default function ImgMediaCard({
           title={title}
         />
         <CardContent style={{ height: "40px" }}>
-          <Typography style={{fontSize:"9px"}} gutterBottom>{formatVideoTitle(title)}</Typography>
+          <Typography style={{ fontSize: "9px" }} gutterBottom>
+            {formatVideoTitle(title)}
+          </Typography>
         </CardContent>
       </CardActionArea>
+
       <CardActions style={{ display: "flex", justifyContent: "flex-end" }}>
-        {index == 0 && (
-          <IconButton size="small" style={{fontSize:"9px"}} color="secondary" variant="contained" onClick={onClick}>
-            <SkipNextIcon />
+        <Tooltip title="remove from queue">
+          <IconButton
+            edge="end"
+            color="secondary"
+            onClick={removeQueueItem}
+            size="small"
+            style={{ color: "red" }}
+          >
+            <ClearIcon />
           </IconButton>
-        )}
-        <IconButton
-          edge="end"
-          color="secondary"
-          onClick={removeQueueItem}
-          style={{ color: "red" }}
-        >
-          <ClearIcon />
-        </IconButton>
+        </Tooltip>
       </CardActions>
     </Card>
   );

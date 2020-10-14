@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function VideoSearch({ handleSubmitVideoSearch, handleSearchTermInput }) {
+function VideoSearch({ handleSubmitVideoSearch, handleSearchTermInput, searchTerm }) {
   const classes = useStyles();
 
   return (
@@ -56,7 +56,9 @@ function VideoSearch({ handleSubmitVideoSearch, handleSearchTermInput }) {
       <form onSubmit={handleSubmitVideoSearch}>
         <InputBase
           onChange={handleSearchTermInput}
-          placeholder="Search…"
+          placeholder="search music…"
+          autoFocus={true}
+          value={searchTerm}
           classes={{
             root: classes.inputRoot,
             input: classes.inputInput,

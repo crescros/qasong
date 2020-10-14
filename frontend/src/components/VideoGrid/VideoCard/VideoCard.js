@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import { CardContent, CardMedia, IconButton, Typography } from "@material-ui/core";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import PauseIcon from "@material-ui/icons/Pause";
-import QueueIcon from "@material-ui/icons/Queue";
-import { formatVideoTitle } from "../../../functions";
 import uuid from "react-uuid";
+import { formatVideoTitle } from "../../../functions";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  IconButton,
+  Typography,
+  Tooltip
+} from "@material-ui/core";
+import {
+  PlayArrow as PlayArrowIcon,
+  Pause as PauseIcon,
+  Queue as QueueIcon,
+  Info as InfoIcon
+} from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -101,12 +110,25 @@ export default function MediaControlCard({
           </Typography>
         </CardContent>
         <div className={classes.controls}>
-          <IconButton size={"small"} onClick={handleAddQueue}>
-            <QueueIcon />
-          </IconButton>
-          <IconButton onClick={handlePlayButton}>
-            {playing ? <PauseIcon /> : <PlayArrowIcon />}
-          </IconButton>
+
+          {/* play/stop button */}
+          <Tooltip title={playing ? "stop" : "play"}>
+            <IconButton size="small" onClick={handlePlayButton} >
+              {playing ? <PauseIcon /> : <PlayArrowIcon />}
+            </IconButton>
+          </Tooltip>
+
+          {/* queue button */}
+          <Tooltip title="add to queue">
+            <IconButton size="small" onClick={handleAddQueue}>
+              <QueueIcon />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title={description} >
+            <InfoIcon color="disabled" />
+          </Tooltip>
+
         </div>
       </div>
       <CardMedia

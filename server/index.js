@@ -7,7 +7,6 @@ const errorHandler = require("./_helpers/error-handler");
 require("dotenv").config();
 require("rootpath")();
 
-
 // database connection
 // const con = require('./database/connection.js')
 // con.connect()
