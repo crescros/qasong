@@ -108,3 +108,16 @@ export function getQueueFromIds(search) {
     return result.data;
   });
 }
+
+export function copyCurrentURL (e) {
+
+  let dummy = document.createElement("textarea");
+  
+  e.target.appendChild(dummy);
+
+  dummy.value = location.href;
+  dummy.select();
+  document.execCommand("copy");
+  e.target.removeChild(dummy);
+};
+
