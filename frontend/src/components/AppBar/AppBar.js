@@ -6,8 +6,6 @@ import {
   Toolbar,
   Typography,
   IconButton,
-  MenuItem,
-  Menu,
   Badge,
   FormControlLabel,
   Box,
@@ -15,11 +13,13 @@ import {
   Tooltip
 } from "@material-ui/core";
 import VideoSearch from "./VideoSearch/VideoSearch";
+import MobileMenu from "./MobileMenu/MobileMenu"
 import EnvironmentBadges from "./EnvironmentBadges/EnvironmentBadges";
-import MoreIcon from "@material-ui/icons/MoreVert";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
 import ReplyIcon from "@material-ui/icons/Reply";
 import { isMobile } from "react-device-detect";
+import { copyCurrentURL} from "../../functions"
+
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -76,24 +76,6 @@ export default function PrimarySearchAppBar({
   setVideos,
 }) {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
 
   const handleLogoClick = () => {
     setSearchTerm("");
@@ -101,99 +83,7 @@ export default function PrimarySearchAppBar({
     setShowQueue(false);
   };
 
-  const handleCopyCurrentURL = () => {
-    let dummy = document.createElement("textarea");
-
-    document.body.appendChild(dummy);
-
-    dummy.value = location.href;
-    dummy.select();
-    document.execCommand("copy");
-    document.body.removeChild(dummy);
-  };
-
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Join Us</MenuItem>
-    </Menu>
-  );
-
-  const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      {/* QUEUE */}
-      <Tooltip
-        title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}
-      >
-        <Box>
-          <MenuItem
-            disabled={queue.length === 0}
-            onClick={() => setShowQueue(!showQueue)}
-          >
-            <IconButton
-              disabled={queue.length === 0}
-              target="_blank"
-              color={showQueue ? "secondary" : "inherit"}
-            >
-              <Badge badgeContent={queue.length} color="secondary">
-                <QueueMusicIcon style={{ fontSize: "40px" }} />
-              </Badge>
-            </IconButton>
-            <p>{showQueue ? "Hide Queue" : "Show Queue"}</p>
-          </MenuItem>
-        </Box>
-      </Tooltip>
-      {/* share  */}
-      <Tooltip
-        title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}
-      >
-        <Box>
-          <MenuItem disabled={queue.length === 0} onClick={handleCopyCurrentURL}>
-            <IconButton target="_blank">
-              <ReplyIcon />
-            </IconButton>
-            <p>Copy Link to Queue</p>
-          </MenuItem>
-        </Box>
-      </Tooltip>
-
-      {/* dark mode */}
-      <MenuItem onClick={() => setDarkMode(!darkMode)}>
-        {/* dark mode slider mobile */}
-        <Switch checked={darkMode} />
-        <p>Dark Mode</p>
-      </MenuItem>
-    </Menu>
-  );
+ 
 
   return (
     <div className={classes.grow}>
@@ -277,7 +167,7 @@ export default function PrimarySearchAppBar({
                   edge="end"
                   title="Copy Link to Current Queue"
                   disabled={queue.length === 0}
-                  onClick={handleCopyCurrentURL}
+                  onClick={copyCurrentURL}
                   target="_blank"
                   color={queue.length === 0 ? "inherit" : "secondary"}
                 >
@@ -289,22 +179,11 @@ export default function PrimarySearchAppBar({
 
           {/* More Icon/button */}
           <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <Badge badgeContent={queue.length} color="secondary">
-                <MoreIcon />
-              </Badge>
-            </IconButton>
+
+            <MobileMenu {...{queue, showQueue, setShowQueue, darkMode, setDarkMode}} />
           </div>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
     </div>
   );
 }
