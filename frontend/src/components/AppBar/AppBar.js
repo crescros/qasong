@@ -12,7 +12,7 @@ import {
   FormControlLabel,
   Box,
   Switch,
-  Tooltip
+  Tooltip,
 } from "@material-ui/core";
 import VideoSearch from "./VideoSearch/VideoSearch";
 import EnvironmentBadges from "./EnvironmentBadges/EnvironmentBadges";
