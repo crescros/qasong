@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
 function MobileMenu({ queue, showQueue, setShowQueue, darkMode, setDarkMode }) {
     const classes = useStyles();
 

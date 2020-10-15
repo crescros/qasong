@@ -44,8 +44,6 @@ export default function PrimarySearchAppBar({
     setShowQueue(false);
   };
 
-
-
   return (
     <div className={classes.grow}>
       <AppBar position={isMobile ? "fixed" : "static"}>
