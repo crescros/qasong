@@ -21,7 +21,10 @@ export function getYoutubeIdFromSearch(search) {
 
   return axios.get(baseUrl + "api/search?q=" + search).then((result) => {
     return result.data;
-  });
+  }).catch((error) => {
+    alert(error)
+    return [];
+  });;
 }
 
 export function authenticateUser(username, password) {
@@ -57,33 +60,6 @@ export function createUser(username, password) {
     });
 }
 
-export function getGlobalChat() {
-  return axios
-    .get(baseUrl + "api/globalchat")
-    .then((result) => {
-      return result;
-    })
-    .catch((error) => {
-      return error;
-    });
-}
-
-export function postGlobalChat(author, content) {
-  const postBody = {
-    author: author,
-    content: content,
-  };
-
-  return axios
-    .post(baseUrl + "api/globalchat", postBody)
-    .then((result) => {
-      return result;
-    })
-    .catch((error) => {
-      return error;
-    });
-}
-
 export function getNodeEnvironment() {
   return axios
     .get(baseUrl + "api/env")
@@ -91,6 +67,8 @@ export function getNodeEnvironment() {
       return result;
     })
     .catch((error) => {
+      console.log(error)
+      alert(error)
       return error;
     });
 }
@@ -106,13 +84,17 @@ export function formatVideoTitle(name) {
 export function getQueueFromIds(search) {
   return axios.get(baseUrl + "api/search/ids?" + search).then((result) => {
     return result.data;
-  });
+  }).catch((error) => {
+    console.log(error)
+    alert(error + " " + error.response&&error.response.data)
+    return []
+  });;
 }
 
-export function copyCurrentURL (e) {
+export function copyCurrentURL(e) {
 
   let dummy = document.createElement("textarea");
-  
+
   e.target.appendChild(dummy);
 
   dummy.value = location.href;
