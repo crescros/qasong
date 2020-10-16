@@ -16,6 +16,7 @@
     "start": "node ./server/index.js",
     "lint": "eslint . && cd frontend && npm run lint",
     "lint:fix": "eslint . --fix && cd frontend && eslint . --fix",
+    "test": "npm run test:frontend && npm run build && npm run test:server",
     "test:frontend": "cd frontend && npm run test",
     "test:server": "start-server-and-test start http://localhost:3016 cy:run"
   },
