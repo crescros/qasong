@@ -17,7 +17,7 @@
     "lint": "cd server && npm run lint && cd ../frontend && npm run lint",
     "format": "cd server && npm run format && cd ../frontend && npm run format",
     "lint:fix": "cd server && eslint . --fix && cd ../frontend && eslint . --fix",
-    "install:all": "concurrently \"cd frontend && npm i\" \"cd server && npm i\""
+    "install:frontend": "cd frontend && npm i"
   },
   "engines": {
     "node": "12.x"
