@@ -9,8 +9,8 @@ package-lock.json
 public/bundle.js
 
 # cypress
-server/cypress/videos
-server/cypress/screenshots
+cypress/videos
+cypress/screenshots
 
 # music-app
 .env
