@@ -7,29 +7,36 @@ import { TouchBackend } from "react-dnd-touch-backend";
 import { isMobile } from "react-device-detect";
 import update from "immutability-helper";
 
-function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue, queueName, setQueueName, showQueue }) {
-
-  if(!showQueue){
-    return <div></div>
+function QueueSection({
+  nowPlaying,
+  setNowPlaying,
+  queue,
+  setQueue,
+  queueName,
+  setQueueName,
+  showQueue,
+}) {
+  if (!showQueue) {
+    return <div></div>;
   }
-  
-  const [tempQueueName, setTempQueueName] = useState(queueName)
+
+  const [tempQueueName, setTempQueueName] = useState(queueName);
 
   const handleClickQueueItem = (qid) => {
     setNowPlaying(queue.find((item) => item.qid === qid));
   };
 
   const handleQueueNameChange = (e) => {
-    setTempQueueName(e.target.value)
-  }
+    setTempQueueName(e.target.value);
+  };
 
   const handleQueueNameSubmit = (e) => {
-    e.preventDefault()
-    setQueueName(tempQueueName)
-    if(!tempQueueName){
-      setTempQueueName("New Queue")
+    e.preventDefault();
+    setQueueName(tempQueueName);
+    if (!tempQueueName) {
+      setTempQueueName("New Queue");
     }
-  }
+  };
 
   const moveCard = useCallback(
     (dragIndex, hoverIndex) => {
@@ -46,15 +53,14 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue, queueName, s
     [queue]
   );
 
-  const editingQueueName = tempQueueName === queueName
+  const editingQueueName = tempQueueName === queueName;
 
   return (
     <>
       {(queue.length > 0 || nowPlaying) && (
         <div>
           <Box m={3}>
-            <Grid container
-              alignItems="flex-end">
+            <Grid container alignItems="flex-end">
               <Grid item>
                 <Typography variant="h5">
                   {queue.length > 0 && `${queue.length} songs - `}
@@ -63,7 +69,6 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue, queueName, s
               <Grid item>
                 <Box ml={2}>
                   <form onSubmit={handleQueueNameSubmit}>
-
                     <TextField
                       id="queue-name"
                       autoFocus={true}

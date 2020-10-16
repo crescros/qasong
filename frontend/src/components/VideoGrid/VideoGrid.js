@@ -3,17 +3,16 @@ import { Grid, Typography, Box } from "@material-ui/core";
 import VideoCard from "./VideoCard/VideoCard";
 
 function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue }) {
-
   if (!(videos && videos.results && videos.results.length > 0 && videos.searchTerm)) {
-    return (
-      <div></div>
-    )
+    return <div></div>;
   }
 
   return (
     <Box mt={4}>
       <Box m={2}>
-        <Typography>Search Results for <i>{videos.searchTerm}</i></Typography>
+        <Typography>
+          Search Results for <i>{videos.searchTerm}</i>
+        </Typography>
       </Box>
       <Grid container direction="row" justify="center" alignItems="center">
         {videos.results.map((video) => {

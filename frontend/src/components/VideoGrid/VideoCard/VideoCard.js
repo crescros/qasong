@@ -8,14 +8,14 @@ import {
   CardMedia,
   IconButton,
   Typography,
-  Tooltip
+  Tooltip,
 } from "@material-ui/core";
 import {
   PlayArrow as PlayArrowIcon,
   Pause as PauseIcon,
   Queue as QueueIcon,
-  Info as InfoIcon
-} from '@material-ui/icons';
+  Info as InfoIcon,
+} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -110,10 +110,9 @@ export default function MediaControlCard({
           </Typography>
         </CardContent>
         <div className={classes.controls}>
-
           {/* play/stop button */}
           <Tooltip title={playing ? "stop" : "play"}>
-            <IconButton size="small" onClick={handlePlayButton} >
+            <IconButton size="small" onClick={handlePlayButton}>
               {playing ? <PauseIcon /> : <PlayArrowIcon />}
             </IconButton>
           </Tooltip>
@@ -125,10 +124,9 @@ export default function MediaControlCard({
             </IconButton>
           </Tooltip>
 
-          <Tooltip title={description} >
+          <Tooltip title={description}>
             <InfoIcon color="disabled" />
           </Tooltip>
-
         </div>
       </div>
       <CardMedia
