@@ -13,12 +13,12 @@ function VideoArea({ nowPlaying, setNowPlaying }) {
         style={
           isMobile
             ? {
-              position: "fixed",
-              left: "0",
-              right: "0",
-              background: "black",
+                position: "fixed",
+                left: "0",
+                right: "0",
+                background: "black",
                 zIndex: "100",
-            }
+              }
             : {}
         }
       >

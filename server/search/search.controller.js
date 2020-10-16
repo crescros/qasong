@@ -14,7 +14,7 @@ function searchYoutube(req, res, next) {
   if (!searchTerm) {
     return res.status(400).json({
       message:
-        "no search term provided. use query parameter \"q\" to include a search term",
+        'no search term provided. use query parameter "q" to include a search term',
     });
   }
 
@@ -36,7 +36,7 @@ function searchYoutubeById(req, res, next) {
   if (!ids) {
     return res.status(400).json({
       message:
-        "no search term provided. use query parameter \"q\" to include a search term",
+        'no search term provided. use query parameter "q" to include a search term',
     });
   }
   searchService

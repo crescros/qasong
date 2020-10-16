@@ -11,7 +11,7 @@ require("rootpath")();
 
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 90 seconds
-  max: 100
+  max: 100,
 });
 
 // database connection
