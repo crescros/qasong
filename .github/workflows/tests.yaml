@@ -20,7 +20,7 @@ jobs:
     - run: npm install
     - run: npm run install:frontend
     - run: npm run test:frontend
-    - run: npm run build
     - run: npm run test:server
       env:
         CI: true
+        SECRET: 123
