@@ -11,6 +11,7 @@ import QueueLoadingScreen from "./components/QueueSection/QueueLoadingScreen/Que
 import QueueSection from "./components/QueueSection/QueueSection";
 import VideoArea from "./components/VideoArea/VideoArea";
 import VideoGrid from "./components/VideoGrid/VideoGrid";
+import socketIOClient from "socket.io-client";
 
 const App = () => {
   const darkTheme = createMuiTheme({
@@ -45,8 +46,15 @@ const App = () => {
   const [showQueue, setShowQueue] = useState(false);
   const [user, setUser] = useState();
   const [videos, setVideos] = useState([]);
-
+  const [usersConnected, setUsersConnected] = useState(0);
   // runs once when app is rendered
+  useEffect(() => {
+    const socket = socketIOClient(process.env.REACT_APP_API_URL_LOCAL);
+    socket.on("usersConnectedUpdate", (usersConnectedResponse) => {
+      setUsersConnected(usersConnectedResponse);
+    });
+    return () => socket.disconnect();
+  }, []);
   useEffect(() => {
     (async () => {
       // set dark mode from local storage
@@ -180,6 +188,7 @@ const App = () => {
           setVideos,
           showQueue,
           user,
+          usersConnected,
         }}
       />
 
