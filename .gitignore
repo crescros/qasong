@@ -19,3 +19,8 @@ data
 
 # Logging
 logs/*
+
+.DS_Store
+
+# Istanbul Coverage
+frontend/coverage/*
