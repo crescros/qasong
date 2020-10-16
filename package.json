@@ -7,14 +7,17 @@
   "scripts": {
     "start": "node ./server/index.js",
     "build": "cd frontend && npm run build",
-    "test": "cd server &&  npm run test",
+    "test": "npm run test:frontend",
+    "test:frontend": "cd frontend &&  npm run test",
+    "test:server": "cd server &&  npm run test",
     "deploy": "npm run build && gcloud app deploy",
     "dev": "concurrently --kill-others \"npm run dev:frontend\"  \"npm run dev:server\"",
     "dev:frontend": "cd frontend && npm i && npm start",
     "dev:server": "npm i && nodemon ./server/index.js",
     "lint": "cd server && npm run lint && cd ../frontend && npm run lint",
     "format": "cd server && npm run format && cd ../frontend && npm run format",
-    "lint:fix": "cd server && eslint . --fix && cd ../frontend && eslint . --fix"
+    "lint:fix": "cd server && eslint . --fix && cd ../frontend && eslint . --fix",
+    "install:all": "concurrently \"cd frontend && npm i\" \"cd server && npm i\""
   },
   "engines": {
     "node": "12.x"

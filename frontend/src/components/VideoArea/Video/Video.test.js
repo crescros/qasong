@@ -11,7 +11,7 @@ describe("<Video />", () => {
   });
 
   it("renders the Youtube component if id is truthy", () => {
-    const wrapper = shallow(<Video id="1"/>);
+    const wrapper = shallow(<Video id="1" />);
     expect(wrapper.find(YouTube)).toHaveLength(1);
   });
 });
