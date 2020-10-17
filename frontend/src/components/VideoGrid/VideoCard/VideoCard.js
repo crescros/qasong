@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import { 
+  Box,
+  Button, 
+  Card,
+  CardActionArea, 
+  CardActions, 
+  CardContent, 
+  CardMedia, 
+  IconButton, 
+  Typography, 
+} from '@material-ui/core';
 import uuid from "react-uuid";
 import { formatVideoTitle } from "../../../functions";
 import {
@@ -22,12 +24,10 @@ const useStyles = makeStyles((theme) => ({
   card: {
     position: "relative",
     maxWidth: 250,
+    height: 190,
     "&:hover > *": {
       visibility: "visible !important",
     }
-  },
-  actionArea:{  
-    height: 190,
   },
   media: {
     height: 125,
@@ -100,24 +100,24 @@ export default function MediaCard({
   }
 
   return (
-      <Card className={classes.card} style={{ backgroundColor: playing && "#2ad156" }}  onClick={handlePlayButton} >
-        <CardActionArea className={classes.actionArea}>
-          <CardMedia
-            className={classes.media}
-            image={thumbnailUrl}
-            title="Contemplative Reptile"
-          />
-          <CardContent>
-            <Typography className={classes.titleSize} gutterBottom variant="h5" component="h2">
-              {formatVideoTitle(title)}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
+    <Card className={classes.card} style={{ backgroundColor: playing && "#2ad156" }} onClick={handlePlayButton} >
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image={thumbnailUrl}
+          title="Contemplative Reptile"
+        />
+        <CardContent>
+          <Typography className={classes.titleSize} gutterBottom variant="h5" component="h2">
+            {formatVideoTitle(title)}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
 
-        <IconButton className={classes.overlay} onClick={handleAddQueue}>
-          <QueueIcon />
-        </IconButton>
-      </Card>
+      <IconButton className={classes.overlay} onClick={handleAddQueue}>
+        <QueueIcon />
+      </IconButton>
+    </Card>
   );
 }
 
