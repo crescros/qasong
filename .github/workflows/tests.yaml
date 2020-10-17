@@ -19,6 +19,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install
     - run: npm run install:frontend
-    - run: npm run test
+    - run: npm run test:frontend
+    - run: npm run test:server
       env:
         CI: true
+        SECRET: 123
