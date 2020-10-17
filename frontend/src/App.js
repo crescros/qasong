@@ -6,11 +6,13 @@ import { CssBaseline } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import AppBar from "./components/AppBar/AppBar";
-import HomeScreen from "./components/HomeScreen/HomeScreen"
+import HomeScreen from "./components/HomeScreen/HomeScreen";
+// eslint-disable-next-line max-len
 import QueueLoadingScreen from "./components/QueueSection/QueueLoadingScreen/QueueLoadingScreen";
 import QueueSection from "./components/QueueSection/QueueSection";
-import VideoArea from "./components/VideoArea/VideoArea"
+import VideoArea from "./components/VideoArea/VideoArea";
 import VideoGrid from "./components/VideoGrid/VideoGrid";
+import PlayArea from "./components/footerPlayArea/PlayArea";
 
 const App = () => {
   const darkTheme = createMuiTheme({
@@ -41,7 +43,7 @@ const App = () => {
   const [nowPlaying, setNowPlaying] = useState();
   const [searchTerm, setSearchTerm] = useState("");
   const [queue, setQueue] = useState([]);
-  const [queueName, setQueueName] = useState("New Queue")
+  const [queueName, setQueueName] = useState("New Queue");
   const [showQueue, setShowQueue] = useState(false);
   const [user, setUser] = useState();
   const [videos, setVideos] = useState([]);
@@ -49,26 +51,27 @@ const App = () => {
   // runs once when app is rendered
   useEffect(() => {
     (async () => {
-
       // set dark mode from local storage
       const userDarkMode = localStorage.getItem("userDarkMode");
       if (userDarkMode === "true") {
         setDarkMode(true);
       }
 
-      // get queue from url  
+      // get queue from url
       let parsedParams = queryString.parse(location.search);
       if (parsedParams.queue && parsedParams.queue.length > 0) {
-        setQueueName(parsedParams.queueName)
-        setIsLoadingQueue(true)
-        let linkedQueue = await getQueueFromIds(queryString.stringify({ queue: parsedParams.queue }));
-        setIsLoadingQueue(false)
+        setQueueName(parsedParams.queueName);
+        setIsLoadingQueue(true);
+        let linkedQueue = await getQueueFromIds(
+          queryString.stringify({ queue: parsedParams.queue })
+        );
+        setIsLoadingQueue(false);
         setQueue(linkedQueue);
         setShowQueue(true);
       } else {
         // if theres no queue in the url, get it from local storage
         const storedQueue = localStorage.getItem("queue");
-        const storedQueueName = localStorage.getItem("queueName")
+        const storedQueueName = localStorage.getItem("queueName");
         if (storedQueue) {
           const queue = JSON.parse(storedQueue);
           setQueue(queue);
@@ -112,22 +115,22 @@ const App = () => {
     history.pushState(parsed, "queue", "?" + queryString.stringify(parsed));
 
     if (queue.length <= 0) {
-      setShowQueue(false)
+      setShowQueue(false);
     }
   }, [queue]);
 
   // write queue name to localstorage and query params
   useEffect(() => {
     if (queueName) {
-      localStorage.setItem("queueName", queueName)
+      localStorage.setItem("queueName", queueName);
       let parsed = queryString.parse(location.search);
-      parsed.queueName = queueName
+      parsed.queueName = queueName;
       history.pushState(parsed, "queue", "?" + queryString.stringify(parsed));
-      document.title = process.env.REACT_APP_NAME + " - " + queueName
+      document.title = process.env.REACT_APP_NAME + " - " + queueName;
     } else {
-      setQueueName("New Queue")
+      setQueueName("New Queue");
     }
-  }, [queueName])
+  }, [queueName]);
 
   // event listener for search input
   const handleSearchTermInput = (e) => {
@@ -142,16 +145,19 @@ const App = () => {
     setSearchTerm("");
     setVideos({
       searchTerm: searchTerm,
-      results: results
+      results: results,
     });
     setIsLoading(false);
-    if(isMobile){
-      setShowQueue(false)
+    if (isMobile) {
+      setShowQueue(false);
     }
   };
 
   // show home screen if theres no search results, queue, or loading screen
-  const showHomeScreen = !(videos.results && videos.results.length > 0) && showQueue === false && !isLoadingQueue
+  const showHomeScreen =
+    !(videos.results && videos.results.length > 0) &&
+    showQueue === false &&
+    !isLoadingQueue;
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
@@ -182,13 +188,13 @@ const App = () => {
       <VideoArea
         {...{
           nowPlaying,
-          setNowPlaying
+          setNowPlaying,
         }}
       />
 
       <QueueLoadingScreen
         {...{
-          isLoadingQueue
+          isLoadingQueue,
         }}
       />
 
@@ -200,7 +206,7 @@ const App = () => {
           setNowPlaying,
           setQueue,
           setQueueName,
-          showQueue
+          showQueue,
         }}
       />
 
@@ -221,9 +227,11 @@ const App = () => {
           handleSubmitVideoSearch,
           handleSearchTermInput,
           searchTerm,
-          showHomeScreen
+          showHomeScreen,
         }}
       />
+
+      <PlayArea />
     </ThemeProvider>
   );
 };
