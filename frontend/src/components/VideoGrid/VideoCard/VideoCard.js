@@ -13,7 +13,6 @@ import {
 } from '@material-ui/core';
 import uuid from "react-uuid";
 import { formatVideoTitle } from "../../../functions";
-import { makeStyles } from "@material-ui/core/styles";
 import {
   PlayArrow as PlayArrowIcon,
   Pause as PauseIcon,
@@ -70,7 +69,9 @@ export default function MediaCard({
     }
   }, [nowPlaying]);
 
-  function handlePlayButton() {
+  function handlePlayButton(event) {
+
+    event.stopPropagation()
 
     if (!playing) {
       setNowPlaying({
@@ -87,7 +88,8 @@ export default function MediaCard({
   }
 
 
-  function handleAddQueue() {
+  function handleAddQueue(event) {
+    event.stopPropagation()
     setQueue(
       queue.concat({
         title: title,
