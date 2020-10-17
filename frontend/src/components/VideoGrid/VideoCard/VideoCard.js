@@ -6,7 +6,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import uuid from "react-uuid";
 import { formatVideoTitle } from "../../../functions";
 import {
@@ -16,18 +18,30 @@ import {
   Info as InfoIcon
 } from '@material-ui/icons';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 225,
-    height: 185,
+    position: "relative",
+    maxWidth: 250,
+    height: 190,
+    "&:hover > *": {
+      visibility: "visible !important",
+    }
   },
   media: {
     height: 125,
   },
   titleSize: {
-    fontSize: 10,
+    fontSize: 13,
   },
-});
+  overlay: {
+    visibility: "hidden",
+    position: "absolute",
+    top: theme.spacing(1),
+    left: theme.spacing(0.5),
+    background: "#00000080",
+    color: "white"
+  },
+}));
 
 
 export default function MediaCard({
@@ -54,24 +68,18 @@ export default function MediaCard({
   }, [nowPlaying]);
 
   function handlePlayButton() {
-    if (nowPlaying) {
-      return handleAddQueue()
+
+    if (!playing) {
+      setNowPlaying({
+        title: title,
+        description: description,
+        id: id,
+        thumbnailUrl: thumbnailUrl,
+      });
+      setPlaying(true);
     } else {
-
-      if (!playing) {
-        setNowPlaying({
-          title: title,
-          description: description,
-          id: id,
-          thumbnailUrl: thumbnailUrl,
-        });
-        setPlaying(true);
-      } else {
-        setNowPlaying({});
-        setPlaying(false);
-      }
-
-
+      setNowPlaying({});
+      setPlaying(false);
     }
   }
 
@@ -90,20 +98,24 @@ export default function MediaCard({
   }
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea onClick={handlePlayButton}>
-        <CardMedia
-          className={classes.media}
-          image={thumbnailUrl}
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography className={classes.titleSize} gutterBottom variant="h5" component="h2">
-            {formatVideoTitle(title)}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+      <Card className={classes.root} style={{ backgroundColor: playing && "#2ad156" }}>
+        <CardActionArea onClick={handlePlayButton}>
+          <CardMedia
+            className={classes.media}
+            image={thumbnailUrl}
+            title="Contemplative Reptile"
+          />
+          <CardContent>
+            <Typography className={classes.titleSize} gutterBottom variant="h5" component="h2">
+              {formatVideoTitle(title)}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+
+        <IconButton className={classes.overlay} onClick={handleAddQueue}>
+          <QueueIcon />
+        </IconButton>
+      </Card>
   );
 }
 
