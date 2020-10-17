@@ -10,22 +10,22 @@ import Typography from '@material-ui/core/Typography';
 import uuid from "react-uuid";
 import { formatVideoTitle } from "../../../functions";
 import {
-    PlayArrow as PlayArrowIcon,
-    Pause as PauseIcon,
-    Queue as QueueIcon,
-    Info as InfoIcon
-  } from '@material-ui/icons';
+  PlayArrow as PlayArrowIcon,
+  Pause as PauseIcon,
+  Queue as QueueIcon,
+  Info as InfoIcon
+} from '@material-ui/icons';
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 225,
-    height: 240,
+    height: 185,
   },
   media: {
     height: 125,
   },
   titleSize: {
-    fontSize: 15,
+    fontSize: 10,
   },
 });
 
@@ -45,6 +45,7 @@ export default function MediaCard({
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
+
     if (nowPlaying && nowPlaying.id === id) {
       setPlaying(true);
     } else {
@@ -53,19 +54,27 @@ export default function MediaCard({
   }, [nowPlaying]);
 
   function handlePlayButton() {
-        if (!playing) {
-          setNowPlaying({
-            title: title,
-            description: description,
-            id: id,
-            thumbnailUrl: thumbnailUrl,
-          });
-          setPlaying(true);
-        } else {
-          setNowPlaying({});
-          setPlaying(false);
-        }
+    if (nowPlaying) {
+      return handleAddQueue()
+    } else {
+
+      if (!playing) {
+        setNowPlaying({
+          title: title,
+          description: description,
+          id: id,
+          thumbnailUrl: thumbnailUrl,
+        });
+        setPlaying(true);
+      } else {
+        setNowPlaying({});
+        setPlaying(false);
       }
+
+
+    }
+  }
+
 
   function handleAddQueue() {
     setQueue(
@@ -82,33 +91,25 @@ export default function MediaCard({
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea onClick={handlePlayButton}>
         <CardMedia
           className={classes.media}
           image={thumbnailUrl}
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography className={classes.titleSize}gutterBottom variant="h5" component="h2">
+          <Typography className={classes.titleSize} gutterBottom variant="h5" component="h2">
             {formatVideoTitle(title)}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary" onClick={handleAddQueue}>
-          <QueueIcon />
-        </Button>
-        <Button size="small" color="primary" onClick={handlePlayButton}>
-          {playing ? <PauseIcon /> : <PlayArrowIcon />}
-        </Button>
-      </CardActions>
     </Card>
   );
 }
 
 
 
-
+// this is the old cards
 // import React, { useState, useEffect } from "react";
 // import uuid from "react-uuid";
 // import { formatVideoTitle } from "../../../functions";
