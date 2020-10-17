@@ -9,8 +9,8 @@ package-lock.json
 public/bundle.js
 
 # cypress
-server/cypress/videos
-server/cypress/screenshots
+cypress/videos
+cypress/screenshots
 
 # music-app
 .env
@@ -19,3 +19,8 @@ data
 
 # Logging
 logs/*
+
+.DS_Store
+
+# Istanbul Coverage
+frontend/coverage/*

@@ -6,13 +6,15 @@ import {
   Toolbar,
   Typography,
   IconButton,
-  Box
+  Box,
+  Switch,
+  Tooltip,
 } from "@material-ui/core";
 import VideoSearch from "./VideoSearch/VideoSearch";
-import MobileMenu from "./MobileMenu/MobileMenu"
+import MobileMenu from "./MobileMenu/MobileMenu";
 import EnvironmentBadges from "./EnvironmentBadges/EnvironmentBadges";
 import { isMobile } from "react-device-detect";
-import DesktopMenu from "./DesktopMenu/DesktopMenu"
+import DesktopMenu from "./DesktopMenu/DesktopMenu";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -79,7 +81,10 @@ export default function PrimarySearchAppBar({
           />
 
           {/* Search Bar Loading Indicator */}
-          <Box mx={2}> {isLoading && <CircularProgress color="secondary" size="32px" />} </Box>
+          <Box mx={2}>
+            {" "}
+            {isLoading && <CircularProgress color="secondary" size="32px" />}{" "}
+          </Box>
 
           {/* responsive spacer */}
           <div className={classes.grow} />

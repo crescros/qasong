@@ -4,8 +4,6 @@ let baseUrl;
 
 if (process.env.NODE_ENV === "production") {
   baseUrl = process.env.REACT_APP_API_URL_RELATIVE;
-} else if (process.env.NODE_ENV === "development") {
-  baseUrl = process.env.REACT_APP_API_URL_LOCAL;
 } else {
   baseUrl = process.env.REACT_APP_API_URL_LOCAL;
 }
@@ -19,12 +17,15 @@ export function getYoutubeIdFromSearch(search) {
     return [];
   }
 
-  return axios.get(baseUrl + "api/search?q=" + search).then((result) => {
-    return result.data;
-  }).catch((error) => {
-    alert(error)
-    return [];
-  });;
+  return axios
+    .get(baseUrl + "api/search?q=" + search)
+    .then((result) => {
+      return result.data;
+    })
+    .catch((error) => {
+      alert(error);
+      return [];
+    });
 }
 
 export function authenticateUser(username, password) {
@@ -67,8 +68,8 @@ export function getNodeEnvironment() {
       return result;
     })
     .catch((error) => {
-      console.log(error)
-      alert(error)
+      console.log(error);
+      alert(error);
       return error;
     });
 }
@@ -82,17 +83,19 @@ export function formatVideoTitle(name) {
 }
 
 export function getQueueFromIds(search) {
-  return axios.get(baseUrl + "api/search/ids?" + search).then((result) => {
-    return result.data;
-  }).catch((error) => {
-    console.log(error)
-    alert(error + " " + error.response&&error.response.data)
-    return []
-  });;
+  return axios
+    .get(baseUrl + "api/search/ids?" + search)
+    .then((result) => {
+      return result.data;
+    })
+    .catch((error) => {
+      console.log(error);
+      alert(error + " " + error.response && error.response.data);
+      return [];
+    });
 }
 
 export function copyCurrentURL(e) {
-
   let dummy = document.createElement("textarea");
 
   e.target.appendChild(dummy);
@@ -101,5 +104,4 @@ export function copyCurrentURL(e) {
   dummy.select();
   document.execCommand("copy");
   e.target.removeChild(dummy);
-};
-
+}

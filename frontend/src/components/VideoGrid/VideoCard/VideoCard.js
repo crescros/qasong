@@ -13,12 +13,13 @@ import {
 } from '@material-ui/core';
 import uuid from "react-uuid";
 import { formatVideoTitle } from "../../../functions";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   PlayArrow as PlayArrowIcon,
   Pause as PauseIcon,
   Queue as QueueIcon,
-  Info as InfoIcon
-} from '@material-ui/icons';
+  Info as InfoIcon,
+} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -117,6 +118,7 @@ export default function MediaCard({
       <IconButton className={classes.overlay} onClick={handleAddQueue}>
         <QueueIcon />
       </IconButton>
+
     </Card>
   );
 }
