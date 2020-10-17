@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { makeStyles } from '@material-ui/core/styles';
+import { 
+  Box,
+  Button, 
+  Card,
+  CardActionArea, 
+  CardActions, 
+  CardContent, 
+  CardMedia, 
+  IconButton, 
+  Typography, 
+} from '@material-ui/core';
 import uuid from "react-uuid";
 import { formatVideoTitle } from "../../../functions";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  IconButton,
-  Typography,
-  Tooltip,
-} from "@material-ui/core";
 import {
   PlayArrow as PlayArrowIcon,
   Pause as PauseIcon,
@@ -18,40 +22,32 @@ import {
 } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    maxWidth: 365,
-    height: 130,
-    margin: "0px auto 20px auto",
+  card: {
+    position: "relative",
+    maxWidth: 250,
+    height: 190,
+    "&:hover > *": {
+      visibility: "visible !important",
+    }
   },
-  details: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  content: {
-    flex: "1 0 auto",
-  },
-  cover: {
-    width: 151,
-    height: 140,
-    marginLeft: "auto",
-  },
-  controls: {
-    display: "flex",
-    alignItems: "center",
-    paddingLeft: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-  },
-  playIcon: {
-    height: 38,
-    width: 38,
+  media: {
+    height: 125,
   },
   titleSize: {
-    fontSize: 16,
+    fontSize: 13,
+  },
+  overlay: {
+    visibility: "hidden",
+    position: "absolute",
+    top: theme.spacing(1),
+    left: theme.spacing(0.5),
+    background: "#00000080",
+    color: "white"
   },
 }));
 
-export default function MediaControlCard({
+
+export default function MediaCard({
   title,
   description,
   thumbnailUrl,
@@ -66,6 +62,7 @@ export default function MediaControlCard({
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
+
     if (nowPlaying && nowPlaying.id === id) {
       setPlaying(true);
     } else {
@@ -74,6 +71,7 @@ export default function MediaControlCard({
   }, [nowPlaying]);
 
   function handlePlayButton() {
+
     if (!playing) {
       setNowPlaying({
         title: title,
@@ -87,6 +85,7 @@ export default function MediaControlCard({
       setPlaying(false);
     }
   }
+
 
   function handleAddQueue() {
     setQueue(
@@ -102,40 +101,25 @@ export default function MediaControlCard({
   }
 
   return (
-    <Card className={classes.root} style={{ backgroundColor: playing && "#2ad156" }}>
-      <div className={classes.details}>
-        <CardContent className={classes.content} style={{ height: "60px" }}>
-          <Typography className={classes.titleSize} component="h5" variant="h5">
+    <Card className={classes.card} style={{ backgroundColor: playing && "#2ad156" }} onClick={handlePlayButton} >
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image={thumbnailUrl}
+          title="Contemplative Reptile"
+        />
+        <CardContent>
+          <Typography className={classes.titleSize} gutterBottom variant="h5" component="h2">
             {formatVideoTitle(title)}
           </Typography>
         </CardContent>
-        <div className={classes.controls}>
-          {/* play/stop button */}
-          <Tooltip title={playing ? "stop" : "play"}>
-            <IconButton size="small" onClick={handlePlayButton}>
-              {playing ? <PauseIcon /> : <PlayArrowIcon />}
-            </IconButton>
-          </Tooltip>
+      </CardActionArea>
 
-          {/* queue button */}
-          <Tooltip title="add to queue">
-            <IconButton size="small" onClick={handleAddQueue}>
-              <QueueIcon />
-            </IconButton>
-          </Tooltip>
+      <IconButton className={classes.overlay} onClick={handleAddQueue}>
+        <QueueIcon />
+      </IconButton>
 
-          <Tooltip title={description}>
-            <InfoIcon color="disabled" />
-          </Tooltip>
-        </div>
-      </div>
-      <CardMedia
-        className={classes.cover}
-        component="img"
-        alt={title}
-        image={thumbnailUrl}
-        title={title}
-      />
     </Card>
   );
 }
+

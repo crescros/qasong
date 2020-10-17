@@ -7,11 +7,12 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import AppBar from "./components/AppBar/AppBar";
 import HomeScreen from "./components/HomeScreen/HomeScreen";
+// eslint-disable-next-line max-len
 import QueueLoadingScreen from "./components/QueueSection/QueueLoadingScreen/QueueLoadingScreen";
 import QueueSection from "./components/QueueSection/QueueSection";
 import VideoArea from "./components/VideoArea/VideoArea";
 import VideoGrid from "./components/VideoGrid/VideoGrid";
-import socketIOClient from "socket.io-client";
+import PlayArea from "./components/footerPlayArea/PlayArea";
 
 const App = () => {
   const darkTheme = createMuiTheme({
@@ -237,6 +238,8 @@ const App = () => {
           showHomeScreen,
         }}
       />
+
+      <PlayArea />
     </ThemeProvider>
   );
 };
