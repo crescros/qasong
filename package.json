@@ -5,16 +5,20 @@
   "homepage": "https://github.com/callbacc/Artistify",
   "main": "index.js",
   "scripts": {
-    "start": "node ./server/index.js",
     "build": "cd frontend && npm run build",
-    "test": "cd server &&  npm run test",
+    "cy:run": "npx cypress run",
     "deploy": "npm run build && gcloud app deploy",
-    "dev": "concurrently --kill-others \"npm run dev:frontend\"  \"npm run dev:server\"",
+    "dev": "concurrently --kill-others \"npm run dev:frontend\" \"npm run dev:server\"",
     "dev:frontend": "cd frontend && npm i && npm start",
     "dev:server": "npm i && nodemon ./server/index.js",
-    "lint": "cd server && npm run lint && cd ../frontend && npm run lint",
-    "format": "cd server && npm run format && cd ../frontend && npm run format",
-    "lint:fix": "cd server && eslint . --fix && cd ../frontend && eslint . --fix"
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\" && cd frontend && npm run format",
+    "install:frontend": "cd frontend && npm i",
+    "start": "node ./server/index.js",
+    "lint": "eslint . && cd frontend && npm run lint",
+    "lint:fix": "eslint . --fix && cd frontend && eslint . --fix",
+    "test": "npm run test:frontend && npm run build && npm run test:server",
+    "test:frontend": "cd frontend && npm run test",
+    "test:server": "start-server-and-test start http://localhost:3016 cy:run"
   },
   "engines": {
     "node": "12.x"
