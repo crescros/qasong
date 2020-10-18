@@ -18,7 +18,7 @@ function Video({ id, setNowPlaying }) {
     setNowPlaying(null);
   }
 
-  if (!id) return <div></div>;
+  if (!id) return <div id="empty-div"></div>;
 
   return <YouTube videoId={id} opts={youtubePlayerOptions} onEnd={handleVideoEnd} />;
 }

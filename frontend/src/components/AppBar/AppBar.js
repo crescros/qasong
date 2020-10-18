@@ -6,20 +6,15 @@ import {
   Toolbar,
   Typography,
   IconButton,
-  MenuItem,
-  Menu,
-  Badge,
-  FormControlLabel,
   Box,
   Switch,
   Tooltip,
 } from "@material-ui/core";
 import VideoSearch from "./VideoSearch/VideoSearch";
+import MobileMenu from "./MobileMenu/MobileMenu";
 import EnvironmentBadges from "./EnvironmentBadges/EnvironmentBadges";
-import MoreIcon from "@material-ui/icons/MoreVert";
-import QueueMusicIcon from "@material-ui/icons/QueueMusic";
-import ReplyIcon from "@material-ui/icons/Reply";
 import { isMobile } from "react-device-detect";
+import DesktopMenu from "./DesktopMenu/DesktopMenu";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -27,38 +22,6 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-  },
-  title: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-    },
-  },
-
-  inputRoot: {
-    color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-  sectionDesktop: {
-    display: "none",
-    [theme.breakpoints.up("md")]: {
-      display: "flex",
-    },
-  },
-  sectionMobile: {
-    display: "flex",
-    [theme.breakpoints.up("md")]: {
-      display: "none",
-    },
   },
 }));
 
@@ -76,124 +39,12 @@ export default function PrimarySearchAppBar({
   setVideos,
 }) {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
 
   const handleLogoClick = () => {
     setSearchTerm("");
     setVideos([]);
     setShowQueue(false);
   };
-
-  const handleCopyCurrentURL = () => {
-    let dummy = document.createElement("textarea");
-
-    document.body.appendChild(dummy);
-
-    dummy.value = location.href;
-    dummy.select();
-    document.execCommand("copy");
-    document.body.removeChild(dummy);
-  };
-
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Join Us</MenuItem>
-    </Menu>
-  );
-
-  const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      {/* QUEUE */}
-      <Tooltip
-        title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}
-      >
-        <Box>
-          <MenuItem
-            disabled={queue.length === 0}
-            onClick={() => setShowQueue(!showQueue)}
-          >
-            <IconButton
-              disabled={queue.length === 0}
-              target="_blank"
-              color={showQueue ? "secondary" : "inherit"}
-            >
-              <Badge badgeContent={queue.length} color="secondary">
-                <QueueMusicIcon style={{ fontSize: "40px" }} />
-              </Badge>
-            </IconButton>
-            <p>{showQueue ? "Hide Queue" : "Show Queue"}</p>
-          </MenuItem>
-        </Box>
-      </Tooltip>
-      {/* share  */}
-      <Tooltip
-        title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}
-      >
-        <Box>
-          <MenuItem disabled={queue.length === 0} onClick={handleCopyCurrentURL}>
-            <IconButton target="_blank">
-              <ReplyIcon />
-            </IconButton>
-            <p>Copy Link to Queue</p>
-          </MenuItem>
-        </Box>
-      </Tooltip>
-
-      {/* dark mode */}
-      <MenuItem onClick={() => setDarkMode(!darkMode)}>
-        {/* dark mode slider mobile */}
-        <Switch checked={darkMode} />
-        <p>Dark Mode</p>
-      </MenuItem>
-    </Menu>
-  );
 
   return (
     <div className={classes.grow}>
@@ -209,6 +60,7 @@ export default function PrimarySearchAppBar({
           >
             <img src=".\icon-logo.svg" height="48px" />
           </IconButton>
+
           {/* Development Badge */}
           <EnvironmentBadges />
 
@@ -216,6 +68,7 @@ export default function PrimarySearchAppBar({
           <Typography display="inline" style={{ marginRight: "20px" }}>
             {process.env.REACT_APP_NAME}
           </Typography>
+
           {/* Search bar */}
           <VideoSearch
             handleSearchTermInput={handleSearchTermInput}
@@ -227,84 +80,20 @@ export default function PrimarySearchAppBar({
             }}
           />
 
+          {/* Search Bar Loading Indicator */}
           <Box mx={2}>
-            {isLoading && <CircularProgress color="secondary" size="32px" />}
+            {" "}
+            {isLoading && <CircularProgress color="secondary" size="32px" />}{" "}
           </Box>
 
+          {/* responsive spacer */}
           <div className={classes.grow} />
 
-          <div className={classes.sectionDesktop}>
-            {/* Darkmode slider */}
-            <FormControlLabel
-              style={{ color: "white" }}
-              control={
-                <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
-              }
-              label={darkMode ? "dark mode" : "light mode"}
-              color="red"
-            />
-
-            {/* queue button  */}
-            <Tooltip
-              title={
-                queue.length === 0 ? "Search for songs and add them to your queue" : ""
-              }
-            >
-              <Box>
-                <IconButton
-                  disabled={queue.length === 0}
-                  edge="end"
-                  title={showQueue ? "hide queue" : "show queue"}
-                  color={showQueue ? "secondary" : "inherit"}
-                  onClick={() => setShowQueue(!showQueue)}
-                  target="_blank"
-                >
-                  <Badge badgeContent={queue.length} color="secondary">
-                    <QueueMusicIcon style={{ fontSize: "40px" }} />
-                  </Badge>
-                </IconButton>
-              </Box>
-            </Tooltip>
-
-            {/* share button */}
-            <Tooltip
-              title={
-                queue.length === 0 ? "Search for songs and add them to your queue" : ""
-              }
-            >
-              <Box mt={1}>
-                <IconButton
-                  edge="end"
-                  title="Copy Link to Current Queue"
-                  disabled={queue.length === 0}
-                  onClick={handleCopyCurrentURL}
-                  target="_blank"
-                  color={queue.length === 0 ? "inherit" : "secondary"}
-                >
-                  <ReplyIcon />
-                </IconButton>
-              </Box>
-            </Tooltip>
-          </div>
-
-          {/* More Icon/button */}
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <Badge badgeContent={queue.length} color="secondary">
-                <MoreIcon />
-              </Badge>
-            </IconButton>
-          </div>
+          {/* Menus */}
+          <DesktopMenu {...{ queue, showQueue, setShowQueue, darkMode, setDarkMode }} />
+          <MobileMenu {...{ queue, showQueue, setShowQueue, darkMode, setDarkMode }} />
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
     </div>
   );
 }
