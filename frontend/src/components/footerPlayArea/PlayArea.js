@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     top: 'auto',
     bottom: 0,
     height: 75,
-    backgroundColor: "#0f0f0f",
     borderTop: '2px solid white',
   },
   grow: {
