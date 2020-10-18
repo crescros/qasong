@@ -9,7 +9,7 @@ function HomeScreen({
   showHomeScreen,
 }) {
   if (!showHomeScreen) {
-    return <div></div>;
+    return <div id="empty-div"></div>;
   }
 
   return (
