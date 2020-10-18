@@ -18,4 +18,4 @@ server/cypress/screenshots
 data
 
 # Logging
-logs/*
+logs
