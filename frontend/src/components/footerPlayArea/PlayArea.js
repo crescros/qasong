@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import { borders } from '@material-ui/system';
 import { Stop as StopIcon } from "@material-ui/icons";
-
+import HighlightOffOutlinedIcon from '@material-ui/icons/HighlightOffOutlined';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -45,7 +45,7 @@ function stopTheSong() {
           {  nowPlaying.title } 
         </Typography>
         <IconButton onClick={stopTheSong}>
-          <StopIcon />
+          <HighlightOffOutlinedIcon />
         </IconButton>
         </Toolbar>
       </AppBar>
