@@ -24,16 +24,18 @@ const useStyles = makeStyles((theme) => ({
   card: {
     position: "relative",
     maxWidth: 250,
-    height: 190,
+    maxHeight: 190,
+    boxShadow: 'none',
+    backgroundColor: "transparent",
     "&:hover > *": {
       visibility: "visible !important",
     }
   },
   media: {
-    height: 125,
+    height: 130,
   },
   titleSize: {
-    fontSize: 13,
+    fontSize: 11.5,
   },
   overlay: {
     visibility: "hidden",
