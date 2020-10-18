@@ -7,15 +7,19 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import AppBar from "./components/AppBar/AppBar";
 import HomeScreen from "./components/HomeScreen/HomeScreen";
+// eslint-disable-next-line max-len
 import QueueLoadingScreen from "./components/QueueSection/QueueLoadingScreen/QueueLoadingScreen";
 import QueueSection from "./components/QueueSection/QueueSection";
 import VideoArea from "./components/VideoArea/VideoArea";
 import VideoGrid from "./components/VideoGrid/VideoGrid";
-import socketIOClient from "socket.io-client";
+import PlayArea from "./components/PlayArea/PlayArea";
 
 const App = () => {
   const darkTheme = createMuiTheme({
     palette: {
+      background: {
+        default: "#000000"
+      },
       primary: {
         main: "#000000",
         dark: "#0e132e",
@@ -47,14 +51,7 @@ const App = () => {
   const [user, setUser] = useState();
   const [videos, setVideos] = useState([]);
   const [usersConnected, setUsersConnected] = useState(0);
-  // runs once when app is rendered
-  useEffect(() => {
-    const socket = socketIOClient(process.env.REACT_APP_API_URL_LOCAL);
-    socket.on("usersConnectedUpdate", (usersConnectedResponse) => {
-      setUsersConnected(usersConnectedResponse);
-    });
-    return () => socket.disconnect();
-  }, []);
+
   useEffect(() => {
     (async () => {
       // set dark mode from local storage
@@ -237,6 +234,14 @@ const App = () => {
           showHomeScreen,
         }}
       />
+
+      <PlayArea
+      { ... {
+        nowPlaying,
+        queue,
+        videos,
+        setNowPlaying,
+      }} />
     </ThemeProvider>
   );
 };

@@ -19,7 +19,7 @@ function HomeScreen({
           <Typography
             align="center"
             variant="h1"
-            style={{ color: "black", fontSize: "8vw" }}
+            style={{ color: "#888888", fontSize: "8vw" }}
             xs={12}
           >
             {process.env.REACT_APP_NAME.toUpperCase()}
@@ -37,7 +37,7 @@ function HomeScreen({
             {process.env.REACT_APP_TAGLINE}
           </Typography>
         </Grid>
-        <Grid item xs={12} container justify="center">
+        {/* <Grid item xs={12} container justify="center">
           <VideoSearch
             handleSearchTermInput={handleSearchTermInput}
             handleSubmitVideoSearch={handleSubmitVideoSearch}
@@ -47,7 +47,7 @@ function HomeScreen({
               maxWidth: 800,
             }}
           />
-        </Grid>
+        </Grid> */}
       </Grid>
     </Box>
   );
