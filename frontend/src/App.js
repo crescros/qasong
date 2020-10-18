@@ -17,6 +17,9 @@ import PlayArea from "./components/footerPlayArea/PlayArea";
 const App = () => {
   const darkTheme = createMuiTheme({
     palette: {
+      background: {
+        default: "#000000"
+      },
       primary: {
         main: "#000000",
         dark: "#0e132e",
