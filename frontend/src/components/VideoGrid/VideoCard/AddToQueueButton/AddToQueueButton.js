@@ -1,14 +1,16 @@
 import React from 'react'
-import ReplyIcon from "@material-ui/icons/Reply";
 import { makeStyles } from '@material-ui/core/styles';
-import { copyCurrentURL } from "../../../../functions";
 import {
     Tooltip,
     Box,
     IconButton,
     Typography,
     Popover
-} from "@material-ui/core";
+} from "@material-ui/core"
+
+import {
+    Queue as QueueIcon
+} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
     typography: {
@@ -16,41 +18,28 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ShareButton({ disabled }) {
-
+function AddToQueueButton({ handleAddQueue }) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
-        copyCurrentURL(event)
+        handleAddQueue(event)
         setAnchorEl(event.currentTarget);
-        setTimeout(handleClose, 2500)
+        setTimeout(handleClose, 1250)
     };
 
-    const handleClose = () => {
+    const handleClose = (event) => {
         setAnchorEl(null);
+        event.stopPropagation()
+
     };
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
     return (<>
-        <Tooltip
-            title={disabled ? "Search for songs and add them to your queue" : ""}
-        >
-            <Box mt={1}>
-                <IconButton
-                    edge="end"
-                    title="Copy Link to Current Queue"
-                    disabled={disabled}
-                    onClick={handleClick}
-                    target="_blank"
-                    color={disabled ? "inherit" : "secondary"}
-                    aria-describedby={id}
-                >
-                    <ReplyIcon />
-                </IconButton>
-            </Box>
-        </Tooltip>
+        <IconButton onClick={handleClick} style={{ background: "#00000080", color: "white" }}>
+            <QueueIcon />
+        </IconButton>
         <Popover
             id={id}
             open={open}
@@ -65,10 +54,10 @@ function ShareButton({ disabled }) {
                 horizontal: 'center',
             }}
         >
-            <Typography className={classes.typography}>Link to playlist copied!</Typography>
+            <Typography className={classes.typography}>added to queue</Typography>
         </Popover>
     </>
     )
 }
 
-export default ShareButton
+export default AddToQueueButton

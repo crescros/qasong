@@ -12,7 +12,7 @@ import QueueLoadingScreen from "./components/QueueSection/QueueLoadingScreen/Que
 import QueueSection from "./components/QueueSection/QueueSection";
 import VideoArea from "./components/VideoArea/VideoArea";
 import VideoGrid from "./components/VideoGrid/VideoGrid";
-import PlayArea from "./components/footerPlayArea/PlayArea";
+import PlayArea from "./components/PlayArea/PlayArea";
 
 const App = () => {
   const darkTheme = createMuiTheme({

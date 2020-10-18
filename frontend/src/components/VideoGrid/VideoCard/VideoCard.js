@@ -1,24 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import { 
+import {
   Box,
-  Button, 
   Card,
-  CardActionArea, 
-  CardActions, 
-  CardContent, 
-  CardMedia, 
-  IconButton, 
-  Typography, 
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  IconButton,
+  Typography,
 } from '@material-ui/core';
 import uuid from "react-uuid";
 import { formatVideoTitle } from "../../../functions";
-import {
-  PlayArrow as PlayArrowIcon,
-  Pause as PauseIcon,
-  Queue as QueueIcon,
-  Info as InfoIcon,
-} from "@material-ui/icons";
+import AddToQueueButton from "./AddToQueueButton/AddToQueueButton";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -41,9 +34,7 @@ const useStyles = makeStyles((theme) => ({
     visibility: "hidden",
     position: "absolute",
     top: theme.spacing(1),
-    left: theme.spacing(0.5),
-    background: "#00000080",
-    color: "white"
+    left: theme.spacing(0.5)
   },
 }));
 
@@ -93,16 +84,17 @@ export default function MediaCard({
   function handleAddQueue(event) {
     event.stopPropagation()
     setQueue(
-      queue.concat({
-        title: title,
-        description: description,
-        id: id,
-        qid: uuid(),
-        thumbnailUrl: thumbnailUrl,
-        smallThumbnailUrl: smallThumbnailUrl,
-      })
+        queue.concat({
+            title: title,
+            description: description,
+            id: id,
+            qid: uuid(),
+            thumbnailUrl: thumbnailUrl,
+            smallThumbnailUrl: smallThumbnailUrl,
+        })
     );
-  }
+}
+
 
   return (
     <Card className={classes.card} style={{ backgroundColor: playing && "#2ad156" }} onClick={handlePlayButton} >
@@ -119,9 +111,10 @@ export default function MediaCard({
         </CardContent>
       </CardActionArea>
 
-      <IconButton className={classes.overlay} onClick={handleAddQueue}>
-        <QueueIcon />
-      </IconButton>
+      <Box className={classes.overlay}>
+        <AddToQueueButton {...{handleAddQueue}} />
+      </Box>
+ 
 
     </Card>
   );
