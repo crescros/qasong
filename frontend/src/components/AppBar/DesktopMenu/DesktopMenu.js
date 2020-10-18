@@ -8,7 +8,6 @@ import {
   Switch,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
 import { copyCurrentURL } from "../../../functions";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
 import ReplyIcon from "@material-ui/icons/Reply";
