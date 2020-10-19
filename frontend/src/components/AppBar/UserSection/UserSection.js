@@ -5,7 +5,7 @@ import { authenticateUser, createUser } from "../../../functions";
 import UserMenu from "./UserMenu";
 import CreateUserModal from "./CreateAccount/CreateAccountModal.js";
 
-function UserSection({ user, setUser, setGlobalChatOpen }) {
+function UserSection({ user, setUser, setGlobalChatOpen, darkMode, setDarkMode }) {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [createUserModalOpen, setCreateUserModalOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,6 +13,7 @@ function UserSection({ user, setUser, setGlobalChatOpen }) {
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [profileOpen, setProfileOpen] = useState(false);
 
   useEffect(() => {
     let storedUser = localStorage.getItem("user");
@@ -106,12 +107,16 @@ function UserSection({ user, setUser, setGlobalChatOpen }) {
       <Button variant="outlined" onClick={handleClick}>
         {user ? user.username : "Login"}
       </Button>
-      <UserMenu
-        anchorEl={anchorEl}
-        handleLogOut={handleLogOut}
-        handleMenuClose={handleMenuClose}
-        menuOpen={menuOpen}
-        setGlobalChatOpen={setGlobalChatOpen}
+      <UserMenu {...{
+        anchorEl,
+        handleLogOut,
+        handleMenuClose,
+        menuOpen,
+        setGlobalChatOpen,
+        user,
+        darkMode,
+        setDarkMode   
+      }}
       />
 
       <LoginModal
