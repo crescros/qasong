@@ -24,12 +24,6 @@ function DesktopMenu({ queue, showQueue, darkMode, setDarkMode, setShowQueue }) 
   const classes = useStyles();
   return (
     <div className={classes.sectionDesktop}>
-      <FormControlLabel
-        style={{ color: "white" }}
-        control={<Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />}
-        label={darkMode ? "dark mode" : "light mode"}
-        color="red"
-      />
 
       <Tooltip
         title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}
