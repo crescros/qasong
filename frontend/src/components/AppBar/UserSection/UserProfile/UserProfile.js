@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { MenuItem, Typography, FormControlLabel, Switch } from '@material-ui/core'
+import { MenuItem, Typography, FormControlLabel, Switch, Grid } from '@material-ui/core'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal({user, darkMode, setDarkMode}) {
+export default function SimpleModal({ user, darkMode, setDarkMode }) {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -46,21 +47,47 @@ export default function SimpleModal({user, darkMode, setDarkMode}) {
     setOpen(false);
   };
 
+  if (!user) return <div></div>
+
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <Typography variant="h5" >{user.username}'s Profile</Typography>
-      <Typography>
-        username: {user.username}
-      </Typography>
-      <Typography>
-        e-mail: {user.email}
-      </Typography>
-      <FormControlLabel
-        style={{ color: "white" }}
-        control={<Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />}
-        label={darkMode ? "dark mode" : "light mode"}
-        color="red"
-      />
+      <Grid
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+      >
+
+        {/* row */}
+        <Grid item>
+          <AccountCircleIcon />
+        </Grid>
+
+        {/* row */}
+        <Grid item>
+          <Typography variant="h5" align='center'>
+            {user.username}
+          </Typography>
+        </Grid>
+
+        {/* row */}
+        <Grid item>
+          <Typography variant="caption" align='center'>
+            {user.email}
+          </Typography>
+        </Grid>
+
+        {/* row */}
+        <Grid item>
+          <FormControlLabel
+            style={{ color: "white" }}
+            control={<Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />}
+            label={darkMode ? "dark mode" : "light mode"}
+            color="red"
+          />
+        </Grid>
+
+      </Grid>
 
     </div>
   );
