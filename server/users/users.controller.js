@@ -17,7 +17,7 @@ module.exports = router;
 function authenticate(req, res, next) {
   let { username, password } = req.body;
   con.query(
-    `SELECT username, userid FROM users WHERE username='${
+    `SELECT username, userid, email FROM users WHERE username='${
       username
     }' AND password='${password}';`,
     (err, data) => {
@@ -29,8 +29,10 @@ function authenticate(req, res, next) {
         const token = jwt.sign({ sub: data[0].id }, process.env.SECRET);
 
         const username = data[0].username;
+        const email = data[0].email;
 
         res.json({
+          email: email,
           username: username,
           token: token,
         });
@@ -52,7 +54,7 @@ function getAll(req, res, next) {
 function makeOne(req, res, next) {
   let { username, password } = req.body;
   if(!username) return res.json("no username");;
-  if(!password) return res.json("no password");;
+  if(!password) return rese.json("no password");;
   con.query(
     `INSERT INTO users (username, password) VALUES('${con.escape(username)}', '${con.escape(
       password
