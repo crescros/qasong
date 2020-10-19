@@ -93,8 +93,7 @@ export default function MediaCard({
             smallThumbnailUrl: smallThumbnailUrl,
         })
     );
-}
-
+  }
 
   return (
     <Card className={classes.card} style={{ backgroundColor: playing && "#2ad156" }} onClick={handlePlayButton} >
@@ -114,8 +113,6 @@ export default function MediaCard({
       <Box className={classes.overlay}>
         <AddToQueueButton {...{handleAddQueue}} />
       </Box>
- 
-
     </Card>
   );
 }

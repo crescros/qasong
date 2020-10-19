@@ -1,8 +1,21 @@
 import React from "react";
+import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Box } from "@material-ui/core";
 import VideoCard from "./VideoCard/VideoCard";
 
+const useStyles = makeStyles((theme) => ({
+  box: {
+    [theme.breakpoints.down("xs")]: {
+      textAlign: 'center',
+      display: 'flex',
+      justifyContent: 'center'
+    },
+  }
+}));
+
 function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue }) {
+  const classes = useStyles();
+
   if (!(videos && videos.results && videos.results.length > 0 && videos.searchTerm)) {
     return <div></div>;
   }
@@ -22,7 +35,7 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue }) {
 
           return (
             <Grid item xs={12} sm={4} md={3} lg={2} xl={2} key={video.videoId} p={2}>
-              <Box m={1}>
+              <Box className={classes.box} m={1}>
                 <VideoCard
                   id={video.videoId}
                   thumbnailUrl={url}
