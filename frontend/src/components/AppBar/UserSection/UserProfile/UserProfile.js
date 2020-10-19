@@ -82,7 +82,7 @@ export default function SimpleModal({ user, darkMode, setDarkMode }) {
             {user.badges.split(',').map(badge => {
               return (<Chip
                 label={badge}
-                color={badge==="vip"?"primary":"secondary"}
+                color={badge==="vip"?"secondary":"inherit"}
               />)
             })
           }
