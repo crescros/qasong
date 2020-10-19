@@ -37,6 +37,7 @@ export function authenticateUser(username, password) {
   return axios
     .post(baseUrl + "api/users/authenticate", postBody)
     .then((result) => {
+      console.log(result)
       setDefaultToken(result.data.token);
       return result;
     })
