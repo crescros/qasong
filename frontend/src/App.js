@@ -186,6 +186,7 @@ const App = () => {
           showQueue,
           user,
           usersConnected,
+          showHomeScreen,
         }}
       />
 

@@ -55,55 +55,54 @@ function QueueSection({
 
   const editingQueueName = tempQueueName === queueName;
 
-  return (
-    <>
-      {(queue.length > 0 || nowPlaying) && (
-        <div>
-          <Box m={3}>
-            <Grid container alignItems="flex-end">
-              <Grid item>
-                <Typography variant="h5">
-                  {queue.length > 0 && `${queue.length} songs - `}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Box ml={2}>
-                  <form onSubmit={handleQueueNameSubmit}>
-                    <TextField
-                      id="queue-name"
-                      autoFocus={true}
-                      label={`Queue Name${editingQueueName ? "" : "(editing)"}`}
-                      defaultValue={tempQueueName}
-                      onChange={handleQueueNameChange}
-                      // InputProps={{
-                      //   readOnly: true,
-                      // }}
-                      variant={editingQueueName ? "standard" : "filled"}
-                    />
-                  </form>
-                </Box>
-              </Grid>
-            </Grid>
-          </Box>
 
-          <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-            {queue.map((item, index) => (
-              <QueueItem
-                {...item}
-                key={item.qid}
-                queue={queue}
-                setQueue={setQueue}
-                index={index}
-                nowPlaying={nowPlaying}
-                onClickImage={handleClickQueueItem}
-                moveCard={moveCard}
-              />
-            ))}
-          </DndProvider>
-        </div>
-      )}
-    </>
-  );
+
+  return (
+    <div>
+      <Box m={3}>
+        <Grid container alignItems="flex-end">
+          <Grid item>
+            <Typography variant="h5">
+              {`${queue.length} songs - `}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Box ml={2}>
+              <form onSubmit={handleQueueNameSubmit}>
+                <TextField
+                  id="queue-name"
+                  autoFocus={true}
+                  label={`Queue Name${editingQueueName ? "" : "(editing)"}`}
+                  defaultValue={tempQueueName}
+                  onChange={handleQueueNameChange}
+                  // InputProps={{
+                  //   readOnly: true,
+                  // }}
+                  variant={editingQueueName ? "standard" : "filled"}
+                />
+              </form>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+
+      <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
+        {queue.map((item, index) => (
+          <QueueItem
+            {...item}
+            key={item.qid}
+            queue={queue}
+            setQueue={setQueue}
+            index={index}
+            nowPlaying={nowPlaying}
+            onClickImage={handleClickQueueItem}
+            moveCard={moveCard}
+          />
+        ))}
+      </DndProvider>
+    </div>
+  )
+
 }
 
 export default QueueSection;

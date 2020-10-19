@@ -4,7 +4,7 @@ import { isMobile } from "react-device-detect";
 
 function VideoArea({ nowPlaying, setNowPlaying }) {
   if (!(nowPlaying && nowPlaying.id)) {
-    return <div></div>;
+    return <div id="#empty-div"></div>;
   }
 
   return (
