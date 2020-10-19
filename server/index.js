@@ -36,9 +36,10 @@ let usersConnected = 0;
 
 io.on("connection", (socket) => {
   usersConnected++;
+  socket.emit("usersConnectedUpdate", usersConnected);
   const interval = setInterval(() => {
     socket.emit("usersConnectedUpdate", usersConnected);
-  }, 10000);
+  }, 5000);
   socket.on("disconnect", () => {
     usersConnected--;
     clearInterval(interval);

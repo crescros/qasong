@@ -16,6 +16,7 @@
     "max-len": ["warn", 90],
     "no-var": "error",
     "quotes": ["warn", "double"],
-    "no-console": "warn"
+    "no-console": "warn",
+    "semi": "warn"
   }
 }

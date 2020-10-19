@@ -1,12 +1,13 @@
 import axios from "axios";
 
-let baseUrl;
+export let baseUrl;
 
 if (process.env.NODE_ENV === "production") {
   baseUrl = process.env.REACT_APP_API_URL_RELATIVE;
 } else {
   baseUrl = process.env.REACT_APP_API_URL_LOCAL;
 }
+
 
 export function setDefaultToken(token) {
   axios.defaults.headers.common["Authorization"] = "Bearer " + token;

@@ -37,6 +37,7 @@ export default function PrimarySearchAppBar({
   setDarkMode,
   isLoading,
   setVideos,
+  usersConnected,
 }) {
   const classes = useStyles();
 
@@ -92,6 +93,7 @@ export default function PrimarySearchAppBar({
           {/* Menus */}
           <DesktopMenu {...{ queue, showQueue, setShowQueue, darkMode, setDarkMode }} />
           <MobileMenu {...{ queue, showQueue, setShowQueue, darkMode, setDarkMode }} />
+          <Typography>Users Online: {usersConnected}</Typography>
         </Toolbar>
       </AppBar>
     </div>

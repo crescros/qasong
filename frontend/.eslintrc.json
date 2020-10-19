@@ -35,6 +35,7 @@
     "no-var": "error",
     "quotes": ["warn", "double"],
     "react/prop-types": "off",
-    "no-useless-concat": "off"
+    "no-useless-concat": "off",
+    "semi": "warn"
   }
 }
