@@ -8,10 +8,8 @@ import {
   Switch,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
-import { copyCurrentURL } from "../../../functions";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
-import ReplyIcon from "@material-ui/icons/Reply";
+import ShareButton from "./ShareButton/ShareButton"
 
 const useStyles = makeStyles((theme) => ({
   sectionDesktop: {
@@ -53,22 +51,8 @@ function DesktopMenu({ queue, showQueue, darkMode, setDarkMode, setShowQueue }) 
       </Tooltip>
 
       {/* share button */}
-      <Tooltip
-        title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}
-      >
-        <Box mt={1}>
-          <IconButton
-            edge="end"
-            title="Copy Link to Current Queue"
-            disabled={queue.length === 0}
-            onClick={copyCurrentURL}
-            target="_blank"
-            color={queue.length === 0 ? "inherit" : "secondary"}
-          >
-            <ReplyIcon />
-          </IconButton>
-        </Box>
-      </Tooltip>
+      <ShareButton disabled={queue.length === 0} />
+  
     </div>
   );
 }

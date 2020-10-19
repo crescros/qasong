@@ -99,10 +99,12 @@ export function getQueueFromIds(search) {
 export function copyCurrentURL(e) {
   let dummy = document.createElement("textarea");
 
-  e.target.appendChild(dummy);
+  let app = document.querySelector('#app')
+  
+  app.appendChild(dummy);
 
   dummy.value = location.href;
   dummy.select();
   document.execCommand("copy");
-  e.target.removeChild(dummy);
+  app.removeChild(dummy);
 }

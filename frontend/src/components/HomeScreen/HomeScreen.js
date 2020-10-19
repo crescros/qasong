@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
 import VideoSearch from "../AppBar/VideoSearch/VideoSearch";
 
@@ -9,7 +9,7 @@ function HomeScreen({
   showHomeScreen,
 }) {
   if (!showHomeScreen) {
-    return <div></div>;
+    return <div id="empty-div"></div>;
   }
 
   return (
@@ -19,7 +19,7 @@ function HomeScreen({
           <Typography
             align="center"
             variant="h1"
-            style={{ color: "black", fontSize: "8vw" }}
+            style={{ color: "#888888", fontSize: "8vw" }}
             xs={12}
           >
             {process.env.REACT_APP_NAME.toUpperCase()}

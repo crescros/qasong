@@ -17,10 +17,14 @@ import socketIOClient from "socket.io-client";
 import { baseUrl } from "./functions";
 console.log(baseUrl);
 
+import PlayArea from "./components/PlayArea/PlayArea";
 
 const App = () => {
   const darkTheme = createMuiTheme({
     palette: {
+      background: {
+        default: "#000000"
+      },
       primary: {
         main: "#000000",
         dark: "#0e132e",
@@ -191,6 +195,7 @@ const App = () => {
           showQueue,
           user,
           usersConnected,
+          showHomeScreen,
         }}
       />
 

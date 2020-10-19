@@ -7,8 +7,6 @@ import {
   Typography,
   IconButton,
   Box,
-  Switch,
-  Tooltip,
 } from "@material-ui/core";
 import VideoSearch from "./VideoSearch/VideoSearch";
 import MobileMenu from "./MobileMenu/MobileMenu";
@@ -28,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 export default function PrimarySearchAppBar({
   handleSearchTermInput,
   handleSubmitVideoSearch,
+  showHomeScreen,
   searchTerm,
   setSearchTerm,
   showQueue,
@@ -71,7 +70,9 @@ export default function PrimarySearchAppBar({
           </Typography>
 
           {/* Search bar */}
-          <VideoSearch
+          {
+            !showHomeScreen &&
+            <VideoSearch
             handleSearchTermInput={handleSearchTermInput}
             handleSubmitVideoSearch={handleSubmitVideoSearch}
             searchTerm={searchTerm}
@@ -79,7 +80,8 @@ export default function PrimarySearchAppBar({
               margin: "0 auto",
               maxWidth: 800,
             }}
-          />
+            />
+          }
 
           {/* Search Bar Loading Indicator */}
           <Box mx={2}>

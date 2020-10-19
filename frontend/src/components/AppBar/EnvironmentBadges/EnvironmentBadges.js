@@ -18,7 +18,7 @@ function EnvironmentBadges() {
   };
 
   return (
-    <>
+    <div>
       {
         // this is the express node env
         nodeEnvLabel && nodeEnvLabel !== "production" && (
@@ -47,7 +47,7 @@ function EnvironmentBadges() {
           </Box>
         )
       }
-    </>
+    </div>
   );
 }
 

@@ -5,9 +5,8 @@ import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton'; 
-import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
-import { borders } from '@material-ui/system';
-import { Stop as StopIcon } from "@material-ui/icons";
+import HighlightOffOutlinedIcon from '@material-ui/icons/HighlightOffOutlined';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -15,20 +14,25 @@ const useStyles = makeStyles((theme) => ({
     top: 'auto',
     bottom: 0,
     height: 75,
+    borderTop: '2px solid white',
   },
   grow: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  playSize: {
+    fontSize:  12,
+  }
 }));
 
-export default function BottomAppBar({nowPlaying, queue, videos, setNowPlaying}) {
+export default function BottomAppBar({nowPlaying, queue, videos, setNowPlaying, darkMode,
+  setDarkMode}) {
   const classes = useStyles();
 
-function stopTheSong() {
-  setNowPlaying({});
-}
+  function stopTheSong() {
+    setNowPlaying({});
+  }
 
   if(!nowPlaying || !nowPlaying.title){
     return(
@@ -41,11 +45,11 @@ function stopTheSong() {
       <CssBaseline />
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar className={classes.grow}>
-        <Typography>
+        <Typography className={classes.playSize}>
           {  nowPlaying.title } 
         </Typography>
         <IconButton onClick={stopTheSong}>
-          <StopIcon />
+          <HighlightOffOutlinedIcon />
         </IconButton>
         </Toolbar>
       </AppBar>
