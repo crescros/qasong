@@ -13,6 +13,7 @@ import MobileMenu from "./MobileMenu/MobileMenu";
 import EnvironmentBadges from "./EnvironmentBadges/EnvironmentBadges";
 import { isMobile } from "react-device-detect";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
+import UserSection from "./UserSection/UserSection";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -36,6 +37,8 @@ export default function PrimarySearchAppBar({
   setDarkMode,
   isLoading,
   setVideos,
+  user,
+  setUser
 }) {
   const classes = useStyles();
 
@@ -94,6 +97,8 @@ export default function PrimarySearchAppBar({
           {/* Menus */}
           <DesktopMenu {...{ queue, showQueue, setShowQueue, darkMode, setDarkMode }} />
           <MobileMenu {...{ queue, showQueue, setShowQueue, darkMode, setDarkMode }} />
+
+          <UserSection {...{user, setUser}}/>
         </Toolbar>
       </AppBar>
     </div>
