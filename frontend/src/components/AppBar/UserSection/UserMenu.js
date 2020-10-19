@@ -1,16 +1,16 @@
 import React from "react";
 import { Menu, MenuItem } from "@material-ui/core";
+import UserProfile from "./UserProfile/UserProfile"
 
 function UserMenu({
   handleLogOut,
   handleMenuClose,
   menuOpen,
   anchorEl,
-  setGlobalChatOpen,
+  user,
+  darkMode, 
+  setDarkMode
 }) {
-  const handleOpenChat = () => {
-    setGlobalChatOpen(true);
-  };
 
   return (
     <Menu
@@ -20,8 +20,8 @@ function UserMenu({
       open={menuOpen}
       onClose={handleMenuClose}
     >
+      <UserProfile {...{user, darkMode, setDarkMode}} />
       <MenuItem onClick={handleLogOut}>Logout</MenuItem>
-      <MenuItem onClick={handleOpenChat}>Chat</MenuItem>
     </Menu>
   );
 }
