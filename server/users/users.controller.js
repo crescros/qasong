@@ -17,7 +17,7 @@ module.exports = router;
 function authenticate(req, res, next) {
   let { username, password } = req.body;
   con.query(
-    `SELECT username, userid, email FROM users WHERE username='${
+    `SELECT username, userid, email, badges FROM users WHERE username='${
       username
     }' AND password='${password}';`,
     (err, data) => {
@@ -26,13 +26,15 @@ function authenticate(req, res, next) {
       } else if (!data[0]) {
         res.status(400).json({ message: "no user found" });
       } else {
-        const token = jwt.sign({ sub: data[0].id }, process.env.SECRET);
+        const token = jwt.sign({ sub: data[0].dbid }, process.env.SECRET);
 
         const username = data[0].username;
         const email = data[0].email;
+        const badges = data[0].badges;
 
         res.json({
           email: email,
+          badges: badges,
           username: username,
           token: token,
         });
