@@ -12,7 +12,6 @@ import QueueLoadingScreen from "./components/QueueSection/QueueLoadingScreen/Que
 import QueueSection from "./components/QueueSection/QueueSection";
 import VideoArea from "./components/VideoArea/VideoArea";
 import VideoGrid from "./components/VideoGrid/VideoGrid";
-import PlayArea from "./components/footerPlayArea/PlayArea";
 import socketIOClient from "socket.io-client";
 import { baseUrl } from "./functions";
 console.log(baseUrl);
