@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { MenuItem, Typography, FormControlLabel, Switch, Grid } from '@material-ui/core'
+import { MenuItem, Typography, FormControlLabel, Switch, Grid, Box, Chip } from '@material-ui/core'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 function rand() {
@@ -60,7 +60,7 @@ export default function SimpleModal({ user, darkMode, setDarkMode }) {
 
         {/* row */}
         <Grid item>
-          <AccountCircleIcon />
+          <AccountCircleIcon style={{ width: "256px" }} />
         </Grid>
 
         {/* row */}
@@ -75,6 +75,22 @@ export default function SimpleModal({ user, darkMode, setDarkMode }) {
           <Typography variant="caption" align='center'>
             {user.email}
           </Typography>
+        </Grid>
+
+        {/* row */}
+        <Grid item>
+            {user.badges.split(',').map(badge => {
+              return (<Chip
+                label={badge}
+                color={badge==="vip"?"primary":"secondary"}
+              />)
+            })
+          }
+        </Grid>
+
+        {/* row */}
+        <Grid item>
+          <Box p={1}></Box>
         </Grid>
 
         {/* row */}
