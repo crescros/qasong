@@ -1,7 +1,7 @@
 import React from 'react'
 import ReplyIcon from "@material-ui/icons/Reply";
 import { makeStyles } from '@material-ui/core/styles';
-import { copyCurrentURL } from "../../../../functions";
+import { copyCurrentURL } from "../../../functions";
 import {
     Tooltip,
     Box,

@@ -9,7 +9,6 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
-import ShareButton from "./ShareButton/ShareButton"
 
 const useStyles = makeStyles((theme) => ({
   sectionDesktop: {
@@ -50,9 +49,6 @@ function DesktopMenu({ queue, showQueue, darkMode, setDarkMode, setShowQueue }) 
         </Box>
       </Tooltip>
 
-      {/* share button */}
-      <ShareButton disabled={queue.length === 0} />
-  
     </div>
   );
 }

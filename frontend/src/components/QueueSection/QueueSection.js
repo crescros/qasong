@@ -1,11 +1,14 @@
 import React, { useCallback, useState } from "react";
-import { Typography, Box, TextField, Grid } from "@material-ui/core";
+import { Typography, Box, TextField, Grid, IconButton } from "@material-ui/core";
 import QueueItem from "./QueueCard/QueueCard";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
 import { isMobile } from "react-device-detect";
 import update from "immutability-helper";
+import ShareButton from "./ShareButton/ShareButton"
+import ShuffleButton from "./ShuffleButton/ShuffleButton"
+import PlayQueueButton from "./PlayQueueButton/PlayQueueButton"
 
 function QueueSection({
   nowPlaying,
@@ -81,7 +84,17 @@ function QueueSection({
                       variant={editingQueueName ? "standard" : "filled"}
                     />
                   </form>
+
                 </Box>
+              </Grid>
+              <Grid item>
+                <PlayQueueButton {...{setNowPlaying, queue}} />
+              </Grid>
+              <Grid item>
+                <ShuffleButton {...{queue, setQueue, setNowPlaying}} />
+              </Grid>
+              <Grid item>
+                <ShareButton disabled={queue.length === 0} />
               </Grid>
             </Grid>
           </Box>

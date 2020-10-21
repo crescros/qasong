@@ -107,3 +107,9 @@ export function copyCurrentURL(e) {
   document.execCommand("copy");
   app.removeChild(dummy);
 }
+
+export function shuffle(array) {
+  var tempArray = array 
+  tempArray.sort(() => Math.random() - 0.5);
+  return tempArray
+}
