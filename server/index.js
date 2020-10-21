@@ -15,8 +15,8 @@ const apiLimiter = rateLimit({
 });
 
 // database connection
-// const con = require('./database/connection.js')
-// con.connect()
+const con = require('./database/connection.js')
+con.connect()
 
 // initialize express
 const app = express();
@@ -30,6 +30,7 @@ app.use(errorHandler);
 // define routes
 app.use("/api/search", require("./search/search.controller"), apiLimiter);
 app.use("/api/env", (req, res) => res.send(process.env.NODE_ENV), apiLimiter);
+app.use("/api/users", require("./users/users.controller.js"), apiLimiter);
 
 // start server
 const port = process.env.PORT || 3016;

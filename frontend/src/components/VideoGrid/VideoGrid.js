@@ -8,7 +8,7 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue }) {
   }
 
   return (
-    <Box mt={4}>
+    <Box mt={4} id="video-grid">
       <Box m={2}>
         <Typography>
           Search Results for <i>{videos.searchTerm}</i>
