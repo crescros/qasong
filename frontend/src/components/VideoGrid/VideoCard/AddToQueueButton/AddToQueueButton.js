@@ -36,27 +36,16 @@ function AddToQueueButton({ handleAddQueue }) {
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
-    return (<>
-        <IconButton onClick={handleClick} style={{ background: "#00000080", color: "white" }}>
-            <QueueIcon />
-        </IconButton>
-        <Popover
-            id={id}
+    return (
+        <Tooltip
             open={open}
-            anchorEl={anchorEl}
             onClose={handleClose}
-            anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
-            }}
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'center',
-            }}
+            title="added to queue"
         >
-            <Typography className={classes.typography}>added to queue</Typography>
-        </Popover>
-    </>
+            <IconButton onClick={handleClick} style={{ background: "#00000080", color: "white" }}>
+                <QueueIcon />
+            </IconButton>
+        </Tooltip>
     )
 }
 
