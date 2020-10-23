@@ -98,7 +98,7 @@ export default function PrimarySearchAppBar({
           <DesktopMenu {...{ queue, showQueue, setShowQueue, darkMode, setDarkMode }} />
           <MobileMenu {...{ queue, showQueue, setShowQueue, darkMode, setDarkMode }} />
 
-          <UserSection {...{user, setUser, darkMode, setDarkMode}}/>
+          {/* <UserSection {...{user, setUser, darkMode, setDarkMode}}/> */}
         </Toolbar>
       </AppBar>
     </div>

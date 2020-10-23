@@ -22,7 +22,7 @@ function HomeScreen({
             style={{ color: "#888888", fontSize: "8vw" }}
             xs={12}
           >
-            {process.env.REACT_APP_NAME.toUpperCase()}
+            {process.env.REACT_APP_NAME}
           </Typography>
         </Grid>
         <Grid item xs={12}>

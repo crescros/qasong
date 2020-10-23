@@ -9,6 +9,8 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
+import Brightness7Icon from '@material-ui/icons/Brightness7';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
 
 const useStyles = makeStyles((theme) => ({
   sectionDesktop: {
@@ -43,7 +45,18 @@ function DesktopMenu({ queue, showQueue, darkMode, setDarkMode, setShowQueue }) 
         </Box>
       </Tooltip>
 
-    </div>
+
+      <IconButton
+        edge="end"
+        title="toggle light/dark theme"
+        onClick={() => setDarkMode(!darkMode)}
+        target="_blank"
+      >
+          {darkMode ? < Brightness7Icon /> : < Brightness4Icon />}
+
+      </IconButton>
+    
+    </div >
   );
 }
 
