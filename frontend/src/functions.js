@@ -20,6 +20,7 @@ export function getYoutubeIdFromSearch(search) {
   return axios
     .get(baseUrl + "api/search?q=" + search)
     .then((result) => {
+      console.log(result)
       return result.data;
     })
     .catch((error) => {

@@ -7,7 +7,7 @@ module.exports = {
 };
 
 async function searchYoutube({ searchTerm }) {
-  return yts(searchTerm).then((results) => {
+  return yts(searchTerm + " music").then((results) => {
     return results;
   });
 }

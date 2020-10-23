@@ -3,7 +3,7 @@ import Video from "./Video/Video";
 import { isMobile } from "react-device-detect";
 
 function VideoArea({ nowPlaying, setNowPlaying }) {
-  if (!(nowPlaying && nowPlaying.id)) {
+  if (!(nowPlaying && nowPlaying.videoId)) {
     return <div id="#empty-div"></div>;
   }
 
@@ -22,7 +22,7 @@ function VideoArea({ nowPlaying, setNowPlaying }) {
             : {}
         }
       >
-        <Video id={nowPlaying.id} setNowPlaying={setNowPlaying} />
+        <Video id={nowPlaying.videoId} setNowPlaying={setNowPlaying} />
       </div>
       {isMobile && <div style={{ height: "100px" }}></div>}
     </>

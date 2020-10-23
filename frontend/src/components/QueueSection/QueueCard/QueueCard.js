@@ -7,7 +7,6 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  CardActions,
   CardMedia,
   Tooltip,
   Typography,
@@ -45,7 +44,7 @@ export default function ImgMediaCard({
   qid,
   queue,
   setQueue,
-  smallThumbnailUrl,
+  thumbnail,
   title,
 }) {
   const classes = useStyles();
@@ -124,7 +123,7 @@ export default function ImgMediaCard({
           component="img"
           alt={title}
           height="70"
-          image={smallThumbnailUrl}
+          image={thumbnail}
           title={title}
         />
         <CardContent style={{ height: "40px" }}>

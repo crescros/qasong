@@ -24,6 +24,8 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue }) {
             <Grid item xs={12} sm={4} md={3} lg={2} xl={2} key={video.videoId} p={2}>
               <Box m={1} display="flex" justifyContent="center">
                 <VideoCard
+                  video={video}
+                  
                   id={video.videoId}
                   thumbnailUrl={url}
                   smallThumbnailUrl={smallUrl}
