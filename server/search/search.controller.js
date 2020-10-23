@@ -1,7 +1,7 @@
 ﻿const express = require("express");
 const router = express.Router();
 const searchService = require("./search.service");
-const youtubeStream = require('youtube-audio-stream');
+const youtubeStream = require("youtube-audio-stream");
 
 // routes
 router.get("/", searchYoutube);
@@ -16,7 +16,7 @@ function searchYoutube(req, res, next) {
   if (!searchTerm) {
     return res.status(400).json({
       message:
-        'no search term provided. use query parameter "q" to include a search term',
+        "no search term provided. use query parameter \"q\" to include a search term",
     });
   }
 
@@ -38,7 +38,7 @@ function searchYoutubeById(req, res, next) {
   if (!ids) {
     return res.status(400).json({
       message:
-        'no search term provided. use query parameter "q" to include a search term',
+        "no search term provided. use query parameter \"q\" to include a search term",
     });
   }
   searchService
@@ -52,18 +52,17 @@ function searchYoutubeById(req, res, next) {
     })
     .catch((err) => next(err));
 }
-function getStreamFromYoutubeId(req, res, next) {
+function getStreamFromYoutubeId(req, res, next) { // eslint-disable-line no-unused-vars
   const id = req.query.id;
 
-  console.log(id)
   if (!id) {
     return res.status(400).json({
       message:
-        'no search term provided. use query parameter "q" to include a search term',
+        "no search term provided. use query parameter \"q\" to include a search term",
     });
   }
 
-  var requestUrl = 'http://youtube.com/watch?v=' + id
+  let requestUrl = "http://youtube.com/watch?v=" + id
   try {
     youtubeStream(requestUrl).pipe(res)
   } catch (exception) {

@@ -1,8 +1,16 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import { MenuItem, Typography, FormControlLabel, Switch, Grid, Box, Chip } from '@material-ui/core'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import {
+  MenuItem,
+  Typography,
+  FormControlLabel,
+  Switch,
+  Grid,
+  Box,
+  Chip,
+} from "@material-ui/core";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -47,17 +55,11 @@ export default function SimpleModal({ user, darkMode, setDarkMode }) {
     setOpen(false);
   };
 
-  if (!user) return <div></div>
+  if (!user) return <div></div>;
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <Grid
-        container
-        direction="column"
-        justify="center"
-        alignItems="center"
-      >
-
+      <Grid container direction="column" justify="center" alignItems="center">
         {/* row */}
         <Grid item>
           <AccountCircleIcon style={{ width: "256px" }} />
@@ -65,27 +67,29 @@ export default function SimpleModal({ user, darkMode, setDarkMode }) {
 
         {/* row */}
         <Grid item>
-          <Typography variant="h5" align='center'>
+          <Typography variant="h5" align="center">
             {user.username}
           </Typography>
         </Grid>
 
         {/* row */}
         <Grid item>
-          <Typography variant="caption" align='center'>
+          <Typography variant="caption" align="center">
             {user.email}
           </Typography>
         </Grid>
 
         {/* row */}
         <Grid item>
-            {user.badges.split(',').map(badge => {
-              return (<Chip
+          {user.badges.split(",").map((badge) => {
+            return (
+              <Chip
+                key={badge}
                 label={badge}
-                color={badge==="vip"?"secondary":"inherit"}
-              />)
-            })
-          }
+                color={badge === "vip" ? "secondary" : "inherit"}
+              />
+            );
+          })}
         </Grid>
 
         {/* row */}
@@ -97,26 +101,21 @@ export default function SimpleModal({ user, darkMode, setDarkMode }) {
         <Grid item>
           <FormControlLabel
             style={{ color: "white" }}
-            control={<Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />}
+            control={
+              <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
+            }
             label={darkMode ? "dark mode" : "light mode"}
             color="red"
           />
         </Grid>
-
       </Grid>
-
     </div>
   );
 
   return (
     <div>
-      <MenuItem onClick={handleOpen}>
-        Profile
-      </MenuItem>
-      <Modal
-        open={open}
-        onClose={handleClose}
-      >
+      <MenuItem onClick={handleOpen}>Profile</MenuItem>
+      <Modal open={open} onClose={handleClose}>
         {body}
       </Modal>
     </div>

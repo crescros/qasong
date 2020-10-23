@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 import {
   Box,
@@ -25,13 +25,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "25px",
     "&:hover > *": {
       visibility: "visible !important",
-    }
+    },
   },
   overlay: {
     visibility: "hidden",
     position: "absolute",
     top: theme.spacing(1),
-    right: theme.spacing(0.5)
+    right: theme.spacing(0.5),
   },
 }));
 
@@ -111,7 +111,6 @@ export default function ImgMediaCard({
   return (
     <Card
       ref={ref}
-
       className={classes.card}
       style={{
         backgroundColor: (nowPlaying && nowPlaying.qid) === qid && "#2ad156",

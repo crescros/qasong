@@ -1,6 +1,6 @@
 import React from "react";
 import { Menu, MenuItem } from "@material-ui/core";
-import UserProfile from "./UserProfile/UserProfile"
+import UserProfile from "./UserProfile/UserProfile";
 
 function UserMenu({
   handleLogOut,
@@ -8,10 +8,9 @@ function UserMenu({
   menuOpen,
   anchorEl,
   user,
-  darkMode, 
-  setDarkMode
+  darkMode,
+  setDarkMode,
 }) {
-
   return (
     <Menu
       keepMounted
@@ -20,7 +19,7 @@ function UserMenu({
       open={menuOpen}
       onClose={handleMenuClose}
     >
-      <UserProfile {...{user, darkMode, setDarkMode}} />
+      <UserProfile {...{ user, darkMode, setDarkMode }} />
       <MenuItem onClick={handleLogOut}>Logout</MenuItem>
     </Menu>
   );

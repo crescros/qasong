@@ -1,6 +1,7 @@
 import React from "react";
 import YouTube from "react-youtube";
 
+
 function Video({ id, setNowPlaying }) {
   const youtubePlayerOptions = {
     height: "100px",
@@ -16,13 +17,19 @@ function Video({ id, setNowPlaying }) {
     },
   };
 
+  function handleClick(){
+    const videoPlayer = document.querySelector('iframe')
+
+    console.log(videoPlayer)
+  }
+
   function handleVideoEnd() {
     setNowPlaying(null);
   }
 
   if (!id) return <div id="empty-div"></div>;
 
-  return <YouTube videoId={id} opts={youtubePlayerOptions} onEnd={handleVideoEnd} />;
+  return <><button onClick={handleClick}>click</button><YouTube videoId={id} opts={youtubePlayerOptions} onEnd={handleVideoEnd} /></>;
 }
 
 export default Video;

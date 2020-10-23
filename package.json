@@ -29,7 +29,10 @@
     "appId": "com.electron.artistify",
     "files": "./public/**/*",
     "win": {
-      "target": "nsis",
+      "icon": "public/meta-icon.png"
+    },
+    "mac":{
+      "category": "public.app-category.music",
       "icon": "public/meta-icon.png"
     }
   },

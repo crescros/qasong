@@ -1,16 +1,9 @@
 import React from "react";
-import {
-  FormControlLabel,
-  Tooltip,
-  Box,
-  IconButton,
-  Badge,
-  Switch,
-} from "@material-ui/core";
+import { Tooltip, Box, IconButton, Badge } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
-import Brightness7Icon from '@material-ui/icons/Brightness7';
-import Brightness4Icon from '@material-ui/icons/Brightness4';
+import Brightness7Icon from "@material-ui/icons/Brightness7";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
 
 const useStyles = makeStyles((theme) => ({
   sectionDesktop: {
@@ -24,8 +17,7 @@ const useStyles = makeStyles((theme) => ({
 function DesktopMenu({ queue, showQueue, darkMode, setDarkMode, setShowQueue }) {
   const classes = useStyles();
   return (
-    <div className={classes.sectionDesktop}>
-
+    <div className={classes.sectionDesktop} id="desktop-menu">
       <Tooltip
         title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}
       >
@@ -45,18 +37,15 @@ function DesktopMenu({ queue, showQueue, darkMode, setDarkMode, setShowQueue }) 
         </Box>
       </Tooltip>
 
-
       <IconButton
         edge="end"
         title="toggle light/dark theme"
         onClick={() => setDarkMode(!darkMode)}
         target="_blank"
       >
-          {darkMode ? < Brightness7Icon /> : < Brightness4Icon />}
-
+        {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
       </IconButton>
-    
-    </div >
+    </div>
   );
 }
 

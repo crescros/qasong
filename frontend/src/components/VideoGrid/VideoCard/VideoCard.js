@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 import {
   Box,
   Card,
@@ -7,7 +7,7 @@ import {
   Grid,
   CardMedia,
   Typography,
-} from '@material-ui/core';
+} from "@material-ui/core";
 import uuid from "react-uuid";
 import AddToQueueButton from "./AddToQueueButton/AddToQueueButton";
 
@@ -16,11 +16,11 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     minWidth: 250,
     maxHeight: 190,
-    boxShadow: 'none',
+    boxShadow: "none",
     backgroundColor: "transparent",
     "&:hover > *": {
       visibility: "visible !important",
-    }
+    },
   },
   media: {
     height: 130,
@@ -28,29 +28,21 @@ const useStyles = makeStyles((theme) => ({
   truncate: {
     whiteSpace: "nowrap",
     overflow: "hidden",
-    textOverflow: "ellipsis"
+    textOverflow: "ellipsis",
   },
   overlay: {
     visibility: "hidden",
     position: "absolute",
     top: theme.spacing(1),
-    left: theme.spacing(0.5)
+    left: theme.spacing(0.5),
   },
 }));
 
-
-export default function MediaCard({
-  video,
-  setNowPlaying,
-  nowPlaying,
-  queue,
-  setQueue,
-}) {
+export default function MediaCard({ video, setNowPlaying, nowPlaying, queue, setQueue }) {
   const classes = useStyles();
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
-
     if (nowPlaying && nowPlaying.videoId === video.videoId) {
       setPlaying(true);
     } else {
@@ -59,8 +51,7 @@ export default function MediaCard({
   }, [nowPlaying]);
 
   function handlePlayButton(event) {
-
-    event.stopPropagation()
+    event.stopPropagation();
 
     if (!playing) {
       setNowPlaying(video);
@@ -71,9 +62,8 @@ export default function MediaCard({
     }
   }
 
-
   function handleAddQueue(event) {
-    event.stopPropagation()
+    event.stopPropagation();
     setQueue(
       queue.concat({
         ...video,
@@ -82,14 +72,14 @@ export default function MediaCard({
     );
   }
 
-
   return (
-    <Card className={classes.card} style={{ backgroundColor: playing && "#2ad156" }} onClick={handlePlayButton} >
+    <Card
+      className={classes.card}
+      style={{ backgroundColor: playing && "#2ad156" }}
+      onClick={handlePlayButton}
+    >
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={video.image}
-        />
+        <CardMedia className={classes.media} image={video.image} />
         <Box p={1}>
           <Grid container direction="column">
             <Grid item>
@@ -97,7 +87,7 @@ export default function MediaCard({
                 {video.title}
               </Typography>
             </Grid>
-            <Grid item container justify="space-between" >
+            <Grid item container justify="space-between">
               <Grid item>
                 <Typography className={classes.truncate} variant="caption">
                   {video.author.name}
@@ -119,4 +109,3 @@ export default function MediaCard({
     </Card>
   );
 }
-

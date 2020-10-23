@@ -3,9 +3,9 @@ import axios from "axios";
 let baseUrl;
 
 if (process.env.NODE_ENV === "production") {
-  baseUrl = process.env.REACT_APP_API_URL_PROD;
+  baseUrl = process.env.REACT_APP_API_URL_RELATIVE;
 } else {
-  baseUrl = process.env.REACT_APP_API_URL_PROD;
+  baseUrl = process.env.REACT_APP_API_URL_LOCAL;
 }
 
 export function setDefaultToken(token) {
@@ -20,7 +20,6 @@ export function getYoutubeIdFromSearch(search) {
   return axios
     .get(baseUrl + "api/search?q=" + search)
     .then((result) => {
-      console.log(result)
       return result.data;
     })
     .catch((error) => {
@@ -38,7 +37,6 @@ export function authenticateUser(username, password) {
   return axios
     .post(baseUrl + "api/users/authenticate", postBody)
     .then((result) => {
-      console.log(result)
       setDefaultToken(result.data.token);
       return result;
     })
@@ -70,7 +68,6 @@ export function getNodeEnvironment() {
       return result;
     })
     .catch((error) => {
-      console.log(error);
       alert(error);
       return error;
     });
@@ -91,17 +88,16 @@ export function getQueueFromIds(search) {
       return result.data;
     })
     .catch((error) => {
-      console.log(error);
       alert(error + " " + error.response && error.response.data);
       return [];
     });
 }
 
-export function copyCurrentURL(e) {
+export function copyCurrentURL() {
   let dummy = document.createElement("textarea");
 
-  let app = document.querySelector('#app')
-  
+  let app = document.querySelector("#app");
+
   app.appendChild(dummy);
 
   dummy.value = location.href;
@@ -111,7 +107,7 @@ export function copyCurrentURL(e) {
 }
 
 export function shuffle(array) {
-  var tempArray = array 
+  let tempArray = array;
   tempArray.sort(() => Math.random() - 0.5);
-  return tempArray
+  return tempArray;
 }
