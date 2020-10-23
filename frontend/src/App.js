@@ -114,7 +114,7 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("queue", JSON.stringify(queue));
     let parsed = queryString.parse(location.search);
-    parsed.queue = queue.map((song) => song.id);
+    parsed.queue = queue.map((song) => song.videoId);
     history.pushState(parsed, "queue", "?" + queryString.stringify(parsed));
 
     if (queue.length <= 0) {

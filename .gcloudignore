@@ -25,9 +25,12 @@ node_modules/
 package-lock.json
 
 
-# Frontend
+# Frontend Development
 frontend/
 
 # Testing
 server/cypress/
 server/cypress.json
+
+# Electron
+dist/

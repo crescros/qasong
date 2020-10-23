@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require("uuid");
 
 module.exports = {
   searchYoutube,
-  searchYoutubeById,
+  searchYoutubeById
 };
 
 async function searchYoutube({ searchTerm }) {
