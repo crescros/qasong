@@ -31,7 +31,7 @@
     "win": {
       "icon": "public/meta-icon.png"
     },
-    "mac":{
+    "mac": {
       "category": "public.app-category.music",
       "icon": "public/meta-icon.png"
     }

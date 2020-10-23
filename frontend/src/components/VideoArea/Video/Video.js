@@ -29,7 +29,7 @@ function Video({ id, setNowPlaying }) {
 
   if (!id) return <div id="empty-div"></div>;
 
-  return <><button onClick={handleClick}>click</button><YouTube videoId={id} opts={youtubePlayerOptions} onEnd={handleVideoEnd} /></>;
+  return <YouTube videoId={id} opts={youtubePlayerOptions} onEnd={handleVideoEnd} />;
 }
 
 export default Video;
