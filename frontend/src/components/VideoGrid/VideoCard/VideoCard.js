@@ -6,11 +6,9 @@ import {
   CardActionArea,
   Grid,
   CardMedia,
-  IconButton,
   Typography,
 } from '@material-ui/core';
 import uuid from "react-uuid";
-import { formatVideoTitle } from "../../../functions";
 import AddToQueueButton from "./AddToQueueButton/AddToQueueButton";
 
 const useStyles = makeStyles((theme) => ({
@@ -91,7 +89,6 @@ export default function MediaCard({
         <CardMedia
           className={classes.media}
           image={video.image}
-          title="Contemplative Reptile"
         />
         <Box p={1}>
           <Grid container direction="column">
@@ -119,8 +116,6 @@ export default function MediaCard({
       <Box className={classes.overlay}>
         <AddToQueueButton {...{ handleAddQueue }} />
       </Box>
-
-
     </Card>
   );
 }

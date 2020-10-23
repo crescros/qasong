@@ -16,21 +16,11 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue }) {
       </Box>
       <Grid container direction="row" justify="center" alignItems="center">
         {videos.results.map((video) => {
-          const url = video.thumbnail;
-          const smallUrl = video.thumbnail;
-          const title = video.title;
-
           return (
             <Grid item xs={12} sm={4} md={3} lg={2} xl={2} key={video.videoId} p={2}>
               <Box m={1} display="flex" justifyContent="center">
                 <VideoCard
                   video={video}
-                  
-                  id={video.videoId}
-                  thumbnailUrl={url}
-                  smallThumbnailUrl={smallUrl}
-                  description={video.description}
-                  title={title}
                   nowPlaying={nowPlaying}
                   setNowPlaying={setNowPlaying}
                   queue={queue}
