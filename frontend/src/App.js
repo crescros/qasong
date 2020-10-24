@@ -34,7 +34,7 @@ const App = () => {
 
   // APPLICATION LEVEL STATE
   const [currentQid, setCurrentQid] = useState();
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingQueue, setIsLoadingQueue] = useState(false);
   const [nowPlaying, setNowPlaying] = useState();
