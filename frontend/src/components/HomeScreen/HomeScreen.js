@@ -37,6 +37,10 @@ function HomeScreen({
             {process.env.REACT_APP_TAGLINE}
           </Typography>
         </Grid>
+
+        <Grid item>
+        
+        </Grid>
         <Grid item container justify="center">
           <VideoSearch
             handleSearchTermInput={handleSearchTermInput}

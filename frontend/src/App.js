@@ -20,12 +20,6 @@ const App = () => {
       background: {
         default: "#000000",
       },
-      primary: {
-        main: "#000000",
-        dark: "#0e132e",
-        contrastText: "#fff",
-      },
-
       secondary: {
         main: "#2ad156",
         dark: "#fff",

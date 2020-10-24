@@ -52,7 +52,7 @@ export default function PrimarySearchAppBar({
 
   return (
     <div className={classes.grow}>
-      <AppBar position={isMobile ? "fixed" : "static"}>
+      <AppBar position={isMobile ? "fixed" : "static"} style={darkMode?{background: "black"}:{}}>
         <Toolbar>
           {/* Icon-logo */}
           <IconButton
