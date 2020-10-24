@@ -9,7 +9,7 @@ function HomeScreen({
   showHomeScreen,
 }) {
   if (!showHomeScreen) {
-    return <div></div>;
+    return <div id="empty-div"></div>;
   }
 
   return (
@@ -22,7 +22,7 @@ function HomeScreen({
             style={{ color: "#888888", fontSize: "8vw" }}
             xs={12}
           >
-            {process.env.REACT_APP_NAME.toUpperCase()}
+            {process.env.REACT_APP_NAME}
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -37,7 +37,7 @@ function HomeScreen({
             {process.env.REACT_APP_TAGLINE}
           </Typography>
         </Grid>
-        {/* <Grid item xs={12} container justify="center">
+        <Grid item xs={12} container justify="center">
           <VideoSearch
             handleSearchTermInput={handleSearchTermInput}
             handleSubmitVideoSearch={handleSubmitVideoSearch}
@@ -47,7 +47,7 @@ function HomeScreen({
               maxWidth: 800,
             }}
           />
-        </Grid> */}
+        </Grid>
       </Grid>
     </Box>
   );

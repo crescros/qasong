@@ -18,7 +18,7 @@ const App = () => {
   const darkTheme = createMuiTheme({
     palette: {
       background: {
-        default: "#000000"
+        default: "#000000",
       },
       primary: {
         main: "#000000",
@@ -50,7 +50,6 @@ const App = () => {
   const [showQueue, setShowQueue] = useState(false);
   const [user, setUser] = useState();
   const [videos, setVideos] = useState([]);
-  const [usersConnected, setUsersConnected] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -68,6 +67,7 @@ const App = () => {
         let linkedQueue = await getQueueFromIds(
           queryString.stringify({ queue: parsedParams.queue })
         );
+        console.log(linkedQueue)
         setIsLoadingQueue(false);
         setQueue(linkedQueue);
         setShowQueue(true);
@@ -114,7 +114,7 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("queue", JSON.stringify(queue));
     let parsed = queryString.parse(location.search);
-    parsed.queue = queue.map((song) => song.id);
+    parsed.queue = queue.map((song) => song.videoId);
     history.pushState(parsed, "queue", "?" + queryString.stringify(parsed));
 
     if (queue.length <= 0) {
@@ -185,7 +185,7 @@ const App = () => {
           setVideos,
           showQueue,
           user,
-          usersConnected,
+          showHomeScreen,
         }}
       />
 
@@ -236,12 +236,13 @@ const App = () => {
       />
 
       <PlayArea
-      { ... {
-        nowPlaying,
-        queue,
-        videos,
-        setNowPlaying,
-      }} />
+        {...{
+          nowPlaying,
+          queue,
+          videos,
+          setNowPlaying,
+        }}
+      />
     </ThemeProvider>
   );
 };

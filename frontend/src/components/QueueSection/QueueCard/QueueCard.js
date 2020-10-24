@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
+import { makeStyles } from "@material-ui/core/styles";
+
 import {
+  Box,
   Card,
   CardActionArea,
   CardContent,
-  CardActions,
   CardMedia,
   Tooltip,
   Typography,
@@ -13,11 +15,25 @@ import {
 import { formatVideoTitle } from "../../../functions";
 import ClearIcon from "@material-ui/icons/Clear";
 
-const style = {
-  cursor: "move",
-  display: "inline-block",
-  width: "100px",
-};
+const useStyles = makeStyles((theme) => ({
+  card: {
+    cursor: "move",
+    display: "inline-block",
+    width: "100px",
+    position: "relative",
+    marginLeft: "41.5px",
+    marginTop: "25px",
+    "&:hover > *": {
+      visibility: "visible !important",
+    },
+  },
+  overlay: {
+    visibility: "hidden",
+    position: "absolute",
+    top: theme.spacing(1),
+    right: theme.spacing(0.5),
+  },
+}));
 
 export default function ImgMediaCard({
   id,
@@ -28,9 +44,11 @@ export default function ImgMediaCard({
   qid,
   queue,
   setQueue,
-  smallThumbnailUrl,
+  thumbnail,
   title,
 }) {
+  const classes = useStyles();
+
   const ref = useRef(null);
 
   const removeQueueItem = () => {
@@ -93,11 +111,9 @@ export default function ImgMediaCard({
   return (
     <Card
       ref={ref}
+      className={classes.card}
       style={{
-        marginLeft: "41.5px",
-        marginTop: "25px",
         backgroundColor: (nowPlaying && nowPlaying.qid) === qid && "#2ad156",
-        ...style,
         opacity,
       }}
     >
@@ -106,7 +122,7 @@ export default function ImgMediaCard({
           component="img"
           alt={title}
           height="70"
-          image={smallThumbnailUrl}
+          image={thumbnail}
           title={title}
         />
         <CardContent style={{ height: "40px" }}>
@@ -116,19 +132,19 @@ export default function ImgMediaCard({
         </CardContent>
       </CardActionArea>
 
-      <CardActions style={{ display: "flex", justifyContent: "flex-end" }}>
+      <Box className={classes.overlay}>
         <Tooltip title="remove from queue">
           <IconButton
             edge="end"
             color="secondary"
             onClick={removeQueueItem}
             size="small"
-            style={{ color: "red" }}
+            style={{ color: "red", background: "#00000080" }}
           >
             <ClearIcon />
           </IconButton>
         </Tooltip>
-      </CardActions>
+      </Box>
     </Card>
   );
 }

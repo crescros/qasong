@@ -1,61 +1,49 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 import {
   Box,
   Card,
   CardActionArea,
-  CardContent,
+  Grid,
   CardMedia,
-  IconButton,
   Typography,
-} from '@material-ui/core';
+} from "@material-ui/core";
 import uuid from "react-uuid";
-import { formatVideoTitle } from "../../../functions";
 import AddToQueueButton from "./AddToQueueButton/AddToQueueButton";
 
 const useStyles = makeStyles((theme) => ({
   card: {
     position: "relative",
-    maxWidth: 250,
+    minWidth: 250,
     maxHeight: 190,
-    boxShadow: 'none',
+    boxShadow: "none",
     backgroundColor: "transparent",
     "&:hover > *": {
       visibility: "visible !important",
-    }
+    },
   },
   media: {
     height: 130,
   },
-  titleSize: {
-    fontSize: 11.5,
+  truncate: {
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   },
   overlay: {
     visibility: "hidden",
     position: "absolute",
     top: theme.spacing(1),
-    left: theme.spacing(0.5)
+    left: theme.spacing(0.5),
   },
 }));
 
-
-export default function MediaCard({
-  title,
-  description,
-  thumbnailUrl,
-  smallThumbnailUrl,
-  id,
-  setNowPlaying,
-  nowPlaying,
-  queue,
-  setQueue,
-}) {
+export default function MediaCard({ video, setNowPlaying, nowPlaying, queue, setQueue }) {
   const classes = useStyles();
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
-
-    if (nowPlaying && nowPlaying.id === id) {
+    if (nowPlaying && nowPlaying.videoId === video.videoId) {
       setPlaying(true);
     } else {
       setPlaying(false);
@@ -63,16 +51,10 @@ export default function MediaCard({
   }, [nowPlaying]);
 
   function handlePlayButton(event) {
-
-    event.stopPropagation()
+    event.stopPropagation();
 
     if (!playing) {
-      setNowPlaying({
-        title: title,
-        description: description,
-        id: id,
-        thumbnailUrl: thumbnailUrl,
-      });
+      setNowPlaying(video);
       setPlaying(true);
     } else {
       setNowPlaying({});
@@ -80,43 +62,50 @@ export default function MediaCard({
     }
   }
 
-
   function handleAddQueue(event) {
-    event.stopPropagation()
+    event.stopPropagation();
     setQueue(
-        queue.concat({
-            title: title,
-            description: description,
-            id: id,
-            qid: uuid(),
-            thumbnailUrl: thumbnailUrl,
-            smallThumbnailUrl: smallThumbnailUrl,
-        })
+      queue.concat({
+        ...video,
+        qid: uuid(),
+      })
     );
-}
-
+  }
 
   return (
-    <Card className={classes.card} style={{ backgroundColor: playing && "#2ad156" }} onClick={handlePlayButton} >
+    <Card
+      className={classes.card}
+      style={{ backgroundColor: playing && "#2ad156" }}
+      onClick={handlePlayButton}
+    >
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={thumbnailUrl}
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography className={classes.titleSize} gutterBottom variant="h5" component="h2">
-            {formatVideoTitle(title)}
-          </Typography>
-        </CardContent>
+        <CardMedia className={classes.media} image={video.image} />
+        <Box p={1}>
+          <Grid container direction="column">
+            <Grid item>
+              <Typography className={classes.truncate} variant="caption">
+                {video.title}
+              </Typography>
+            </Grid>
+            <Grid item container justify="space-between">
+              <Grid item>
+                <Typography className={classes.truncate} variant="caption">
+                  {video.author.name}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography className={classes.truncate} variant="caption">
+                  {video.timestamp}
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Box>
       </CardActionArea>
 
       <Box className={classes.overlay}>
-        <AddToQueueButton {...{handleAddQueue}} />
+        <AddToQueueButton {...{ handleAddQueue }} />
       </Box>
- 
-
     </Card>
   );
 }
-

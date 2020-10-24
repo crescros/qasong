@@ -6,6 +6,9 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
 import { isMobile } from "react-device-detect";
 import update from "immutability-helper";
+import ShareButton from "./ShareButton/ShareButton";
+import PlayQueueButton from "./PlayQueueButton/PlayQueueButton";
+import ShuffleButton from "./ShuffleButton/ShuffleButton";
 
 function QueueSection({
   nowPlaying,
@@ -57,7 +60,7 @@ function QueueSection({
 
   return (
     <>
-      {(queue.length > 0 || nowPlaying) && (
+      {(queue.length > 0) && (
         <div>
           <Box m={3}>
             <Grid container alignItems="flex-end">
@@ -82,6 +85,15 @@ function QueueSection({
                     />
                   </form>
                 </Box>
+              </Grid>
+              <Grid item>
+                <PlayQueueButton {...{ setNowPlaying, queue }} />
+              </Grid>
+              <Grid item>
+                <ShuffleButton {...{ queue, setQueue, setNowPlaying }} />
+              </Grid>
+              <Grid item>
+                <ShareButton disabled={queue.length === 0} />
               </Grid>
             </Grid>
           </Box>

@@ -13,6 +13,7 @@ import MobileMenu from "./MobileMenu/MobileMenu";
 import EnvironmentBadges from "./EnvironmentBadges/EnvironmentBadges";
 import { isMobile } from "react-device-detect";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
+// import UserSection from "./UserSection/UserSection";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 export default function PrimarySearchAppBar({
   handleSearchTermInput,
   handleSubmitVideoSearch,
+  showHomeScreen,
   searchTerm,
   setSearchTerm,
   showQueue,
@@ -35,12 +37,16 @@ export default function PrimarySearchAppBar({
   setDarkMode,
   isLoading,
   setVideos,
+  setNowPlaying
+  // user,
+  // setUser,
 }) {
   const classes = useStyles();
 
   const handleLogoClick = () => {
     setSearchTerm("");
     setVideos([]);
+    setNowPlaying({});
     setShowQueue(false);
   };
 
@@ -68,15 +74,17 @@ export default function PrimarySearchAppBar({
           </Typography>
 
           {/* Search bar */}
-          <VideoSearch
-            handleSearchTermInput={handleSearchTermInput}
-            handleSubmitVideoSearch={handleSubmitVideoSearch}
-            searchTerm={searchTerm}
-            style={{
-              margin: "0 auto",
-              maxWidth: 800,
-            }}
-          />
+          {!showHomeScreen && (
+            <VideoSearch
+              handleSearchTermInput={handleSearchTermInput}
+              handleSubmitVideoSearch={handleSubmitVideoSearch}
+              searchTerm={searchTerm}
+              style={{
+                margin: "0 auto",
+                maxWidth: 800,
+              }}
+            />
+          )}
 
           {/* Search Bar Loading Indicator */}
           <Box mx={2}>
@@ -90,6 +98,8 @@ export default function PrimarySearchAppBar({
           {/* Menus */}
           <DesktopMenu {...{ queue, showQueue, setShowQueue, darkMode, setDarkMode }} />
           <MobileMenu {...{ queue, showQueue, setShowQueue, darkMode, setDarkMode }} />
+
+          {/* <UserSection {...{user, setUser, darkMode, setDarkMode}}/> */}
         </Toolbar>
       </AppBar>
     </div>

@@ -1,7 +1,5 @@
 ﻿/* eslint-disable no-unused-vars */
 
-// this file is currently not in use
-
 const express = require("express");
 const router = express.Router();
 
@@ -19,20 +17,24 @@ module.exports = router;
 function authenticate(req, res, next) {
   let { username, password } = req.body;
   con.query(
-    `SELECT name, id FROM mausers WHERE name='${con.escape(
-      username
-    )}' AND password='${con.escape(password)}';`,
+    `SELECT username, userid, email, badges FROM users WHERE username='${username
+    }' AND password='${password}';`,
     (err, data) => {
       if (err) {
         res.json(err);
       } else if (!data[0]) {
         res.status(400).json({ message: "no user found" });
       } else {
-        const token = jwt.sign({ sub: data[0].id }, process.env.SECRET);
-        const name = data[0].name;
+        const token = jwt.sign({ sub: data[0].dbid }, process.env.SECRET);
+
+        const username = data[0].username;
+        const email = data[0].email;
+        const badges = data[0].badges;
 
         res.json({
-          username: name,
+          email: email,
+          badges: badges,
+          username: username,
           token: token,
         });
       }
@@ -41,7 +43,7 @@ function authenticate(req, res, next) {
 }
 
 function getAll(req, res, next) {
-  con.query("SELECT name FROM mausers LIMIT 3000;", (err, data) => {
+  con.query("SELECT username FROM users LIMIT 3000;", (err, data) => {
     if (err) {
       res.json(err);
     } else {
@@ -52,10 +54,13 @@ function getAll(req, res, next) {
 
 function makeOne(req, res, next) {
   let { username, password } = req.body;
+  if (!username) return res.json("no username");
+  if (!password) return res.json("no password");
   con.query(
-    `INSERT INTO mausers (name, password) VALUES('${con.escape(username)}', '${con.escape(
-      password
-    )}');`,
+    `INSERT INTO users (username, password) VALUES('${con.escape(username)}', 
+    '${con.escape(
+    password
+  )}');`,
     (err, data) => {
       if (err) {
         res.json(err);
@@ -72,7 +77,7 @@ function changePassword(req, res, next) {
   let { username, password, newPassword } = req.body;
 
   con.query(
-    `UPDATE mausers SET password='${con.escape(newPassword)}' WHERE name='${con.escape(
+    `UPDATE users SET password='${con.escape(newPassword)}' WHERE username='${con.escape(
       username
     )}' AND password='${con.escape(password)}'`,
     (err, data) => {

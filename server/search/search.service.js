@@ -3,11 +3,11 @@ const { v4: uuidv4 } = require("uuid");
 
 module.exports = {
   searchYoutube,
-  searchYoutubeById,
+  searchYoutubeById
 };
 
 async function searchYoutube({ searchTerm }) {
-  return yts(searchTerm).then((results) => {
+  return yts(searchTerm + " music").then((results) => {
     return results;
   });
 }
@@ -24,11 +24,7 @@ async function searchYoutubeById({ ids }) {
   return Promise.all(videos).then((values) => {
     const queueValues = values.map((value) => {
       return {
-        id: value.videoId,
-        title: value.title,
-        description: value.description,
-        smallThumbnailUrl: value.thumbnail,
-        thumbnailUrl: value.thumbnail,
+        ...value,
         qid: uuidv4(),
       };
     });
