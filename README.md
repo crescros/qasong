@@ -27,27 +27,19 @@ the server will be available at http://localhost:3016
 
 `npm run dev`
 
-the server will be available at http://localhost:3016
 the frontend development server will be at http://localhost:8080
 
 **the first time you run this, it will take a while as it installs all the packages needed from the server and frontend**
 
 ## DEPLOYMENT
 
-### build react into static asset in public folder
-
-`npm run build`
-
-### run tests
-
-`npm test`
-
-### deploy to google cloud
-
 `npm deploy`
+
+this will 
+ - build the react frontend into static assets in the public folder
+ - deploy the app to google cloud using instructions in `app.yaml`
 
 ## Contact
 
-### Join Our Support Server
-
-to communicate with other contributors : https://discord.gg/b2gEwT8
+### Join Us on Discord
+https://discord.gg/b2gEwT8

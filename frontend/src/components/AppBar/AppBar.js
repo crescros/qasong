@@ -13,6 +13,7 @@ import MobileMenu from "./MobileMenu/MobileMenu";
 import EnvironmentBadges from "./EnvironmentBadges/EnvironmentBadges";
 import { isMobile } from "react-device-detect";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
+// import UserSection from "./UserSection/UserSection";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -36,19 +37,24 @@ export default function PrimarySearchAppBar({
   setDarkMode,
   isLoading,
   setVideos,
+
   usersConnected,
+  setNowPlaying
+  // user,
+  // setUser,
 }) {
   const classes = useStyles();
 
   const handleLogoClick = () => {
     setSearchTerm("");
     setVideos([]);
+    setNowPlaying({});
     setShowQueue(false);
   };
 
   return (
     <div className={classes.grow}>
-      <AppBar position={isMobile ? "fixed" : "static"}>
+      <AppBar position={isMobile ? "fixed" : "static"} style={darkMode?{background: "black"}:{}}>
         <Toolbar>
           {/* Icon-logo */}
           <IconButton
@@ -70,18 +76,17 @@ export default function PrimarySearchAppBar({
           </Typography>
 
           {/* Search bar */}
-          {
-            !showHomeScreen &&
+          {!showHomeScreen && (
             <VideoSearch
-            handleSearchTermInput={handleSearchTermInput}
-            handleSubmitVideoSearch={handleSubmitVideoSearch}
-            searchTerm={searchTerm}
-            style={{
-              margin: "0 auto",
-              maxWidth: 800,
-            }}
+              handleSearchTermInput={handleSearchTermInput}
+              handleSubmitVideoSearch={handleSubmitVideoSearch}
+              searchTerm={searchTerm}
+              style={{
+                margin: "0 auto",
+                maxWidth: 800,
+              }}
             />
-          }
+          )}
 
           {/* Search Bar Loading Indicator */}
           <Box mx={2}>
@@ -95,7 +100,10 @@ export default function PrimarySearchAppBar({
           {/* Menus */}
           <DesktopMenu {...{ queue, showQueue, setShowQueue, darkMode, setDarkMode }} />
           <MobileMenu {...{ queue, showQueue, setShowQueue, darkMode, setDarkMode }} />
-          <Typography>Users Online: {usersConnected}</Typography>
+
+//           <Typography>Users Online: {usersConnected}</Typography>
+
+          {/* <UserSection {...{user, setUser, darkMode, setDarkMode}}/> */}
         </Toolbar>
       </AppBar>
     </div>

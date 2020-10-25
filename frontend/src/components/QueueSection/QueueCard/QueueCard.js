@@ -1,13 +1,12 @@
 import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 import {
   Box,
   Card,
   CardActionArea,
   CardContent,
-  CardActions,
   CardMedia,
   Tooltip,
   Typography,
@@ -26,13 +25,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "25px",
     "&:hover > *": {
       visibility: "visible !important",
-    }
+    },
   },
   overlay: {
     visibility: "hidden",
     position: "absolute",
     top: theme.spacing(1),
-    right: theme.spacing(0.5)
+    right: theme.spacing(0.5),
   },
 }));
 
@@ -45,7 +44,7 @@ export default function ImgMediaCard({
   qid,
   queue,
   setQueue,
-  smallThumbnailUrl,
+  thumbnail,
   title,
 }) {
   const classes = useStyles();
@@ -112,7 +111,6 @@ export default function ImgMediaCard({
   return (
     <Card
       ref={ref}
-
       className={classes.card}
       style={{
         backgroundColor: (nowPlaying && nowPlaying.qid) === qid && "#2ad156",
@@ -124,7 +122,7 @@ export default function ImgMediaCard({
           component="img"
           alt={title}
           height="70"
-          image={smallThumbnailUrl}
+          image={thumbnail}
           title={title}
         />
         <CardContent style={{ height: "40px" }}>

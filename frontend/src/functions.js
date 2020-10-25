@@ -69,7 +69,6 @@ export function getNodeEnvironment() {
       return result;
     })
     .catch((error) => {
-      console.log(error);
       alert(error);
       return error;
     });
@@ -90,21 +89,26 @@ export function getQueueFromIds(search) {
       return result.data;
     })
     .catch((error) => {
-      console.log(error);
       alert(error + " " + error.response && error.response.data);
       return [];
     });
 }
 
-export function copyCurrentURL(e) {
+export function copyCurrentURL() {
   let dummy = document.createElement("textarea");
 
-  let app = document.querySelector('#app')
-  
+  let app = document.querySelector("#app");
+
   app.appendChild(dummy);
 
   dummy.value = location.href;
   dummy.select();
   document.execCommand("copy");
   app.removeChild(dummy);
+}
+
+export function shuffle(array) {
+  let tempArray = array;
+  tempArray.sort(() => Math.random() - 0.5);
+  return tempArray;
 }

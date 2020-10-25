@@ -25,3 +25,7 @@ logs/*
 
 # Istanbul Coverage
 frontend/coverage/*
+
+# electron
+dist/**/*
+

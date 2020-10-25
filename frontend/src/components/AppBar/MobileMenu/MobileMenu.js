@@ -10,10 +10,8 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { copyCurrentURL } from "../../../functions";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import ReplyIcon from "@material-ui/icons/Reply";
 
 const useStyles = makeStyles((theme) => ({
   sectionMobile: {
@@ -76,19 +74,6 @@ function MobileMenu({ queue, showQueue, setShowQueue, darkMode, setDarkMode }) {
                 </Badge>
               </IconButton>
               <p>{showQueue ? "Hide Queue" : "Show Queue"}</p>
-            </MenuItem>
-          </Box>
-        </Tooltip>
-        {/* share  */}
-        <Tooltip
-          title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}
-        >
-          <Box>
-            <MenuItem disabled={queue.length === 0} onClick={copyCurrentURL}>
-              <IconButton target="_blank">
-                <ReplyIcon />
-              </IconButton>
-              <p>Copy Link to Queue</p>
             </MenuItem>
           </Box>
         </Tooltip>
