@@ -20,6 +20,9 @@ const App = () => {
       background: {
         default: "#000000",
       },
+      primary: {
+        main: "#00FF00"
+      },
       secondary: {
         main: "#2ad156",
         dark: "#fff",
@@ -30,7 +33,9 @@ const App = () => {
     },
   });
 
-  const lightTheme = createMuiTheme({});
+  const lightTheme = createMuiTheme({
+    shadows: ["none"]
+  });
 
   // APPLICATION LEVEL STATE
   const [currentQid, setCurrentQid] = useState();
@@ -44,6 +49,18 @@ const App = () => {
   const [showQueue, setShowQueue] = useState(false);
   const [user, setUser] = useState();
   const [videos, setVideos] = useState([]);
+
+  function skipSong(){
+    const i = queue.findIndex((item) => item.qid === currentQid);
+    const nextInQueue = queue[i + 1];
+    setNowPlaying(nextInQueue);
+  }
+
+  function previousSong(){
+    const i = queue.findIndex((item) => item.qid === currentQid);
+    const nextInQueue = queue[i - 1];
+    setNowPlaying(nextInQueue);
+  }
 
   useEffect(() => {
     (async () => {
@@ -90,9 +107,7 @@ const App = () => {
     // if a song stopped, and there is a queue, play next in queue
     if (!nowPlaying && queue.length > 0) {
       if (currentQid) {
-        const i = queue.findIndex((item) => item.qid === currentQid);
-        const nextInQueue = queue[i + 1];
-        setNowPlaying(nextInQueue);
+        skipSong()
       } else {
         const nextInQueue = queue[0];
         setNowPlaying(nextInQueue);
@@ -206,6 +221,8 @@ const App = () => {
           setQueue,
           setQueueName,
           showQueue,
+          skipSong,
+          previousSong
         }}
       />
 

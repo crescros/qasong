@@ -49,7 +49,7 @@ function HomeScreen({
         <Grid item container justify="center">
           <VideoSearch
             handleSearchTermInput={handleSearchTermInput}
-            han dleSubmitVideoSearch={handleSubmitVideoSearch}
+            handleSubmitVideoSearch={handleSubmitVideoSearch}
             searchTerm={searchTerm}
             style={{
               margin: "0 auto",
@@ -60,7 +60,7 @@ function HomeScreen({
 
         <Grid item>
           <Box mt={12}>
-            <Typography>Featured Playlists</Typography>
+            <Typography align="center" >Featured Playlists</Typography>
             <FeaturedPlaylists {...{
                  setQueue,
                  setNowPlaying,

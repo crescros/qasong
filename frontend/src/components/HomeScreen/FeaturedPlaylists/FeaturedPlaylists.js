@@ -7,6 +7,10 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
+    playlist: {
+        margin: '20px',
+        backgroundColor: theme.palette.background.paper,
+    },
     paper: {
         padding: theme.spacing(2),
         margin: 'auto',
@@ -22,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: '100%',
         maxHeight: '100%',
     },
+
 }));
 
 function FeaturedPlaylists({
@@ -42,38 +47,37 @@ function FeaturedPlaylists({
 
     return (
         <div className={classes.root}>
-            <Paper className={classes.paper}>
+            
 
-                {featuredPlaylists.map(playlist => {
-                    return <Grid container spacing={2}>
-                        <Grid item>
-                            <ButtonBase className={classes.image}>
-                                <img className={classes.img} alt="complex" src={playlist.image} />
-                            </ButtonBase>
-                        </Grid>
-                        <Grid item xs={12} sm container>
-                            <Grid item xs container direction="column" spacing={2}>
-                                <Grid item xs>
-                                    <Typography gutterBottom variant="subtitle1">
-                                        <Link component="button" onClick={handlePlaylistClick} data-playlist_id={playlist.id}>
-                                            {playlist.name}
-                                        </Link>
-                                    </Typography>
-                                    {
-                                        playlist.queue.map(song => {
-                                            return <Typography><Link component="button" onClick={() => {
-                                                setNowPlaying(song)
-                                            }} >{song.title}</Link></Typography>
-                                        })
-                                    }
+                    {featuredPlaylists.map(playlist => {
+                        return <Grid container item spacing={2} className={classes.playlist} onClick={handlePlaylistClick} data-playlist_id={playlist.id}>
+                            <Grid item xs={5} sm={3}>
+                                <ButtonBase className={classes.image}>
+                                    <img className={classes.img} alt="complex" src={playlist.image} />
+                                </ButtonBase>
+                            </Grid>
+                            <Grid item xs={7} sm={9} container>
+                                <Grid item xs container direction="column" spacing={2}>
+                                    <Grid item xs>
+                                        <Typography align="center" gutterBottom variant="h5">
+                                            <Link color="textPrimary" variant="h5" onClick={handlePlaylistClick} data-playlist_id={playlist.id}>
+                                                {playlist.name}
+                                            </Link>
+                                        </Typography>
+                                        {
+                                            playlist.queue.map(song => {
+                                                return <Typography><Link color="textPrimary" component="button" onClick={() => {
+                                                    setNowPlaying(song)
+                                                }} >{song.title}</Link></Typography>
+                                            })
+                                        }
+                                    </Grid>
                                 </Grid>
                             </Grid>
-                        </Grid>
-                    </Grid>
 
-                })}
-            </Paper>
-        </div>
+                        </Grid>
+                    })}
+        </div >
 
     )
 }

@@ -9,6 +9,9 @@ import update from "immutability-helper";
 import ShareButton from "./ShareButton/ShareButton";
 import PlayQueueButton from "./PlayQueueButton/PlayQueueButton";
 import ShuffleButton from "./ShuffleButton/ShuffleButton";
+import ClearQueueButton from "./ClearQueueButton/ClearQueueButton";
+import SkipSongButton from "./SkipSongButton/SkipSongButton";
+import PreviousSongButton from "./PreviousSongButton/PreviousSongButton";
 
 function QueueSection({
   nowPlaying,
@@ -18,6 +21,8 @@ function QueueSection({
   queueName,
   setQueueName,
   showQueue,
+  skipSong,
+  previousSong
 }) {
   if (!showQueue) {
     return <div></div>;
@@ -93,7 +98,16 @@ function QueueSection({
                 <ShuffleButton {...{ queue, setQueue, setNowPlaying }} />
               </Grid>
               <Grid item>
+                <PreviousSongButton {...{previousSong}} />
+              </Grid>
+              <Grid item>
+                <SkipSongButton {...{skipSong}} />
+              </Grid>
+              <Grid item>
                 <ShareButton disabled={queue.length === 0} />
+              </Grid>
+              <Grid item>
+                <ClearQueueButton {...{previousSong}} />
               </Grid>
             </Grid>
           </Box>
