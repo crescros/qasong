@@ -55,11 +55,13 @@ function FeaturedPlaylists({
                             <Grid item xs container direction="column" spacing={2}>
                                 <Grid item xs>
                                     <Typography gutterBottom variant="subtitle1">
-                                        {playlist.name}
+                                        <Link component="button" onClick={handlePlaylistClick} data-playlist_id={playlist.id}>
+                                            {playlist.name}
+                                        </Link>
                                     </Typography>
                                     {
                                         playlist.queue.map(song => {
-                                            return <Typography><Link component="button" onClick={()=>{
+                                            return <Typography><Link component="button" onClick={() => {
                                                 setNowPlaying(song)
                                             }} >{song.title}</Link></Typography>
                                         })
