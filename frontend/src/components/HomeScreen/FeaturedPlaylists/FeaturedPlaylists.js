@@ -1,0 +1,79 @@
+import React from 'react'
+import featuredPlaylists from "./featuredPlaylists.json"
+import { Paper, ButtonBase, Grid, Typography, Link } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing(2),
+        margin: 'auto',
+        maxWidth: 500,
+    },
+    image: {
+        width: 128,
+        height: 128,
+    },
+    img: {
+        margin: 'auto',
+        display: 'block',
+        maxWidth: '100%',
+        maxHeight: '100%',
+    },
+}));
+
+function FeaturedPlaylists({
+    setQueue,
+    setNowPlaying,
+    setShowQueue
+}) {
+    const classes = useStyles();
+
+    function handlePlaylistClick(e) {
+        const playlistId = e.target.dataset.playlist_id
+        const selectedPlaylist = featuredPlaylists.find(playlist => playlist.id === playlistId)
+
+        setQueue(selectedPlaylist.queue)
+        setNowPlaying(selectedPlaylist.queue[0])
+        setShowQueue(true)
+    }
+
+    return (
+        <div className={classes.root}>
+            <Paper className={classes.paper}>
+
+                {featuredPlaylists.map(playlist => {
+                    return <Grid container spacing={2}>
+                        <Grid item>
+                            <ButtonBase className={classes.image}>
+                                <img className={classes.img} alt="complex" src={playlist.image} />
+                            </ButtonBase>
+                        </Grid>
+                        <Grid item xs={12} sm container>
+                            <Grid item xs container direction="column" spacing={2}>
+                                <Grid item xs>
+                                    <Typography gutterBottom variant="subtitle1">
+                                        {playlist.name}
+                                    </Typography>
+                                    {
+                                        playlist.queue.map(song => {
+                                            return <Typography><Link component="button" onClick={()=>{
+                                                setNowPlaying(song)
+                                            }} >{song.title}</Link></Typography>
+                                        })
+                                    }
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                })}
+            </Paper>
+        </div>
+
+    )
+}
+
+export default FeaturedPlaylists

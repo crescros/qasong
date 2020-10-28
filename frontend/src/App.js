@@ -61,19 +61,20 @@ const App = () => {
         let linkedQueue = await getQueueFromIds(
           queryString.stringify({ queue: parsedParams.queue })
         );
-        console.log(linkedQueue)
         setIsLoadingQueue(false);
         setQueue(linkedQueue);
         setShowQueue(true);
+        setNowPlaying(linkedQueue[0])
       } else {
         // if theres no queue in the url, get it from local storage
         const storedQueue = localStorage.getItem("queue");
         const storedQueueName = localStorage.getItem("queueName");
         if (storedQueue) {
-          const queue = JSON.parse(storedQueue);
-          setQueue(queue);
+          const localQueue = JSON.parse(storedQueue);
+          setQueue(localQueue);
           setShowQueue(true);
           setQueueName(storedQueueName);
+          setNowPlaying(linkedQueue[0])
         }
       }
     })();
@@ -226,6 +227,10 @@ const App = () => {
           handleSearchTermInput,
           searchTerm,
           showHomeScreen,
+          setQueue,
+          setNowPlaying,
+          queue,
+          setShowQueue
         }}
       />
 

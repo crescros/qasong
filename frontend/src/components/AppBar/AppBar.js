@@ -45,8 +45,7 @@ export default function PrimarySearchAppBar({
 
   const handleLogoClick = () => {
     setSearchTerm("");
-    setVideos([]);
-    setNowPlaying({});
+    setVideos([]); 
     setShowQueue(false);
   };
 
@@ -66,7 +65,8 @@ export default function PrimarySearchAppBar({
           </IconButton>
 
           {/* Development Badge */}
-          <EnvironmentBadges />
+          <div />
+          {/* <EnvironmentBadges /> */}
 
           {/* Artistify name from frontend .env */}
           <Typography display="inline" style={{ marginRight: "20px" }}>

@@ -1,12 +1,17 @@
 import React from "react";
 import { Box, Grid, Typography, Link } from "@material-ui/core";
 import VideoSearch from "../AppBar/VideoSearch/VideoSearch";
+import FeaturedPlaylists from "./FeaturedPlaylists/FeaturedPlaylists"
 
 function HomeScreen({
   handleSearchTermInput,
   handleSubmitVideoSearch,
   searchTerm,
   showHomeScreen,
+  setQueue,
+  setNowPlaying,
+  queue,
+  setShowQueue
 }) {
   if (!showHomeScreen) {
     return <div id="empty-div"></div>;
@@ -39,12 +44,12 @@ function HomeScreen({
         </Grid>
 
         <Grid item>
-        
+
         </Grid>
         <Grid item container justify="center">
           <VideoSearch
             handleSearchTermInput={handleSearchTermInput}
-            handleSubmitVideoSearch={handleSubmitVideoSearch}
+            han dleSubmitVideoSearch={handleSubmitVideoSearch}
             searchTerm={searchTerm}
             style={{
               margin: "0 auto",
@@ -56,8 +61,12 @@ function HomeScreen({
         <Grid item>
           <Box mt={12}>
             <Typography>Featured Playlists</Typography>
-            <Typography><Link href="./?queue=4uaPrB00eEc&queue=7jRVLxLtHhI&queue=7-zbteBz7-I&queue=BIjvj0tYOZI&queue=0f5fodAO_Vk&queue=oivalAvc2xU&queueName=High%20At%20Work">High at Work - Ryan Celsius</Link></Typography>
-            <Typography><Link href="http://localhost:8080/?queue=3wLSdLIBvPg&queue=ctiKD8jtvV8&queue=rqkMsXcHQYg&queue=fLndnUeWlQo&queue=v5NeyI4-fdI&queue=JukTvlrh-Wk&queue=wauzrPn0cfg&queue=4oMTH10nrxk&queue=Fihxa4Q7q1g&queue=Xk2uObQDKtw&queueName=High%20At%20Work">Rage Against the Machine - Rage Against the Machine</Link></Typography>
+            <FeaturedPlaylists {...{
+                 setQueue,
+                 setNowPlaying,
+                 setShowQueue
+            }} />
+    
           </Box>
         </Grid>
       </Grid>
