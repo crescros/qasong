@@ -49,8 +49,8 @@ const App = () => {
     (async () => {
       // set dark mode from local storage
       const userDarkMode = localStorage.getItem("userDarkMode");
-      if (userDarkMode === "true") {
-        setDarkMode(true);
+      if (userDarkMode === "false") {
+        setDarkMode(false);
       }
 
       // get queue from url
