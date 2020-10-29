@@ -12,6 +12,7 @@ import QueueLoadingScreen from "./components/QueueSection/QueueLoadingScreen/Que
 import QueueSection from "./components/QueueSection/QueueSection";
 import VideoArea from "./components/VideoArea/VideoArea";
 import VideoGrid from "./components/VideoGrid/VideoGrid";
+import VideoTable from "./components/VideoTable/VideoTable";
 import PlayArea from "./components/PlayArea/PlayArea";
 
 const App = () => {
@@ -50,6 +51,7 @@ const App = () => {
   const [showQueue, setShowQueue] = useState(false);
   const [user, setUser] = useState();
   const [videos, setVideos] = useState([]);
+  const [searchTableViewMode, setSearchTableViewMode] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -59,6 +61,12 @@ const App = () => {
         setDarkMode(true);
       }
 
+      // set search list view mode from local storage
+      const userSearchTableViewMode = localStorage.getItem("userSearchTableViewMode");
+      if (userSearchTableViewMode === "true") {
+        setSearchTableViewMode(true);
+      }
+      
       // get queue from url
       let parsedParams = queryString.parse(location.search);
       if (parsedParams.queue && parsedParams.queue.length > 0) {
@@ -109,6 +117,11 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("userDarkMode", JSON.stringify(darkMode));
   }, [darkMode]);
+
+  // write searchTableViewMode value to localstorage
+  useEffect(() => {
+    localStorage.setItem("userSearchTableViewMode", JSON.stringify(searchTableViewMode));
+  }, [searchTableViewMode]);
 
   // write queue value to local storage, write array of queue ids to query params
   useEffect(() => {
@@ -214,6 +227,19 @@ const App = () => {
         }}
       />
 
+        {searchTableViewMode ? 
+      <VideoTable
+        {...{
+          handleSearchTermInput,
+          handleSubmitVideoSearch,
+          nowPlaying,
+          queue,
+          setNowPlaying,
+          setQueue,
+          videos,
+          setSearchTableViewMode
+        }}
+      /> :
       <VideoGrid
         {...{
           handleSearchTermInput,
@@ -223,8 +249,9 @@ const App = () => {
           setNowPlaying,
           setQueue,
           videos,
+          setSearchTableViewMode
         }}
-      />
+      /> }
 
       <HomeScreen
         {...{
