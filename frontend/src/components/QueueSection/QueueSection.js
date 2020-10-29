@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { Typography, Box, TextField, Grid } from "@material-ui/core";
-import QueueItem from "./QueueCard/QueueCard";
+import QueueCard from "./QueueCard/QueueCard";
+import QueueRow from "./QueueRow/QueueRow";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
@@ -12,6 +13,7 @@ import ShuffleButton from "./ShuffleButton/ShuffleButton";
 import ClearQueueButton from "./ClearQueueButton/ClearQueueButton";
 import SkipSongButton from "./SkipSongButton/SkipSongButton";
 import PreviousSongButton from "./PreviousSongButton/PreviousSongButton";
+import DisplayModeButton from "./DisplayModeButton/DisplayModeButton";
 
 function QueueSection({
   nowPlaying,
@@ -29,6 +31,7 @@ function QueueSection({
   }
 
   const [tempQueueName, setTempQueueName] = useState(queueName);
+  const [displayMode, setDisplayMode] = useState("list");
 
   const handleClickQueueItem = (qid) => {
     setNowPlaying(queue.find((item) => item.qid === qid));
@@ -98,33 +101,55 @@ function QueueSection({
                 <ShuffleButton {...{ queue, setQueue, setNowPlaying }} />
               </Grid>
               <Grid item>
-                <PreviousSongButton {...{previousSong}} />
+                <PreviousSongButton {...{ previousSong }} />
               </Grid>
               <Grid item>
-                <SkipSongButton {...{skipSong}} />
+                <SkipSongButton {...{ skipSong }} />
+              </Grid>
+              <Grid item>
+                <DisplayModeButton {...{ displayMode, setDisplayMode}} />
               </Grid>
               <Grid item>
                 <ShareButton disabled={queue.length === 0} />
               </Grid>
               <Grid item>
-                <ClearQueueButton {...{previousSong}} />
+                <ClearQueueButton {...{ previousSong }} />
               </Grid>
             </Grid>
           </Box>
 
           <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-            {queue.map((item, index) => (
-              <QueueItem
-                {...item}
-                key={item.qid}
-                queue={queue}
-                setQueue={setQueue}
-                index={index}
-                nowPlaying={nowPlaying}
-                onClickImage={handleClickQueueItem}
-                moveCard={moveCard}
-              />
-            ))}
+            {displayMode === "list" ?
+              <Grid container direction="column">
+                {
+                  queue.map((item, index) => {
+                    return <QueueRow
+                        {...item}
+                        key={item.qid}
+                        queue={queue}
+                        setQueue={setQueue}
+                        index={index}
+                        nowPlaying={nowPlaying}
+                        onClickImage={handleClickQueueItem}
+                        moveCard={moveCard}
+                      />
+                  })}
+              </Grid>
+              :
+              queue.map((item, index) => (
+                <QueueCard
+                  {...item}
+                  key={item.qid}
+                  queue={queue}
+                  setQueue={setQueue}
+                  index={index}
+                  nowPlaying={nowPlaying}
+                  onClickImage={handleClickQueueItem}
+                  moveCard={moveCard}
+                />
+              ))
+
+            }
           </DndProvider>
         </div>
       )}

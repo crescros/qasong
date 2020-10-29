@@ -80,7 +80,6 @@ export function getQueueFromIds(search) {
   return axios
     .get(baseUrl + "api/search/ids?" + search)
     .then((result) => {
-      console.log(result.data)
       return result.data;
     })
     .catch((error) => {

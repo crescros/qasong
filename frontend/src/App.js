@@ -91,7 +91,6 @@ const App = () => {
           setQueue(localQueue);
           setShowQueue(true);
           setQueueName(storedQueueName);
-          setNowPlaying(linkedQueue[0])
         }
       }
     })();
