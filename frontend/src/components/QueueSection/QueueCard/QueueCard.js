@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   Box,
   Card,
+  Grid,
   CardActionArea,
   CardContent,
   CardMedia,
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     marginLeft: "41.5px",
     marginTop: "25px",
+    backgroundColor: "transparent",
     "&:hover > *": {
       visibility: "visible !important",
     },
@@ -33,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
     top: theme.spacing(1),
     right: theme.spacing(0.5),
   },
+  media: {
+    height: 70,
+  }
 }));
 
 export default function ImgMediaCard({
@@ -113,25 +118,28 @@ export default function ImgMediaCard({
       ref={ref}
       className={classes.card}
       style={{
-        backgroundColor: (nowPlaying && nowPlaying.qid) === qid && "#2ad156",
+        backgroundColor: (nowPlaying && nowPlaying.qid) === qid && "#FE9021",
         opacity,
       }}
     >
       <CardActionArea style={{ height: "100px" }} onClick={() => onClickImage(qid)}>
-        <CardMedia
+        <CardMedia className={classes.media}
           component="img"
           alt={title}
-          height="70"
           image={thumbnail}
           title={title}
         />
-        <CardContent style={{ height: "40px" }}>
-          <Typography style={{ fontSize: "9px" }} gutterBottom>
-            {formatVideoTitle(title)}
-          </Typography>
-        </CardContent>
+        <Box p={1}>
+          <Grid container direction="column">
+            <Grid item>
+              <Typography style={{ fontSize: "8px"}} gutterBottom>
+                {formatVideoTitle(title)}
+              </Typography>
+            </Grid>
+          </Grid>
+        </Box>
       </CardActionArea>
-
+      {/* Remove from queue overlay */}
       <Box className={classes.overlay}>
         <Tooltip title="remove from queue">
           <IconButton

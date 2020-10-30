@@ -112,7 +112,7 @@ export default function ImgMediaCard({
       alignItems="center"
       ref={ref}
       style={{
-        backgroundColor: (nowPlaying && nowPlaying.qid) === qid && "#2ad156",
+        backgroundColor: (nowPlaying && nowPlaying.qid) === qid && "#FE9021",
         opacity,
       }}
     >

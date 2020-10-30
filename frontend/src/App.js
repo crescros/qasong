@@ -21,10 +21,10 @@ const App = () => {
         default: "#000000",
       },
       primary: {
-        main: "#00FF00"
+        main: "#000000"
       },
       secondary: {
-        main: "#2ad156",
+        main: "#FE9021",
         dark: "#fff",
         contrastText: "#fff",
       },
@@ -34,7 +34,21 @@ const App = () => {
   });
 
   const lightTheme = createMuiTheme({
-    shadows: ["none"]
+    palette: {
+      background: {
+        default: "#fff",
+      },
+      primary: {
+        main: "#fff"
+      },
+      secondary: {
+        main: "#FE9021",
+        dark: "#fff",
+        contrastText: "#fff",
+      },
+
+      type: "light",
+    },  
   });
 
   // APPLICATION LEVEL STATE
