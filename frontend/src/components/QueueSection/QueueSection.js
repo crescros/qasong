@@ -113,7 +113,7 @@ function QueueSection({
                 <ShareButton disabled={queue.length === 0} />
               </Grid>
               <Grid item>
-                <ClearQueueButton {...{ previousSong }} />
+                <ClearQueueButton {...{ setQueue }} />
               </Grid>
             </Grid>
           </Box>
