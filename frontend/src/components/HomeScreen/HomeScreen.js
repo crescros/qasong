@@ -10,6 +10,7 @@ function HomeScreen({
   showHomeScreen,
   setQueue,
   setNowPlaying,
+  nowPlaying,
   queue,
   setShowQueue
 }) {
@@ -60,11 +61,11 @@ function HomeScreen({
 
         <Grid item>
           <Box mt={12}>
-            <Typography align="center" >Featured Playlists</Typography>
             <FeaturedPlaylists {...{
                  setQueue,
                  setNowPlaying,
-                 setShowQueue
+                 setShowQueue,
+                 nowPlaying
             }} />
     
           </Box>

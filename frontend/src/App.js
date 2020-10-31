@@ -36,7 +36,7 @@ const App = () => {
   const lightTheme = createMuiTheme({
     palette: {
       background: {
-        default: "#fff",
+        default: "#dfdfdf",
       },
       primary: {
         main: "#fff"
@@ -260,6 +260,7 @@ const App = () => {
           showHomeScreen,
           setQueue,
           setNowPlaying,
+          nowPlaying,
           queue,
           setShowQueue
         }}
