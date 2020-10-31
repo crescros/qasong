@@ -74,10 +74,10 @@ export function getNodeEnvironment() {
 }
 
 export function formatVideoTitle(name) {
-  if (name.length < 40) {
+  if (name.length < 90) {
     return name;
   } else {
-    return name.substr(0, 40) + "...";
+    return name.substr(0, 90) + "...";
   }
 }
 
@@ -110,4 +110,9 @@ export function shuffle(array) {
   let tempArray = array;
   tempArray.sort(() => Math.random() - 0.5);
   return tempArray;
+}
+
+export function clear(array){
+  array = [];
+  return array;
 }

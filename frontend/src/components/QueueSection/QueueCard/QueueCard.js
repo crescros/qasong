@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   card: {
     cursor: "move",
     display: "inline-block",
-    width: "100px",
+    width: "300px",
     position: "relative",
     marginLeft: "41.5px",
     marginTop: "25px",
@@ -117,16 +117,16 @@ export default function ImgMediaCard({
         opacity,
       }}
     >
-      <CardActionArea style={{ height: "100px" }} onClick={() => onClickImage(qid)}>
+      <CardActionArea style={{ height: "190" }} onClick={() => onClickImage(qid)}>
         <CardMedia
           component="img"
           alt={title}
-          height="70"
+          height="130"
           image={thumbnail}
           title={title}
         />
         <CardContent style={{ height: "40px" }}>
-          <Typography style={{ fontSize: "9px" }} gutterBottom>
+          <Typography style={{ fontSize: "9px" }} gutterBottom align="center">
             {formatVideoTitle(title)}
           </Typography>
         </CardContent>
