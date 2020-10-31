@@ -56,7 +56,20 @@ function QueueSection({
     [queue]
   );
 
+  const moveCardButton = (cardIndex, changeIndex) => {
+    const currCard = queue[cardIndex];
+    setQueue(
+      update(queue, {
+        $splice: [
+          [cardIndex, 1],
+          [(cardIndex + (changeIndex)), 0, currCard],
+        ],
+      })
+    );
+  }
+
   const editingQueueName = tempQueueName === queueName;
+
 
   return (
     <>
@@ -109,6 +122,7 @@ function QueueSection({
                 nowPlaying={nowPlaying}
                 onClickImage={handleClickQueueItem}
                 moveCard={moveCard}
+                moveCardButton={moveCardButton}
               />
             ))}
           </DndProvider>

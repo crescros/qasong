@@ -15,11 +15,15 @@ import {
 import { formatVideoTitle } from "../../../functions";
 import ClearIcon from "@material-ui/icons/Clear";
 
+import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+
+
 const useStyles = makeStyles((theme) => ({
   card: {
     cursor: "move",
     display: "inline-block",
-    width: "100px",
+    width: "150px",
     position: "relative",
     marginLeft: "41.5px",
     marginTop: "25px",
@@ -32,6 +36,23 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     top: theme.spacing(1),
     right: theme.spacing(0.5),
+  },
+  buttonUp: {
+    visibility: "hidden",
+    position: "absolute",
+    bottom: theme.spacing(0),
+    backgroundColor: "rgba(60,60,60,0.9)",
+  },
+  buttonDown: {
+    visibility: "hidden",
+    position: "absolute",
+    bottom: theme.spacing(0),
+    right: theme.spacing(0),
+    backgroundColor: "rgba(60,60,60,0.9)",
+  },
+  cardButton: {
+    width: "40px",
+    height: "30px",
   },
 }));
 
@@ -46,6 +67,7 @@ export default function ImgMediaCard({
   setQueue,
   thumbnail,
   title,
+  moveCardButton,
 }) {
   const classes = useStyles();
 
@@ -57,6 +79,17 @@ export default function ImgMediaCard({
         return item.qid !== qid;
       })
     );
+  };
+
+  const moveQueueItem = (cardIndex, direction) => {
+    // Determine the direction of which to move the queue within the queue list's range
+    if(direction == "up" && cardIndex > 0){
+      moveCardButton(cardIndex, -1);
+    }
+    else if(direction == "down" && cardIndex < queue.length){
+      moveCardButton(cardIndex, 1);
+    }
+    // Function will not do anything if the current card will be out of bounds
   };
 
   const [, drop] = useDrop({
@@ -131,6 +164,34 @@ export default function ImgMediaCard({
           </Typography>
         </CardContent>
       </CardActionArea>
+
+      <Box className={classes.buttonUp} backgroundColor="primary">
+      <Tooltip title="move up in queue">
+          <IconButton value="up" className={classes.cardButton}
+              edge="start"
+              color="secondary"
+              onClick={() => moveQueueItem(index, "up")}
+              size="small"
+              style={{background: "none" }}
+            >
+            <ArrowLeftIcon />
+          </IconButton>
+      </Tooltip>
+      </Box>
+      <Box className={classes.buttonDown}>
+      <Tooltip title="move down in queue">
+          <IconButton className={classes.cardButton}
+              edge="start"
+              color="secondary"
+              onClick={() => moveQueueItem(index, "down")}
+              size="small"
+              style={{background: "none"}}
+            >
+            <ArrowRightIcon />
+          </IconButton>
+      </Tooltip>
+      </Box>
+
 
       <Box className={classes.overlay}>
         <Tooltip title="remove from queue">
