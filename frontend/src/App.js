@@ -49,6 +49,7 @@ const App = () => {
 
       type: "light",
     },  
+    shadows: ["none"]
   });
 
   // APPLICATION LEVEL STATE
