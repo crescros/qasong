@@ -1,8 +1,10 @@
 import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { makeStyles } from "@material-ui/core/styles";
+import { Box, Tooltip } from "@material-ui/core"
 
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import ClearIcon from '@material-ui/icons/Clear';
 
 import {
   IconButton,
@@ -12,13 +14,8 @@ import {
 import { formatVideoTitle } from "../../../functions";
 
 const useStyles = makeStyles((theme) => ({
-  card: {
-    cursor: "move",
-    display: "inline-block",
-    width: "100px",
+  row: {
     position: "relative",
-    marginLeft: "41.5px",
-    marginTop: "25px",
     "&:hover > *": {
       visibility: "visible !important",
     },
@@ -27,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     visibility: "hidden",
     position: "absolute",
     top: theme.spacing(1),
-    right: theme.spacing(0.5),
+    right: theme.spacing(1.5),
   },
 }));
 
@@ -107,6 +104,7 @@ export default function ImgMediaCard({
 
   return (
     <Grid item container
+      className={classes.row}
       onClick={() => onClickImage(qid)}
       direction="row"
       alignItems="center"
@@ -117,16 +115,13 @@ export default function ImgMediaCard({
       }}
     >
       <Grid item xs={1}>
-        <IconButton
-        // onClick={() => onClickImage(qid)}
-        >
+        <IconButton>
           <PlayArrowIcon />
         </IconButton>
       </Grid>
-      <Grid item xs={10}>
+      <Grid item xs={9}>
         <Typography>
-          {title
-          }
+          {title}
         </Typography>
       </Grid>
       <Grid item xs={1}>
@@ -134,6 +129,20 @@ export default function ImgMediaCard({
           {timestamp}
         </Typography>
       </Grid>
+      {/* Remove from queue overlay */}
+      <Box className={classes.overlay}>
+        <Tooltip title="remove from queue">
+          <IconButton
+            edge="end"
+            color="secondary"
+            onClick={removeQueueItem}
+            size="small"
+            style={{ color: "red", background: "#00000080" }}
+          >
+            <ClearIcon />
+          </IconButton>
+        </Tooltip>
+      </Box>
     </Grid>
   );
 }

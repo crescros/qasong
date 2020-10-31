@@ -107,7 +107,7 @@ function QueueSection({
                 <SkipSongButton {...{ skipSong }} />
               </Grid>
               <Grid item>
-                <DisplayModeButton {...{ displayMode, setDisplayMode}} />
+                <DisplayModeButton {...{ displayMode, setDisplayMode }} />
               </Grid>
               <Grid item>
                 <ShareButton disabled={queue.length === 0} />
@@ -124,15 +124,15 @@ function QueueSection({
                 {
                   queue.map((item, index) => {
                     return <QueueRow
-                        {...item}
-                        key={item.qid}
-                        queue={queue}
-                        setQueue={setQueue}
-                        index={index}
-                        nowPlaying={nowPlaying}
-                        onClickImage={handleClickQueueItem}
-                        moveCard={moveCard}
-                      />
+                      {...item}
+                      key={item.qid}
+                      queue={queue}
+                      setQueue={setQueue}
+                      index={index}
+                      nowPlaying={nowPlaying}
+                      onClickImage={handleClickQueueItem}
+                      moveCard={moveCard}
+                    />
                   })}
               </Grid>
               :
