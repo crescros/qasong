@@ -69,7 +69,7 @@ function QueueSection({
   return (
     <>
       {(queue.length > 0) && (
-        <div>
+        <div style={{maxWidth: "800px", margin:"0 auto 200px auto"}}>
           <Box m={3}>
             <Grid container alignItems="flex-end">
               <Grid item>
