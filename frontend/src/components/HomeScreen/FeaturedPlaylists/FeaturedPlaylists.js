@@ -1,6 +1,6 @@
 import React from 'react'
 import featuredPlaylists from "./featuredPlaylists.json"
-import { Paper, ButtonBase, Grid, Typography, Link } from "@material-ui/core";
+import { Box, ButtonBase, Grid, Typography, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -47,36 +47,36 @@ function FeaturedPlaylists({
 
     return (
         <div className={classes.root}>
-            
-
-                    {featuredPlaylists.map(playlist => {
-                        return <Grid container item spacing={2} className={classes.playlist} onClick={handlePlaylistClick} data-playlist_id={playlist.id}>
-                            <Grid item xs={5} sm={3}>
-                                <ButtonBase className={classes.image}>
-                                    <img className={classes.img} alt="complex" src={playlist.image} />
-                                </ButtonBase>
+            {featuredPlaylists.map(playlist => {
+                return <Grid container item spacing={2} className={classes.playlist} onClick={handlePlaylistClick} data-playlist_id={playlist.id}>
+                    <Grid item xs={12} sm={3}>
+                        <Box align='center'>
+                            <ButtonBase className={classes.image}>
+                                <img className={classes.img} alt="complex" src={playlist.image} />
+                            </ButtonBase>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={12} sm={9} container>
+                        <Grid item xs container direction="column" spacing={2}>
+                            <Grid item xs>
+                                <Typography align="center" gutterBottom variant="h5">
+                                    <Link color="textPrimary" component="button" variant="h5" onClick={handlePlaylistClick} data-playlist_id={playlist.id}>
+                                        {playlist.name}
+                                    </Link>
+                                </Typography>
+                                {
+                                    playlist.queue.map(song => {
+                                        return <Typography><Link color="textPrimary" component="button" onClick={() => {
+                                            setNowPlaying(song)
+                                        }} >{song.title}</Link></Typography>
+                                    })
+                                }
                             </Grid>
-                            <Grid item xs={7} sm={9} container>
-                                <Grid item xs container direction="column" spacing={2}>
-                                    <Grid item xs>
-                                        <Typography align="center" gutterBottom variant="h5">
-                                            <Link color="textPrimary" variant="h5" onClick={handlePlaylistClick} data-playlist_id={playlist.id}>
-                                                {playlist.name}
-                                            </Link>
-                                        </Typography>
-                                        {
-                                            playlist.queue.map(song => {
-                                                return <Typography><Link color="textPrimary" component="button" onClick={() => {
-                                                    setNowPlaying(song)
-                                                }} >{song.title}</Link></Typography>
-                                            })
-                                        }
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-
                         </Grid>
-                    })}
+                    </Grid>
+
+                </Grid>
+            })}
         </div >
 
     )
