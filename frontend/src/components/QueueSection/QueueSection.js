@@ -9,6 +9,7 @@ import update from "immutability-helper";
 import ShareButton from "./ShareButton/ShareButton";
 import PlayQueueButton from "./PlayQueueButton/PlayQueueButton";
 import ShuffleButton from "./ShuffleButton/ShuffleButton";
+import ClearButton from "./ClearButton/ClearButton";
 
 function QueueSection({
   nowPlaying,
@@ -91,6 +92,9 @@ function QueueSection({
               </Grid>
               <Grid item>
                 <ShuffleButton {...{ queue, setQueue, setNowPlaying }} />
+              </Grid>
+              <Grid item>
+                <ClearButton {...{ queue, setQueue, setNowPlaying }}/>
               </Grid>
               <Grid item>
                 <ShareButton disabled={queue.length === 0} />
