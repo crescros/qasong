@@ -106,3 +106,8 @@ export function shuffle(array) {
   tempArray.sort(() => Math.random() - 0.5);
   return tempArray;
 }
+
+export function clear(array) {
+  array = [];
+  return array;
+}
