@@ -45,14 +45,13 @@ export default function PrimarySearchAppBar({
 
   const handleLogoClick = () => {
     setSearchTerm("");
-    setVideos([]);
-    setNowPlaying({});
+    setVideos([]); 
     setShowQueue(false);
   };
 
   return (
     <div className={classes.grow}>
-      <AppBar position={isMobile ? "fixed" : "static"}>
+      <AppBar position={isMobile ? "fixed" : "static"} color="primary">
         <Toolbar>
           {/* Icon-logo */}
           <IconButton
@@ -66,7 +65,8 @@ export default function PrimarySearchAppBar({
           </IconButton>
 
           {/* Development Badge */}
-          <EnvironmentBadges />
+          <div />
+          {/* <EnvironmentBadges /> */}
 
           {/* Artistify name from frontend .env */}
           <Typography display="inline" style={{ marginRight: "20px" }}>

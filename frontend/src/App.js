@@ -21,13 +21,10 @@ const App = () => {
         default: "#000000",
       },
       primary: {
-        main: "#000000",
-        dark: "#0e132e",
-        contrastText: "#fff",
+        main: "#000000"
       },
-
       secondary: {
-        main: "#2ad156",
+        main: "#FE9021",
         dark: "#fff",
         contrastText: "#fff",
       },
@@ -36,11 +33,28 @@ const App = () => {
     },
   });
 
-  const lightTheme = createMuiTheme({});
+  const lightTheme = createMuiTheme({
+    palette: {
+      background: {
+        default: "#dfdfdf",
+      },
+      primary: {
+        main: "#fff"
+      },
+      secondary: {
+        main: "#FE9021",
+        dark: "#fff",
+        contrastText: "#fff",
+      },
+
+      type: "light",
+    },  
+    shadows: ["none"]
+  });
 
   // APPLICATION LEVEL STATE
   const [currentQid, setCurrentQid] = useState();
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingQueue, setIsLoadingQueue] = useState(false);
   const [nowPlaying, setNowPlaying] = useState();
@@ -51,12 +65,24 @@ const App = () => {
   const [user, setUser] = useState();
   const [videos, setVideos] = useState([]);
 
+  function skipSong(){
+    const i = queue.findIndex((item) => item.qid === currentQid);
+    const nextInQueue = queue[i + 1];
+    setNowPlaying(nextInQueue);
+  }
+
+  function previousSong(){
+    const i = queue.findIndex((item) => item.qid === currentQid);
+    const nextInQueue = queue[i - 1];
+    setNowPlaying(nextInQueue);
+  }
+
   useEffect(() => {
     (async () => {
       // set dark mode from local storage
       const userDarkMode = localStorage.getItem("userDarkMode");
-      if (userDarkMode === "true") {
-        setDarkMode(true);
+      if (userDarkMode === "false") {
+        setDarkMode(false);
       }
 
       // get queue from url
@@ -67,17 +93,17 @@ const App = () => {
         let linkedQueue = await getQueueFromIds(
           queryString.stringify({ queue: parsedParams.queue })
         );
-        console.log(linkedQueue)
         setIsLoadingQueue(false);
         setQueue(linkedQueue);
         setShowQueue(true);
+        setNowPlaying(linkedQueue[0])
       } else {
         // if theres no queue in the url, get it from local storage
         const storedQueue = localStorage.getItem("queue");
         const storedQueueName = localStorage.getItem("queueName");
         if (storedQueue) {
-          const queue = JSON.parse(storedQueue);
-          setQueue(queue);
+          const localQueue = JSON.parse(storedQueue);
+          setQueue(localQueue);
           setShowQueue(true);
           setQueueName(storedQueueName);
         }
@@ -95,9 +121,7 @@ const App = () => {
     // if a song stopped, and there is a queue, play next in queue
     if (!nowPlaying && queue.length > 0) {
       if (currentQid) {
-        const i = queue.findIndex((item) => item.qid === currentQid);
-        const nextInQueue = queue[i + 1];
-        setNowPlaying(nextInQueue);
+        skipSong()
       } else {
         const nextInQueue = queue[0];
         setNowPlaying(nextInQueue);
@@ -211,6 +235,8 @@ const App = () => {
           setQueue,
           setQueueName,
           showQueue,
+          skipSong,
+          previousSong
         }}
       />
 
@@ -232,6 +258,11 @@ const App = () => {
           handleSearchTermInput,
           searchTerm,
           showHomeScreen,
+          setQueue,
+          setNowPlaying,
+          nowPlaying,
+          queue,
+          setShowQueue
         }}
       />
 
