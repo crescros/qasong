@@ -7,9 +7,9 @@ function VideoTable({ videos, nowPlaying, setNowPlaying, queue, setQueue, setSea
   if (!(videos && videos.results && videos.results.length > 0 && videos.searchTerm)) {
     return <div></div>;
   }
-  console.log("vidoes: ", videos)
+  
   return (
-    <Box mt={4} id="video-grid">
+    <Box mt={4} id="video-grid" style={{maxWidth: "1200px", margin:"0 auto 200px auto"}}>
       <Box m={2}>
         <Typography>
           Search Results for <i>{videos.searchTerm}</i>
@@ -28,12 +28,12 @@ function VideoTable({ videos, nowPlaying, setNowPlaying, queue, setQueue, setSea
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Play</TableCell>
-                <TableCell>Queue</TableCell>
+                <TableCell align='center'>Play</TableCell>
+                <TableCell align='center'>Queue</TableCell>
                 <TableCell>Name</TableCell>
                 <TableCell>Author</TableCell>
                 <TableCell>View Count</TableCell>
-                <TableCell>Thumbnail</TableCell>
+                <TableCell align='center'>Thumbnail</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

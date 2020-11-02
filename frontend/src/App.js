@@ -49,7 +49,7 @@ const App = () => {
       },
 
       type: "light",
-    },  
+    },
     shadows: ["none"]
   });
 
@@ -67,13 +67,13 @@ const App = () => {
   const [videos, setVideos] = useState([]);
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
 
-  function skipSong(){
+  function skipSong() {
     const i = queue.findIndex((item) => item.qid === currentQid);
     const nextInQueue = queue[i + 1];
     setNowPlaying(nextInQueue);
   }
 
-  function previousSong(){
+  function previousSong() {
     const i = queue.findIndex((item) => item.qid === currentQid);
     const nextInQueue = queue[i - 1];
     setNowPlaying(nextInQueue);
@@ -92,30 +92,17 @@ const App = () => {
       if (userSearchTableViewMode === "true") {
         setSearchTableViewMode(true);
       }
-      
-      // get queue from url
-      let parsedParams = queryString.parse(location.search);
-      if (parsedParams.queue && parsedParams.queue.length > 0) {
-        setQueueName(parsedParams.queueName);
-        setIsLoadingQueue(true);
-        let linkedQueue = await getQueueFromIds(
-          queryString.stringify({ queue: parsedParams.queue })
-        );
-        setIsLoadingQueue(false);
-        setQueue(linkedQueue);
+
+      // if theres no queue in the url, get it from local storage
+      const storedQueue = localStorage.getItem("queue");
+      const storedQueueName = localStorage.getItem("queueName");
+      if (storedQueue) {
+        const localQueue = JSON.parse(storedQueue);
+        setQueue(localQueue);
         setShowQueue(true);
-        setNowPlaying(linkedQueue[0])
-      } else {
-        // if theres no queue in the url, get it from local storage
-        const storedQueue = localStorage.getItem("queue");
-        const storedQueueName = localStorage.getItem("queueName");
-        if (storedQueue) {
-          const localQueue = JSON.parse(storedQueue);
-          setQueue(localQueue);
-          setShowQueue(true);
-          setQueueName(storedQueueName);
-        }
+        setQueueName(storedQueueName);
       }
+
     })();
   }, []);
 
@@ -150,9 +137,6 @@ const App = () => {
   // write queue value to local storage, write array of queue ids to query params
   useEffect(() => {
     localStorage.setItem("queue", JSON.stringify(queue));
-    let parsed = queryString.parse(location.search);
-    parsed.queue = queue.map((song) => song.videoId);
-    history.pushState(parsed, "queue", "?" + queryString.stringify(parsed));
 
     if (queue.length <= 0) {
       setShowQueue(false);
@@ -188,9 +172,7 @@ const App = () => {
       results: results,
     });
     setIsLoading(false);
-    if (isMobile) {
-      setShowQueue(false);
-    }
+    setShowQueue(false);
   };
 
   // show home screen if theres no search results, queue, or loading screen
@@ -253,31 +235,31 @@ const App = () => {
         }}
       />
 
-        {searchTableViewMode ? 
-      <VideoTable
-        {...{
-          handleSearchTermInput,
-          handleSubmitVideoSearch,
-          nowPlaying,
-          queue,
-          setNowPlaying,
-          setQueue,
-          videos,
-          setSearchTableViewMode
-        }}
-      /> :
-      <VideoGrid
-        {...{
-          handleSearchTermInput,
-          handleSubmitVideoSearch,
-          nowPlaying,
-          queue,
-          setNowPlaying,
-          setQueue,
-          videos,
-          setSearchTableViewMode
-        }}
-      /> }
+      {searchTableViewMode ?
+        <VideoTable
+          {...{
+            handleSearchTermInput,
+            handleSubmitVideoSearch,
+            nowPlaying,
+            queue,
+            setNowPlaying,
+            setQueue,
+            videos,
+            setSearchTableViewMode
+          }}
+        /> :
+        <VideoGrid
+          {...{
+            handleSearchTermInput,
+            handleSubmitVideoSearch,
+            nowPlaying,
+            queue,
+            setNowPlaying,
+            setQueue,
+            videos,
+            setSearchTableViewMode
+          }}
+        />}
 
       <HomeScreen
         {...{
@@ -289,7 +271,8 @@ const App = () => {
           setNowPlaying,
           nowPlaying,
           queue,
-          setShowQueue
+          setShowQueue,
+          isLoading
         }}
       />
 

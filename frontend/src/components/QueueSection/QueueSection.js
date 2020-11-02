@@ -7,7 +7,6 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
 import { isMobile } from "react-device-detect";
 import update from "immutability-helper";
-import ShareButton from "./ShareButton/ShareButton";
 import PlayQueueButton from "./PlayQueueButton/PlayQueueButton";
 import ShuffleButton from "./ShuffleButton/ShuffleButton";
 import ClearQueueButton from "./ClearQueueButton/ClearQueueButton";

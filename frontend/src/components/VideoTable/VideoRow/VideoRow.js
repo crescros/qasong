@@ -18,8 +18,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   media: {
-    height: 130,
-    width: 230
+    height: 65,
+    width: 115
   },
 }));
 
@@ -78,7 +78,7 @@ export default function MediaCard({ video, setNowPlaying, nowPlaying, queue, set
         <CardMedia 
           onClick={handlePlayButton} 
           className={classes.media} 
-          image={video.image} />
+          image={video.thumbnail} />
       </TableCell>
     </TableRow>
   );
