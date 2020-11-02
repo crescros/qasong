@@ -1,12 +1,18 @@
 import React from "react";
-import { Box, Grid, Typography } from "@material-ui/core";
+import { Box, Grid, Typography, Link } from "@material-ui/core";
 import VideoSearch from "../AppBar/VideoSearch/VideoSearch";
+import FeaturedPlaylists from "./FeaturedPlaylists/FeaturedPlaylists"
 
 function HomeScreen({
   handleSearchTermInput,
   handleSubmitVideoSearch,
   searchTerm,
   showHomeScreen,
+  setQueue,
+  setNowPlaying,
+  nowPlaying,
+  queue,
+  setShowQueue
 }) {
   if (!showHomeScreen) {
     return <div id="empty-div"></div>;
@@ -14,8 +20,8 @@ function HomeScreen({
 
   return (
     <Box mt={4}>
-      <Grid container direction="row" justify="center" alignItems="center">
-        <Grid item xs={6}>
+      <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
+        <Grid item>
           <Typography
             align="center"
             variant="h1"
@@ -25,7 +31,7 @@ function HomeScreen({
             {process.env.REACT_APP_NAME}
           </Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item>
           <Typography
             align="center"
             style={{
@@ -37,7 +43,11 @@ function HomeScreen({
             {process.env.REACT_APP_TAGLINE}
           </Typography>
         </Grid>
-        <Grid item xs={12} container justify="center">
+
+        <Grid item>
+
+        </Grid>
+        <Grid item container justify="center">
           <VideoSearch
             handleSearchTermInput={handleSearchTermInput}
             handleSubmitVideoSearch={handleSubmitVideoSearch}
@@ -47,6 +57,18 @@ function HomeScreen({
               maxWidth: 800,
             }}
           />
+        </Grid>
+
+        <Grid item>
+          <Box mt={12}>
+            <FeaturedPlaylists {...{
+                 setQueue,
+                 setNowPlaying,
+                 setShowQueue,
+                 nowPlaying
+            }} />
+    
+          </Box>
         </Grid>
       </Grid>
     </Box>

@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     top: "auto",
     bottom: 0,
     height: 75,
-    borderTop: "2px solid white",
+    borderTop: "2px solid red",
   },
   grow: {
     display: "flex",
