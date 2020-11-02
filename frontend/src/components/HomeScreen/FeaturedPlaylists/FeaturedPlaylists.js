@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 function FeaturedPlaylists({
     setQueue,
+    setQueueName,
     setNowPlaying,
     setShowQueue,
     nowPlaying
@@ -43,6 +44,7 @@ function FeaturedPlaylists({
         setQueue(selectedPlaylist.queue)
         setNowPlaying(selectedPlaylist.queue[0])
         setShowQueue(true)
+        setQueueName(selectedPlaylist.name)
     }
 
     return (

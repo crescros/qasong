@@ -11,7 +11,7 @@ function HomeScreen({
   setQueue,
   setNowPlaying,
   nowPlaying,
-  queue,
+  setQueueName,
   setShowQueue,
   isLoading
 }) {
@@ -68,7 +68,8 @@ function HomeScreen({
               setQueue,
               setNowPlaying,
               setShowQueue,
-              nowPlaying
+              nowPlaying,
+              setQueueName
             }} />
 
           </Box>

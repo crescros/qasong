@@ -95,12 +95,10 @@ const App = () => {
 
       // if theres no queue in the url, get it from local storage
       const storedQueue = localStorage.getItem("queue");
-      const storedQueueName = localStorage.getItem("queueName");
       if (storedQueue) {
         const localQueue = JSON.parse(storedQueue);
         setQueue(localQueue);
         setShowQueue(true);
-        setQueueName(storedQueueName);
       }
 
     })();
@@ -142,19 +140,6 @@ const App = () => {
       setShowQueue(false);
     }
   }, [queue]);
-
-  // write queue name to localstorage and query params
-  useEffect(() => {
-    if (queueName) {
-      localStorage.setItem("queueName", queueName);
-      let parsed = queryString.parse(location.search);
-      parsed.queueName = queueName;
-      history.pushState(parsed, "queue", "?" + queryString.stringify(parsed));
-      document.title = process.env.REACT_APP_NAME + " - " + queueName;
-    } else {
-      setQueueName("New Queue");
-    }
-  }, [queueName]);
 
   // event listener for search input
   const handleSearchTermInput = (e) => {
@@ -268,9 +253,10 @@ const App = () => {
           searchTerm,
           showHomeScreen,
           setQueue,
+          setQueueName,
           setNowPlaying,
           nowPlaying,
-          queue,
+          queueName,
           setShowQueue,
           isLoading
         }}
