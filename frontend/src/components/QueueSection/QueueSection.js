@@ -100,6 +100,7 @@ function QueueSection({
               <Grid item>
                 <ShuffleButton {...{ queue, setQueue, setNowPlaying }} />
               </Grid>
+
               <Grid item>
                 <PreviousSongButton {...{ previousSong }} />
               </Grid>
@@ -108,9 +109,6 @@ function QueueSection({
               </Grid>
               <Grid item>
                 <DisplayModeButton {...{ displayMode, setDisplayMode }} />
-              </Grid>
-              <Grid item>
-                <ShareButton disabled={queue.length === 0} />
               </Grid>
               <Grid item>
                 <ClearQueueButton {...{ setQueue }} />
