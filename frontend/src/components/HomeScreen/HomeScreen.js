@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Typography, Link } from "@material-ui/core";
+import { Box, Grid, Typography, CircularProgress } from "@material-ui/core";
 import VideoSearch from "../AppBar/VideoSearch/VideoSearch";
 import FeaturedPlaylists from "./FeaturedPlaylists/FeaturedPlaylists"
 
@@ -11,8 +11,9 @@ function HomeScreen({
   setQueue,
   setNowPlaying,
   nowPlaying,
-  queue,
-  setShowQueue
+  setQueueName,
+  setShowQueue,
+  isLoading
 }) {
   if (!showHomeScreen) {
     return <div id="empty-div"></div>;
@@ -57,16 +58,19 @@ function HomeScreen({
             }}
           />
         </Grid>
-
+        <Grid item>
+          {isLoading && <CircularProgress color="secondary" size="32px" />}
+        </Grid>
         <Grid item>
           <Box mt={12}>
             <FeaturedPlaylists {...{
-                 setQueue,
-                 setNowPlaying,
-                 setShowQueue,
-                 nowPlaying
+              setQueue,
+              setNowPlaying,
+              setShowQueue,
+              nowPlaying,
+              setQueueName
             }} />
-    
+
           </Box>
         </Grid>
       </Grid>

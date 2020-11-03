@@ -11,7 +11,6 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
-import { formatVideoTitle } from "../../../functions";
 
 const useStyles = makeStyles((theme) => ({
   row: {
@@ -33,7 +32,6 @@ export default function ImgMediaCard({
   index,
   nowPlaying,
   onClickImage,
-  author,
   moveCard,
   qid,
   queue,
