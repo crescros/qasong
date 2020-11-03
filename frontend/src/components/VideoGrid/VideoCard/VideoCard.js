@@ -14,7 +14,7 @@ import AddToQueueButton from "./AddToQueueButton/AddToQueueButton";
 const useStyles = makeStyles((theme) => ({
   card: {
     position: "relative",
-    minWidth: 250,
+    minWidth: '250px !important',
     maxHeight: 190,
     boxShadow: "none",
     backgroundColor: "transparent",
@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
+    fontSize: 11.5,
   },
   overlay: {
     visibility: "hidden",
@@ -75,7 +76,7 @@ export default function MediaCard({ video, setNowPlaying, nowPlaying, queue, set
   return (
     <Card
       className={classes.card}
-      style={{ backgroundColor: playing && "#2ad156" }}
+      style={{ backgroundColor: playing && "#FE9021" }}
       onClick={handlePlayButton}
     >
       <CardActionArea>

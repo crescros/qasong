@@ -1,30 +1,20 @@
 import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { makeStyles } from "@material-ui/core/styles";
+import { Box, Tooltip } from "@material-ui/core"
+
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import ClearIcon from '@material-ui/icons/Clear';
 
 import {
-  Box,
-  Card,
-  Grid,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Tooltip,
-  Typography,
   IconButton,
+  Grid,
+  Typography,
 } from "@material-ui/core";
-import { formatVideoTitle } from "../../../functions";
-import ClearIcon from "@material-ui/icons/Clear";
 
 const useStyles = makeStyles((theme) => ({
-  card: {
-    cursor: "move",
-    display: "inline-block",
-    width: "100px",
+  row: {
     position: "relative",
-    marginLeft: "41.5px",
-    marginTop: "25px",
-    backgroundColor: "transparent",
     "&:hover > *": {
       visibility: "visible !important",
     },
@@ -33,11 +23,8 @@ const useStyles = makeStyles((theme) => ({
     visibility: "hidden",
     position: "absolute",
     top: theme.spacing(1),
-    right: theme.spacing(0.5),
+    right: theme.spacing(1.5),
   },
-  media: {
-    height: 70,
-  }
 }));
 
 export default function ImgMediaCard({
@@ -49,8 +36,8 @@ export default function ImgMediaCard({
   qid,
   queue,
   setQueue,
-  thumbnail,
   title,
+  timestamp
 }) {
   const classes = useStyles();
 
@@ -114,31 +101,32 @@ export default function ImgMediaCard({
   drag(drop(ref));
 
   return (
-    <Card
+    <Grid item container
+      className={classes.row}
+      onClick={() => onClickImage(qid)}
+      direction="row"
+      alignItems="center"
       ref={ref}
-      className={classes.card}
       style={{
         backgroundColor: (nowPlaying && nowPlaying.qid) === qid && "#FE9021",
         opacity,
       }}
     >
-      <CardActionArea style={{ height: "100px" }} onClick={() => onClickImage(qid)}>
-        <CardMedia className={classes.media}
-          component="img"
-          alt={title}
-          image={thumbnail}
-          title={title}
-        />
-        <Box p={1}>
-          <Grid container direction="column">
-            <Grid item>
-              <Typography style={{ fontSize: "8px"}} gutterBottom>
-                {formatVideoTitle(title)}
-              </Typography>
-            </Grid>
-          </Grid>
-        </Box>
-      </CardActionArea>
+      <Grid item xs={1}>
+        <IconButton>
+          <PlayArrowIcon />
+        </IconButton>
+      </Grid>
+      <Grid item xs={9}>
+        <Typography>
+          {title}
+        </Typography>
+      </Grid>
+      <Grid item xs={1}>
+        <Typography>
+          {timestamp}
+        </Typography>
+      </Grid>
       {/* Remove from queue overlay */}
       <Box className={classes.overlay}>
         <Tooltip title="remove from queue">
@@ -153,6 +141,6 @@ export default function ImgMediaCard({
           </IconButton>
         </Tooltip>
       </Box>
-    </Card>
+    </Grid>
   );
 }

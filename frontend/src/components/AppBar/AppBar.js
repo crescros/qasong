@@ -10,7 +10,6 @@ import {
 } from "@material-ui/core";
 import VideoSearch from "./VideoSearch/VideoSearch";
 import MobileMenu from "./MobileMenu/MobileMenu";
-import EnvironmentBadges from "./EnvironmentBadges/EnvironmentBadges";
 import { isMobile } from "react-device-detect";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
 // import UserSection from "./UserSection/UserSection";
@@ -46,13 +45,12 @@ export default function PrimarySearchAppBar({
   const handleLogoClick = () => {
     setSearchTerm("");
     setVideos([]);
-    setNowPlaying({});
     setShowQueue(false);
   };
 
   return (
     <div className={classes.grow}>
-      <AppBar position={isMobile ? "fixed" : "static"}>
+      <AppBar position={isMobile ? "fixed" : "static"} color="primary">
         <Toolbar>
           {/* Icon-logo */}
           <IconButton
@@ -65,32 +63,30 @@ export default function PrimarySearchAppBar({
             <img src=".\icon-logo.svg" height="48px" />
           </IconButton>
 
-          {/* Development Badge */}
-          <EnvironmentBadges />
-
-          {/* Artistify name from frontend .env */}
-          <Typography display="inline" style={{ marginRight: "20px" }}>
-            {process.env.REACT_APP_NAME}
-          </Typography>
-
           {/* Search bar */}
           {!showHomeScreen && (
-            <VideoSearch
-              handleSearchTermInput={handleSearchTermInput}
-              handleSubmitVideoSearch={handleSubmitVideoSearch}
-              searchTerm={searchTerm}
-              style={{
-                margin: "0 auto",
-                maxWidth: 800,
-              }}
-            />
+            <>
+              {/* Artistify name from frontend .env */}
+              <Typography display="inline" style={{ marginRight: "20px" }}>
+                {process.env.REACT_APP_NAME}
+              </Typography>
+              <VideoSearch
+                handleSearchTermInput={handleSearchTermInput}
+                handleSubmitVideoSearch={handleSubmitVideoSearch}
+                searchTerm={searchTerm}
+                style={{
+                  margin: "0 auto",
+                  maxWidth: 800,
+                }}
+              />
+              {/* Search Bar Loading Indicator */}
+              <Box mx={2}>
+                {" "}
+                {isLoading && <CircularProgress color="secondary" size="32px" />}{" "}
+              </Box>
+            </>
           )}
 
-          {/* Search Bar Loading Indicator */}
-          <Box mx={2}>
-            {" "}
-            {isLoading && <CircularProgress color="secondary" size="32px" />}{" "}
-          </Box>
 
           {/* responsive spacer */}
           <div className={classes.grow} />

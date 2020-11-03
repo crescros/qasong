@@ -1,8 +1,9 @@
 import React from "react";
-import { Grid, Typography, Box } from "@material-ui/core";
+import { Grid, Typography, Box, IconButton } from "@material-ui/core";
 import VideoCard from "./VideoCard/VideoCard";
+import TableChartIcon from '@material-ui/icons/TableChart';
 
-function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue }) {
+function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue, setSearchTableViewMode }) {
   if (!(videos && videos.results && videos.results.length > 0 && videos.searchTerm)) {
     return <div></div>;
   }
@@ -13,6 +14,14 @@ function VideoGrid({ videos, nowPlaying, setNowPlaying, queue, setQueue }) {
         <Typography>
           Search Results for <i>{videos.searchTerm}</i>
         </Typography>
+        <IconButton
+          edge="end"
+          title="toggle light/dark theme"
+          onClick={() => setSearchTableViewMode(true)}
+          target="_blank"
+        >
+          <TableChartIcon /> 
+        </IconButton>
       </Box>
       <Grid container direction="row" justify="center" alignItems="center">
         {videos.results.map((video) => {
