@@ -79,10 +79,6 @@ export default function PrimarySearchAppBar({
               handleSearchTermInput={handleSearchTermInput}
               handleSubmitVideoSearch={handleSubmitVideoSearch}
               searchTerm={searchTerm}
-              style={{
-                margin: "0 auto",
-                maxWidth: 800,
-              }}
             />
           )}
 

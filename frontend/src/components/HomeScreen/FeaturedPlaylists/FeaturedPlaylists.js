@@ -8,7 +8,8 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     playlist: {
-        backgroundColor: theme.palette.background.paper,
+        borderColor: "#ffae5c",
+        border: "2px solid",
         maxWidth: 500,
         margin: 'auto',
         padding: theme.spacing(4),
@@ -47,7 +48,7 @@ function FeaturedPlaylists({
 
     return (
         <div className={classes.root}>
-            <Typography align="center" variant="h4" style={{ color: "#888" }} >featured playlists</Typography>
+            <Typography align="center" variant="h4" style={{ color: "#888" }} >Featured playlists</Typography>
 
             {featuredPlaylists.map(playlist => {
                 return <Grid container item className={classes.playlist} onClick={handlePlaylistClick} data-playlist_id={playlist.id}>
