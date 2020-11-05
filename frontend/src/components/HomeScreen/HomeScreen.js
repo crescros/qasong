@@ -54,7 +54,6 @@ function HomeScreen({
             handleSubmitVideoSearch={handleSubmitVideoSearch}
             searchTerm={searchTerm}
             style={{
-              margin: "0 auto",
               maxWidth: 800,
             }}
           />

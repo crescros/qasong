@@ -37,7 +37,7 @@ const App = () => {
   const lightTheme = createMuiTheme({
     palette: {
       background: {
-        default: "#dfdfdf",
+        default: "##f7f3f2",
       },
       primary: {
         main: "#fff"
