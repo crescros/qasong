@@ -12,6 +12,7 @@ import VideoSearch from "./VideoSearch/VideoSearch";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import { isMobile } from "react-device-detect";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
+import LoadingAnimation from "../LoadingAnimation/LoadingAnimation"
 // import UserSection from "./UserSection/UserSection";
 
 const useStyles = makeStyles((theme) => ({
@@ -82,7 +83,7 @@ export default function PrimarySearchAppBar({
               {/* Search Bar Loading Indicator */}
               <Box mx={2}>
                 {" "}
-                {isLoading && <CircularProgress color="secondary" size="32px" />}{" "}
+                {isLoading && <LoadingAnimation size="32px" />}{" "}
               </Box>
             </>
           )}
