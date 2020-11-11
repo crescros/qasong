@@ -6,8 +6,6 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import AppBar from "./components/AppBar/AppBar";
 import HomeScreen from "./components/HomeScreen/HomeScreen";
-// eslint-disable-next-line max-len
-import QueueLoadingScreen from "./components/QueueSection/QueueLoadingScreen/QueueLoadingScreen";
 import QueueSection from "./components/QueueSection/QueueSection";
 import VideoArea from "./components/VideoArea/VideoArea";
 import VideoGrid from "./components/VideoGrid/VideoGrid";
@@ -159,8 +157,7 @@ const App = () => {
 
   // show home screen if theres no search results, queue, or loading screen
   const showHomeScreen =
-    !(videos.results && videos.results.length > 0) &&
-    showQueue === false;
+    !(videos.results && videos.results.length > 0) && showQueue === false;
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>

@@ -35,11 +35,13 @@ the frontend development server will be at http://localhost:8080
 
 `npm deploy`
 
-this will 
- - build the react frontend into static assets in the public folder
- - deploy the app to google cloud using instructions in `app.yaml`
+this will
+
+- build the react frontend into static assets in the public folder
+- deploy the app to google cloud using instructions in `app.yaml`
 
 ## Contact
 
 ### Join Us on Discord
+
 https://discord.gg/b2gEwT8

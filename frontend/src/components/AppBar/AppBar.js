@@ -1,13 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  AppBar,
-  CircularProgress,
-  Toolbar,
-  Typography,
-  IconButton,
-  Box,
-} from "@material-ui/core";
+import { AppBar, Toolbar, Typography, IconButton, Box } from "@material-ui/core";
 import VideoSearch from "./VideoSearch/VideoSearch";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import { isMobile } from "react-device-detect";
@@ -37,9 +30,6 @@ export default function PrimarySearchAppBar({
   setDarkMode,
   isLoading,
   setVideos,
-  setNowPlaying,
-  // user,
-  // setUser,
 }) {
   const classes = useStyles();
 

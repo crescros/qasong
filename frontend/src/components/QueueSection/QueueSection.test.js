@@ -10,7 +10,7 @@ describe("<QueueSection />", () => {
   });
 
   it("renders the Youtube component if id is truthy", () => {
-    const wrapper = shallow(<QueueSection showQueue={true} queue={[{}]}   />);
+    const wrapper = shallow(<QueueSection showQueue={true} queue={[{}]} />);
     expect(wrapper.find(DndProvider)).toHaveLength(1);
   });
 });

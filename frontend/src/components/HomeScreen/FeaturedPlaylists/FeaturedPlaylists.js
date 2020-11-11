@@ -66,6 +66,7 @@ function FeaturedPlaylists({
       {featuredPlaylists.map((playlist) => {
         return (
           <Grid
+            key={playlist.id}
             container
             item
             className={classes.playlist}
@@ -98,6 +99,7 @@ function FeaturedPlaylists({
                   {playlist.queue.map((song) => {
                     return (
                       <ListItem
+                        key={song.videoId}
                         onClick={() => {
                           setNowPlaying(song);
                         }}
