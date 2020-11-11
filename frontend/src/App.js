@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { isMobile } from "react-device-detect";
 import { getYoutubeIdFromSearch } from "./functions";
 import { CssBaseline } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -163,7 +162,7 @@ const App = () => {
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
 
-      {isMobile && <div style={{ height: "72px" }}></div>}
+      {<div style={{ height: "72px" }}></div>}
 
       <AppBar
         {...{
