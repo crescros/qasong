@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { isMobile } from "react-device-detect";
-import queryString from "query-string";
 import { getYoutubeIdFromSearch, getQueueFromIds } from "./functions";
 import { CssBaseline } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
