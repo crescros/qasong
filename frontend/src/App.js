@@ -3,8 +3,8 @@ import { getYoutubeIdFromSearch } from "./functions";
 import { CssBaseline } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-const VideoGrid = React.lazy(() => import ("./components/VideoGrid/VideoGrid"));
-const VideoTable = React.lazy(() => import ("./components/VideoTable/VideoTable"));
+const VideoGrid = React.lazy(() => import("./components/VideoGrid/VideoGrid"));
+const VideoTable = React.lazy(() => import("./components/VideoTable/VideoTable"));
 const AppBar = React.lazy(() => import("./components/AppBar/AppBar"));
 const HomeScreen = React.lazy(() => import("./components/HomeScreen/HomeScreen"));
 const QueueSection = React.lazy(() => import("./components/QueueSection/QueueSection"));
@@ -47,7 +47,6 @@ const lightTheme = createMuiTheme({
   },
   shadows: ["none"],
 });
-
 
 const App = () => {
   // APPLICATION LEVEL STATE
@@ -220,7 +219,6 @@ const App = () => {
       {/* MUSIC SEARCH RESULTS */}
       {searchTableViewMode ? (
         <Suspense fallback={<div />}>
-
           <VideoTable
             {...{
               handleSearchTermInput,
@@ -235,22 +233,21 @@ const App = () => {
           />
         </Suspense>
       ) : (
-          <Suspense fallback={<div />}>
-
-            <VideoGrid
-              {...{
-                handleSearchTermInput,
-                handleSubmitVideoSearch,
-                nowPlaying,
-                queue,
-                setNowPlaying,
-                setQueue,
-                videos,
-                setSearchTableViewMode,
-              }}
-            />
-          </Suspense>
-        )}
+        <Suspense fallback={<div />}>
+          <VideoGrid
+            {...{
+              handleSearchTermInput,
+              handleSubmitVideoSearch,
+              nowPlaying,
+              queue,
+              setNowPlaying,
+              setQueue,
+              videos,
+              setSearchTableViewMode,
+            }}
+          />
+        </Suspense>
+      )}
 
       {/* LANDING PAGE */}
       <Suspense fallback={<div />}>
