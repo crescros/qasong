@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
-import StopIcon from '@material-ui/icons/Stop';
+import StopIcon from "@material-ui/icons/Stop";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -60,48 +60,42 @@ function Playlist({
     setQueueName(playlist.name);
   }
 
-  function handleStopSong(e){
+  function handleStopSong(e) {
     e.stopPropagation();
-
-    console.log('lele')
-    setNowPlaying({})
+    setNowPlaying({});
   }
 
   function PlaylistItem({ song }) {
+    const currentlyPlaying = song.videoId === nowPlaying?.videoId;
 
-    const currentlyPlaying = song.videoId === nowPlaying?.videoId
-
-    return <ListItem
-      key={song.videoId}
-      onClick={() => {
-        setNowPlaying(song);
-      }}
-      button
-      selected={currentlyPlaying}
-    >
-      {
-        currentlyPlaying &&
-        <IconButton size="small" onClick={handleStopSong}>
-        <StopIcon />
-      </IconButton>
-      }
-      <ListItemText primary={song.title} />
-    </ListItem>
+    return (
+      <ListItem
+        key={song.videoId}
+        onClick={() => {
+          setNowPlaying(song);
+        }}
+        button
+        selected={currentlyPlaying}
+      >
+        {currentlyPlaying && (
+          <IconButton size="small" onClick={handleStopSong}>
+            <StopIcon />
+          </IconButton>
+        )}
+        <ListItemText primary={song.title} />
+      </ListItem>
+    );
   }
 
   function CollapsedPlaylist() {
     return playlist.queue.slice(0, 4).map((song) => {
-      return (
-        <PlaylistItem {...{ song }} />
-      );
+      return <PlaylistItem key={song.qid} {...{ song }} />;
     });
   }
 
   function UncollapsedPlaylist() {
     return playlist.queue.map((song) => {
-      return (
-        <PlaylistItem {...{ song }} />
-      );
+      return <PlaylistItem key={song.qid} {...{ song }} />;
     });
   }
 
@@ -133,16 +127,10 @@ function Playlist({
                 {playlist.name}
               </Link>
             </Typography>
-            <IconButton
-              title="play playlist"
-              onClick={handlePlaylistClick}
-            >
+            <IconButton title="play playlist" onClick={handlePlaylistClick}>
               <PlayArrowIcon />
             </IconButton>
-            <IconButton
-              title="add playlist to queue"
-              onClick={handleAddToQueueClick}
-            >
+            <IconButton title="add playlist to queue" onClick={handleAddToQueueClick}>
               <AddToPhotosIcon />
             </IconButton>
           </Box>
