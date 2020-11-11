@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
+import StopIcon from '@material-ui/icons/Stop';
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -22,10 +23,6 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     padding: theme.spacing(4),
     marginBottom: theme.spacing(4),
-  },
-  paper: {},
-  image: {
-    width: "100%",
   },
   img: {
     margin: "auto",
@@ -40,7 +37,6 @@ function Playlist({
   setQueue,
   setQueueName,
   setNowPlaying,
-  setShowQueue,
   nowPlaying,
   queue,
 }) {
@@ -50,7 +46,6 @@ function Playlist({
   function handlePlaylistClick() {
     setQueue(playlist.queue);
     setNowPlaying(playlist.queue[0]);
-    setShowQueue(true);
     setQueueName(playlist.name);
   }
 
@@ -65,38 +60,49 @@ function Playlist({
     setQueueName(playlist.name);
   }
 
+  function handleStopSong(e){
+    e.stopPropagation();
+
+    console.log('lele')
+    setNowPlaying({})
+  }
+
+  function PlaylistItem({ song }) {
+
+    const currentlyPlaying = song.videoId === nowPlaying?.videoId
+
+    return <ListItem
+      key={song.videoId}
+      onClick={() => {
+        setNowPlaying(song);
+      }}
+      button
+      selected={currentlyPlaying}
+    >
+      {
+        currentlyPlaying &&
+        <IconButton size="small" onClick={handleStopSong}>
+        <StopIcon />
+      </IconButton>
+      }
+      <ListItemText primary={song.title} />
+    </ListItem>
+  }
+
   function CollapsedPlaylist() {
     return playlist.queue.slice(0, 4).map((song) => {
       return (
-        <ListItem
-          key={song.videoId}
-          onClick={() => {
-            setNowPlaying(song);
-          }}
-          button
-          selected={song.videoId === nowPlaying?.videoId}
-        >
-          <ListItemText primary={song.title} />
-        </ListItem>
-      )
-    })
+        <PlaylistItem {...{ song }} />
+      );
+    });
   }
 
   function UncollapsedPlaylist() {
     return playlist.queue.map((song) => {
       return (
-        <ListItem
-          key={song.videoId}
-          onClick={() => {
-            setNowPlaying(song);
-          }}
-          button
-          selected={song.videoId === nowPlaying?.videoId}
-        >
-          <ListItemText primary={song.title} />
-        </ListItem>
-      )
-    })
+        <PlaylistItem {...{ song }} />
+      );
+    });
   }
 
   return (
@@ -109,60 +115,58 @@ function Playlist({
     >
       <Grid item xs={12}>
         <Box align="center">
-          <ButtonBase className={classes.image}>
+          <ButtonBase onClick={handlePlaylistClick}>
             <img className={classes.img} alt="complex" src={playlist.image} />
           </ButtonBase>
         </Box>
       </Grid>
-      <Grid item xs={12} container>
-        <Grid item xs container direction="column" spacing={2}>
-          <Grid item>
+      <Grid item xs container direction="column" spacing={2}>
+        <Grid item container>
+          <Box pl={2}>
             <Typography gutterBottom>
               <Link
                 color="textPrimary"
                 component="button"
                 variant="h4"
-                onClick={() => handlePlaylistClick(playlist.id)}
+                onClick={handlePlaylistClick}
               >
                 {playlist.name}
               </Link>
             </Typography>
             <IconButton
               title="play playlist"
-              onClick={() => handlePlaylistClick(playlist.id)}
+              onClick={handlePlaylistClick}
             >
               <PlayArrowIcon />
             </IconButton>
             <IconButton
               title="add playlist to queue"
-              onClick={() => handleAddToQueueClick(playlist.id)}
+              onClick={handleAddToQueueClick}
             >
               <AddToPhotosIcon />
             </IconButton>
-          </Grid>
+          </Box>
+        </Grid>
 
-          <Grid item>
-            <List>
-              {collapsed
-                ? <CollapsedPlaylist />
-                : <UncollapsedPlaylist />}
-              <ListItem
-                onClick={() => setCollapsed(!collapsed)}
-                key="collapseControl"
-                button
-              >
-                <ListItemText
-                  disableTypography
-                  color="secondary"
-                  primary={
-                    <Typography color="secondary">
-                      {collapsed ? "... See More" : "See Less"}
-                    </Typography>
-                  }
-                />
-              </ListItem>
-            </List>
-          </Grid>
+        <Grid item>
+          <List>
+            {collapsed ? <CollapsedPlaylist /> : <UncollapsedPlaylist />}
+            <ListItem
+              onClick={() => setCollapsed(!collapsed)}
+              key="collapseControl"
+              button
+            >
+              <ListItemText
+                disableTypography
+                color="secondary"
+                primary={
+                  <Typography color="secondary">
+                    {collapsed ? "...See More" : "See Less"}
+                  </Typography>
+                }
+              />
+            </ListItem>
+          </List>
         </Grid>
       </Grid>
     </Grid>
