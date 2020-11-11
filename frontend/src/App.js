@@ -1,54 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { getYoutubeIdFromSearch } from "./functions";
 import { CssBaseline } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import AppBar from "./components/AppBar/AppBar";
-import HomeScreen from "./components/HomeScreen/HomeScreen";
-import QueueSection from "./components/QueueSection/QueueSection";
-import VideoArea from "./components/VideoArea/VideoArea";
-import VideoGrid from "./components/VideoGrid/VideoGrid";
-import VideoTable from "./components/VideoTable/VideoTable";
-import PlayArea from "./components/PlayArea/PlayArea";
+const VideoGrid = React.lazy(() => import ("./components/VideoGrid/VideoGrid"));
+const VideoTable = React.lazy(() => import ("./components/VideoTable/VideoTable"));
+const AppBar = React.lazy(() => import("./components/AppBar/AppBar"));
+const HomeScreen = React.lazy(() => import("./components/HomeScreen/HomeScreen"));
+const QueueSection = React.lazy(() => import("./components/QueueSection/QueueSection"));
+const VideoArea = React.lazy(() => import("./components/VideoArea/VideoArea"));
+const PlayArea = React.lazy(() => import("./components/PlayArea/PlayArea"));
+
+// DARK MODE
+const darkTheme = createMuiTheme({
+  palette: {
+    background: {
+      default: "#000000",
+    },
+    primary: {
+      main: "#000000",
+    },
+    secondary: {
+      main: "#FE9021",
+      dark: "#fff",
+      contrastText: "#fff",
+    },
+    type: "dark",
+  },
+});
+
+// LIGHT MODE
+const lightTheme = createMuiTheme({
+  palette: {
+    background: {
+      default: "##f7f3f2",
+    },
+    primary: {
+      main: "#fff",
+    },
+    secondary: {
+      main: "#FE9021",
+      dark: "#fff",
+      contrastText: "#fff",
+    },
+    type: "light",
+  },
+  shadows: ["none"],
+});
+
 
 const App = () => {
-  const darkTheme = createMuiTheme({
-    palette: {
-      background: {
-        default: "#000000",
-      },
-      primary: {
-        main: "#000000",
-      },
-      secondary: {
-        main: "#FE9021",
-        dark: "#fff",
-        contrastText: "#fff",
-      },
-
-      type: "dark",
-    },
-  });
-
-  const lightTheme = createMuiTheme({
-    palette: {
-      background: {
-        default: "##f7f3f2",
-      },
-      primary: {
-        main: "#fff",
-      },
-      secondary: {
-        main: "#FE9021",
-        dark: "#fff",
-        contrastText: "#fff",
-      },
-
-      type: "light",
-    },
-    shadows: ["none"],
-  });
-
   // APPLICATION LEVEL STATE
   const [currentQid, setCurrentQid] = useState();
   const [darkMode, setDarkMode] = useState(true);
@@ -74,6 +75,7 @@ const App = () => {
     setNowPlaying(nextInQueue);
   }
 
+  // runs once when app starts
   useEffect(() => {
     (async () => {
       // set dark mode from local storage
@@ -164,101 +166,123 @@ const App = () => {
 
       {<div style={{ height: "72px" }}></div>}
 
-      <AppBar
-        {...{
-          darkMode,
-          handleSearchTermInput,
-          handleSubmitVideoSearch,
-          isLoading,
-          nowPlaying,
-          queue,
-          searchTerm,
-          setDarkMode,
-          setNowPlaying,
-          setSearchTerm,
-          setShowQueue,
-          setUser,
-          setVideos,
-          showQueue,
-          user,
-          showHomeScreen,
-        }}
-      />
+      {/* APP BAR */}
+      <Suspense fallback={<div />}>
+        <AppBar
+          {...{
+            darkMode,
+            handleSearchTermInput,
+            handleSubmitVideoSearch,
+            isLoading,
+            nowPlaying,
+            queue,
+            searchTerm,
+            setDarkMode,
+            setNowPlaying,
+            setSearchTerm,
+            setShowQueue,
+            setUser,
+            setVideos,
+            showQueue,
+            user,
+            showHomeScreen,
+          }}
+        />
+      </Suspense>
 
-      <VideoArea
-        {...{
-          nowPlaying,
-          setNowPlaying,
-        }}
-      />
+      {/* YOUTUBE IFRAME */}
+      <Suspense fallback={<div />}>
+        <VideoArea
+          {...{
+            nowPlaying,
+            setNowPlaying,
+          }}
+        />
+      </Suspense>
 
-      <QueueSection
-        {...{
-          nowPlaying,
-          queue,
-          queueName,
-          setNowPlaying,
-          setQueue,
-          setQueueName,
-          showQueue,
-          skipSong,
-          previousSong,
-        }}
-      />
+      {/* QUEUE */}
+      <Suspense fallback={<div />}>
+        <QueueSection
+          {...{
+            nowPlaying,
+            queue,
+            queueName,
+            setNowPlaying,
+            setQueue,
+            setQueueName,
+            showQueue,
+            skipSong,
+            previousSong,
+          }}
+        />
+      </Suspense>
 
+      {/* MUSIC SEARCH RESULTS */}
       {searchTableViewMode ? (
-        <VideoTable
-          {...{
-            handleSearchTermInput,
-            handleSubmitVideoSearch,
-            nowPlaying,
-            queue,
-            setNowPlaying,
-            setQueue,
-            videos,
-            setSearchTableViewMode,
-          }}
-        />
+        <Suspense fallback={<div />}>
+
+          <VideoTable
+            {...{
+              handleSearchTermInput,
+              handleSubmitVideoSearch,
+              nowPlaying,
+              queue,
+              setNowPlaying,
+              setQueue,
+              videos,
+              setSearchTableViewMode,
+            }}
+          />
+        </Suspense>
       ) : (
-        <VideoGrid
+          <Suspense fallback={<div />}>
+
+            <VideoGrid
+              {...{
+                handleSearchTermInput,
+                handleSubmitVideoSearch,
+                nowPlaying,
+                queue,
+                setNowPlaying,
+                setQueue,
+                videos,
+                setSearchTableViewMode,
+              }}
+            />
+          </Suspense>
+        )}
+
+      {/* LANDING PAGE */}
+      <Suspense fallback={<div />}>
+        <HomeScreen
           {...{
-            handleSearchTermInput,
             handleSubmitVideoSearch,
-            nowPlaying,
-            queue,
-            setNowPlaying,
+            handleSearchTermInput,
+            searchTerm,
+            showHomeScreen,
             setQueue,
-            videos,
-            setSearchTableViewMode,
+            setQueueName,
+            setNowPlaying,
+            nowPlaying,
+            queueName,
+            setShowQueue,
+            isLoading,
+            queue,
           }}
         />
-      )}
+      </Suspense>
 
-      <HomeScreen
-        {...{
-          handleSubmitVideoSearch,
-          handleSearchTermInput,
-          searchTerm,
-          showHomeScreen,
-          setQueue,
-          setQueueName,
-          setNowPlaying,
-          nowPlaying,
-          queueName,
-          setShowQueue,
-          isLoading,
-          queue,
-        }}
-      />
-
-      <PlayArea
-        {...{
-          nowPlaying,
-          queue,
-          videos,
-          setNowPlaying,
-        }}
-      />
+      {/* NOW PLAYING AREA */}
+      <Suspense fallback={<div />}>
+        <PlayArea
+          {...{
+            nowPlaying,
+            queue,
+            videos,
+            setNowPlaying,
+          }}
+        />
+      </Suspense>
     </ThemeProvider>
   );
 };

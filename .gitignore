@@ -8,6 +8,7 @@ package-lock.json
 
 # react
 public/bundle.js
+public/*.bundle.js
 
 # cypress
 cypress/videos
