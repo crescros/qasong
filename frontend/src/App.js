@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { isMobile } from "react-device-detect";
-import queryString from "query-string";
-import { getYoutubeIdFromSearch, getQueueFromIds } from "./functions";
+import { getYoutubeIdFromSearch } from "./functions";
 import { CssBaseline } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import AppBar from "./components/AppBar/AppBar";
 import HomeScreen from "./components/HomeScreen/HomeScreen";
-// eslint-disable-next-line max-len
-import QueueLoadingScreen from "./components/QueueSection/QueueLoadingScreen/QueueLoadingScreen";
 import QueueSection from "./components/QueueSection/QueueSection";
 import VideoArea from "./components/VideoArea/VideoArea";
 import VideoGrid from "./components/VideoGrid/VideoGrid";
@@ -22,7 +19,7 @@ const App = () => {
         default: "#000000",
       },
       primary: {
-        main: "#000000"
+        main: "#000000",
       },
       secondary: {
         main: "#FE9021",
@@ -40,7 +37,7 @@ const App = () => {
         default: "##f7f3f2",
       },
       primary: {
-        main: "#fff"
+        main: "#fff",
       },
       secondary: {
         main: "#FE9021",
@@ -50,14 +47,13 @@ const App = () => {
 
       type: "light",
     },
-    shadows: ["none"]
+    shadows: ["none"],
   });
 
   // APPLICATION LEVEL STATE
   const [currentQid, setCurrentQid] = useState();
   const [darkMode, setDarkMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoadingQueue, setIsLoadingQueue] = useState(false);
   const [nowPlaying, setNowPlaying] = useState();
   const [searchTerm, setSearchTerm] = useState("");
   const [queue, setQueue] = useState([]);
@@ -100,7 +96,6 @@ const App = () => {
         setQueue(localQueue);
         setShowQueue(true);
       }
-
     })();
   }, []);
 
@@ -114,7 +109,7 @@ const App = () => {
     // if a song stopped, and there is a queue, play next in queue
     if (!nowPlaying && queue.length > 0) {
       if (currentQid) {
-        skipSong()
+        skipSong();
       } else {
         const nextInQueue = queue[0];
         setNowPlaying(nextInQueue);
@@ -162,9 +157,7 @@ const App = () => {
 
   // show home screen if theres no search results, queue, or loading screen
   const showHomeScreen =
-    !(videos.results && videos.results.length > 0) &&
-    showQueue === false &&
-    !isLoadingQueue;
+    !(videos.results && videos.results.length > 0) && showQueue === false;
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
@@ -200,12 +193,6 @@ const App = () => {
         }}
       />
 
-      <QueueLoadingScreen
-        {...{
-          isLoadingQueue,
-        }}
-      />
-
       <QueueSection
         {...{
           nowPlaying,
@@ -216,11 +203,11 @@ const App = () => {
           setQueueName,
           showQueue,
           skipSong,
-          previousSong
+          previousSong,
         }}
       />
 
-      {searchTableViewMode ?
+      {searchTableViewMode ? (
         <VideoTable
           {...{
             handleSearchTermInput,
@@ -230,9 +217,10 @@ const App = () => {
             setNowPlaying,
             setQueue,
             videos,
-            setSearchTableViewMode
+            setSearchTableViewMode,
           }}
-        /> :
+        />
+      ) : (
         <VideoGrid
           {...{
             handleSearchTermInput,
@@ -242,9 +230,10 @@ const App = () => {
             setNowPlaying,
             setQueue,
             videos,
-            setSearchTableViewMode
+            setSearchTableViewMode,
           }}
-        />}
+        />
+      )}
 
       <HomeScreen
         {...{
@@ -258,7 +247,7 @@ const App = () => {
           nowPlaying,
           queueName,
           setShowQueue,
-          isLoading
+          isLoading,
         }}
       />
 

@@ -1,16 +1,15 @@
 import React from "react";
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import { Tooltip, Box, IconButton } from "@material-ui/core";
+import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
+import { Tooltip, IconButton } from "@material-ui/core";
 import { clear } from "../../../functions";
-
 
 function ShareButton({ disabled, queue, setQueue }) {
   function handleClick() {
-    var confirmClear = confirm("Are you sure you want to clear the queue?");
+    let confirmClear = confirm("Are you sure you want to clear the queue?");
     if (confirmClear) {
       setQueue(clear(queue));
     }
-  };
+  }
 
   return (
     <Tooltip title={disabled ? "Search for songs and add them to your queue" : ""}>

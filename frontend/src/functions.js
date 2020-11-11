@@ -2,7 +2,6 @@ import axios from "axios";
 
 const baseUrl = process.env.REACT_APP_ARTISTIFY_URL;
 
-
 export function setDefaultToken(token) {
   axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 }

@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  CardMedia,
-  TableRow,
-  TableCell,
-  IconButton
-} from "@material-ui/core";
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import { CardMedia, TableRow, TableCell, IconButton } from "@material-ui/core";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import uuid from "react-uuid";
 import AddToQueueButton from "./AddToQueueButton/AddToQueueButton";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   row: {
     backgroundColor: "transparent",
     "&:hover > *": {
@@ -19,9 +14,9 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 65,
-    width: 115
+    width: 115,
   },
-}));
+});
 
 export default function MediaCard({ video, setNowPlaying, nowPlaying, queue, setQueue }) {
   const classes = useStyles();
@@ -58,11 +53,11 @@ export default function MediaCard({ video, setNowPlaying, nowPlaying, queue, set
   }
 
   return (
-    <TableRow 
+    <TableRow
       className={classes.row}
       key={video.videoId}
       style={{ backgroundColor: playing && "#2ad156" }}
-      >
+    >
       <TableCell>
         <IconButton onClick={handlePlayButton} aria-label="Play">
           <PlayArrowIcon />
@@ -75,10 +70,11 @@ export default function MediaCard({ video, setNowPlaying, nowPlaying, queue, set
       <TableCell>{video.author.name}</TableCell>
       <TableCell>{video.views}</TableCell>
       <TableCell>
-        <CardMedia 
-          onClick={handlePlayButton} 
-          className={classes.media} 
-          image={video.thumbnail} />
+        <CardMedia
+          onClick={handlePlayButton}
+          className={classes.media}
+          image={video.thumbnail}
+        />
       </TableCell>
     </TableRow>
   );

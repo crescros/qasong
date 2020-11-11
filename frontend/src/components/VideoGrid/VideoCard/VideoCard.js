@@ -14,7 +14,7 @@ import AddToQueueButton from "./AddToQueueButton/AddToQueueButton";
 const useStyles = makeStyles((theme) => ({
   card: {
     position: "relative",
-    minWidth: '250px !important',
+    minWidth: "250px !important",
     maxHeight: 190,
     boxShadow: "none",
     backgroundColor: "transparent",

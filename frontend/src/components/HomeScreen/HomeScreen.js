@@ -1,8 +1,8 @@
 import React from "react";
-import { Box, Grid, Typography, CircularProgress } from "@material-ui/core";
+import { Box, Grid, Typography } from "@material-ui/core";
 import VideoSearch from "../AppBar/VideoSearch/VideoSearch";
-import FeaturedPlaylists from "./FeaturedPlaylists/FeaturedPlaylists"
-
+import FeaturedPlaylists from "./FeaturedPlaylists/FeaturedPlaylists";
+import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
 function HomeScreen({
   handleSearchTermInput,
   handleSubmitVideoSearch,
@@ -13,7 +13,7 @@ function HomeScreen({
   nowPlaying,
   setQueueName,
   setShowQueue,
-  isLoading
+  isLoading,
 }) {
   if (!showHomeScreen) {
     return <div id="empty-div"></div>;
@@ -45,9 +45,7 @@ function HomeScreen({
           </Typography>
         </Grid>
 
-        <Grid item>
-
-        </Grid>
+        <Grid item></Grid>
         <Grid item container justify="center">
           <VideoSearch
             handleSearchTermInput={handleSearchTermInput}
@@ -58,19 +56,18 @@ function HomeScreen({
             }}
           />
         </Grid>
-        <Grid item>
-          {isLoading && <CircularProgress color="secondary" size="32px" />}
-        </Grid>
+        <Grid item>{isLoading && <LoadingAnimation size="32px" />}</Grid>
         <Grid item>
           <Box mt={12}>
-            <FeaturedPlaylists {...{
-              setQueue,
-              setNowPlaying,
-              setShowQueue,
-              nowPlaying,
-              setQueueName
-            }} />
-
+            <FeaturedPlaylists
+              {...{
+                setQueue,
+                setNowPlaying,
+                setShowQueue,
+                nowPlaying,
+                setQueueName,
+              }}
+            />
           </Box>
         </Grid>
       </Grid>

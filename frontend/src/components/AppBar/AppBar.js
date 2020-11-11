@@ -1,17 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  AppBar,
-  CircularProgress,
-  Toolbar,
-  Typography,
-  IconButton,
-  Box,
-} from "@material-ui/core";
+import { AppBar, Toolbar, Typography, IconButton, Box } from "@material-ui/core";
 import VideoSearch from "./VideoSearch/VideoSearch";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import { isMobile } from "react-device-detect";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
+import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
 // import UserSection from "./UserSection/UserSection";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,9 +30,6 @@ export default function PrimarySearchAppBar({
   setDarkMode,
   isLoading,
   setVideos,
-  setNowPlaying
-  // user,
-  // setUser,
 }) {
   const classes = useStyles();
 
@@ -80,13 +71,9 @@ export default function PrimarySearchAppBar({
                 }}
               />
               {/* Search Bar Loading Indicator */}
-              <Box mx={2}>
-                {" "}
-                {isLoading && <CircularProgress color="secondary" size="32px" />}{" "}
-              </Box>
+              <Box mx={2}> {isLoading && <LoadingAnimation size="32px" />} </Box>
             </>
           )}
-
 
           {/* responsive spacer */}
           <div className={classes.grow} />
