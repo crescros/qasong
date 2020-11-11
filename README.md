@@ -1,6 +1,6 @@
-# Artistify
+# Qasong
 
-Artistify provides an alternate user interface for listening to music from youtube.
+Qasong provides an alternate user interface for listening to music from youtube.
 
 This project is currently under development.
 
