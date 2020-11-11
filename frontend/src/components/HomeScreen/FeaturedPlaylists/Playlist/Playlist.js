@@ -45,6 +45,7 @@ function Playlist({
   queue,
 }) {
   const classes = useStyles();
+  const [collapsed, setCollapsed] = React.useState(true);
 
   function handlePlaylistClick() {
     setQueue(playlist.queue);
@@ -62,6 +63,40 @@ function Playlist({
 
     setQueue([...queue, ...songsNotAlreadyInQueue]);
     setQueueName(playlist.name);
+  }
+
+  function CollapsedPlaylist() {
+    return playlist.queue.slice(0, 4).map((song) => {
+      return (
+        <ListItem
+          key={song.videoId}
+          onClick={() => {
+            setNowPlaying(song);
+          }}
+          button
+          selected={song.videoId === nowPlaying?.videoId}
+        >
+          <ListItemText primary={song.title} />
+        </ListItem>
+      )
+    })
+  }
+
+  function UncollapsedPlaylist() {
+    return playlist.queue.map((song) => {
+      return (
+        <ListItem
+          key={song.videoId}
+          onClick={() => {
+            setNowPlaying(song);
+          }}
+          button
+          selected={song.videoId === nowPlaying?.videoId}
+        >
+          <ListItemText primary={song.title} />
+        </ListItem>
+      )
+    })
   }
 
   return (
@@ -105,22 +140,29 @@ function Playlist({
               <AddToPhotosIcon />
             </IconButton>
           </Grid>
-          <List>
-            {playlist.queue.map((song) => {
-              return (
-                <ListItem
-                  key={song.videoId}
-                  onClick={() => {
-                    setNowPlaying(song);
-                  }}
-                  button
-                  selected={song.videoId === nowPlaying?.videoId}
-                >
-                  <ListItemText primary={song.title} />
-                </ListItem>
-              );
-            })}
-          </List>
+
+          <Grid item>
+            <List>
+              {collapsed
+                ? <CollapsedPlaylist />
+                : <UncollapsedPlaylist />}
+              <ListItem
+                onClick={() => setCollapsed(!collapsed)}
+                key="collapseControl"
+                button
+              >
+                <ListItemText
+                  disableTypography
+                  color="secondary"
+                  primary={
+                    <Typography color="secondary">
+                      {collapsed ? "... See More" : "See Less"}
+                    </Typography>
+                  }
+                />
+              </ListItem>
+            </List>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
