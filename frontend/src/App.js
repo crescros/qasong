@@ -1,8 +1,11 @@
+// load dependencies
 import React, { useState, useEffect, Suspense } from "react";
 import { getYoutubeIdFromSearch } from "./functions";
 import { CssBaseline } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
+
+// lazy load components
 const VideoGrid = React.lazy(() => import("./components/VideoGrid/VideoGrid"));
 const VideoTable = React.lazy(() => import("./components/VideoTable/VideoTable"));
 const AppBar = React.lazy(() => import("./components/AppBar/AppBar"));

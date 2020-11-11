@@ -1,7 +1,7 @@
 {
-  "name": "artistify",
+  "name": "qasong",
   "version": "0.7.0",
-  "description": "serve artistify-frontend to clients, and provide video search functionality from youtube data api",
+  "description": "serve qasong-frontend to clients, and provide video search functionality from youtube data api",
   "homepage": "./",
   "main": "./public/electron.js",
   "scripts": {
