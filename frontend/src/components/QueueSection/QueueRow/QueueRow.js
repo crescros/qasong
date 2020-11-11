@@ -1,16 +1,12 @@
 import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box, Tooltip } from "@material-ui/core"
+import { Box, Tooltip } from "@material-ui/core";
 
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import ClearIcon from '@material-ui/icons/Clear';
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import ClearIcon from "@material-ui/icons/Clear";
 
-import {
-  IconButton,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { IconButton, Grid, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   row: {
@@ -37,7 +33,7 @@ export default function ImgMediaCard({
   queue,
   setQueue,
   title,
-  timestamp
+  timestamp,
 }) {
   const classes = useStyles();
 
@@ -101,7 +97,9 @@ export default function ImgMediaCard({
   drag(drop(ref));
 
   return (
-    <Grid item container
+    <Grid
+      item
+      container
       className={classes.row}
       onClick={() => onClickImage(qid)}
       direction="row"
@@ -118,14 +116,10 @@ export default function ImgMediaCard({
         </IconButton>
       </Grid>
       <Grid item xs={9}>
-        <Typography>
-          {title}
-        </Typography>
+        <Typography>{title}</Typography>
       </Grid>
       <Grid item xs={1}>
-        <Typography>
-          {timestamp}
-        </Typography>
+        <Typography>{timestamp}</Typography>
       </Grid>
       {/* Remove from queue overlay */}
       <Box className={classes.overlay}>

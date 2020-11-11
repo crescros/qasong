@@ -1,7 +1,6 @@
 import React from "react";
 import YouTube from "react-youtube";
 
-
 function Video({ id, setNowPlaying }) {
   const youtubePlayerOptions = {
     height: "100px",
@@ -13,15 +12,12 @@ function Video({ id, setNowPlaying }) {
       iv_load_policy: 3,
       color: "white",
       enablejsapi: 1,
-      origin:  process.env.NODE_ENV === "production" ? "https://artistify-2.appspot.com/" : "http://localhost:8080"
+      origin:
+        process.env.NODE_ENV === "production"
+          ? "https://artistify-2.appspot.com/"
+          : "http://localhost:8080",
     },
   };
-
-  function handleClick(){
-    const videoPlayer = document.querySelector('iframe')
-
-    console.log(videoPlayer)
-  }
 
   function handleVideoEnd() {
     setNowPlaying(null);

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Typography, Box, TextField, Grid } from "@material-ui/core";
+import { Typography, Box, Grid } from "@material-ui/core";
 import QueueCard from "./QueueCard/QueueCard";
 import QueueRow from "./QueueRow/QueueRow";
 import { DndProvider } from "react-dnd";
@@ -22,7 +22,7 @@ function QueueSection({
   queueName,
   showQueue,
   skipSong,
-  previousSong
+  previousSong,
 }) {
   if (!showQueue) {
     return <div></div>;
@@ -51,10 +51,10 @@ function QueueSection({
 
   return (
     <>
-      {(queue.length > 0) && (
-        <div style={{maxWidth: "800px", margin:"0 auto 200px auto"}}>
+      {queue.length > 0 && (
+        <div style={{ maxWidth: "800px", margin: "0 auto 200px auto" }}>
           <Box m={3}>
-            <Grid container alignItems="flex-end" alignItems="center">
+            <Grid container alignItems="center">
               <Grid item>
                 <Typography variant="h5">
                   {queue.length > 0 && `${queue.length} songs - ${queueName}`}
@@ -82,11 +82,11 @@ function QueueSection({
           </Box>
 
           <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-            {displayMode === "list" ?
+            {displayMode === "list" ? (
               <Grid container direction="column">
-                {
-                  queue.map((item, index) => {
-                    return <QueueRow
+                {queue.map((item, index) => {
+                  return (
+                    <QueueRow
                       {...item}
                       key={item.qid}
                       queue={queue}
@@ -96,9 +96,10 @@ function QueueSection({
                       onClickImage={handleClickQueueItem}
                       moveCard={moveCard}
                     />
-                  })}
+                  );
+                })}
               </Grid>
-              :
+            ) : (
               queue.map((item, index) => (
                 <QueueCard
                   {...item}
@@ -111,8 +112,7 @@ function QueueSection({
                   moveCard={moveCard}
                 />
               ))
-
-            }
+            )}
           </DndProvider>
         </div>
       )}

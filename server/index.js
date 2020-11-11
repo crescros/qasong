@@ -2,7 +2,6 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const jwt = require("./_helpers/jwt");
 const errorHandler = require("./_helpers/error-handler");
 const rateLimit = require("express-rate-limit");
 
@@ -24,7 +23,7 @@ app.use(cors());
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(jwt());
+// app.use(jwt());
 app.use(errorHandler);
 
 // define routes
