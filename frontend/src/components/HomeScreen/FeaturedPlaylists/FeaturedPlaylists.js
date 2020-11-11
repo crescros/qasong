@@ -9,7 +9,10 @@ import {
   List,
   ListItem,
   ListItemText,
+  IconButton,
 } from "@material-ui/core";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -42,11 +45,11 @@ function FeaturedPlaylists({
   setNowPlaying,
   setShowQueue,
   nowPlaying,
+  queue,
 }) {
   const classes = useStyles();
 
-  function handlePlaylistClick(e) {
-    const playlistId = e.target.dataset.playlist_id;
+  function handlePlaylistClick(playlistId) {
     const selectedPlaylist = featuredPlaylists.find(
       (playlist) => playlist.id === playlistId
     );
@@ -54,6 +57,15 @@ function FeaturedPlaylists({
     setQueue(selectedPlaylist.queue);
     setNowPlaying(selectedPlaylist.queue[0]);
     setShowQueue(true);
+    setQueueName(selectedPlaylist.name);
+  }
+
+  function handleAddToQueueClick(playlistId) {
+    const selectedPlaylist = featuredPlaylists.find(
+      (playlist) => playlist.id === playlistId
+    );
+
+    setQueue([...queue, ...selectedPlaylist.queue]);
     setQueueName(selectedPlaylist.name);
   }
 
@@ -70,7 +82,6 @@ function FeaturedPlaylists({
             container
             item
             className={classes.playlist}
-            onClick={handlePlaylistClick}
             data-playlist_id={playlist.id}
           >
             <Grid item xs={12}>
@@ -88,12 +99,23 @@ function FeaturedPlaylists({
                       color="textPrimary"
                       component="button"
                       variant="h4"
-                      onClick={handlePlaylistClick}
-                      data-playlist_id={playlist.id}
+                      onClick={() => handlePlaylistClick(playlist.id)}
                     >
                       {playlist.name}
                     </Link>
                   </Typography>
+                  <IconButton
+                    title="play playlist"
+                    onClick={() => handlePlaylistClick(playlist.id)}
+                  >
+                    <PlayArrowIcon />
+                  </IconButton>
+                  <IconButton
+                    title="add playlist to queue"
+                    onClick={() => handleAddToQueueClick(playlist.id)}
+                  >
+                    <AddToPhotosIcon />
+                  </IconButton>
                 </Grid>
                 <List>
                   {playlist.queue.map((song) => {

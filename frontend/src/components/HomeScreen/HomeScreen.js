@@ -14,6 +14,7 @@ function HomeScreen({
   setQueueName,
   setShowQueue,
   isLoading,
+  queue,
 }) {
   if (!showHomeScreen) {
     return <div id="empty-div"></div>;
@@ -66,6 +67,7 @@ function HomeScreen({
                 setShowQueue,
                 nowPlaying,
                 setQueueName,
+                queue,
               }}
             />
           </Box>

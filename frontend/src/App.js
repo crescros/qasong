@@ -248,6 +248,7 @@ const App = () => {
           queueName,
           setShowQueue,
           isLoading,
+          queue,
         }}
       />
 
