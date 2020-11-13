@@ -48,9 +48,9 @@ export default function PrimarySearchAppBar({
             edge="start"
             className={classes.menuButton}
             color="inherit"
-            aria-label="Artistify logo"
+            aria-label="Qasong logo"
           >
-            <img src=".\img\icon-logo.svg" height="48px" />
+            <img src=".\img\qasong.svg" height="48px" />
           </IconButton>
 
           {/* Search bar */}
