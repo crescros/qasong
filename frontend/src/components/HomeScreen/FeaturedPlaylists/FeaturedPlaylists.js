@@ -3,6 +3,7 @@ import featuredPlaylists from "./featuredPlaylists.json";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Playlist from "./Playlist/Playlist";
+import HmaksPlaylist from "./HmaksPlaylist/HmaksPlaylist";
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +28,26 @@ function FeaturedPlaylists({
       </Typography>
 
       {featuredPlaylists.map((playlist) => {
+
+
+        if (playlist.tags && playlist.tags.includes("hmak")){
+          return (
+            <HmaksPlaylist
+            key={playlist.id}
+            {...{
+              playlist,
+              setQueue,
+              setQueueName,
+              setNowPlaying,
+              setShowQueue,
+              nowPlaying,
+              queue,
+            }}
+          />
+          )
+        }
+
+        // default 
         return (
           <Playlist
             key={playlist.id}

@@ -10,7 +10,7 @@ function LoadingAnimation({ size = 32, speed = 2 }) {
           boxShadow: "0 0 30px red",
           borderRadius: "50%",
         }}
-        src="./artistify-vinyl.png"
+        src="./img/artistify-vinyl.png"
         width={`${size}px`}
       />
     </Box>

@@ -50,7 +50,7 @@ export default function PrimarySearchAppBar({
             color="inherit"
             aria-label="Artistify logo"
           >
-            <img src=".\icon-logo.svg" height="48px" />
+            <img src=".\img\icon-logo.svg" height="48px" />
           </IconButton>
 
           {/* Search bar */}
