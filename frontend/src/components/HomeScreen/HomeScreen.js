@@ -15,7 +15,7 @@ function HomeScreen({
   setShowQueue,
   isLoading,
   queue,
-  addSongToQueue
+  addSongToQueue,
 }) {
   if (!showHomeScreen) {
     return <div id="empty-div"></div>;
@@ -70,7 +70,7 @@ function HomeScreen({
                 nowPlaying,
                 setQueueName,
                 queue,
-                addSongToQueue
+                addSongToQueue,
               }}
             />
           </Box>

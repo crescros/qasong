@@ -78,7 +78,7 @@ const App = () => {
   }
 
   function addSongToQueue(song) {
-    setQueue(queue.concat(song))
+    setQueue(queue.concat(song));
   }
 
   // runs once when app starts

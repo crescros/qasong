@@ -6,8 +6,7 @@ import Playlist from "./Playlist/Playlist";
 import JoinUsOnDiscord from "./JoinUsOnDiscord/JoinUsOnDiscord";
 import HmaksPlaylist from "./HmaksPlaylist/HmaksPlaylist";
 import { shuffle } from "../../../functions";
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const useStyles = makeStyles({
   root: {
@@ -15,8 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-
-const feedItems = shuffle(featuredPlaylists)
+const feedItems = shuffle(featuredPlaylists);
 
 function FeaturedPlaylists({
   setQueue,
@@ -25,14 +23,14 @@ function FeaturedPlaylists({
   setShowQueue,
   nowPlaying,
   queue,
-  addSongToQueue
+  addSongToQueue,
 }) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Typography align="center" variant="h4" color="textSecondary">
-        Featured playlists 
+        Featured playlists
         <IconButton>
           <MoreVertIcon color="textSecondary" />
         </IconButton>
@@ -51,7 +49,7 @@ function FeaturedPlaylists({
                 setShowQueue,
                 nowPlaying,
                 queue,
-                addSongToQueue
+                addSongToQueue,
               }}
             />
           );
@@ -73,7 +71,7 @@ function FeaturedPlaylists({
               setShowQueue,
               nowPlaying,
               queue,
-              addSongToQueue
+              addSongToQueue,
             }}
           />
         );

@@ -39,7 +39,7 @@ function Playlist({
   setNowPlaying,
   nowPlaying,
   queue,
-  addSongToQueue
+  addSongToQueue,
 }) {
   const classes = useStyles();
   const [collapsed, setCollapsed] = React.useState(true);
@@ -68,13 +68,23 @@ function Playlist({
 
   function CollapsedPlaylist() {
     return playlist.queue.slice(0, 4).map((song) => {
-      return <PlaylistItem key={song.qid} {...{ song, handleStopSong, nowPlaying, setNowPlaying, addSongToQueue }} />;
+      return (
+        <PlaylistItem
+          key={song.qid}
+          {...{ song, handleStopSong, nowPlaying, setNowPlaying, addSongToQueue }}
+        />
+      );
     });
   }
 
   function UncollapsedPlaylist() {
     return playlist.queue.map((song) => {
-      return <PlaylistItem key={song.qid} {...{ song, handleStopSong, nowPlaying, setNowPlaying, addSongToQueue }} />;
+      return (
+        <PlaylistItem
+          key={song.qid}
+          {...{ song, handleStopSong, nowPlaying, setNowPlaying, addSongToQueue }}
+        />
+      );
     });
   }
 

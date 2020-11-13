@@ -15,7 +15,6 @@ import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
 import { makeStyles } from "@material-ui/core/styles";
 import PlaylistItem from "../Playlist/PlaylistItem/PlaylistItem";
 
-
 const useStyles = makeStyles((theme) => ({
   playlist: {
     borderColor: "#ffae5c",
@@ -77,7 +76,12 @@ function Playlist({
 
   function UncollapsedPlaylist() {
     return playlist.queue.map((song) => {
-      return <PlaylistItem key={song.qid} {...{ song, handleStopSong, nowPlaying, setNowPlaying, addSongToQueue }} />;
+      return (
+        <PlaylistItem
+          key={song.qid}
+          {...{ song, handleStopSong, nowPlaying, setNowPlaying, addSongToQueue }}
+        />
+      );
     });
   }
 
