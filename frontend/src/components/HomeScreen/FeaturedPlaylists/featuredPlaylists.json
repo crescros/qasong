@@ -2824,7 +2824,192 @@
     ]
   },
   {
+    "id": "14",
+    "name": "Country Pop",
+    "image": "https://i.ytimg.com/vi/ZKfHX_WgHFw/hq720.jpg",
+    "queue": [
+      {
+        "type": "video",
+        "videoId": "oTeUdJky9rY",
+        "url": "https://youtube.com/watch?v=oTeUdJky9rY",
+        "title": "John Denver - Take Me Home, Country Roads",
+        "description": "",
+        "image": "https://i.ytimg.com/vi/oTeUdJky9rY/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/oTeUdJky9rY/hqdefault.jpg",
+        "seconds": 200,
+        "timestamp": "3:20",
+        "duration": {
+          "seconds": 200,
+          "timestamp": "3:20"
+        },
+        "ago": "8 years ago",
+        "views": 87456359,
+        "author": {
+          "name": "arjahelen",
+          "url": "https://youtube.com/user/arjahelen"
+        },
+        "qid": "d4cfa6-70b4-37e0-84d-5a55d6588715"
+      },
+      {
+        "type": "video",
+        "videoId": "ZKfHX_WgHFw",
+        "url": "https://youtube.com/watch?v=ZKfHX_WgHFw",
+        "title": "Carrie Underwood - Before He Cheats",
+        "description": "This is the audio for \"Before He Cheats\" by Carrie Underwood. From the album, \"Blown Away\". This song was written by: Chris ...",
+        "image": "https://i.ytimg.com/vi/ZKfHX_WgHFw/hq720.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/ZKfHX_WgHFw/hq720.jpg",
+        "seconds": 201,
+        "timestamp": "3:21",
+        "duration": {
+          "seconds": 201,
+          "timestamp": "3:21"
+        },
+        "ago": "6 years ago",
+        "views": 48185,
+        "author": {
+          "name": "familylyricschannel",
+          "url": "https://youtube.com/user/familylyricschannel"
+        },
+        "qid": "0116e6c-b52-a046-0620-2f631f1734fb"
+      },
+      {
+        "type": "video",
+        "videoId": "zDo0H8Fm7d0",
+        "url": "https://youtube.com/watch?v=zDo0H8Fm7d0",
+        "title": "Bebe Rexha - Meant to Be (feat. Florida Georgia Line)",
+        "description": "Bebe Rexha - Meant to Be (feat. Florida Georgia Line) Listen now: https://BebeRexha.lnk.to/MeantToBe Spotify: ...",
+        "image": "https://i.ytimg.com/vi/zDo0H8Fm7d0/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/zDo0H8Fm7d0/hqdefault.jpg",
+        "seconds": 178,
+        "timestamp": "2:58",
+        "duration": {
+          "seconds": 178,
+          "timestamp": "2:58"
+        },
+        "ago": "3 years ago",
+        "views": 948597452,
+        "author": {
+          "name": "Bebe Rexha",
+          "url": "https://youtube.com/channel/UC5-gWZXAQqSGVfPHkA7NRiQ"
+        },
+        "qid": "8531d64-dcf6-2aca-02a8-0d7a1c1e0b0"
+      },
+      {
+        "type": "video",
+        "videoId": "s5TIulzXoXo",
+        "url": "https://youtube.com/watch?v=s5TIulzXoXo",
+        "title": "Rascal Flats - Life Is A Highway",
+        "description": "\"If you're goin my way, I wanna ride it all night long...\"",
+        "image": "https://i.ytimg.com/vi/s5TIulzXoXo/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/s5TIulzXoXo/hqdefault.jpg",
+        "seconds": 290,
+        "timestamp": "4:50",
+        "duration": {
+          "seconds": 290,
+          "timestamp": "4:50"
+        },
+        "ago": "12 years ago",
+        "views": 4855635,
+        "author": {
+          "name": "AARFan4eve",
+          "url": "https://youtube.com/user/AARFan4eve"
+        },
+        "qid": "ebb144d-4351-e72b-2d6-6323ac568cac"
+      },
+      {
+        "type": "video",
+        "videoId": "ZpLK8EBcBRY",
+        "url": "https://youtube.com/watch?v=ZpLK8EBcBRY",
+        "title": "Taylor Swift - Cardigan",
+        "description": "Taylor Swift - Cardigan (Lyrics) taylor Swift - Cardigan Hello Everyone! This Lyrics Video About \"Cardigan\" By Taylor Swift ...",
+        "image": "https://i.ytimg.com/vi/ZpLK8EBcBRY/hq720.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/ZpLK8EBcBRY/hq720.jpg",
+        "seconds": 253,
+        "timestamp": "4:13",
+        "duration": {
+          "seconds": 253,
+          "timestamp": "4:13"
+        },
+        "ago": "3 months ago",
+        "views": 291812,
+        "author": {
+          "name": "Amazing Lyrics",
+          "url": "https://youtube.com/channel/UCZtoHl1p6R6_iLm2yjA9gew"
+        },
+        "qid": "7d0b6ff-bc2c-7125-7d3-75adb1fbf1a0"
+      },
+      {
+        "type": "video",
+        "videoId": "BrsHGK4LT74",
+        "url": "https://youtube.com/watch?v=BrsHGK4LT74",
+        "title": "Wagon Wheel- Darius Rucker",
+        "description": "i don't own anything. enjoy :)",
+        "image": "https://i.ytimg.com/vi/BrsHGK4LT74/hq720.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/BrsHGK4LT74/hq720.jpg",
+        "seconds": 299,
+        "timestamp": "4:59",
+        "duration": {
+          "seconds": 299,
+          "timestamp": "4:59"
+        },
+        "ago": "7 years ago",
+        "views": 12003654,
+        "author": {
+          "name": "Teri Lynn",
+          "url": "https://youtube.com/channel/UCVirH04fACVRIs2z7utk0oA"
+        },
+        "qid": "5c17e60-c727-284-ad21-d377577ad7"
+      },
+      {
+        "type": "video",
+        "videoId": "I2d8MpswPuQ",
+        "url": "https://youtube.com/watch?v=I2d8MpswPuQ",
+        "title": "The Band Perry - If I Die Young",
+        "description": "The Band Perry - If I Die Young (Lyrics) Produced by Paul Worley & Nathan Chapman Album The Band Perry Purchase The Band ...",
+        "image": "https://i.ytimg.com/vi/I2d8MpswPuQ/hq720.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/I2d8MpswPuQ/hq720.jpg",
+        "seconds": 255,
+        "timestamp": "4:15",
+        "duration": {
+          "seconds": 255,
+          "timestamp": "4:15"
+        },
+        "ago": "5 months ago",
+        "views": 758587,
+        "author": {
+          "name": "SuperbLyrics",
+          "url": "https://youtube.com/channel/UCy9zjfGD_LGnfaz27K5pvnw"
+        },
+        "qid": "120fff8-bf88-5e41-6cf2-488b1370b56"
+      },
+      {
+        "type": "video",
+        "videoId": "PMootRNTC-A",
+        "url": "https://youtube.com/watch?v=PMootRNTC-A",
+        "title": "Lady Antebellum - Need You Now",
+        "description": "Denne singlen er en av de mest spilte låtene på norsk radio den siste måneden! Lady Antebellum er en av de største suksessene ...",
+        "image": "https://i.ytimg.com/vi/PMootRNTC-A/hq720.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/PMootRNTC-A/hq720.jpg",
+        "seconds": 270,
+        "timestamp": "4:30",
+        "duration": {
+          "seconds": 270,
+          "timestamp": "4:30"
+        },
+        "ago": "10 years ago",
+        "views": 385242,
+        "author": {
+          "name": "Parlophone Music Norway",
+          "url": "https://youtube.com/user/EMIMusicNorway"
+        },
+        "qid": "efdc5-b3e2-6a2b-64fb-4addcb7174"
+      }
+    ]
+  },
+  {
     "id": "discord-ad",
-    "tags": ["discord-ad"]
+    "tags": [
+      "discord-ad"
+    ]
   }
 ]
