@@ -416,6 +416,211 @@
     ]
   },
   {
+    "id": "12",
+    "image": "https://i.ytimg.com/vi/uWbXQQG9B6c/hqdefault.jpg",
+    "name": "Classic West Coast Hip-Hop",
+    "queue": [
+      {
+        "type": "video",
+        "videoId": "icB0lIy7OeY",
+        "url": "https://youtube.com/watch?v=icB0lIy7OeY",
+        "title": "Dr. Dre Ft. Snoop Dogg - The Next Episode Lyrics",
+        "description": "The Next Episode Lyrics Dr Dre Snoop Dogg Nate Dogg Smoke Weed Everyday Gangster Rap.",
+        "image": "https://i.ytimg.com/vi/icB0lIy7OeY/hq720.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/icB0lIy7OeY/hq720.jpg",
+        "seconds": 162,
+        "timestamp": "2:42",
+        "duration": {
+          "seconds": 162,
+          "timestamp": "2:42"
+        },
+        "ago": "8 years ago",
+        "views": 2710584,
+        "author": {
+          "name": "Robert Dalrymple",
+          "url": "https://youtube.com/user/RandomGuy19956"
+        },
+        "qid": "cdac57-222-1ad-feb8-f0d26de73ca4"
+      },
+      {
+        "type": "video",
+        "videoId": "X3HaZBlt7TA",
+        "url": "https://youtube.com/watch?v=X3HaZBlt7TA",
+        "title": "Ice Cube - It Was A Good Day (Remastered)",
+        "description": "Provided to YouTube by Universal Music Group It Was A Good Day · Ice Cube Greatest Hits ℗ 1992 Priority Records LLC ...",
+        "image": "https://i.ytimg.com/vi/X3HaZBlt7TA/hq720.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/X3HaZBlt7TA/hq720.jpg",
+        "seconds": 261,
+        "timestamp": "4:21",
+        "duration": {
+          "seconds": 261,
+          "timestamp": "4:21"
+        },
+        "ago": "2 years ago",
+        "views": 8763,
+        "author": {
+          "name": "Vevo Music Group",
+          "url": "https://youtube.com/channel/UCAuczTqbSG8ffAPugWILa-Q"
+        },
+        "qid": "cb668aa-e11f-8ccd-1482-386be305c214"
+      },
+      {
+        "type": "video",
+        "videoId": "uWbXQQG9B6c",
+        "url": "https://youtube.com/watch?v=uWbXQQG9B6c",
+        "title": "2Pac - California Love [Original Version]",
+        "description": "Catapulté aux sommets en formant un duo de choc avec Dr.Dre sur l'emblématique \"California Love\", 2Pac est plus que jamais la ...",
+        "image": "https://i.ytimg.com/vi/uWbXQQG9B6c/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/uWbXQQG9B6c/hqdefault.jpg",
+        "seconds": 291,
+        "timestamp": "4:51",
+        "duration": {
+          "seconds": 291,
+          "timestamp": "4:51"
+        },
+        "ago": "12 years ago",
+        "views": 46884658,
+        "author": {
+          "name": "wattana59",
+          "url": "https://youtube.com/user/wattana59"
+        },
+        "qid": "2ea87a-a2d2-357a-d771-4374e435c8bb"
+      },
+      {
+        "type": "video",
+        "videoId": "GPa59XcS6pQ",
+        "url": "https://youtube.com/watch?v=GPa59XcS6pQ",
+        "title": "Dr Dre - Nuthin But A G Thang (HQ)",
+        "description": "i do not own this song!!",
+        "image": "https://i.ytimg.com/vi/GPa59XcS6pQ/hq720.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/GPa59XcS6pQ/hq720.jpg",
+        "seconds": 239,
+        "timestamp": "3:59",
+        "duration": {
+          "seconds": 239,
+          "timestamp": "3:59"
+        },
+        "ago": "8 years ago",
+        "views": 47789992,
+        "author": {
+          "name": "swagg435",
+          "url": "https://youtube.com/user/swagg435"
+        },
+        "qid": "5663c14-4e67-2e7-004-f84b282f77"
+      },
+      {
+        "type": "video",
+        "videoId": "mYn6Vz9X0VQ",
+        "url": "https://youtube.com/watch?v=mYn6Vz9X0VQ",
+        "title": "N.W.A. - Boys In the Hood",
+        "description": "N.W.A. Official Youtube Channel - Boys In the Hood NWA - Boys in The Hood i do not Claim to own the Following and Do not ...",
+        "image": "https://i.ytimg.com/vi/mYn6Vz9X0VQ/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/mYn6Vz9X0VQ/hqdefault.jpg",
+        "seconds": 364,
+        "timestamp": "6:04",
+        "duration": {
+          "seconds": 364,
+          "timestamp": "6:04"
+        },
+        "ago": "8 months ago",
+        "views": 5149661,
+        "author": {
+          "name": "N.W.A.",
+          "url": "https://youtube.com/channel/UC0o9KdLGWAu_-DUzorebz_A"
+        },
+        "qid": "0e52024-2eb8-acc8-64bc-22b1a6f2d4"
+      },
+      {
+        "type": "video",
+        "videoId": "Ob9TiBhyF_Y",
+        "url": "https://youtube.com/watch?v=Ob9TiBhyF_Y",
+        "title": "Too $hort - Blow the Whistle",
+        "description": "Too $hort performs Blow the Whistle live.",
+        "image": "https://i.ytimg.com/vi/Ob9TiBhyF_Y/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/Ob9TiBhyF_Y/hqdefault.jpg",
+        "seconds": 163,
+        "timestamp": "2:43",
+        "duration": {
+          "seconds": 163,
+          "timestamp": "2:43"
+        },
+        "ago": "5 years ago",
+        "views": 3571,
+        "author": {
+          "name": "ShoutFactoryMusic",
+          "url": "https://youtube.com/user/ShoutFactoryMusic"
+        },
+        "qid": "5f8fbe-56c2-f5d-c5a-04553a4d327"
+      },
+      {
+        "type": "video",
+        "videoId": "5n0m26CfGxA",
+        "url": "https://youtube.com/watch?v=5n0m26CfGxA",
+        "title": "Warren G., Nate Dogg - Regulate (Lyric Video) [HD] [HQ]",
+        "description": "If you liked this video please check out my other lyric videos and like, share and subscribe to my channel!",
+        "image": "https://i.ytimg.com/vi/5n0m26CfGxA/hq720.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/5n0m26CfGxA/hq720.jpg",
+        "seconds": 257,
+        "timestamp": "4:17",
+        "duration": {
+          "seconds": 257,
+          "timestamp": "4:17"
+        },
+        "ago": "3 years ago",
+        "views": 32500,
+        "author": {
+          "name": "Super Colie",
+          "url": "https://youtube.com/channel/UCESKqzJfi79jfDHVlmBXfTw"
+        },
+        "qid": "34a280f-c0f3-2e4-08a7-6c4ffb57ca1"
+      },
+      {
+        "type": "video",
+        "videoId": "nR-Va6iMqQ8",
+        "url": "https://youtube.com/watch?v=nR-Va6iMqQ8",
+        "title": "Cypress Hill - Hits From The Bong Lyrics",
+        "description": "Cypress Hill - Hits From The Bong Lyrics. YES I DO KNOW THERE IS WRONG LYRICS! SORRY ¬¬ I Take Requests. (:",
+        "image": "https://i.ytimg.com/vi/nR-Va6iMqQ8/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/nR-Va6iMqQ8/hqdefault.jpg",
+        "seconds": 163,
+        "timestamp": "2:43",
+        "duration": {
+          "seconds": 163,
+          "timestamp": "2:43"
+        },
+        "ago": "11 years ago",
+        "views": 595920,
+        "author": {
+          "name": "minxiimarmite",
+          "url": "https://youtube.com/user/minxiimarmite"
+        },
+        "qid": "d60fd12-84d2-3e35-5ff-e74776a1ca8b"
+      },
+      {
+        "type": "video",
+        "videoId": "FDNTSdoMz8w",
+        "url": "https://youtube.com/watch?v=FDNTSdoMz8w",
+        "title": "Wu-Tang Clan - Wu-Tang Clan Ain't Nuthing Ta F' Wit",
+        "description": "Album: Enter The Wu-Tang (36 Chambers) Year: 1993 Track: 7 Track Produced By: RZA Track Co-Produced By: Method Man ...",
+        "image": "https://i.ytimg.com/vi/FDNTSdoMz8w/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/FDNTSdoMz8w/hqdefault.jpg",
+        "seconds": 218,
+        "timestamp": "3:38",
+        "duration": {
+          "seconds": 218,
+          "timestamp": "3:38"
+        },
+        "ago": "9 years ago",
+        "views": 1018043,
+        "author": {
+          "name": "damirtennis",
+          "url": "https://youtube.com/user/damirtennis"
+        },
+        "qid": "37b034-2c81-762-4ad8-ea8fa1c1f4"
+      }
+    ]
+  },
+  {
     "id": "3",
     "image": "https://i.ytimg.com/vi/y4Y7gwEB6p8/hqdefault.jpg",
     "link": "./?queue=y4Y7gwEB6p8&queue=tTLNbE5ibiM&queue=u-_GyHhsg30&queue=qDVYHDAsGZ8&queue=VITU-kdhiVs&queue=DM593QXk8lA&queue=4EvVEUJARcg&queue=iIQfZABPKuA&queue=8Zilur7z7TQ&queue=1ymZLKz7mac&queue=9AbjYmLIIGE&queue=90c9pEtZquw&queue=lQ0wR7YejVE&queue=bRT_92aYgEc&queue=VaV7oCyFXaY&queue=fn8CjK8sYSM&queue=Q19x4Ggiptk&queue=s-KZCRDebtg&queue=ndNOBkvuGWY&queueName=90%27s%20R%26B",
@@ -2170,5 +2375,9 @@
         "qid": "c70a687-0ead-e7e-d4b5-d17ea77d737"
       }
     ]
+  },
+  {
+    "id": "discord-ad",
+    "tags": ["discord-ad"]
   }
 ]
