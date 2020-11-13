@@ -2379,7 +2379,7 @@
   {
     "id": "13",
     "name": "2000's Emo",
-    "image": "",
+    "image": "https://i.ytimg.com/vi/l2hA8g1cNvQ/hqdefault.jpg",
     "queue": [
       {
         "type": "video",
@@ -2825,8 +2825,6 @@
   },
   {
     "id": "discord-ad",
-    "tags": [
-      "discord-ad"
-    ]
+    "tags": ["discord-ad"]
   }
 ]
