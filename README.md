@@ -44,4 +44,4 @@ this will
 
 ### Join Us on Discord
 
-https://discord.gg/b2gEwT8
+https://discord.gg/CpcKseP
