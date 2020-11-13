@@ -2377,7 +2377,456 @@
     ]
   },
   {
+    "id": "13",
+    "name": "2000's Emo",
+    "image": "",
+    "queue": [
+      {
+        "type": "video",
+        "videoId": "l2hA8g1cNvQ",
+        "url": "https://youtube.com/watch?v=l2hA8g1cNvQ",
+        "title": "Green Day - Holiday",
+        "description": "",
+        "image": "https://i.ytimg.com/vi/l2hA8g1cNvQ/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/l2hA8g1cNvQ/hqdefault.jpg",
+        "seconds": 235,
+        "timestamp": "3:55",
+        "duration": {
+          "seconds": 235,
+          "timestamp": "3:55"
+        },
+        "ago": "4 years ago",
+        "views": 3092075,
+        "author": {
+          "name": "YOUMUSIC",
+          "url": "https://youtube.com/channel/UCAkiRgl-2kLsArumCEFQbVQ"
+        },
+        "qid": "db54b30-8a25-ffd-4156-2164561c52ac"
+      },
+      {
+        "type": "video",
+        "videoId": "Soa3gO7tL-c",
+        "url": "https://youtube.com/watch?v=Soa3gO7tL-c",
+        "title": "Green Day - Boulevard Of Broken Dreams",
+        "description": "2005 WMG Watch the best Green Day official videos here: http://www.youtube.com/playlist?list=PL5150F38E402FACE8 ...",
+        "image": "https://i.ytimg.com/vi/Soa3gO7tL-c/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/Soa3gO7tL-c/hqdefault.jpg",
+        "seconds": 288,
+        "timestamp": "4:48",
+        "duration": {
+          "seconds": 288,
+          "timestamp": "4:48"
+        },
+        "ago": "7 years ago",
+        "views": 463743683,
+        "author": {
+          "name": "Green Day",
+          "url": "https://youtube.com/channel/UCqC_GY2ZiENFz2pwL0cSfAw"
+        },
+        "qid": "7764611-4f21-42d6-a22f-e6edd63f685d"
+      },
+      {
+        "type": "video",
+        "videoId": "MUF_e_ZAAgs",
+        "url": "https://youtube.com/watch?v=MUF_e_ZAAgs",
+        "title": "A.F.I - Miss Murder",
+        "description": "I do not own \"Miss Murder\" or A.F.I..",
+        "image": "https://i.ytimg.com/vi/MUF_e_ZAAgs/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/MUF_e_ZAAgs/hqdefault.jpg",
+        "seconds": 203,
+        "timestamp": "3:23",
+        "duration": {
+          "seconds": 203,
+          "timestamp": "3:23"
+        },
+        "ago": "11 years ago",
+        "views": 371728,
+        "author": {
+          "name": "RedAngelGirl1",
+          "url": "https://youtube.com/user/RedAngelGirl1"
+        },
+        "qid": "710044b-a3a-b8fb-81fd-4572f0fca63a"
+      },
+      {
+        "type": "video",
+        "videoId": "9S5LA_c6WT8",
+        "url": "https://youtube.com/watch?v=9S5LA_c6WT8",
+        "title": "Yellowcard - Ocean Avenue",
+        "description": "Yellowcard - Ocean Avenue Lyrics. There's a place off Ocean Avenue Where I used to sit and talk with you We were both 16 and it ...",
+        "image": "https://i.ytimg.com/vi/9S5LA_c6WT8/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/9S5LA_c6WT8/hqdefault.jpg",
+        "seconds": 199,
+        "timestamp": "3:19",
+        "duration": {
+          "seconds": 199,
+          "timestamp": "3:19"
+        },
+        "ago": "11 years ago",
+        "views": 13430108,
+        "author": {
+          "name": "L33Rixx",
+          "url": "https://youtube.com/user/L33Rixx"
+        },
+        "qid": "7f112f-02a6-e7ed-cee6-f5d6d45254"
+      },
+      {
+        "type": "video",
+        "videoId": "LlqkQRQSn40",
+        "url": "https://youtube.com/watch?v=LlqkQRQSn40",
+        "title": "Dashboard Confessional - Hands Down",
+        "description": "My Favorite Song. Please Rate It. :)",
+        "image": "https://i.ytimg.com/vi/LlqkQRQSn40/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/LlqkQRQSn40/hqdefault.jpg",
+        "seconds": 198,
+        "timestamp": "3:18",
+        "duration": {
+          "seconds": 198,
+          "timestamp": "3:18"
+        },
+        "ago": "10 years ago",
+        "views": 4847438,
+        "author": {
+          "name": "Xinerge",
+          "url": "https://youtube.com/user/Xinerge"
+        },
+        "qid": "a5a201-684-af61-7644-3854a64e5865"
+      },
+      {
+        "type": "video",
+        "videoId": "Ufb70h78eO4",
+        "url": "https://youtube.com/watch?v=Ufb70h78eO4",
+        "title": "Fall Out Boy - Sugar We're Going Down",
+        "description": "I HAVE NO RIGHTS OVER THE MUSIC! → https://www.instagram.com/deejayelectronic/",
+        "image": "https://i.ytimg.com/vi/Ufb70h78eO4/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/Ufb70h78eO4/hqdefault.jpg",
+        "seconds": 217,
+        "timestamp": "3:37",
+        "duration": {
+          "seconds": 217,
+          "timestamp": "3:37"
+        },
+        "ago": "8 years ago",
+        "views": 33559933,
+        "author": {
+          "name": "deejayelectronic",
+          "url": "https://youtube.com/user/deejayelectronic"
+        },
+        "qid": "b53fada-0205-8e82-1c85-7d7087ee6c16"
+      },
+      {
+        "type": "video",
+        "videoId": "3jx7SF65wbs",
+        "url": "https://youtube.com/watch?v=3jx7SF65wbs",
+        "title": "Fall Out Boy - Thanks For The Memories",
+        "description": "i do not own the music.",
+        "image": "https://i.ytimg.com/vi/3jx7SF65wbs/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/3jx7SF65wbs/hqdefault.jpg",
+        "seconds": 207,
+        "timestamp": "3:27",
+        "duration": {
+          "seconds": 207,
+          "timestamp": "3:27"
+        },
+        "ago": "8 years ago",
+        "views": 25144734,
+        "author": {
+          "name": "mo8955",
+          "url": "https://youtube.com/user/mo8955"
+        },
+        "qid": "3d7ec-c274-fde8-75a-c28d0d3eddc5"
+      },
+      {
+        "type": "video",
+        "videoId": "1CBN9fKeVB4",
+        "url": "https://youtube.com/watch?v=1CBN9fKeVB4",
+        "title": "Panic! at the Disco - I Write Sins Not Tragedies",
+        "description": "Song: I Write Sins Not Tragedies By: Panic! at the Disco W/Lyrics.",
+        "image": "https://i.ytimg.com/vi/1CBN9fKeVB4/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/1CBN9fKeVB4/hqdefault.jpg",
+        "seconds": 187,
+        "timestamp": "3:07",
+        "duration": {
+          "seconds": 187,
+          "timestamp": "3:07"
+        },
+        "ago": "12 years ago",
+        "views": 13574071,
+        "author": {
+          "name": "David White",
+          "url": "https://youtube.com/user/haru60"
+        },
+        "qid": "faadd4a-aadd-7ff-7132-4fb6c4b1b724"
+      },
+      {
+        "type": "video",
+        "videoId": "pv7c2tQdwdU",
+        "url": "https://youtube.com/watch?v=pv7c2tQdwdU",
+        "title": "My Chemical Romance - Welcome To The Black Parade",
+        "description": "2006 WMG Welcome To The Black Parade (Video)",
+        "image": "https://i.ytimg.com/vi/pv7c2tQdwdU/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/pv7c2tQdwdU/hqdefault.jpg",
+        "seconds": 315,
+        "timestamp": "5:15",
+        "duration": {
+          "seconds": 315,
+          "timestamp": "5:15"
+        },
+        "ago": "11 years ago",
+        "views": 3189140,
+        "author": {
+          "name": "My Chemical Romance",
+          "url": "https://youtube.com/channel/UCCZGYab5SpD0I7Z5JqJZgww"
+        },
+        "qid": "48bb1ec-13b-7b64-0773-d8e4aa832cfd"
+      },
+      {
+        "type": "video",
+        "videoId": "UCCyoocDxBA",
+        "url": "https://youtube.com/watch?v=UCCyoocDxBA",
+        "title": "My Chemical Romance - Helena",
+        "description": "From 'Three Cheers for Sweet Revenge' Download/Stream: https://mcr.lnk.to/threecheers Connect with My Chemical Romance: ...",
+        "image": "https://i.ytimg.com/vi/UCCyoocDxBA/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/UCCyoocDxBA/hqdefault.jpg",
+        "seconds": 211,
+        "timestamp": "3:31",
+        "duration": {
+          "seconds": 211,
+          "timestamp": "3:31"
+        },
+        "ago": "11 years ago",
+        "views": 122799634,
+        "author": {
+          "name": "My Chemical Romance",
+          "url": "https://youtube.com/channel/UCCZGYab5SpD0I7Z5JqJZgww"
+        },
+        "qid": "87e41-fd81-a4a-7c-6a8afa6aeb7"
+      },
+      {
+        "type": "video",
+        "videoId": "hmCj7k2ZHuo",
+        "url": "https://youtube.com/watch?v=hmCj7k2ZHuo",
+        "title": "Simple Plan - Welcome To My Life",
+        "description": "2004 WMG All Rights Reserved Check now! \"Welcome To my Life\" by Simple Plan with Lyrics! Find all the Simple Plan's songs on ...",
+        "image": "https://i.ytimg.com/vi/hmCj7k2ZHuo/hq720.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/hmCj7k2ZHuo/hq720.jpg",
+        "seconds": 210,
+        "timestamp": "3:30",
+        "duration": {
+          "seconds": 210,
+          "timestamp": "3:30"
+        },
+        "ago": "5 years ago",
+        "views": 2652576,
+        "author": {
+          "name": "SimplePlanLyrics",
+          "url": "https://youtube.com/user/SimplePlanLyric"
+        },
+        "qid": "be07347-5825-5e5-a760-a6f5ec1265"
+      },
+      {
+        "type": "video",
+        "videoId": "BpwCJzPlz8k",
+        "url": "https://youtube.com/watch?v=BpwCJzPlz8k",
+        "title": "Three Days Grace - I Hate Everything About You",
+        "description": "Three Days Grace - I Hate Everything About You (Lyrics)",
+        "image": "https://i.ytimg.com/vi/BpwCJzPlz8k/hq720.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/BpwCJzPlz8k/hq720.jpg",
+        "seconds": 236,
+        "timestamp": "3:56",
+        "duration": {
+          "seconds": 236,
+          "timestamp": "3:56"
+        },
+        "ago": "12 years ago",
+        "views": 56458942,
+        "author": {
+          "name": "Solo Sounds",
+          "url": "https://youtube.com/user/klkammiller"
+        },
+        "qid": "a2841fd-0035-c027-17b2-18853d0f23b"
+      },
+      {
+        "type": "video",
+        "videoId": "ZQ7oqmikZDQ",
+        "url": "https://youtube.com/watch?v=ZQ7oqmikZDQ",
+        "title": "Simple Plan - Untitled",
+        "description": "The official video Simple Plan's \"Untitled\" off the album 'Still Not Getting Any' - available now! Subscribe for more official content ...",
+        "image": "https://i.ytimg.com/vi/ZQ7oqmikZDQ/hq720.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/ZQ7oqmikZDQ/hq720.jpg",
+        "seconds": 218,
+        "timestamp": "3:38",
+        "duration": {
+          "seconds": 218,
+          "timestamp": "3:38"
+        },
+        "ago": "11 years ago",
+        "views": 35897472,
+        "author": {
+          "name": "Atlantic Records",
+          "url": "https://youtube.com/user/AtlanticVideos"
+        },
+        "qid": "e06e4d4-8d7-b607-baa-d01e5fc072bd"
+      },
+      {
+        "type": "video",
+        "videoId": "96MiYk9VYvc",
+        "url": "https://youtube.com/watch?v=96MiYk9VYvc",
+        "title": "Evanescence - Bring Me To Life",
+        "description": "",
+        "image": "https://i.ytimg.com/vi/96MiYk9VYvc/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/96MiYk9VYvc/hqdefault.jpg",
+        "seconds": 223,
+        "timestamp": "3:43",
+        "duration": {
+          "seconds": 223,
+          "timestamp": "3:43"
+        },
+        "ago": "11 years ago",
+        "views": 55178925,
+        "author": {
+          "name": "Vady",
+          "url": "https://youtube.com/user/Deliii1995"
+        },
+        "qid": "fc2317d-150-b071-ccec-1ccf666b61d"
+      },
+      {
+        "type": "video",
+        "videoId": "9Q0ljllOuv8",
+        "url": "https://youtube.com/watch?v=9Q0ljllOuv8",
+        "title": "Evanescence - My Immortal",
+        "description": "The album version of My Immortal by Evanescence from their album Fallen. I own nothing.",
+        "image": "https://i.ytimg.com/vi/9Q0ljllOuv8/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/9Q0ljllOuv8/hqdefault.jpg",
+        "seconds": 265,
+        "timestamp": "4:25",
+        "duration": {
+          "seconds": 265,
+          "timestamp": "4:25"
+        },
+        "ago": "9 years ago",
+        "views": 56655,
+        "author": {
+          "name": "Billy Bob Billy",
+          "url": "https://youtube.com/user/bbFOBgcLPspPtdg3DD"
+        },
+        "qid": "e4275-2f2d-55e-d6c2-76f1ea2d38c5"
+      },
+      {
+        "type": "video",
+        "videoId": "XWWoIdXQdAI",
+        "url": "https://youtube.com/watch?v=XWWoIdXQdAI",
+        "title": "Good Charlotte - The Anthem",
+        "description": "Comment, Rate, Subscribe :]",
+        "image": "https://i.ytimg.com/vi/XWWoIdXQdAI/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/XWWoIdXQdAI/hqdefault.jpg",
+        "seconds": 179,
+        "timestamp": "2:59",
+        "duration": {
+          "seconds": 179,
+          "timestamp": "2:59"
+        },
+        "ago": "11 years ago",
+        "views": 2727363,
+        "author": {
+          "name": "AbbieElizabeth93",
+          "url": "https://youtube.com/user/AbbieElizabeth93"
+        },
+        "qid": "80c534-7f53-615c-376-a45cb43cba45"
+      },
+      {
+        "type": "video",
+        "videoId": "j00fyFXJyi4",
+        "url": "https://youtube.com/watch?v=j00fyFXJyi4",
+        "title": "We the kings - Check yes Juliet! (Run baby run)",
+        "description": "Run baby run.... and listen to this song and sing a long.",
+        "image": "https://i.ytimg.com/vi/j00fyFXJyi4/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/j00fyFXJyi4/hqdefault.jpg",
+        "seconds": 218,
+        "timestamp": "3:38",
+        "duration": {
+          "seconds": 218,
+          "timestamp": "3:38"
+        },
+        "ago": "11 years ago",
+        "views": 5006527,
+        "author": {
+          "name": "chihiro602",
+          "url": "https://youtube.com/user/chihiro602"
+        },
+        "qid": "b8f1c6-f332-507-acc6-26a60e01f10"
+      },
+      {
+        "type": "video",
+        "videoId": "VOQtB0xTiek",
+        "url": "https://youtube.com/watch?v=VOQtB0xTiek",
+        "title": "Paramore - Misery Business",
+        "description": "misery business paramore lyrics DISCLAIMER: i dont own this song. All rights go to the Artist/+WMG. No copyright intended.",
+        "image": "https://i.ytimg.com/vi/VOQtB0xTiek/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/VOQtB0xTiek/hqdefault.jpg",
+        "seconds": 212,
+        "timestamp": "3:32",
+        "duration": {
+          "seconds": 212,
+          "timestamp": "3:32"
+        },
+        "ago": "10 years ago",
+        "views": 6886724,
+        "author": {
+          "name": "Jenny247ful",
+          "url": "https://youtube.com/user/Jenny247ful"
+        },
+        "qid": "10ea15-785f-fc74-3666-a38045e70ae8"
+      },
+      {
+        "type": "video",
+        "videoId": "W8wvyPDZo_w",
+        "url": "https://youtube.com/watch?v=W8wvyPDZo_w",
+        "title": "Red Jumpsuit Apparatus - Face Down",
+        "description": "face down with lyrics btw when it says one look its supposed 2 be one walk. srry about that.",
+        "image": "https://i.ytimg.com/vi/W8wvyPDZo_w/hqdefault.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/W8wvyPDZo_w/hqdefault.jpg",
+        "seconds": 193,
+        "timestamp": "3:13",
+        "duration": {
+          "seconds": 193,
+          "timestamp": "3:13"
+        },
+        "ago": "12 years ago",
+        "views": 18997325,
+        "author": {
+          "name": "Shiina Kurisu",
+          "url": "https://youtube.com/user/cheezekakehomi"
+        },
+        "qid": "812a01-27e-7dc2-1011-624d455db6d"
+      },
+      {
+        "type": "video",
+        "videoId": "tN9aaOaZnyg",
+        "url": "https://youtube.com/watch?v=tN9aaOaZnyg",
+        "title": "Paramore - CrushCrushCrush",
+        "description": "Willst du mehr News von uns per eMail? Dann trag dich in unseren Newsletter ein: http://www.warnermusic.de/newsletter Du findest uns im Netz auch hier: Website: http://www.warnermusic.de Facebook: http://www.facebook.com/warnermusicDE Spotify: ...",
+        "image": "https://i.ytimg.com/vi/tN9aaOaZnyg/hq720.jpg",
+        "thumbnail": "https://i.ytimg.com/vi/tN9aaOaZnyg/hq720.jpg",
+        "seconds": 189,
+        "timestamp": "3:09",
+        "duration": {
+          "seconds": 189,
+          "timestamp": "3:09"
+        },
+        "ago": "7 years ago",
+        "views": 1437771,
+        "author": {
+          "name": "Angesagt!",
+          "url": "https://youtube.com/user/warnermusicde"
+        },
+        "qid": "ca2dcb-66ba-741-a86e-6e35c6c83dfd"
+      }
+    ]
+  },
+  {
     "id": "discord-ad",
-    "tags": ["discord-ad"]
+    "tags": [
+      "discord-ad"
+    ]
   }
 ]
