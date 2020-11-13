@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Playlist from "./Playlist/Playlist";
 import JoinUsOnDiscord from "./JoinUsOnDiscord/JoinUsOnDiscord";
 import HmaksPlaylist from "./HmaksPlaylist/HmaksPlaylist";
+import { shuffle } from "../../../functions"
 
 const useStyles = makeStyles({
   root: {
@@ -28,7 +29,8 @@ function FeaturedPlaylists({
         Featured playlists
       </Typography>
 
-      {featuredPlaylists.map((playlist) => {
+      {shuffle(featuredPlaylists).map((playlist) => {
+
         if (playlist.tags && playlist.tags.includes("hmak")) {
           return (
             <HmaksPlaylist
@@ -44,6 +46,10 @@ function FeaturedPlaylists({
               }}
             />
           );
+        }
+
+        if (playlist.tags && playlist.tags.includes("discord-ad")){
+          return <JoinUsOnDiscord />
         }
 
         // default
@@ -63,7 +69,6 @@ function FeaturedPlaylists({
         );
       })}
 
-      <JoinUsOnDiscord />
     </div>
   );
 }
