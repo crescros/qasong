@@ -62,8 +62,8 @@ function FeaturedPlaylists({
           />
         );
       })}
-   
-      <JoinUsOnDiscord />   
+
+      <JoinUsOnDiscord />
     </div>
   );
 }
