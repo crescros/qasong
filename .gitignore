@@ -6,9 +6,10 @@ package-lock.json
 ./vscode
 .vs
 
-# react
+# react-build
 public/bundle.js
 public/*.bundle.js
+public/js/**.*
 
 # cypress
 cypress/videos

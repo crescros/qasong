@@ -3008,8 +3008,6 @@
   },
   {
     "id": "discord-ad",
-    "tags": [
-      "discord-ad"
-    ]
+    "tags": ["discord-ad"]
   }
 ]
