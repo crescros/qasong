@@ -1,17 +1,22 @@
 import React from "react";
 import featuredPlaylists from "./featuredPlaylists.json";
-import { Typography } from "@material-ui/core";
+import { Typography, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Playlist from "./Playlist/Playlist";
 import JoinUsOnDiscord from "./JoinUsOnDiscord/JoinUsOnDiscord";
 import HmaksPlaylist from "./HmaksPlaylist/HmaksPlaylist";
 import { shuffle } from "../../../functions";
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+
 
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
 });
+
+
+const feedItems = shuffle(featuredPlaylists)
 
 function FeaturedPlaylists({
   setQueue,
@@ -20,16 +25,20 @@ function FeaturedPlaylists({
   setShowQueue,
   nowPlaying,
   queue,
+  addSongToQueue
 }) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Typography align="center" variant="h4" style={{ color: "#888" }}>
-        Featured playlists
+      <Typography align="center" variant="h4" color="textSecondary">
+        Featured playlists 
+        <IconButton>
+          <MoreVertIcon color="textSecondary" />
+        </IconButton>
       </Typography>
 
-      {shuffle(featuredPlaylists).map((playlist) => {
+      {feedItems.map((playlist) => {
         if (playlist.tags && playlist.tags.includes("hmak")) {
           return (
             <HmaksPlaylist
@@ -42,6 +51,7 @@ function FeaturedPlaylists({
                 setShowQueue,
                 nowPlaying,
                 queue,
+                addSongToQueue
               }}
             />
           );
@@ -63,6 +73,7 @@ function FeaturedPlaylists({
               setShowQueue,
               nowPlaying,
               queue,
+              addSongToQueue
             }}
           />
         );

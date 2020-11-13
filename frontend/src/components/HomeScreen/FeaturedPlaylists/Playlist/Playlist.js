@@ -12,8 +12,8 @@ import {
 } from "@material-ui/core";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
-import StopIcon from "@material-ui/icons/Stop";
 import { makeStyles } from "@material-ui/core/styles";
+import PlaylistItem from "./PlaylistItem/PlaylistItem";
 
 const useStyles = makeStyles((theme) => ({
   playlist: {
@@ -39,6 +39,7 @@ function Playlist({
   setNowPlaying,
   nowPlaying,
   queue,
+  addSongToQueue
 }) {
   const classes = useStyles();
   const [collapsed, setCollapsed] = React.useState(true);
@@ -65,37 +66,15 @@ function Playlist({
     setNowPlaying({});
   }
 
-  function PlaylistItem({ song }) {
-    const currentlyPlaying = song.videoId === nowPlaying?.videoId;
-
-    return (
-      <ListItem
-        key={song.videoId}
-        onClick={() => {
-          setNowPlaying(song);
-        }}
-        button
-        selected={currentlyPlaying}
-      >
-        {currentlyPlaying && (
-          <IconButton size="small" onClick={handleStopSong}>
-            <StopIcon />
-          </IconButton>
-        )}
-        <ListItemText primary={song.title} />
-      </ListItem>
-    );
-  }
-
   function CollapsedPlaylist() {
     return playlist.queue.slice(0, 4).map((song) => {
-      return <PlaylistItem key={song.qid} {...{ song }} />;
+      return <PlaylistItem key={song.qid} {...{ song, handleStopSong, nowPlaying, setNowPlaying, addSongToQueue }} />;
     });
   }
 
   function UncollapsedPlaylist() {
     return playlist.queue.map((song) => {
-      return <PlaylistItem key={song.qid} {...{ song }} />;
+      return <PlaylistItem key={song.qid} {...{ song, handleStopSong, nowPlaying, setNowPlaying, addSongToQueue }} />;
     });
   }
 

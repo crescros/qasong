@@ -15,6 +15,7 @@ function HomeScreen({
   setShowQueue,
   isLoading,
   queue,
+  addSongToQueue
 }) {
   if (!showHomeScreen) {
     return <div id="empty-div"></div>;
@@ -27,7 +28,8 @@ function HomeScreen({
           <Typography
             align="center"
             variant="h1"
-            style={{ color: "#888888", fontSize: "8vw" }}
+            color="textSecondary"
+            style={{ fontSize: "8vw" }}
             xs={12}
           >
             {process.env.REACT_APP_NAME}
@@ -36,8 +38,8 @@ function HomeScreen({
         <Grid item>
           <Typography
             align="center"
+            color="textSecondary"
             style={{
-              color: "#888888",
               letterSpacing: "2px",
               wordSpacing: "16px",
             }}
@@ -68,6 +70,7 @@ function HomeScreen({
                 nowPlaying,
                 setQueueName,
                 queue,
+                addSongToQueue
               }}
             />
           </Box>

@@ -12,8 +12,9 @@ import {
 } from "@material-ui/core";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
-import StopIcon from "@material-ui/icons/Stop";
 import { makeStyles } from "@material-ui/core/styles";
+import PlaylistItem from "../Playlist/PlaylistItem/PlaylistItem";
+
 
 const useStyles = makeStyles((theme) => ({
   playlist: {
@@ -48,6 +49,7 @@ function Playlist({
   setNowPlaying,
   nowPlaying,
   queue,
+  addSongToQueue,
 }) {
   const classes = useStyles();
 
@@ -73,31 +75,9 @@ function Playlist({
     setNowPlaying({});
   }
 
-  function PlaylistItem({ song }) {
-    const currentlyPlaying = song.videoId === nowPlaying?.videoId;
-
-    return (
-      <ListItem
-        key={song.videoId}
-        onClick={() => {
-          setNowPlaying(song);
-        }}
-        button
-        selected={currentlyPlaying}
-      >
-        {currentlyPlaying && (
-          <IconButton size="small" onClick={handleStopSong}>
-            <StopIcon />
-          </IconButton>
-        )}
-        <ListItemText primary={song.title} />
-      </ListItem>
-    );
-  }
-
   function UncollapsedPlaylist() {
     return playlist.queue.map((song) => {
-      return <PlaylistItem key={song.qid} {...{ song }} />;
+      return <PlaylistItem key={song.qid} {...{ song, handleStopSong, nowPlaying, setNowPlaying, addSongToQueue }} />;
     });
   }
 

@@ -77,6 +77,10 @@ const App = () => {
     setNowPlaying(nextInQueue);
   }
 
+  function addSongToQueue(song) {
+    setQueue(queue.concat(song))
+  }
+
   // runs once when app starts
   useEffect(() => {
     (async () => {
@@ -268,6 +272,7 @@ const App = () => {
             setShowQueue,
             isLoading,
             queue,
+            addSongToQueue,
           }}
         />
       </Suspense>
