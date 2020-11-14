@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   playlist: {
-    borderColor: "#ffae5c",
+    borderColor: theme.palette.secondary.main,
     border: "2px solid",
     maxWidth: 500,
     margin: "auto",

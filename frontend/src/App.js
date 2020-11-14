@@ -16,7 +16,9 @@ const QueueSection = React.lazy(() => import("./components/QueueSection/QueueSec
 const YoutubeIframeArea = React.lazy(() =>
   import("./components/YoutubeIframeArea/YoutubeIframeArea")
 );
-const PlayArea = React.lazy(() => import("./components/NowPlayingArea/NowPlayingArea"));
+const NowPlayingArea = React.lazy(() =>
+  import("./components/NowPlayingArea/NowPlayingArea")
+);
 
 // DARK MODE
 const darkTheme = createMuiTheme({
@@ -283,7 +285,7 @@ const App = () => {
 
       {/* NOW PLAYING AREA */}
       <Suspense fallback={<div />}>
-        <PlayArea
+        <NowPlayingArea
           {...{
             nowPlaying,
             queue,

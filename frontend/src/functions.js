@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const baseUrl = process.env.REACT_APP_ARTISTIFY_URL;
-// const baseUrl = "http://localhost:3016/"; // dev url
+// const baseUrl = process.env.REACT_APP_ARTISTIFY_URL;
+const baseUrl = "http://localhost:3016/"; // dev url
 
 export function setDefaultToken(token) {
   axios.defaults.headers.common["Authorization"] = "Bearer " + token;
@@ -122,4 +122,19 @@ export function shuffle(array) {
 export function clear(array) {
   array = [];
   return array;
+}
+
+export function getDurationFromQueue(queue) {
+  const totalSeconds = queue.reduce((total, song) => {
+    return total + song.seconds;
+  }, 0);
+
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+
+  if (hours > 0) {
+    return `${hours} hrs ${minutes} min`;
+  } else {
+    return `${minutes} min`;
+  }
 }

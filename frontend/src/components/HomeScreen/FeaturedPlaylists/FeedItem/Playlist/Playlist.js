@@ -14,10 +14,11 @@ import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
 import { makeStyles } from "@material-ui/core/styles";
 import PlaylistItem from "./PlaylistItem/PlaylistItem";
+import { getDurationFromQueue } from "../../../../../functions";
 
 const useStyles = makeStyles((theme) => ({
   playlist: {
-    borderColor: "#ffae5c",
+    borderColor: theme.palette.secondary.main,
     border: "2px solid",
     maxWidth: 500,
     margin: "auto",
@@ -88,6 +89,8 @@ function Playlist({
     });
   }
 
+  const duration = getDurationFromQueue(playlist.queue);
+
   return (
     <Grid
       key={playlist.id}
@@ -104,7 +107,7 @@ function Playlist({
         </Box>
       </Grid>
       <Grid item xs container direction="column" spacing={2}>
-        <Grid item container>
+        <Grid item xs={12}>
           <Box pl={2}>
             <Typography gutterBottom>
               <Link
@@ -116,13 +119,26 @@ function Playlist({
                 {playlist.name}
               </Link>
             </Typography>
-            <IconButton title="play playlist" onClick={handlePlaylistClick}>
-              <PlayArrowIcon />
-            </IconButton>
-            <IconButton title="add playlist to queue" onClick={handleAddToQueueClick}>
-              <AddToPhotosIcon />
-            </IconButton>
           </Box>
+        </Grid>
+        <Grid item container xs={12}>
+          <Grid item xs={6}>
+            <Box pl={2}>
+              <Typography color="textSecondary">
+                {playlist.queue.length} songs, {duration}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={6}>
+            <Box align="right">
+              <IconButton title="play playlist" onClick={handlePlaylistClick}>
+                <PlayArrowIcon />
+              </IconButton>
+              <IconButton title="add playlist to queue" onClick={handleAddToQueueClick}>
+                <AddToPhotosIcon />
+              </IconButton>
+            </Box>
+          </Grid>
         </Grid>
 
         <Grid item>

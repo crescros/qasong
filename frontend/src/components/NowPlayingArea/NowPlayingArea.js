@@ -7,12 +7,13 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import OffIcon from "@material-ui/icons/HighlightOffOutlined";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   appBar: {
     top: "auto",
-    bottom: 0,
+    bottom: 100,
     height: 75,
-    borderTop: "2px solid #FE9021",
+    borderTop: "2px solid",
+    borderColor: theme.palette.secondary.main,
   },
   grow: {
     display: "flex",
@@ -22,7 +23,7 @@ const useStyles = makeStyles({
   playSize: {
     fontSize: 12,
   },
-});
+}));
 
 export default function BottomAppBar({ nowPlaying, setNowPlaying }) {
   const classes = useStyles();
