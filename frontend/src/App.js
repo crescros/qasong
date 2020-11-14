@@ -6,13 +6,13 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 
 // lazy load components
-const VideoGrid = React.lazy(() => import("./components/VideoGrid/VideoGrid"));
-const VideoTable = React.lazy(() => import("./components/VideoTable/VideoTable"));
+const GridView = React.lazy(() => import("./components/SearchResults/GridView/GridView"));
+const TableView = React.lazy(() => import("./components/SearchResults/TableView/TableView"));
 const AppBar = React.lazy(() => import("./components/AppBar/AppBar"));
 const HomeScreen = React.lazy(() => import("./components/HomeScreen/HomeScreen"));
 const QueueSection = React.lazy(() => import("./components/QueueSection/QueueSection"));
-const VideoArea = React.lazy(() => import("./components/VideoArea/VideoArea"));
-const PlayArea = React.lazy(() => import("./components/PlayArea/PlayArea"));
+const YoutubeIframeArea = React.lazy(() => import("./components/YoutubeIframeArea/YoutubeIframeArea"));
+const PlayArea = React.lazy(() => import("./components/NowPlayingArea/NowPlayingArea"));
 
 // DARK MODE
 const darkTheme = createMuiTheme({
@@ -198,7 +198,7 @@ const App = () => {
 
       {/* YOUTUBE IFRAME */}
       <Suspense fallback={<div />}>
-        <VideoArea
+        <YoutubeIframeArea
           {...{
             nowPlaying,
             setNowPlaying,
@@ -226,7 +226,7 @@ const App = () => {
       {/* MUSIC SEARCH RESULTS */}
       {searchTableViewMode ? (
         <Suspense fallback={<div />}>
-          <VideoTable
+          <TableView
             {...{
               handleSearchTermInput,
               handleSubmitVideoSearch,
@@ -241,7 +241,7 @@ const App = () => {
         </Suspense>
       ) : (
         <Suspense fallback={<div />}>
-          <VideoGrid
+          <GridView
             {...{
               handleSearchTermInput,
               handleSubmitVideoSearch,

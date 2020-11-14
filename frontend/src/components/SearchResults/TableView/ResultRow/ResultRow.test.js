@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import VideoRow from "./VideoRow";
+import VideoRow from "./ResultRow";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 
 describe("<VideoCard />", () => {

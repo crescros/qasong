@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard({ video, setNowPlaying, nowPlaying, queue, setQueue }) {
+export default function ResultRow({ video, setNowPlaying, nowPlaying, queue, setQueue }) {
   const classes = useStyles();
   const [playing, setPlaying] = useState(false);
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Video from "./Video/Video";
+import YoutubeIframe from "./YoutubeIframe/YoutubeIframe";
 import { isMobile } from "react-device-detect";
 
 const mobileStyles = {
@@ -12,7 +12,7 @@ const mobileStyles = {
 
 const desktopStyles = {};
 
-function VideoArea({ nowPlaying, setNowPlaying }) {
+function YoutubeIframeArea({ nowPlaying, setNowPlaying }) {
   if (!(nowPlaying && nowPlaying.videoId)) {
     return <div id="#empty-div"></div>;
   }
@@ -20,11 +20,11 @@ function VideoArea({ nowPlaying, setNowPlaying }) {
   return (
     <>
       <div style={isMobile ? mobileStyles : desktopStyles}>
-        <Video id={nowPlaying.videoId} setNowPlaying={setNowPlaying} />
+        <YoutubeIframe id={nowPlaying.videoId} setNowPlaying={setNowPlaying} />
       </div>
       {isMobile && <div style={{ height: "100px" }}></div>}
     </>
   );
 }
 
-export default VideoArea;
+export default YoutubeIframeArea;

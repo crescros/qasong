@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MediaCard({ video, setNowPlaying, nowPlaying, queue, setQueue }) {
+export default function ResultCard({ video, setNowPlaying, nowPlaying, queue, setQueue }) {
   const classes = useStyles();
   const [playing, setPlaying] = useState(false);
 

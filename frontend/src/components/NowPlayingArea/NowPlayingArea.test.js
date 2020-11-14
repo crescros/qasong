@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import PlayArea from "./PlayArea";
+import PlayArea from "./NowPlayingArea";
 import AppBar from "@material-ui/core/AppBar";
 
 describe("<PlayArea />", () => {

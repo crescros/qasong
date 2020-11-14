@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import VideoArea from "./VideoArea";
-import Video from "./Video/Video";
+import Video from "./Video/YoutubeIframe";
 
 describe("<VideoArea />", () => {
   it("renders an empty div if id is falsy", () => {

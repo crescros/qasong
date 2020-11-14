@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import VideoTable from "./VideoTable";
+import VideoTable from "./TableView";
 
 describe("<VideoTable />", () => {
   it("renders a div", () => {
