@@ -3,7 +3,7 @@
     "id": "11",
     "image": "https://i.ytimg.com/vi/_gu-b0PSfOg/hqdefault.jpg",
     "name": "Hitman Hunna",
-    "tags": "hmak",
+    "tags": ["hmak"],
     "queue": [
       {
         "title": "Another Life",
@@ -1452,6 +1452,7 @@
   {
     "id": "5",
     "image": "https://i.ytimg.com/vi/MULiEHTSi0Y/hq720.jpg",
+    "tags": ["christmas"],
     "name": "Christmas Pop",
     "queue": [
       {
@@ -1789,6 +1790,7 @@
     "id": "8",
     "image": "https://i.ytimg.com/vi/D2G7AdAisfA/hqdefault.jpg",
     "name": "Classic Christmas",
+    "tags": ["christmas"],
     "queue": [
       {
         "type": "video",
@@ -1992,6 +1994,7 @@
     "id": "9",
     "image": "https://i.ytimg.com/vi/V9i-tS6moeE/hqdefault.jpg",
     "name": "Christmas Hymns",
+    "tags": ["christmas"],
     "queue": [
       {
         "type": "video",
@@ -2285,6 +2288,7 @@
     "id": "10",
     "image": "https://i.ytimg.com/vi/iO7ySn-Swwc/hqdefault.jpg",
     "name": "Christmas Instrumentals",
+    "tags": ["christmas"],
     "queue": [
       {
         "type": "video",

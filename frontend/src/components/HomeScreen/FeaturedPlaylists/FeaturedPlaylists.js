@@ -2,11 +2,9 @@ import React from "react";
 import featuredPlaylists from "./featuredPlaylists.json";
 import { Typography, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Playlist from "./Playlist/Playlist";
-import JoinUsOnDiscord from "./JoinUsOnDiscord/JoinUsOnDiscord";
-import HmaksPlaylist from "./HmaksPlaylist/HmaksPlaylist";
 import { shuffle } from "../../../functions";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import FeedItem from "./FeedItem/FeedItem"
 
 const useStyles = makeStyles({
   root: {
@@ -37,44 +35,18 @@ function FeaturedPlaylists({
       </Typography>
 
       {feedItems.map((playlist) => {
-        if (playlist.tags && playlist.tags.includes("hmak")) {
-          return (
-            <HmaksPlaylist
-              key={playlist.id}
-              {...{
-                playlist,
-                setQueue,
-                setQueueName,
-                setNowPlaying,
-                setShowQueue,
-                nowPlaying,
-                queue,
-                addSongToQueue,
-              }}
-            />
-          );
-        }
-
-        if (playlist.tags && playlist.tags.includes("discord-ad")) {
-          return <JoinUsOnDiscord />;
-        }
-
-        // default
-        return (
-          <Playlist
-            key={playlist.id}
-            {...{
-              playlist,
-              setQueue,
-              setQueueName,
-              setNowPlaying,
-              setShowQueue,
-              nowPlaying,
-              queue,
-              addSongToQueue,
-            }}
-          />
-        );
+        return <FeedItem
+          {...{
+            playlist,
+            setQueue,
+            setQueueName,
+            setNowPlaying,
+            setShowQueue,
+            nowPlaying,
+            queue,
+            addSongToQueue,
+          }}
+        />
       })}
     </div>
   );

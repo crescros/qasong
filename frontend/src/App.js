@@ -7,11 +7,15 @@ import { ThemeProvider } from "@material-ui/styles";
 
 // lazy load components
 const GridView = React.lazy(() => import("./components/SearchResults/GridView/GridView"));
-const TableView = React.lazy(() => import("./components/SearchResults/TableView/TableView"));
+const TableView = React.lazy(() =>
+  import("./components/SearchResults/TableView/TableView")
+);
 const AppBar = React.lazy(() => import("./components/AppBar/AppBar"));
 const HomeScreen = React.lazy(() => import("./components/HomeScreen/HomeScreen"));
 const QueueSection = React.lazy(() => import("./components/QueueSection/QueueSection"));
-const YoutubeIframeArea = React.lazy(() => import("./components/YoutubeIframeArea/YoutubeIframeArea"));
+const YoutubeIframeArea = React.lazy(() =>
+  import("./components/YoutubeIframeArea/YoutubeIframeArea")
+);
 const PlayArea = React.lazy(() => import("./components/NowPlayingArea/NowPlayingArea"));
 
 // DARK MODE
