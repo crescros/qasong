@@ -5,7 +5,6 @@ import { getFeed } from "../../../functions";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import FeedItem from "./FeedItem/FeedItem";
 
-
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
@@ -22,14 +21,14 @@ function FeaturedPlaylists({
   addSongToQueue,
 }) {
   const classes = useStyles();
-  const [feedItems, setFeedItems] = React.useState([])
+  const [feedItems, setFeedItems] = React.useState([]);
 
   React.useEffect(() => {
     (async () => {
-      const feed = await getFeed()
-      setFeedItems(feed)
-    })()
-  },[])
+      const feed = await getFeed();
+      setFeedItems(feed);
+    })();
+  }, []);
 
   return (
     <div className={classes.root}>
