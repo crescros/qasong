@@ -83,6 +83,12 @@ const App = () => {
     setNowPlaying(nextInQueue);
   }
 
+  function getNextInQueue() {
+    const i = queue.findIndex((item) => item.qid === currentQid);
+    const nextInQueue = queue[i - 1];
+    return nextInQueue;
+  }
+
   function addSongToQueue(song) {
     setQueue(queue.concat(song));
   }
@@ -202,16 +208,6 @@ const App = () => {
         />
       </Suspense>
 
-      {/* YOUTUBE IFRAME */}
-      <Suspense fallback={<div />}>
-        <YoutubeIframeArea
-          {...{
-            nowPlaying,
-            setNowPlaying,
-          }}
-        />
-      </Suspense>
-
       {/* QUEUE */}
       <Suspense fallback={<div />}>
         <QueueSection
@@ -223,8 +219,6 @@ const App = () => {
             setQueue,
             setQueueName,
             showQueue,
-            skipSong,
-            previousSong,
           }}
         />
       </Suspense>
@@ -283,14 +277,27 @@ const App = () => {
         />
       </Suspense>
 
+      {/* YOUTUBE IFRAME */}
+      <Suspense fallback={<div />}>
+        <YoutubeIframeArea
+          {...{
+            nowPlaying,
+            setNowPlaying,
+          }}
+        />
+      </Suspense>
+
       {/* NOW PLAYING AREA */}
       <Suspense fallback={<div />}>
         <NowPlayingArea
           {...{
+            skipSong,
+            previousSong,
             nowPlaying,
             queue,
             videos,
             setNowPlaying,
+            getNextInQueue
           }}
         />
       </Suspense>

@@ -122,7 +122,9 @@ function Playlist({
         <Grid item container xs={12}>
           <Grid item xs={6}>
             <Box pl={2}>
-              <Typography color="textSecondary">{playlist.queue.length} songs, {duration}</Typography>
+              <Typography color="textSecondary">
+                {playlist.queue.length} songs, {duration}
+              </Typography>
             </Box>
           </Grid>
           <Grid item xs={6}>
