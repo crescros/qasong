@@ -1,18 +1,16 @@
 import React from "react";
-import featuredPlaylists from "./featuredPlaylists.json";
 import { Typography, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { shuffle } from "../../../functions";
+import { getFeed } from "../../../functions";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import FeedItem from "./FeedItem/FeedItem";
+
 
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
 });
-
-const feedItems = shuffle(featuredPlaylists);
 
 function FeaturedPlaylists({
   setQueue,
@@ -24,6 +22,14 @@ function FeaturedPlaylists({
   addSongToQueue,
 }) {
   const classes = useStyles();
+  const [feedItems, setFeedItems] = React.useState([])
+
+  React.useEffect(() => {
+    (async () => {
+      const feed = await getFeed()
+      setFeedItems(feed)
+    })()
+  },[])
 
   return (
     <div className={classes.root}>

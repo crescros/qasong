@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseUrl = process.env.REACT_APP_ARTISTIFY_URL;
+// const baseUrl = process.env.REACT_APP_ARTISTIFY_URL;
+const baseUrl = "http://localhost:3016/";
 
 export function setDefaultToken(token) {
   axios.defaults.headers.common["Authorization"] = "Bearer " + token;
@@ -78,6 +79,18 @@ export function formatVideoTitle(name) {
 export function getQueueFromIds(search) {
   return axios
     .get(baseUrl + "api/search/ids?" + search)
+    .then((result) => {
+      return result.data;
+    })
+    .catch((error) => {
+      alert(error + " " + error.response && error.response.data);
+      return [];
+    });
+}
+
+export function getFeed() {
+  return axios
+    .get(baseUrl + "api/feed")
     .then((result) => {
       return result.data;
     })
