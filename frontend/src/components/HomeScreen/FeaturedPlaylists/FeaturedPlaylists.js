@@ -35,7 +35,7 @@ function FeaturedPlaylists({
       <Typography align="center" variant="h4" color="textSecondary">
         Featured playlists
         <IconButton>
-          <MoreVertIcon color="textSecondary" />
+          <MoreVertIcon color="disabled" />
         </IconButton>
       </Typography>
 

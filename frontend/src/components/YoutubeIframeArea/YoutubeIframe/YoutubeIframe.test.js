@@ -2,16 +2,16 @@ import React from "react";
 import { shallow } from "enzyme";
 import YouTube from "react-youtube";
 
-import Video from "./Video";
+import YoutubeIframe from "./YoutubeIframe";
 
-describe("<Video />", () => {
+describe("<YoutubeIframe />", () => {
   it("renders an empty div if id is falsy", () => {
-    const wrapper = shallow(<Video />);
+    const wrapper = shallow(<YoutubeIframe />);
     expect(wrapper.find("#empty-div")).toHaveLength(1);
   });
 
   it("renders the Youtube component if id is truthy", () => {
-    const wrapper = shallow(<Video id="1" />);
+    const wrapper = shallow(<YoutubeIframe id="1" />);
     expect(wrapper.find(YouTube)).toHaveLength(1);
   });
 });
