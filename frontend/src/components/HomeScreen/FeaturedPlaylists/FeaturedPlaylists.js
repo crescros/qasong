@@ -4,7 +4,7 @@ import { Typography, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { shuffle } from "../../../functions";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import FeedItem from "./FeedItem/FeedItem"
+import FeedItem from "./FeedItem/FeedItem";
 
 const useStyles = makeStyles({
   root: {
@@ -35,18 +35,21 @@ function FeaturedPlaylists({
       </Typography>
 
       {feedItems.map((playlist) => {
-        return <FeedItem
-          {...{
-            playlist,
-            setQueue,
-            setQueueName,
-            setNowPlaying,
-            setShowQueue,
-            nowPlaying,
-            queue,
-            addSongToQueue,
-          }}
-        />
+        return (
+          <FeedItem
+            key={playlist.id}
+            {...{
+              playlist,
+              setQueue,
+              setQueueName,
+              setNowPlaying,
+              setShowQueue,
+              nowPlaying,
+              queue,
+              addSongToQueue,
+            }}
+          />
+        );
       })}
     </div>
   );
