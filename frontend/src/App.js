@@ -297,7 +297,7 @@ const App = () => {
             queue,
             videos,
             setNowPlaying,
-            getNextInQueue
+            getNextInQueue,
           }}
         />
       </Suspense>
