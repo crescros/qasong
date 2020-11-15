@@ -85,7 +85,7 @@ const App = () => {
 
   function getNextInQueue() {
     const i = queue.findIndex((item) => item.qid === currentQid);
-    const nextInQueue = queue[i - 1];
+    const nextInQueue = queue[i + 1];
     return nextInQueue;
   }
 

@@ -21,10 +21,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-  },
-  playSize: {
-    fontSize: 12,
-  },
+  }
 }));
 
 export default function BottomAppBar({
@@ -32,12 +29,15 @@ export default function BottomAppBar({
   setNowPlaying,
   previousSong,
   skipSong,
+  getNextInQueue
 }) {
   const classes = useStyles();
 
   function stopTheSong() {
     setNowPlaying({});
   }
+
+  const nextTitle = getNextInQueue()?.title
 
   if (!nowPlaying || !nowPlaying.title) {
     return <div></div>;
@@ -48,13 +48,17 @@ export default function BottomAppBar({
       <CssBaseline />
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar className={classes.grow}>
-          <Typography className={classes.playSize}>{nowPlaying.title}</Typography>
+          <Typography variant="caption" >{nowPlaying.title}</Typography>
           <IconButton onClick={stopTheSong} color="secondary">
             <StopIcon />
           </IconButton>
           <PreviousSongButton {...{ previousSong }} />
 
           <SkipSongButton {...{ skipSong }} />
+
+          {
+            nextTitle && <Typography color="textSecondary" variant="caption">next: {nextTitle}</Typography>
+          }
         </Toolbar>
       </AppBar>
     </React.Fragment>
