@@ -23,10 +23,6 @@ function TableView({
   setQueue,
   setSearchTableViewMode,
 }) {
-  if (!(videos && videos.results && videos.results.length > 0 && videos.searchTerm)) {
-    return <div></div>;
-  }
-
   return (
     <Box
       mt={4}

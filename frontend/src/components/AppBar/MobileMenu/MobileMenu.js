@@ -13,6 +13,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
 import MoreIcon from "@material-ui/icons/MoreVert";
 
+import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   sectionMobile: {
     display: "flex",
@@ -22,8 +24,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MobileMenu({ queue, showQueue, setShowQueue, darkMode, setDarkMode }) {
+function MobileMenu({ queue, darkMode, setDarkMode }) {
   const classes = useStyles();
+
+  let history = useHistory();
 
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -62,21 +66,23 @@ function MobileMenu({ queue, showQueue, setShowQueue, darkMode, setDarkMode }) {
           <Box>
             <MenuItem
               disabled={queue.length === 0}
-              onClick={() => setShowQueue(!showQueue)}
+              onClick={() => history.push("/queue")}
             >
-              <IconButton
-                disabled={queue.length === 0}
-                target="_blank"
-                color={showQueue ? "secondary" : "inherit"}
-              >
+              <IconButton disabled={queue.length === 0} target="_blank" color="inherit">
                 <Badge badgeContent={queue.length} color="secondary">
                   <QueueMusicIcon style={{ fontSize: "40px" }} />
                 </Badge>
               </IconButton>
-              <p>{showQueue ? "Hide Queue" : "Show Queue"}</p>
+              <p>queue</p>
             </MenuItem>
           </Box>
         </Tooltip>
+        <MenuItem onClick={() => history.push("/billboard")}>
+          <IconButton target="_blank" color="inherit">
+            <QueueMusicIcon style={{ fontSize: "40px" }} />
+          </IconButton>
+          <p>billboard</p>
+        </MenuItem>
 
         {/* dark mode */}
         <MenuItem onClick={() => setDarkMode(!darkMode)}>
