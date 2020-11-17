@@ -41,6 +41,6 @@ ask in programming/coding discord/communities (if applicable)
 Then you may now ask for help either in our [discord](https://discord.gg/b2gEwT8) (priority) or Github
 ## MAKING A SUGGESTION/PULL REQUEST/ISSUE
 FORMAT: (IF MERGABLE) MERGABLE: SUGGESTION NAME  
-        (IF JUST A REGULAR SUGGESTION) SUGGEST: SUGGESTION NAME  
-        (BUGS) BUGS: BRIEF DESCRIPTION OF BUG  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        (IF JUST A REGULAR SUGGESTION) SUGGEST: SUGGESTION NAME  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        (BUGS) BUGS: BRIEF DESCRIPTION OF BUG  
 
