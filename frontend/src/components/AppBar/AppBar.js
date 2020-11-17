@@ -33,7 +33,7 @@ export default function PrimarySearchAppBar({
 
   return (
     <div className={classes.grow}>
-      <AppBar color="primary">
+      <AppBar color="transparent">
         <Toolbar>
           {/* Icon-logo */}
           <Link to="/">
@@ -43,7 +43,7 @@ export default function PrimarySearchAppBar({
               color="inherit"
               aria-label="Qasong logo"
             >
-              <img src=".\img\qasong.svg" height="48px" />
+              <img src=".\img\whiteLogo.png" height="48px" />
             </IconButton>
           </Link>
 
