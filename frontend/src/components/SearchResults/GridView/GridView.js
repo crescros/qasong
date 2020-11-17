@@ -18,7 +18,7 @@ function GridView({
   return (
     <Box mt={4} id="video-grid">
       <Box m={2}>
-        <Typography>
+        <Typography justify="center">
           Search Results for <i>{videos.searchTerm}</i>
         </Typography>
         <IconButton

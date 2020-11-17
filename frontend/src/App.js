@@ -36,6 +36,7 @@ const darkTheme = createMuiTheme({
     },
     type: "dark",
   },
+  shadows: ["none"],
 });
 
 // LIGHT MODE
@@ -181,9 +182,9 @@ const App = () => {
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
-
+      <img src=".\img\leftCurve.svg" height="350px" style={{position: "absolute"}}/>
+      
       {<div style={{ height: "72px" }}></div>}
-
       {/* APP BAR */}
       <Suspense fallback={<div />}>
         <AppBar
