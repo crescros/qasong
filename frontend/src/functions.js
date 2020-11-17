@@ -68,6 +68,18 @@ export function getNodeEnvironment() {
     });
 }
 
+export function getBillboardTop100() {
+  return axios
+    .get(baseUrl + "api/billboard")
+    .then((result) => {
+      return result;
+    })
+    .catch((error) => {
+      alert(error);
+      return error;
+    });
+}
+
 export function formatVideoTitle(name) {
   if (name.length < 40) {
     return name;

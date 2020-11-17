@@ -12,18 +12,7 @@ import ShuffleButton from "./ShuffleButton/ShuffleButton";
 import ClearButton from "./ClearButton/ClearButton";
 import DisplayModeButton from "./DisplayModeButton/DisplayModeButton";
 
-function QueueSection({
-  nowPlaying,
-  setNowPlaying,
-  queue,
-  setQueue,
-  queueName,
-  showQueue,
-}) {
-  if (!showQueue) {
-    return <div></div>;
-  }
-
+function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue, queueName }) {
   const [displayMode, setDisplayMode] = useState("list");
 
   const handleClickQueueItem = (qid) => {
@@ -45,53 +34,40 @@ function QueueSection({
     [queue]
   );
 
-  return (
-    <>
-      {queue.length > 0 && (
-        <div style={{ maxWidth: "800px", margin: "0 auto 200px auto" }}>
-          <Box m={3}>
-            <Grid container alignItems="center">
-              <Grid item>
-                <Typography variant="h5">
-                  {queue.length > 0 && `${queue.length} songs - ${queueName}`}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <PlayQueueButton {...{ setNowPlaying, queue }} />
-              </Grid>
-              <Grid item>
-                <ShuffleButton {...{ queue, setQueue, setNowPlaying }} />
-              </Grid>
-              <Grid item>
-                <DisplayModeButton {...{ displayMode, setDisplayMode }} />
-              </Grid>
-              <Grid item>
-                <ClearButton {...{ setQueue }} />
-              </Grid>
-            </Grid>
-          </Box>
+  if (!queue.length > 0) {
+    return <div>no queue</div>;
+  }
 
-          <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-            {displayMode === "list" ? (
-              <Grid container direction="column">
-                {queue.map((item, index) => {
-                  return (
-                    <QueueRow
-                      {...item}
-                      key={item.qid}
-                      queue={queue}
-                      setQueue={setQueue}
-                      index={index}
-                      nowPlaying={nowPlaying}
-                      onClickImage={handleClickQueueItem}
-                      moveCard={moveCard}
-                    />
-                  );
-                })}
-              </Grid>
-            ) : (
-              queue.map((item, index) => (
-                <QueueCard
+  return (
+    <div style={{ maxWidth: "800px", margin: "0 auto 200px auto" }}>
+      <Box m={3}>
+        <Grid container alignItems="center">
+          <Grid item>
+            <Typography variant="h5">
+              {queue.length > 0 && `${queue.length} songs - ${queueName}`}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <PlayQueueButton {...{ setNowPlaying, queue }} />
+          </Grid>
+          <Grid item>
+            <ShuffleButton {...{ queue, setQueue, setNowPlaying }} />
+          </Grid>
+          <Grid item>
+            <DisplayModeButton {...{ displayMode, setDisplayMode }} />
+          </Grid>
+          <Grid item>
+            <ClearButton {...{ setQueue }} />
+          </Grid>
+        </Grid>
+      </Box>
+
+      <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
+        {displayMode === "list" ? (
+          <Grid container direction="column">
+            {queue.map((item, index) => {
+              return (
+                <QueueRow
                   {...item}
                   key={item.qid}
                   queue={queue}
@@ -101,12 +77,25 @@ function QueueSection({
                   onClickImage={handleClickQueueItem}
                   moveCard={moveCard}
                 />
-              ))
-            )}
-          </DndProvider>
-        </div>
-      )}
-    </>
+              );
+            })}
+          </Grid>
+        ) : (
+          queue.map((item, index) => (
+            <QueueCard
+              {...item}
+              key={item.qid}
+              queue={queue}
+              setQueue={setQueue}
+              index={index}
+              nowPlaying={nowPlaying}
+              onClickImage={handleClickQueueItem}
+              moveCard={moveCard}
+            />
+          ))
+        )}
+      </DndProvider>
+    </div>
   );
 }
 

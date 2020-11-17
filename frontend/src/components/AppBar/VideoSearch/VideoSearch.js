@@ -3,6 +3,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import { makeStyles, fade } from "@material-ui/core/styles";
 import { InputBase } from "@material-ui/core";
 
+import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   search: {
     position: "relative",
@@ -47,13 +49,19 @@ const useStyles = makeStyles((theme) => ({
 
 function VideoSearch({ handleSubmitVideoSearch, handleSearchTermInput, searchTerm }) {
   const classes = useStyles();
+  let history = useHistory();
 
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
         <SearchIcon />
       </div>
-      <form onSubmit={handleSubmitVideoSearch}>
+      <form
+        onSubmit={(e) => {
+          history.push("/search");
+          handleSubmitVideoSearch(e);
+        }}
+      >
         <InputBase
           onChange={handleSearchTermInput}
           placeholder="search music…"

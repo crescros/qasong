@@ -4,15 +4,9 @@ import { getYoutubeIdFromSearch } from "./functions";
 import { CssBaseline } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
+import Routes from "./routes";
 
 // lazy load components
-const GridView = React.lazy(() => import("./components/SearchResults/GridView/GridView"));
-const TableView = React.lazy(() =>
-  import("./components/SearchResults/TableView/TableView")
-);
-const AppBar = React.lazy(() => import("./components/AppBar/AppBar"));
-const HomeScreen = React.lazy(() => import("./components/HomeScreen/HomeScreen"));
-const QueueSection = React.lazy(() => import("./components/QueueSection/QueueSection"));
 const YoutubeIframeArea = React.lazy(() =>
   import("./components/YoutubeIframeArea/YoutubeIframeArea")
 );
@@ -66,9 +60,7 @@ const App = () => {
   const [nowPlaying, setNowPlaying] = useState();
   const [searchTerm, setSearchTerm] = useState("");
   const [queue, setQueue] = useState([]);
-  const [queueName, setQueueName] = useState("New Queue");
   const [showQueue, setShowQueue] = useState(false);
-  const [user, setUser] = useState();
   const [videos, setVideos] = useState([]);
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
 
@@ -185,98 +177,28 @@ const App = () => {
       <img src=".\img\leftCurve.svg" height="350px" style={{position: "absolute"}}/>
       
       {<div style={{ height: "72px" }}></div>}
-      {/* APP BAR */}
-      <Suspense fallback={<div />}>
-        <AppBar
-          {...{
-            darkMode,
-            handleSearchTermInput,
-            handleSubmitVideoSearch,
-            isLoading,
-            nowPlaying,
-            queue,
-            searchTerm,
-            setDarkMode,
-            setNowPlaying,
-            setSearchTerm,
-            setShowQueue,
-            setUser,
-            setVideos,
-            showQueue,
-            user,
-            showHomeScreen,
-          }}
-        />
-      </Suspense>
 
-      {/* QUEUE */}
-      <Suspense fallback={<div />}>
-        <QueueSection
-          {...{
-            nowPlaying,
-            queue,
-            queueName,
-            setNowPlaying,
-            setQueue,
-            setQueueName,
-            showQueue,
-          }}
-        />
-      </Suspense>
-
-      {/* MUSIC SEARCH RESULTS */}
-      {searchTableViewMode ? (
-        <Suspense fallback={<div />}>
-          <TableView
-            {...{
-              handleSearchTermInput,
-              handleSubmitVideoSearch,
-              nowPlaying,
-              queue,
-              setNowPlaying,
-              setQueue,
-              videos,
-              setSearchTableViewMode,
-            }}
-          />
-        </Suspense>
-      ) : (
-        <Suspense fallback={<div />}>
-          <GridView
-            {...{
-              handleSearchTermInput,
-              handleSubmitVideoSearch,
-              nowPlaying,
-              queue,
-              setNowPlaying,
-              setQueue,
-              videos,
-              setSearchTableViewMode,
-            }}
-          />
-        </Suspense>
-      )}
-
-      {/* LANDING PAGE */}
-      <Suspense fallback={<div />}>
-        <HomeScreen
-          {...{
-            handleSubmitVideoSearch,
-            handleSearchTermInput,
-            searchTerm,
-            showHomeScreen,
-            setQueue,
-            setQueueName,
-            setNowPlaying,
-            nowPlaying,
-            queueName,
-            setShowQueue,
-            isLoading,
-            queue,
-            addSongToQueue,
-          }}
-        />
-      </Suspense>
+      <Routes
+        {...{
+          darkMode,
+          isLoading,
+          nowPlaying,
+          searchTerm,
+          setDarkMode,
+          setSearchTerm,
+          setVideos,
+          showHomeScreen,
+          searchTableViewMode,
+          handleSearchTermInput,
+          handleSubmitVideoSearch,
+          queue,
+          setNowPlaying,
+          setQueue,
+          videos,
+          setSearchTableViewMode,
+          addSongToQueue,
+        }}
+      />
 
       {/* YOUTUBE IFRAME */}
       <Suspense fallback={<div />}>

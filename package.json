@@ -63,6 +63,7 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
+    "billboard-top-100": "^2.5.9",
     "cors": "^2.8.5",
     "cypress": "^5.4.0",
     "dotenv": "^8.2.0",

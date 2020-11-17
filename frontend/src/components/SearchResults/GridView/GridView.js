@@ -11,10 +11,6 @@ function GridView({
   setQueue,
   setSearchTableViewMode,
 }) {
-  if (!(videos && videos.results && videos.results.length > 0 && videos.searchTerm)) {
-    return <div></div>;
-  }
-
   return (
     <Box mt={4} id="video-grid">
       <Box m={2}>
