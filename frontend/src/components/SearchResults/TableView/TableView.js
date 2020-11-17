@@ -12,10 +12,10 @@ import {
   Paper,
   IconButton,
 } from "@material-ui/core";
-import VideoRow from "./VideoRow/VideoRow";
+import VideoRow from "./ResultRow/ResultRow";
 import GridOnIcon from "@material-ui/icons/GridOn";
 
-function VideoTable({
+function TableView({
   videos,
   nowPlaying,
   setNowPlaying,
@@ -80,4 +80,4 @@ function VideoTable({
   );
 }
 
-export default VideoTable;
+export default TableView;

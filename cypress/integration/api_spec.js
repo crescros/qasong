@@ -7,7 +7,7 @@ describe("seach endpoint", () => {
   });
 });
 
-describe("seach by list of ids endpoint", () => {
+xdescribe("seach by list of ids endpoint", () => {
   it("responds", () => {
     cy.request(
       "/api/search/ids?queue=9t7Y3puRKM0&queue=juqws1LIH-I&queue=5Sy19X0xxrM&queue=C_yI2959DYU"

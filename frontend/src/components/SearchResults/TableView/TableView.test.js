@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import VideoGrid from "./VideoGrid";
+import TableView from "./TableView";
 
-describe("<VideoGrid />", () => {
+describe("<TableView />", () => {
   it("renders a div", () => {
-    const wrapper = shallow(<VideoGrid />);
+    const wrapper = shallow(<TableView />);
     expect(wrapper.find("div")).toHaveLength(1);
   });
 });

@@ -1,7 +1,7 @@
 {
-  "name": "artistify",
+  "name": "qasong",
   "version": "0.7.0",
-  "description": "serve artistify-frontend to clients, and provide video search functionality from youtube data api",
+  "description": "serve qasong-frontend to clients, and provide video search functionality from youtube data api",
   "homepage": "./",
   "main": "./public/electron.js",
   "scripts": {
@@ -26,7 +26,7 @@
     "node": "12.x"
   },
   "build": {
-    "appId": "com.electron.artistify",
+    "appId": "com.electron.qasong",
     "files": "./public/**/*",
     "win": {
       "icon": "public/meta-icon.png"
@@ -38,15 +38,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:callbacc/Artistify.git"
+    "url": "git@github.com:IanWalston/qasong.git"
   },
   "author": {
-    "name": "Artistify Team",
-    "email": "alexa.matei@icloud.com",
+    "name": "Qasong Team",
+    "email": "ikwalston@comcast.net",
     "url": "https://discord.gg/34zqp3M"
   },
   "bugs": {
-    "url": "https://github.com/callbacc/Artistify/issues",
+    "url": "https://github.com/IanWalston/qasong/issues",
     "email": "alexa.matei@icloud.com"
   },
   "license": "ISC",
@@ -77,7 +77,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run format"
+      "pre-commit": "npm run format && npm run lint:fix"
     }
   }
 }

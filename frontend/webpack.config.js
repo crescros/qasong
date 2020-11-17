@@ -29,8 +29,8 @@ module.exports = () => {
       extensions: ["*", ".js", ".jsx"],
     },
     output: {
-      path: path.resolve(__dirname, "../public/"),
-      publicPath: "/",
+      path: path.resolve(__dirname, "../public/js/"),
+      publicPath: "/js/",
       filename: "bundle.js",
     },
     plugins: [

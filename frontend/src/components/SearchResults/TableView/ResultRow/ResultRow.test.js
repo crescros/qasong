@@ -1,11 +1,11 @@
 import React from "react";
 import { shallow } from "enzyme";
-import VideoRow from "./VideoRow";
+import ResultRow from "./ResultRow";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 
 describe("<VideoCard />", () => {
   it("renders a div", () => {
-    const wrapper = shallow(<VideoRow video={{ author: {} }} />);
+    const wrapper = shallow(<ResultRow video={{ author: {} }} />);
     expect(wrapper.find(PlayArrowIcon)).toHaveLength(1);
   });
 });

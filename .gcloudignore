@@ -29,8 +29,16 @@ package-lock.json
 frontend/
 
 # Testing
-server/cypress/
-server/cypress.json
+cypress/
+cypress.json
 
 # Electron
 dist/
+
+# prettier
+.prettierrc
+.prettierignore
+
+# eslint
+.eslintignore
+.eslintrc.json

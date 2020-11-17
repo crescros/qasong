@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import VideoTable from "./VideoTable";
+import GridView from "./GridView";
 
-describe("<VideoTable />", () => {
+describe("<GridView />", () => {
   it("renders a div", () => {
-    const wrapper = shallow(<VideoTable />);
+    const wrapper = shallow(<GridView />);
     expect(wrapper.find("div")).toHaveLength(1);
   });
 });

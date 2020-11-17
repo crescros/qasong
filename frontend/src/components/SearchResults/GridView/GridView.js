@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid, Typography, Box, IconButton } from "@material-ui/core";
-import VideoCard from "./VideoCard/VideoCard";
+import VideoCard from "./ResultCard/ResultCard";
 import TableChartIcon from "@material-ui/icons/TableChart";
 
-function VideoGrid({
+function GridView({
   videos,
   nowPlaying,
   setNowPlaying,
@@ -51,4 +51,4 @@ function VideoGrid({
   );
 }
 
-export default VideoGrid;
+export default GridView;

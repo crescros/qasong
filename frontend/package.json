@@ -1,8 +1,8 @@
 {
-  "name": "artistify-frontend",
+  "name": "qasong-frontend",
   "version": "0.11.0",
   "description": "search, play and queue music from youtube",
-  "author": "artistify-team",
+  "author": "qasong-team",
   "main": "webpack.config.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",

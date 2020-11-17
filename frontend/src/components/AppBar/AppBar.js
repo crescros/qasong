@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography, IconButton, Box } from "@material-ui/core";
 import VideoSearch from "./VideoSearch/VideoSearch";
 import MobileMenu from "./MobileMenu/MobileMenu";
-import { isMobile } from "react-device-detect";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
 import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
 // import UserSection from "./UserSection/UserSection";
@@ -41,7 +40,7 @@ export default function PrimarySearchAppBar({
 
   return (
     <div className={classes.grow}>
-      <AppBar position={isMobile ? "fixed" : "static"} color="primary">
+      <AppBar color="primary">
         <Toolbar>
           {/* Icon-logo */}
           <IconButton
@@ -49,9 +48,9 @@ export default function PrimarySearchAppBar({
             edge="start"
             className={classes.menuButton}
             color="inherit"
-            aria-label="Artistify logo"
+            aria-label="Qasong logo"
           >
-            <img src=".\icon-logo.svg" height="48px" />
+            <img src=".\img\qasong.svg" height="48px" />
           </IconButton>
 
           {/* Search bar */}

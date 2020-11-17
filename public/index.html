@@ -15,39 +15,44 @@
     gtag('config', 'G-8PDDM9PX9H');
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400;700;900&display=swap"
-    rel="stylesheet">
+  <!-- preconnect to google fonts domain -->
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 
-  <style>
-    * {
-      font-family: "Titillium Web" !important;
-    }
+  <!-- preload google fonts before loading page -->
+  <link rel="preload" href="https://fonts.gstatic.com/s/titilliumweb/v9/NaPDcZTIAOhVxoMyOr9n_E7ffAzHGIVzY4SY.woff2"
+    as="font" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/titilliumweb/v9/NaPDcZTIAOhVxoMyOr9n_E7ffAzHGItzYw.woff2"
+    as="font" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/titilliumweb/v9/NaPecZTIAOhVxoMyOr9n_E7fdM3mDbRS.woff2"
+    as="font" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/titilliumweb/v9/NaPecZTIAOhVxoMyOr9n_E7fdMPmDQ.woff2" as="font"
+    crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/titilliumweb/v9/NaPDcZTIAOhVxoMyOr9n_E7ffHjDGIVzY4SY.woff2"
+    as="font" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/titilliumweb/v9/NaPDcZTIAOhVxoMyOr9n_E7ffHjDGItzYw.woff2"
+    as="font" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/titilliumweb/v9/NaPDcZTIAOhVxoMyOr9n_E7ffEDBGIVzY4SY.woff2"
+    as="font" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/titilliumweb/v9/NaPDcZTIAOhVxoMyOr9n_E7ffEDBGItzYw.woff2"
+    as="font" crossorigin>
 
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
+  <!-- css -->
+  <link rel="stylesheet" href="./css/style.css">
 
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
-
+  <!-- meta tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta property="og:title" content="Qasong BETA" />
-  <meta property="og:image" content="https://qasong.appspot.com/meta-icon.png" />
+  <meta property="og:image" content="https://qasong.appspot.com/img/meta-icon.png" />
   <meta property="og:description" content="Free unlimited music streaming" />
   <meta property="og:url" content="https://qasong.appspot.com/" />
 
 </head>
 
 <body>
+  <!-- load react app -->
   <div id="app"></div>
-  <script src="./bundle.js"></script>
+  <script src="./js/bundle.js"></script>
 </body>
 
 </html>
