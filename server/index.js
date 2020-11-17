@@ -29,6 +29,7 @@ app.use(errorHandler);
 // define routes
 app.use("/api/feed", require("./feed/feed.controller"), apiLimiter);
 app.use("/api/search", require("./search/search.controller"), apiLimiter);
+app.use("/api/billboard", require("./billboard/billboard.controller"), apiLimiter);
 app.use("/api/env", (req, res) => res.send(process.env.NODE_ENV), apiLimiter);
 // app.use("/api/users", require("./users/users.controller.js"), apiLimiter);
 
