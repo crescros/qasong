@@ -24,4 +24,6 @@ This project is currently under development and is scheduled for it's first rele
 
 [Qasong Team Discord](https://discord.gg/b2gEwT8)
 
-[Qasong Web App](https://qasong.appspot.com)
+
+[Qasong Web App](https://qasong.com)
+
