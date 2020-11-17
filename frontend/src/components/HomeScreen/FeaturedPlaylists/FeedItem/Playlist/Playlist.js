@@ -20,10 +20,12 @@ const useStyles = makeStyles((theme) => ({
   playlist: {
     borderColor: theme.palette.secondary.main,
     border: "2px solid",
+    borderRadius: theme.spacing(2),
     maxWidth: 500,
     margin: "auto",
     padding: theme.spacing(4),
-    marginBottom: theme.spacing(4),
+    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(2),
   },
   img: {
     margin: "auto",
