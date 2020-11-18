@@ -22,8 +22,6 @@ export default function PrimarySearchAppBar({
   handleSearchTermInput,
   handleSubmitVideoSearch,
   searchTerm,
-  showQueue,
-  setShowQueue,
   queue,
   darkMode,
   setDarkMode,
@@ -43,7 +41,7 @@ export default function PrimarySearchAppBar({
               color="inherit"
               aria-label="Qasong logo"
             >
-              <img src=".\img\whiteLogo.png" height="48px" />
+              <img src=".\img\whiteLogo.png" height="36px" width="36px" />
             </IconButton>
           </Link>
 
@@ -57,6 +55,7 @@ export default function PrimarySearchAppBar({
               maxWidth: 800,
             }}
           />
+
           {/* Search Bar Loading Indicator */}
           <Box mx={2}> {isLoading && <LoadingAnimation size="32px" />} </Box>
 
@@ -64,10 +63,8 @@ export default function PrimarySearchAppBar({
           <div className={classes.grow} />
 
           {/* Menus */}
-          <DesktopMenu {...{ queue, showQueue, setShowQueue, darkMode, setDarkMode }} />
-          <MobileMenu {...{ queue, showQueue, setShowQueue, darkMode, setDarkMode }} />
-
-          {/* <UserSection {...{user, setUser, darkMode, setDarkMode}}/> */}
+          <DesktopMenu {...{ queue, darkMode, setDarkMode }} />
+          <MobileMenu {...{ queue, darkMode, setDarkMode }} />
         </Toolbar>
       </AppBar>
     </div>

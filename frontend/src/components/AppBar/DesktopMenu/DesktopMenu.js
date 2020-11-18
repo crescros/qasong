@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function DesktopMenu({ queue, showQueue, darkMode, setDarkMode }) {
+function DesktopMenu({ queue, darkMode, setDarkMode }) {
   let history = useHistory();
 
   const classes = useStyles();
@@ -26,8 +26,8 @@ function DesktopMenu({ queue, showQueue, darkMode, setDarkMode }) {
       <IconButton
         disabled={queue.length === 0}
         edge="end"
-        title={showQueue ? "hide queue" : "show queue"}
-        color={showQueue ? "secondary" : "inherit"}
+        title={"Billboard top 100 songs"}
+        color={"inherit"}
         target="_blank"
         onClick={() => {
           history.push("/billboard");
@@ -45,8 +45,8 @@ function DesktopMenu({ queue, showQueue, darkMode, setDarkMode }) {
           <IconButton
             disabled={queue.length === 0}
             edge="end"
-            title={showQueue ? "hide queue" : "show queue"}
-            color={showQueue ? "secondary" : "inherit"}
+            title={"songs currently in the queue"}
+            color={"inherit"}
             target="_blank"
             onClick={() => {
               history.push("/queue");

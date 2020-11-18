@@ -121,26 +121,24 @@ function Playlist({
           </Box>
         </Grid>
 
-        <Grid item container xs={12}>
-          <Grid item xs={6}>
-            <Box pl={2}>
-              <Typography color="textSecondary">
-                {playlist.queue.length} songs, {duration}
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={6}>
-            <Box align="right">
-              <IconButton title="play playlist" onClick={handlePlaylistClick}>
-                <PlayArrowIcon />
-              </IconButton>
-              <IconButton title="add playlist to queue" onClick={handleAddToQueueClick}>
-                <AddToPhotosIcon />
-              </IconButton>
-            </Box>
-          </Grid>
+        <Grid item xs={6}>
+          <Box pl={2}>
+            <Typography color="textSecondary">
+              {playlist.queue.length} songs, {duration}
+            </Typography>
+          </Box>
         </Grid>
-        <Grid item>
+        <Grid item xs={6}>
+          <Box align="right">
+            <IconButton title="play playlist" onClick={handlePlaylistClick}>
+              <PlayArrowIcon />
+            </IconButton>
+            <IconButton title="add playlist to queue" onClick={handleAddToQueueClick}>
+              <AddToPhotosIcon />
+            </IconButton>
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
           <List>
             <UncollapsedPlaylist />
 
