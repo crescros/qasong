@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   playlist: {
     borderColor: theme.palette.secondary.main,
     border: "2px solid",
-    maxWidth: 600,
+    maxWidth: 500,
     margin: "auto",
     padding: theme.spacing(4),
     borderRadius: theme.spacing(2),
@@ -97,70 +97,65 @@ function Playlist({
     <Grid
       key={playlist.id}
       container
+      alignItems="center"
       item
       className={classes.playlist}
       data-playlist_id={playlist.id}
     >
-      <Grid item xs={12}>
+      <Grid item xs={4}>
         <Box align="center">
           <ButtonBase onClick={handlePlaylistClick}>
             <img className={classes.img} alt="complex" src={playlist.image} />
           </ButtonBase>
         </Box>
       </Grid>
-      <Grid item xs container spacing={1} alignContent="center">
-        <Grid item xs={12}>
-          <Box pl={2}>
-            <Typography gutterBottom>
-              <Link
-                color="textPrimary"
-                component="button"
-                variant="h4"
-                onClick={handlePlaylistClick}
-              >
-                {playlist.name}
-              </Link>
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={6}>
-          <Box pl={2}>
-            <Typography color="textSecondary">
-              {playlist.queue.length} songs, {duration}
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={6}>
-          <Box align="right">
-            <IconButton title="play playlist" onClick={handlePlaylistClick}>
-              <PlayArrowIcon />
-            </IconButton>
-            <IconButton title="add playlist to queue" onClick={handleAddToQueueClick}>
-              <AddToPhotosIcon />
-            </IconButton>
-          </Box>
-        </Grid>
+      <Grid item xs={8}>
 
-        <Grid item xs={12}>
-          <List>
-            {collapsed ? <CollapsedPlaylist /> : <UncollapsedPlaylist />}
-            <ListItem
-              onClick={() => setCollapsed(!collapsed)}
-              key="collapseControl"
-              button
-            >
-              <ListItemText
-                disableTypography
-                color="secondary"
-                primary={
-                  <Typography color="secondary">
-                    {collapsed ? "...See More" : "See Less"}
-                  </Typography>
-                }
-              />
-            </ListItem>
-          </List>
-        </Grid>
+        <Typography gutterBottom align='center'>
+          <Link
+            color="textPrimary"
+            component="button"
+            variant="h4"
+            onClick={handlePlaylistClick}
+          >
+            {playlist.name}
+          </Link>
+        </Typography>
+
+        <Typography color="textSecondary" align='center'>
+          {playlist.queue.length} songs, {duration}
+        </Typography>
+
+        <Box align="center">
+          <IconButton title="play playlist" onClick={handlePlaylistClick}>
+            <PlayArrowIcon />
+          </IconButton>
+          <IconButton title="add playlist to queue" onClick={handleAddToQueueClick}>
+            <AddToPhotosIcon />
+          </IconButton>
+        </Box>
+
+
+      </Grid>
+      <Grid item xs={12}>
+        <List>
+          {collapsed ? <CollapsedPlaylist /> : <UncollapsedPlaylist />}
+          <ListItem
+            onClick={() => setCollapsed(!collapsed)}
+            key="collapseControl"
+            button
+          >
+            <ListItemText
+              disableTypography
+              color="secondary"
+              primary={
+                <Typography color="secondary" align="center">
+                  {collapsed ? "...See More" : "See Less"}
+                </Typography>
+              }
+            />
+          </ListItem>
+        </List>
       </Grid>
     </Grid>
   );

@@ -39,7 +39,7 @@ function FeaturedPlaylists({
         </IconButton>
       </Typography>
 
-      <Grid container direction="row" spacing={1}>
+      <Grid container direction="column" spacing={1}>
         {feedItems.map((playlist) => {
           return (
             <FeedItem
