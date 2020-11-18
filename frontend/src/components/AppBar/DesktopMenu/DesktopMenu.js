@@ -1,5 +1,5 @@
 import React from "react";
-import { Tooltip, Box, IconButton, Badge, Typography, Grid } from "@material-ui/core";
+import { Tooltip, Box, IconButton, Badge, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
 import Brightness7Icon from "@material-ui/icons/Brightness7";

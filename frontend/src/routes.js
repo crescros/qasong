@@ -7,7 +7,9 @@ const SearchResults = React.lazy(() =>
 const HomeScreen = React.lazy(() => import("./components/HomeScreen/HomeScreen"));
 const AppBar = React.lazy(() => import("./components/AppBar/AppBar"));
 const QueueSection = React.lazy(() => import("./components/QueueSection/QueueSection"));
-const BillboardTop100 = React.lazy(() => import("./components/BillboardTop100/BillboardTop100"));
+const BillboardTop100 = React.lazy(() =>
+  import("./components/BillboardTop100/BillboardTop100")
+);
 
 function Routes({
   darkMode,
@@ -54,7 +56,7 @@ function Routes({
         <Switch>
           <Route path="/billboard">
             <Suspense fallback={<div />}>
-              <BillboardTop100 {...{setSearchTerm }}/>
+              <BillboardTop100 {...{ setSearchTerm }} />
             </Suspense>
           </Route>
           <Route path="/search">

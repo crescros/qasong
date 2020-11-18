@@ -153,7 +153,6 @@ const App = () => {
 
     if (e) {
       e.preventDefault();
-
     }
     const results = await getYoutubeIdFromSearch(searchTerm);
     setSearchTerm("");
@@ -166,10 +165,13 @@ const App = () => {
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-
       <CssBaseline />
 
-      <img src=".\img\leftCurve.svg" width="465px" style={{ position: "absolute", zIndex: -10000, maxWidth: "100%" }} />
+      <img
+        src=".\img\leftCurve.svg"
+        width="465px"
+        style={{ position: "absolute", zIndex: -10000, maxWidth: "100%" }}
+      />
 
       {<div style={{ height: "72px" }}></div>}
 

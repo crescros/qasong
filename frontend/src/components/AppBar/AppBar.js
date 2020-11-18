@@ -55,7 +55,7 @@ export default function PrimarySearchAppBar({
               maxWidth: 800,
             }}
           />
-          
+
           {/* Search Bar Loading Indicator */}
           <Box mx={2}> {isLoading && <LoadingAnimation size="32px" />} </Box>
 
@@ -65,7 +65,6 @@ export default function PrimarySearchAppBar({
           {/* Menus */}
           <DesktopMenu {...{ queue, darkMode, setDarkMode }} />
           <MobileMenu {...{ queue, darkMode, setDarkMode }} />
-
         </Toolbar>
       </AppBar>
     </div>
