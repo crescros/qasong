@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
   img: {
     borderRadius: "14px 0 0 0",
     height: theme.spacing(14),
-    width: theme.spacing(14)
-  }
+    width: theme.spacing(14),
+  },
 }));
 
 function BillboardTop100Item({ item, setSearchTerm }) {
@@ -34,7 +34,7 @@ function BillboardTop100Item({ item, setSearchTerm }) {
     <Box align="center" className={classes.root} onClick={handleClick}>
       <Grid container justify="center">
         <Grid item xs={4}>
-          <img className={classes.img} src={item.cover}/>
+          <img className={classes.img} src={item.cover} />
         </Grid>
         <Grid item xs={8}>
           <Typography>

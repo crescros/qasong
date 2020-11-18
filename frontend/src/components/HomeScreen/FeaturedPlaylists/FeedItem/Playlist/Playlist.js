@@ -110,8 +110,7 @@ function Playlist({
         </Box>
       </Grid>
       <Grid item xs={8}>
-
-        <Typography gutterBottom align='center'>
+        <Typography gutterBottom align="center">
           <Link
             color="textPrimary"
             component="button"
@@ -122,7 +121,7 @@ function Playlist({
           </Link>
         </Typography>
 
-        <Typography color="textSecondary" align='center'>
+        <Typography color="textSecondary" align="center">
           {playlist.queue.length} songs, {duration}
         </Typography>
 
@@ -134,17 +133,11 @@ function Playlist({
             <AddToPhotosIcon />
           </IconButton>
         </Box>
-
-
       </Grid>
       <Grid item xs={12}>
         <List>
           {collapsed ? <CollapsedPlaylist /> : <UncollapsedPlaylist />}
-          <ListItem
-            onClick={() => setCollapsed(!collapsed)}
-            key="collapseControl"
-            button
-          >
+          <ListItem onClick={() => setCollapsed(!collapsed)} key="collapseControl" button>
             <ListItemText
               disableTypography
               color="secondary"
