@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BottomAppBar({
   nowPlaying,
-  setNowPlaying,
   previousSong,
   skipSong,
   getNextInQueue,
@@ -44,9 +43,6 @@ export default function BottomAppBar({
     );
   }
 
-  function setVolume(num) {
-    iframeCommand("setVolume", num);
-  }
   // pauses the video
   function pauseVideo() {
     iframeCommand("pauseVideo");
@@ -63,7 +59,6 @@ export default function BottomAppBar({
   function getCurrentTime() {
     iframeCommand("getCurrentTime");
   }
-
 
   if (!nowPlaying || !nowPlaying.title) {
     return <div></div>;

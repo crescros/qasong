@@ -25,18 +25,20 @@ function Video({ id, setNowPlaying }) {
 
   if (!id) return <div id="empty-div"></div>;
 
-  return (<YouTube
-    videoId={id}
-    opts={youtubePlayerOptions}
-    onEnd={handleVideoEnd}
-    // onError
-    // onReady
-    // onPause
-    // onPlay
-    // onPlaybackQualityChange
-    // onPlaybackRateChange
-    // onStateChange
-  />);
+  return (
+    <YouTube
+      videoId={id}
+      opts={youtubePlayerOptions}
+      onEnd={handleVideoEnd}
+      // onError
+      // onReady
+      // onPause
+      // onPlay
+      // onPlaybackQualityChange
+      // onPlaybackRateChange
+      // onStateChange
+    />
+  );
 }
 
 export default Video;
