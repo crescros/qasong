@@ -60,7 +60,6 @@ const App = () => {
   const [nowPlaying, setNowPlaying] = useState();
   const [searchTerm, setSearchTerm] = useState("");
   const [queue, setQueue] = useState([]);
-  const [showQueue, setShowQueue] = useState(false);
   const [videos, setVideos] = useState([]);
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
 
@@ -106,7 +105,6 @@ const App = () => {
       if (storedQueue) {
         const localQueue = JSON.parse(storedQueue);
         setQueue(localQueue);
-        setShowQueue(true);
       }
     })();
   }, []);
@@ -142,10 +140,6 @@ const App = () => {
   // write queue value to local storage, write array of queue ids to query params
   useEffect(() => {
     localStorage.setItem("queue", JSON.stringify(queue));
-
-    if (queue.length <= 0) {
-      setShowQueue(false);
-    }
   }, [queue]);
 
   // event listener for search input
@@ -156,7 +150,11 @@ const App = () => {
   // event listener for search submit
   const handleSubmitVideoSearch = async (e) => {
     setIsLoading(true);
-    e.preventDefault();
+
+    if (e) {
+      e.preventDefault();
+
+    }
     const results = await getYoutubeIdFromSearch(searchTerm);
     setSearchTerm("");
     setVideos({
@@ -164,17 +162,14 @@ const App = () => {
       results: results,
     });
     setIsLoading(false);
-    setShowQueue(false);
   };
-
-  // show home screen if theres no search results, queue, or loading screen
-  const showHomeScreen =
-    !(videos.results && videos.results.length > 0) && showQueue === false;
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+
       <CssBaseline />
-      <img src=".\img\leftCurve.svg" height="350px" style={{ position: "absolute" }} />
+
+      <img src=".\img\leftCurve.svg" width="465px" style={{ position: "absolute", zIndex: -10000, maxWidth: "100%" }} />
 
       {<div style={{ height: "72px" }}></div>}
 
@@ -187,7 +182,6 @@ const App = () => {
           setDarkMode,
           setSearchTerm,
           setVideos,
-          showHomeScreen,
           searchTableViewMode,
           handleSearchTermInput,
           handleSubmitVideoSearch,

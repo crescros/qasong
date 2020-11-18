@@ -108,7 +108,7 @@ function Playlist({
           </ButtonBase>
         </Box>
       </Grid>
-      <Grid item xs container direction="column" spacing={2}>
+      <Grid item xs container spacing={2} alignContent="center">
         <Grid item xs={12}>
           <Box pl={2}>
             <Typography gutterBottom>
@@ -123,27 +123,25 @@ function Playlist({
             </Typography>
           </Box>
         </Grid>
-        <Grid item container xs={12}>
-          <Grid item xs={6}>
-            <Box pl={2}>
-              <Typography color="textSecondary">
-                {playlist.queue.length} songs, {duration}
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={6}>
-            <Box align="right">
-              <IconButton title="play playlist" onClick={handlePlaylistClick}>
-                <PlayArrowIcon />
-              </IconButton>
-              <IconButton title="add playlist to queue" onClick={handleAddToQueueClick}>
-                <AddToPhotosIcon />
-              </IconButton>
-            </Box>
-          </Grid>
+        <Grid item xs={6}>
+          <Box pl={2}>
+            <Typography color="textSecondary">
+              {playlist.queue.length} songs, {duration}
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid item xs={6}>
+          <Box align="right">
+            <IconButton title="play playlist" onClick={handlePlaylistClick}>
+              <PlayArrowIcon />
+            </IconButton>
+            <IconButton title="add playlist to queue" onClick={handleAddToQueueClick}>
+              <AddToPhotosIcon />
+            </IconButton>
+          </Box>
         </Grid>
 
-        <Grid item>
+        <Grid item xs={12}>
           <List>
             {collapsed ? <CollapsedPlaylist /> : <UncollapsedPlaylist />}
             <ListItem

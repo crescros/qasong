@@ -1,5 +1,5 @@
 import React from "react";
-import { Tooltip, Box, IconButton, Badge, Typography } from "@material-ui/core";
+import { Tooltip, Box, IconButton, Badge, Typography, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function DesktopMenu({ queue, showQueue, darkMode, setDarkMode }) {
+function DesktopMenu({ queue, darkMode, setDarkMode }) {
   let history = useHistory();
 
   const classes = useStyles();
@@ -26,8 +26,8 @@ function DesktopMenu({ queue, showQueue, darkMode, setDarkMode }) {
       <IconButton
         disabled={queue.length === 0}
         edge="end"
-        title={showQueue ? "hide queue" : "show queue"}
-        color={showQueue ? "secondary" : "inherit"}
+        title={"Billboard top 100 songs"}
+        color={"inherit"}
         target="_blank"
         onClick={() => {
           history.push("/billboard");
@@ -45,8 +45,8 @@ function DesktopMenu({ queue, showQueue, darkMode, setDarkMode }) {
           <IconButton
             disabled={queue.length === 0}
             edge="end"
-            title={showQueue ? "hide queue" : "show queue"}
-            color={showQueue ? "secondary" : "inherit"}
+            title={"songs currently in the queue"}
+            color={"inherit"}
             target="_blank"
             onClick={() => {
               history.push("/queue");

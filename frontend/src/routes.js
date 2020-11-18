@@ -7,6 +7,7 @@ const SearchResults = React.lazy(() =>
 const HomeScreen = React.lazy(() => import("./components/HomeScreen/HomeScreen"));
 const AppBar = React.lazy(() => import("./components/AppBar/AppBar"));
 const QueueSection = React.lazy(() => import("./components/QueueSection/QueueSection"));
+const BillboardTop100 = React.lazy(() => import("./components/BillboardTop100/BillboardTop100"));
 
 function Routes({
   darkMode,
@@ -15,10 +16,8 @@ function Routes({
   searchTerm,
   setDarkMode,
   setSearchTerm,
-  setShowQueue,
   setVideos,
   user,
-  showHomeScreen,
   searchTableViewMode,
   handleSearchTermInput,
   handleSubmitVideoSearch,
@@ -53,6 +52,11 @@ function Routes({
         {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
         <Switch>
+          <Route path="/billboard">
+            <Suspense fallback={<div />}>
+              <BillboardTop100 {...{setSearchTerm }}/>
+            </Suspense>
+          </Route>
           <Route path="/search">
             <Suspense fallback={<div />}>
               <SearchResults
@@ -91,13 +95,11 @@ function Routes({
                   handleSubmitVideoSearch,
                   handleSearchTermInput,
                   searchTerm,
-                  showHomeScreen,
                   setQueue,
                   setQueueName,
                   setNowPlaying,
                   nowPlaying,
                   queueName,
-                  setShowQueue,
                   isLoading,
                   queue,
                   addSongToQueue,

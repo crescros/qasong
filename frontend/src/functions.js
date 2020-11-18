@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = process.env.REACT_APP_ARTISTIFY_URL;
+const baseUrl = process.env.REACT_APP_ARTISTIFY_URL; // prod url
 // const baseUrl = "http://localhost:3016/"; // dev url
 
 export function setDefaultToken(token) {

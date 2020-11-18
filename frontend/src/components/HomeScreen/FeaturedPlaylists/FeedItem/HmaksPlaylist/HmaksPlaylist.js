@@ -121,7 +121,6 @@ function Playlist({
           </Box>
         </Grid>
 
-        <Grid item container xs={12}>
           <Grid item xs={6}>
             <Box pl={2}>
               <Typography color="textSecondary">
@@ -139,8 +138,7 @@ function Playlist({
               </IconButton>
             </Box>
           </Grid>
-        </Grid>
-        <Grid item>
+        <Grid item xs={12}>
           <List>
             <UncollapsedPlaylist />
 
