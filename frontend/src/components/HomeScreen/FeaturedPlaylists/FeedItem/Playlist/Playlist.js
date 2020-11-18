@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   playlist: {
     borderColor: theme.palette.secondary.main,
     border: "2px solid",
-    maxWidth: 500,
+    maxWidth: 600,
     margin: "auto",
     padding: theme.spacing(4),
     borderRadius: theme.spacing(2),
@@ -30,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
   img: {
     margin: "auto",
     display: "block",
-    maxWidth: "100%",
-    maxHeight: "100%",
+    maxWidth: "75%",
+    maxHeight: "75%",
   },
 }));
 
@@ -108,7 +108,7 @@ function Playlist({
           </ButtonBase>
         </Box>
       </Grid>
-      <Grid item xs container spacing={2} alignContent="center">
+      <Grid item xs container spacing={1} alignContent="center">
         <Grid item xs={12}>
           <Box pl={2}>
             <Typography gutterBottom>

@@ -168,7 +168,7 @@ const App = () => {
       <CssBaseline />
 
       <img
-        src=".\img\leftCurve.svg"
+        src=".\img\topCurve.svg"
         width="465px"
         style={{ position: "absolute", zIndex: -10000, maxWidth: "100%" }}
       />
@@ -220,6 +220,11 @@ const App = () => {
           }}
         />
       </Suspense>
+      <img
+        src=".\img\bottomCurve.svg"
+        width="465px"
+        style={{ position: "absolute", zIndex: -10000, maxWidth: "100%", right: "0%"}}
+      />
     </ThemeProvider>
   );
 };

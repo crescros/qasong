@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, IconButton } from "@material-ui/core";
+import { Grid, Typography, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { getFeed } from "../../../functions";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
@@ -38,7 +38,8 @@ function FeaturedPlaylists({
           <MoreVertIcon color="disabled" />
         </IconButton>
       </Typography>
-
+      
+      <Grid container direction="row" spacing={1}>
       {feedItems.map((playlist) => {
         return (
           <FeedItem
@@ -56,6 +57,8 @@ function FeaturedPlaylists({
           />
         );
       })}
+      </Grid>
+
     </div>
   );
 }
