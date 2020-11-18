@@ -62,6 +62,7 @@ const App = () => {
   const [queue, setQueue] = useState([]);
   const [videos, setVideos] = useState([]);
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
+  const [iframeState, setIframeState] = useState();
 
   function skipSong() {
     const i = queue.findIndex((item) => item.qid === currentQid);
@@ -202,6 +203,8 @@ const App = () => {
           {...{
             nowPlaying,
             setNowPlaying,
+            iframeState,
+            setIframeState,
           }}
         />
       </Suspense>
@@ -217,6 +220,7 @@ const App = () => {
             videos,
             setNowPlaying,
             getNextInQueue,
+            iframeState,
           }}
         />
       </Suspense>

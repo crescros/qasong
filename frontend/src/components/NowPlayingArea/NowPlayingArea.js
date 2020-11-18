@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Button } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -8,6 +8,8 @@ import IconButton from "@material-ui/core/IconButton";
 import SkipSongButton from "./SkipSongButton/SkipSongButton";
 import PreviousSongButton from "./PreviousSongButton/PreviousSongButton";
 import StopIcon from "@material-ui/icons/Stop";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import PauseIcon from "@material-ui/icons/Pause";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -29,6 +31,7 @@ export default function BottomAppBar({
   previousSong,
   skipSong,
   getNextInQueue,
+  iframeState,
 }) {
   const classes = useStyles();
 
@@ -55,10 +58,6 @@ export default function BottomAppBar({
   function stopVideo() {
     iframeCommand("stopVideo");
   }
-  // stops the video
-  function getCurrentTime() {
-    iframeCommand("getCurrentTime");
-  }
 
   if (!nowPlaying || !nowPlaying.title) {
     return <div></div>;
@@ -77,9 +76,15 @@ export default function BottomAppBar({
 
           <SkipSongButton {...{ skipSong }} />
 
-          <Button onClick={startVideo}>play</Button>
-          <Button onClick={pauseVideo}>pause</Button>
-          <Button onClick={getCurrentTime}>getcurrenttime</Button>
+          {iframeState === 1 ? (
+            <IconButton color="secondary" onClick={pauseVideo}>
+              <PauseIcon />
+            </IconButton>
+          ) : (
+            <IconButton color="secondary" onClick={startVideo}>
+              <PlayArrowIcon />
+            </IconButton>
+          )}
 
           <Typography color="secondary">00:00/{nowPlaying.duration.timestamp}</Typography>
 

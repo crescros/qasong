@@ -1,7 +1,7 @@
 import React from "react";
 import YouTube from "react-youtube";
 
-function Video({ id, setNowPlaying }) {
+function Video({ id, setNowPlaying, setIframeState }) {
   const youtubePlayerOptions = {
     height: "0px",
     width: "100%",
@@ -23,6 +23,10 @@ function Video({ id, setNowPlaying }) {
     setNowPlaying(null);
   }
 
+  function handleStateChange(e) {
+    setIframeState(e.data);
+  }
+
   if (!id) return <div id="empty-div"></div>;
 
   return (
@@ -36,7 +40,7 @@ function Video({ id, setNowPlaying }) {
       // onPlay
       // onPlaybackQualityChange
       // onPlaybackRateChange
-      // onStateChange
+      onStateChange={handleStateChange}
     />
   );
 }

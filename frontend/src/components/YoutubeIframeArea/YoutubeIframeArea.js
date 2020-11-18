@@ -10,14 +10,17 @@ const styles = {
   zIndex: "100",
 };
 
-function YoutubeIframeArea({ nowPlaying, setNowPlaying }) {
+function YoutubeIframeArea({ nowPlaying, setNowPlaying, iframeState, setIframeState }) {
   if (!(nowPlaying && nowPlaying.videoId)) {
     return <div id="#empty-div"></div>;
   }
 
   return (
     <div style={styles}>
-      <YoutubeIframe id={nowPlaying.videoId} setNowPlaying={setNowPlaying} />
+      <YoutubeIframe
+        id={nowPlaying.videoId}
+        {...{ setNowPlaying, iframeState, setIframeState }}
+      />
     </div>
   );
 }
