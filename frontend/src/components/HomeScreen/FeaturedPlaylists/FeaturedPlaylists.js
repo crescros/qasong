@@ -38,27 +38,26 @@ function FeaturedPlaylists({
           <MoreVertIcon color="disabled" />
         </IconButton>
       </Typography>
-      
-      <Grid container direction="row" spacing={1}>
-      {feedItems.map((playlist) => {
-        return (
-          <FeedItem
-            key={playlist.id}
-            {...{
-              playlist,
-              setQueue,
-              setQueueName,
-              setNowPlaying,
-              setShowQueue,
-              nowPlaying,
-              queue,
-              addSongToQueue,
-            }}
-          />
-        );
-      })}
-      </Grid>
 
+      <Grid container direction="row" spacing={1}>
+        {feedItems.map((playlist) => {
+          return (
+            <FeedItem
+              key={playlist.id}
+              {...{
+                playlist,
+                setQueue,
+                setQueueName,
+                setNowPlaying,
+                setShowQueue,
+                nowPlaying,
+                queue,
+                addSongToQueue,
+              }}
+            />
+          );
+        })}
+      </Grid>
     </div>
   );
 }

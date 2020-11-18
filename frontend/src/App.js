@@ -223,7 +223,7 @@ const App = () => {
       <img
         src=".\img\bottomCurve.svg"
         width="465px"
-        style={{ position: "absolute", zIndex: -10000, maxWidth: "100%", right: "0%"}}
+        style={{ position: "absolute", zIndex: -10000, maxWidth: "100%", right: "0%" }}
       />
     </ThemeProvider>
   );

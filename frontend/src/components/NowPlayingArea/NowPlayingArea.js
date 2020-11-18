@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -12,7 +12,7 @@ import StopIcon from "@material-ui/icons/Stop";
 const useStyles = makeStyles((theme) => ({
   appBar: {
     top: "auto",
-    bottom: 100,
+    bottom: 0,
     height: 75,
     borderTop: "2px solid",
     borderColor: theme.palette.secondary.main,
@@ -33,11 +33,37 @@ export default function BottomAppBar({
 }) {
   const classes = useStyles();
 
-  function stopTheSong() {
-    setNowPlaying({});
+  const nextTitle = getNextInQueue()?.title;
+
+  // send an event to ytIframe
+  function iframeCommand(command, args = "") {
+    const ytIframe = document.querySelector("iframe");
+    ytIframe.contentWindow.postMessage(
+      '{"event":"command","func":"' + command + '","args":"' + args + '"}',
+      "*"
+    );
   }
 
-  const nextTitle = getNextInQueue()?.title;
+  function setVolume(num) {
+    iframeCommand("setVolume", num);
+  }
+  // pauses the video
+  function pauseVideo() {
+    iframeCommand("pauseVideo");
+  }
+  // starts the video
+  function startVideo() {
+    iframeCommand("playVideo");
+  }
+  // stops the video
+  function stopVideo() {
+    iframeCommand("stopVideo");
+  }
+  // stops the video
+  function getCurrentTime() {
+    iframeCommand("getCurrentTime");
+  }
+
 
   if (!nowPlaying || !nowPlaying.title) {
     return <div></div>;
@@ -49,12 +75,18 @@ export default function BottomAppBar({
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar className={classes.grow}>
           <Typography variant="caption">{nowPlaying.title}</Typography>
-          <IconButton onClick={stopTheSong} color="secondary">
+          <IconButton onClick={stopVideo} color="secondary">
             <StopIcon />
           </IconButton>
           <PreviousSongButton {...{ previousSong }} />
 
           <SkipSongButton {...{ skipSong }} />
+
+          <Button onClick={startVideo}>play</Button>
+          <Button onClick={pauseVideo}>pause</Button>
+          <Button onClick={getCurrentTime}>getcurrenttime</Button>
+
+          <Typography color="secondary">00:00/{nowPlaying.duration.timestamp}</Typography>
 
           {nextTitle && (
             <Typography color="textSecondary" variant="caption">

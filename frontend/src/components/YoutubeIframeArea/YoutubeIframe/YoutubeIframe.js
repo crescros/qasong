@@ -3,7 +3,7 @@ import YouTube from "react-youtube";
 
 function Video({ id, setNowPlaying }) {
   const youtubePlayerOptions = {
-    height: "100px",
+    height: "0px",
     width: "100%",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
@@ -23,42 +23,20 @@ function Video({ id, setNowPlaying }) {
     setNowPlaying(null);
   }
 
-
-  function iframeCommand(command){
-    const ytIframe = document.querySelector("iframe")
-    ytIframe.contentWindow.postMessage('{"event":"command","func":"' + command + '","args":""}', '*');
-  }
-
-  function pauseVideo() {
-    iframeCommand("pauseVideo")
-  }
-  
-  function startVideo() {
-    iframeCommand("playVideo")
-    
-  }
-  
-  function stopVideo() {
-    iframeCommand("stopVideo")
-  }
-
-
   if (!id) return <div id="empty-div"></div>;
 
-  return <>
-  <button onClick={stopVideo}>stop</button>
-  <button onClick={startVideo}>play</button>
-  <button onClick={pauseVideo}>pause</button>
-  <br/>
-  lol
-  <br/>
-  lol
-  <br/>
-  lol
-  <br/>
-  lol
-  <br/>
-  <YouTube videoId={id} opts={youtubePlayerOptions} onEnd={handleVideoEnd} /></>;
+  return (<YouTube
+    videoId={id}
+    opts={youtubePlayerOptions}
+    onEnd={handleVideoEnd}
+    // onError
+    // onReady
+    // onPause
+    // onPlay
+    // onPlaybackQualityChange
+    // onPlaybackRateChange
+    // onStateChange
+  />);
 }
 
 export default Video;
