@@ -23,9 +23,42 @@ function Video({ id, setNowPlaying }) {
     setNowPlaying(null);
   }
 
+
+  function iframeCommand(command){
+    const ytIframe = document.querySelector("iframe")
+    ytIframe.contentWindow.postMessage('{"event":"command","func":"' + command + '","args":""}', '*');
+  }
+
+  function pauseVideo() {
+    iframeCommand("pauseVideo")
+  }
+  
+  function startVideo() {
+    iframeCommand("playVideo")
+    
+  }
+  
+  function stopVideo() {
+    iframeCommand("stopVideo")
+  }
+
+
   if (!id) return <div id="empty-div"></div>;
 
-  return <YouTube videoId={id} opts={youtubePlayerOptions} onEnd={handleVideoEnd} />;
+  return <>
+  <button onClick={stopVideo}>stop</button>
+  <button onClick={startVideo}>play</button>
+  <button onClick={pauseVideo}>pause</button>
+  <br/>
+  lol
+  <br/>
+  lol
+  <br/>
+  lol
+  <br/>
+  lol
+  <br/>
+  <YouTube videoId={id} opts={youtubePlayerOptions} onEnd={handleVideoEnd} /></>;
 }
 
 export default Video;

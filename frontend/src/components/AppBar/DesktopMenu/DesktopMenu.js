@@ -23,27 +23,11 @@ function DesktopMenu({ queue, darkMode, setDarkMode }) {
 
   return (
     <div className={classes.sectionDesktop} id="desktop-menu">
-      <IconButton
-        disabled={queue.length === 0}
-        edge="end"
-        title={"Billboard top 100 songs"}
-        color={"inherit"}
-        target="_blank"
-        onClick={() => {
-          history.push("/billboard");
-        }}
-      >
-        <Box mb={1}>
-          <Typography>billboard</Typography>
-        </Box>
-        <QueueMusicIcon style={{ fontSize: "40px" }} />
-      </IconButton>
       <Tooltip
         title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}
       >
         <Box>
           <IconButton
-            disabled={queue.length === 0}
             edge="end"
             title={"songs currently in the queue"}
             color={"inherit"}
