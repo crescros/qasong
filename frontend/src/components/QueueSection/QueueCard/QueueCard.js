@@ -7,7 +7,6 @@ import {
   Card,
   Grid,
   CardActionArea,
-  CardContent,
   CardMedia,
   Tooltip,
   Typography,
@@ -37,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 70,
-  }
+  },
 }));
 
 export default function ImgMediaCard({
@@ -123,7 +122,8 @@ export default function ImgMediaCard({
       }}
     >
       <CardActionArea style={{ height: "100px" }} onClick={() => onClickImage(qid)}>
-        <CardMedia className={classes.media}
+        <CardMedia
+          className={classes.media}
           component="img"
           alt={title}
           image={thumbnail}
@@ -132,7 +132,7 @@ export default function ImgMediaCard({
         <Box p={1}>
           <Grid container direction="column">
             <Grid item>
-              <Typography style={{ fontSize: "8px"}} gutterBottom>
+              <Typography style={{ fontSize: "8px" }} gutterBottom>
                 {formatVideoTitle(title)}
               </Typography>
             </Grid>

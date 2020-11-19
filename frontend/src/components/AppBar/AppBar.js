@@ -31,7 +31,7 @@ export default function PrimarySearchAppBar({
 
   return (
     <div className={classes.grow}>
-      <AppBar color="#cfcfcf">
+      <AppBar color="transparent">
         <Toolbar>
           {/* Icon-logo */}
           <Link to="/">

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const baseUrl = process.env.REACT_APP_ARTISTIFY_URL;
-
+const baseUrl = process.env.REACT_APP_ARTISTIFY_URL; // prod url
+// const baseUrl = "http://localhost:3016/"; // dev url
 
 export function setDefaultToken(token) {
   axios.defaults.headers.common["Authorization"] = "Bearer " + token;
@@ -68,6 +68,18 @@ export function getNodeEnvironment() {
     });
 }
 
+export function getBillboardTop100() {
+  return axios
+    .get(baseUrl + "api/billboard")
+    .then((result) => {
+      return result;
+    })
+    .catch((error) => {
+      alert(error);
+      return error;
+    });
+}
+
 export function formatVideoTitle(name) {
   if (name.length < 40) {
     return name;
@@ -79,6 +91,18 @@ export function formatVideoTitle(name) {
 export function getQueueFromIds(search) {
   return axios
     .get(baseUrl + "api/search/ids?" + search)
+    .then((result) => {
+      return result.data;
+    })
+    .catch((error) => {
+      alert(error + " " + error.response && error.response.data);
+      return [];
+    });
+}
+
+export function getFeed() {
+  return axios
+    .get(baseUrl + "api/feed")
     .then((result) => {
       return result.data;
     })
@@ -110,4 +134,19 @@ export function shuffle(array) {
 export function clear(array) {
   array = [];
   return array;
+}
+
+export function getDurationFromQueue(queue) {
+  const totalSeconds = queue.reduce((total, song) => {
+    return total + song.seconds;
+  }, 0);
+
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+
+  if (hours > 0) {
+    return `${hours} hrs ${minutes} min`;
+  } else {
+    return `${minutes} min`;
+  }
 }

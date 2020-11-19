@@ -17,8 +17,7 @@ module.exports = router;
 function authenticate(req, res, next) {
   let { username, password } = req.body;
   con.query(
-    `SELECT username, userid, email, badges FROM users WHERE username='${username
-    }' AND password='${password}';`,
+    `SELECT username, userid, email, badges FROM users WHERE username='${username}' AND password='${password}';`,
     (err, data) => {
       if (err) {
         res.json(err);
@@ -58,9 +57,7 @@ function makeOne(req, res, next) {
   if (!password) return res.json("no password");
   con.query(
     `INSERT INTO users (username, password) VALUES('${con.escape(username)}', 
-    '${con.escape(
-    password
-  )}');`,
+    '${con.escape(password)}');`,
     (err, data) => {
       if (err) {
         res.json(err);

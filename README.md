@@ -1,45 +1,48 @@
 # Qasong
 
-Qasong provides an alternate user interface for listening to music from youtube.
+## Frontend-only development
 
-This project is currently under development.
+enter the frontend folder
 
-Learn more about our project at [artistify.us](http://artistify.us)
+`cd frontend`
 
-## ENVIRONMENT
+install dependencies
 
-A `.env` file must be added to the root directory of this project.
+`npm i`
 
-Your `.env` file must look like this:
-
-```
-NODE_ENV=development
-SECRET=random-string-this-could-be-anything
-```
-
-## STARTING THE SERVER IN PRODUCTION MODE
+start react frontend
 
 `npm start`
 
-the server will be available at http://localhost:3016
+## About the Application
 
-## STARTING THE SERVER AND FRONTEND IN DEVELOPMENT MODE
+Qasong provides an alternate user interface for listening to music from youtube.
 
-`npm run dev`
+This project is currently under development and is scheduled for it's first release on December 20th, 2020.
 
-the frontend development server will be at http://localhost:8080
+![](https://github.com/IanWalston/qasong/blob/master/qasong2.jpg)
 
-**the first time you run this, it will take a while as it installs all the packages needed from the server and frontend**
+## Links
 
-## DEPLOYMENT
+[Qasong Team Discord](https://discord.gg/b2gEwT8)
 
-`npm deploy`
+[Qasong Web App](https://qasong.com)
 
-this will 
- - build the react frontend into static assets in the public folder
- - deploy the app to google cloud using instructions in `app.yaml`
+## CONTRIBUTING WITH CODE
 
-## Contact
+Fork the repo
+and start your enviroment then play around with the code
 
-### Join Us on Discord
-https://discord.gg/b2gEwT8
+#### PROBLEM STARTING YOUR ENVIROMENT
+
+###### BEFORE YOU ASK FOR HELP GOOGLE IT
+
+ask in programming/coding discord/communities (if applicable)
+
+Then you may now ask for help either in our [discord](https://discord.gg/b2gEwT8) (priority) or Github
+
+## MAKING A SUGGESTION/PULL REQUEST/ISSUE
+
+FORMAT: (IF MERGABLE) MERGABLE: SUGGESTION NAME  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (IF JUST A REGULAR SUGGESTION) SUGGEST: SUGGESTION NAME  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (BUGS) BUGS: BRIEF DESCRIPTION OF BUG

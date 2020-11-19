@@ -1,7 +1,7 @@
 {
-  "name": "artistify",
+  "name": "qasong",
   "version": "0.7.0",
-  "description": "serve artistify-frontend to clients, and provide video search functionality from youtube data api",
+  "description": "serve qasong-frontend to clients, and provide video search functionality from youtube data api",
   "homepage": "./",
   "main": "./public/electron.js",
   "scripts": {
@@ -26,7 +26,7 @@
     "node": "12.x"
   },
   "build": {
-    "appId": "com.electron.artistify",
+    "appId": "com.electron.qasong",
     "files": "./public/**/*",
     "win": {
       "icon": "public/meta-icon.png"
@@ -38,15 +38,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:callbacc/Artistify.git"
+    "url": "git@github.com:IanWalston/qasong.git"
   },
   "author": {
-    "name": "Artistify Team",
-    "email": "alexa.matei@icloud.com",
+    "name": "Qasong Team",
+    "email": "ikwalston@comcast.net",
     "url": "https://discord.gg/34zqp3M"
   },
   "bugs": {
-    "url": "https://github.com/callbacc/Artistify/issues",
+    "url": "https://github.com/IanWalston/qasong/issues",
     "email": "alexa.matei@icloud.com"
   },
   "license": "ISC",
@@ -57,32 +57,28 @@
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
     "nodemon": "^2.0.4",
-    "electron": "^10.1.4",
+    "electron": "^11.0.1",
     "electron-builder": "^22.9.1",
     "prettier": "^2.1.2"
   },
   "dependencies": {
-    "app-root-path": "^3.0.0",
     "axios": "^0.21.0",
+    "billboard-top-100": "^2.5.9",
     "cors": "^2.8.5",
     "cypress": "^5.4.0",
     "dotenv": "^8.2.0",
     "electron-is-dev": "^1.2.0",
     "express": "^4.17.1",
-    "express-jwt": "^6.0.0",
     "express-rate-limit": "^5.1.3",
     "immutability-helper": "^3.1.1",
-    "mysql": "^2.18.1",
-    "react-uuid": "^1.0.2",
     "rootpath": "^0.1.2",
     "start-server-and-test": "^1.11.5",
     "uuid": "^8.3.0",
-    "youtube-audio-stream": "^0.3.6",
     "yt-search": "^2.3.2"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run format"
+      "pre-commit": "npm run format && npm run lint:fix"
     }
   }
 }
