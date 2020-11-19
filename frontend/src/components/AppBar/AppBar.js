@@ -41,7 +41,12 @@ export default function PrimarySearchAppBar({
               color="inherit"
               aria-label="Qasong logo"
             >
-              <img src=".\img\whiteLogo.png" height="36px" width="36px" />
+              <img
+                src=".\img\whiteLogo.png"
+                height="36px"
+                width="36px"
+                style={{ filter: `invert(${darkMode ? "0" : "1"})` }}
+              />
             </IconButton>
           </Link>
 

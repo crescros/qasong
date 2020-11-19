@@ -62,6 +62,7 @@ const App = () => {
   const [queue, setQueue] = useState([]);
   const [videos, setVideos] = useState([]);
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
+  const [iframeState, setIframeState] = useState();
 
   function skipSong() {
     const i = queue.findIndex((item) => item.qid === currentQid);
@@ -71,13 +72,19 @@ const App = () => {
 
   function previousSong() {
     const i = queue.findIndex((item) => item.qid === currentQid);
-    const nextInQueue = queue[i - 1];
-    setNowPlaying(nextInQueue);
+    const previousInQueue = queue[i - 1];
+    setNowPlaying(previousInQueue);
   }
 
   function getNextInQueue() {
     const i = queue.findIndex((item) => item.qid === currentQid);
     const nextInQueue = queue[i + 1];
+    return nextInQueue;
+  }
+
+  function getPreviousInQueue() {
+    const i = queue.findIndex((item) => item.qid === currentQid);
+    const nextInQueue = queue[i - 1];
     return nextInQueue;
   }
 
@@ -168,7 +175,7 @@ const App = () => {
       <CssBaseline />
 
       <img
-        src=".\img\leftCurve.svg"
+        src=".\img\topCurve.svg"
         width="465px"
         style={{ position: "absolute", zIndex: -10000, maxWidth: "100%" }}
       />
@@ -202,6 +209,8 @@ const App = () => {
           {...{
             nowPlaying,
             setNowPlaying,
+            iframeState,
+            setIframeState,
           }}
         />
       </Suspense>
@@ -217,9 +226,16 @@ const App = () => {
             videos,
             setNowPlaying,
             getNextInQueue,
+            getPreviousInQueue,
+            iframeState,
           }}
         />
       </Suspense>
+      <img
+        src=".\img\bottomCurve.svg"
+        width="465px"
+        style={{ position: "absolute", zIndex: -10000, maxWidth: "100%", right: "0%" }}
+      />
     </ThemeProvider>
   );
 };

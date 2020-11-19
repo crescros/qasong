@@ -77,12 +77,6 @@ function MobileMenu({ queue, darkMode, setDarkMode }) {
             </MenuItem>
           </Box>
         </Tooltip>
-        <MenuItem onClick={() => history.push("/billboard")}>
-          <IconButton target="_blank" color="inherit">
-            <QueueMusicIcon style={{ fontSize: "40px" }} />
-          </IconButton>
-          <p>billboard</p>
-        </MenuItem>
 
         {/* dark mode */}
         <MenuItem onClick={() => setDarkMode(!darkMode)}>

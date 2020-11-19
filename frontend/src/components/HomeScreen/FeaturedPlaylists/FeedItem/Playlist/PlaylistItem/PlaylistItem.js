@@ -34,7 +34,7 @@ function PlaylistItem({
         </IconButton>
       )}
       <ListItemText primary={song.title} />
-      <IconButton edge="end" onClick={handleMobileMenuOpen}>
+      <IconButton edge="end" size="small" onClick={handleMobileMenuOpen}>
         <MoreVertIcon />
       </IconButton>
       <Menu

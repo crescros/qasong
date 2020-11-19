@@ -105,8 +105,8 @@ function Playlist({
           </ButtonBase>
         </Box>
       </Grid>
-      <Grid item xs container direction="column" spacing={2}>
-        <Grid item container>
+      <Grid item xs container spacing={2} alignContent="center">
+        <Grid item xs={12}>
           <Box pl={2}>
             <Typography gutterBottom>
               <Link

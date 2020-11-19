@@ -2,9 +2,9 @@ import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Tooltip } from "@material-ui/core";
-
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import ClearIcon from "@material-ui/icons/Clear";
+import DragHandleIcon from "@material-ui/icons/DragHandle";
 
 import { IconButton, Grid, Typography } from "@material-ui/core";
 
@@ -21,13 +21,16 @@ const useStyles = makeStyles((theme) => ({
     top: theme.spacing(1),
     right: theme.spacing(1.5),
   },
+  dragHandle: {
+    color: theme.palette.text.disabled,
+  },
 }));
 
 export default function ImgMediaCard({
   id,
   index,
   nowPlaying,
-  onClickImage,
+  onClickMusicRow,
   moveCard,
   qid,
   queue,
@@ -39,7 +42,8 @@ export default function ImgMediaCard({
 
   const ref = useRef(null);
 
-  const removeQueueItem = () => {
+  const removeQueueItem = (e) => {
+    e.stopPropagation();
     setQueue(
       queue.filter((item) => {
         return item.qid !== qid;
@@ -87,12 +91,13 @@ export default function ImgMediaCard({
       item.index = hoverIndex;
     },
   });
-  const [{ isDragging }, drag] = useDrag({
+  const [{ isDragging }, drag, preview] = useDrag({
     item: { type: "card", id, index },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
   });
+
   const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
 
@@ -101,10 +106,10 @@ export default function ImgMediaCard({
       item
       container
       className={classes.row}
-      onClick={() => onClickImage(qid)}
+      onClick={() => onClickMusicRow(qid)}
       direction="row"
       alignItems="center"
-      ref={ref}
+      ref={preview}
       style={{
         backgroundColor: (nowPlaying && nowPlaying.qid) === qid && "#FE9021",
         opacity,
@@ -119,8 +124,14 @@ export default function ImgMediaCard({
         <Typography>{title}</Typography>
       </Grid>
       <Grid item xs={1}>
+        <IconButton className={classes.dragHandle} ref={ref}>
+          <DragHandleIcon />
+        </IconButton>
+      </Grid>
+      <Grid item xs={1}>
         <Typography>{timestamp}</Typography>
       </Grid>
+
       {/* Remove from queue overlay */}
       <Box className={classes.overlay}>
         <Tooltip title="remove from queue">

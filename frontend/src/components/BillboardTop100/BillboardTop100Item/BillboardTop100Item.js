@@ -16,6 +16,11 @@ const useStyles = makeStyles((theme) => ({
       theme.palette.type === "dark" ? theme.palette.grey[800] : theme.palette.grey[200],
     borderRadius: "0 0 16px 16px",
   },
+  img: {
+    borderRadius: "14px 0 0 0",
+    height: theme.spacing(14),
+    width: theme.spacing(14),
+  },
 }));
 
 function BillboardTop100Item({ item, setSearchTerm }) {
@@ -28,10 +33,10 @@ function BillboardTop100Item({ item, setSearchTerm }) {
   return (
     <Box align="center" className={classes.root} onClick={handleClick}>
       <Grid container justify="center">
-        <Grid item xs={3}>
-          <img src={item.cover} width="64px" />
+        <Grid item xs={4}>
+          <img className={classes.img} src={item.cover} />
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={8}>
           <Typography>
             #{item.rank}: {item.title}
           </Typography>

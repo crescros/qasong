@@ -25,14 +25,24 @@ app.use(bodyParser.json());
 // app.use(jwt());
 app.use(errorHandler);
 
-// define routes
+// api endpoints
 app.use("/api/feed", require("./feed/feed.controller"), apiLimiter);
 app.use("/api/search", require("./search/search.controller"), apiLimiter);
 app.use("/api/billboard", require("./billboard/billboard.controller"), apiLimiter);
 app.use("/api/env", (req, res) => res.send(process.env.NODE_ENV), apiLimiter);
 // app.use("/api/users", require("./users/users.controller.js"), apiLimiter);
 
-app.get("*", (req, res) => {
+// frontend routes
+app.get("/billboard", (req, res) => {
+  res.sendFile("public/index.html");
+});
+app.get("/queue", (req, res) => {
+  res.sendFile("public/index.html");
+});
+app.get("/search", (req, res) => {
+  res.sendFile("public/index.html");
+});
+app.get("/", (req, res) => {
   res.sendFile("public/index.html");
 });
 

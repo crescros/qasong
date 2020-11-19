@@ -1,9 +1,9 @@
 import React from "react";
 import YouTube from "react-youtube";
 
-function Video({ id, setNowPlaying }) {
+function Video({ id, setNowPlaying, setIframeState }) {
   const youtubePlayerOptions = {
-    height: "100px",
+    height: "0px",
     width: "100%",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
@@ -23,9 +23,26 @@ function Video({ id, setNowPlaying }) {
     setNowPlaying(null);
   }
 
+  function handleStateChange(e) {
+    setIframeState(e.data);
+  }
+
   if (!id) return <div id="empty-div"></div>;
 
-  return <YouTube videoId={id} opts={youtubePlayerOptions} onEnd={handleVideoEnd} />;
+  return (
+    <YouTube
+      videoId={id}
+      opts={youtubePlayerOptions}
+      onEnd={handleVideoEnd}
+      // onError
+      // onReady
+      // onPause
+      // onPlay
+      // onPlaybackQualityChange
+      // onPlaybackRateChange
+      onStateChange={handleStateChange}
+    />
+  );
 }
 
 export default Video;

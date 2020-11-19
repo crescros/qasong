@@ -8,11 +8,13 @@ import IconButton from "@material-ui/core/IconButton";
 import SkipSongButton from "./SkipSongButton/SkipSongButton";
 import PreviousSongButton from "./PreviousSongButton/PreviousSongButton";
 import StopIcon from "@material-ui/icons/Stop";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import PauseIcon from "@material-ui/icons/Pause";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
     top: "auto",
-    bottom: 100,
+    bottom: 0,
     height: 75,
     borderTop: "2px solid",
     borderColor: theme.palette.secondary.main,
@@ -26,18 +28,38 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BottomAppBar({
   nowPlaying,
-  setNowPlaying,
   previousSong,
   skipSong,
   getNextInQueue,
+  getPreviousInQueue,
+  iframeState,
 }) {
   const classes = useStyles();
 
-  function stopTheSong() {
-    setNowPlaying({});
+  const nextTitle = getNextInQueue()?.title;
+  const previousTitle = getPreviousInQueue()?.title;
+
+  // send an event to ytIframe
+  function iframeCommand(command, args = "") {
+    const ytIframe = document.querySelector("iframe");
+    ytIframe.contentWindow.postMessage(
+      '{"event":"command","func":"' + command + '","args":"' + args + '"}',
+      "*"
+    );
   }
 
-  const nextTitle = getNextInQueue()?.title;
+  // pauses the video
+  function pauseVideo() {
+    iframeCommand("pauseVideo");
+  }
+  // starts the video
+  function startVideo() {
+    iframeCommand("playVideo");
+  }
+  // stops the video
+  function stopVideo() {
+    iframeCommand("stopVideo");
+  }
 
   if (!nowPlaying || !nowPlaying.title) {
     return <div></div>;
@@ -49,12 +71,24 @@ export default function BottomAppBar({
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar className={classes.grow}>
           <Typography variant="caption">{nowPlaying.title}</Typography>
-          <IconButton onClick={stopTheSong} color="secondary">
+          <IconButton onClick={stopVideo} color="secondary">
             <StopIcon />
           </IconButton>
-          <PreviousSongButton {...{ previousSong }} />
+          <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />
 
-          <SkipSongButton {...{ skipSong }} />
+          <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
+
+          {iframeState === 1 ? (
+            <IconButton color="secondary" onClick={pauseVideo}>
+              <PauseIcon />
+            </IconButton>
+          ) : (
+            <IconButton color="secondary" onClick={startVideo}>
+              <PlayArrowIcon />
+            </IconButton>
+          )}
+
+          <Typography color="secondary">00:00/{nowPlaying.duration.timestamp}</Typography>
 
           {nextTitle && (
             <Typography color="textSecondary" variant="caption">
