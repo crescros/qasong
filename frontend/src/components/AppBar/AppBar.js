@@ -15,7 +15,9 @@ const useStyles = makeStyles((theme) => ({
   },
   backdropFilter: {
     backdropFilter: "blur(4px) brightness(85%)",
-    transition: "backdrop-filter 2s"
+  },
+  appbar:{
+    transition: "backdrop-filter 2s",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -49,7 +51,7 @@ export default function PrimarySearchAppBar({
     <div className={classes.grow}>
       <AppBar
         color="transparent"
-        className={scrollTop > 111 ? classes.backdropFilter : ""}
+        className={`${scrollTop > 111 ? classes.backdropFilter : ""} ${classes.appbar}`}
       >
         <Toolbar>
           {/* Icon-logo */}
