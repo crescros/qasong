@@ -31,11 +31,13 @@ export default function BottomAppBar({
   previousSong,
   skipSong,
   getNextInQueue,
+  getPreviousInQueue,
   iframeState,
 }) {
   const classes = useStyles();
 
   const nextTitle = getNextInQueue()?.title;
+  const previousTitle = getPreviousInQueue()?.title;
 
   // send an event to ytIframe
   function iframeCommand(command, args = "") {
@@ -72,9 +74,9 @@ export default function BottomAppBar({
           <IconButton onClick={stopVideo} color="secondary">
             <StopIcon />
           </IconButton>
-          <PreviousSongButton {...{ previousSong }} />
+          <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />
 
-          <SkipSongButton {...{ skipSong }} />
+          <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
 
           {iframeState === 1 ? (
             <IconButton color="secondary" onClick={pauseVideo}>

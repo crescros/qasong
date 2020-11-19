@@ -72,13 +72,19 @@ const App = () => {
 
   function previousSong() {
     const i = queue.findIndex((item) => item.qid === currentQid);
-    const nextInQueue = queue[i - 1];
-    setNowPlaying(nextInQueue);
+    const previousInQueue = queue[i - 1];
+    setNowPlaying(previousInQueue);
   }
 
   function getNextInQueue() {
     const i = queue.findIndex((item) => item.qid === currentQid);
     const nextInQueue = queue[i + 1];
+    return nextInQueue;
+  }
+
+  function getPreviousInQueue() {
+    const i = queue.findIndex((item) => item.qid === currentQid);
+    const nextInQueue = queue[i - 1];
     return nextInQueue;
   }
 
@@ -220,6 +226,7 @@ const App = () => {
             videos,
             setNowPlaying,
             getNextInQueue,
+            getPreviousInQueue,
             iframeState,
           }}
         />
