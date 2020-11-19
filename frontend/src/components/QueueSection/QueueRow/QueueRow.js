@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Box, Tooltip } from "@material-ui/core";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import ClearIcon from "@material-ui/icons/Clear";
-import DragHandleIcon from '@material-ui/icons/DragHandle';
+import DragHandleIcon from "@material-ui/icons/DragHandle";
 
 import { IconButton, Grid, Typography } from "@material-ui/core";
 
@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
     right: theme.spacing(1.5),
   },
   dragHandle: {
-    color: theme.palette.text.disabled
-  }
+    color: theme.palette.text.disabled,
+  },
 }));
 
 export default function ImgMediaCard({
