@@ -74,7 +74,7 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue, queueName })
                   setQueue={setQueue}
                   index={index}
                   nowPlaying={nowPlaying}
-                  onClickImage={handleClickQueueItem}
+                  onClickMusicRow={handleClickQueueItem}
                   moveCard={moveCard}
                 />
               );

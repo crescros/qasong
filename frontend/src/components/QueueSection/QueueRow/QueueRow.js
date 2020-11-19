@@ -30,7 +30,7 @@ export default function ImgMediaCard({
   id,
   index,
   nowPlaying,
-  onClickImage,
+  onClickMusicRow,
   moveCard,
   qid,
   queue,
@@ -42,7 +42,8 @@ export default function ImgMediaCard({
 
   const ref = useRef(null);
 
-  const removeQueueItem = () => {
+  const removeQueueItem = (e) => {
+    e.stopPropagation();
     setQueue(
       queue.filter((item) => {
         return item.qid !== qid;
@@ -105,7 +106,7 @@ export default function ImgMediaCard({
       item
       container
       className={classes.row}
-      onClick={() => onClickImage(qid)}
+      onClick={() => onClickMusicRow(qid)}
       direction="row"
       alignItems="center"
       ref={preview}
