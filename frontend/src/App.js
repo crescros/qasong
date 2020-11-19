@@ -94,26 +94,29 @@ const App = () => {
 
   // runs once when app starts
   useEffect(() => {
-    (async () => {
-      // set dark mode from local storage
-      const userDarkMode = localStorage.getItem("userDarkMode");
-      if (userDarkMode === "false") {
-        setDarkMode(false);
-      }
+    // (async () => {
+    //   // set dark mode from local storage
+    //   const userDarkMode = localStorage.getItem("userDarkMode");
+    //   if (userDarkMode === "false") {
+    //     setDarkMode(false);
+    //   }
 
-      // set search list view mode from local storage
-      const userSearchTableViewMode = localStorage.getItem("userSearchTableViewMode");
-      if (userSearchTableViewMode === "true") {
-        setSearchTableViewMode(true);
-      }
+    //   // set search list view mode from local storage
+    //   const userSearchTableViewMode = localStorage.getItem("userSearchTableViewMode");
+    //   if (userSearchTableViewMode === "true") {
+    //     setSearchTableViewMode(true);
+    //   }
 
-      // if theres no queue in the url, get it from local storage
-      const storedQueue = localStorage.getItem("queue");
-      if (storedQueue) {
-        const localQueue = JSON.parse(storedQueue);
-        setQueue(localQueue);
-      }
-    })();
+    //   // if theres no queue in the url, get it from local storage
+    //   const storedQueue = localStorage.getItem("queue");
+    //   if (storedQueue) {
+    //     const localQueue = JSON.parse(storedQueue);
+    //     setQueue(localQueue);
+    //   }
+    // })();
+
+    localStorage.clear()
+
   }, []);
 
   //when nowPlaying changes
