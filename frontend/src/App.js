@@ -115,8 +115,7 @@ const App = () => {
     //   }
     // })();
 
-    localStorage.clear()
-
+    localStorage.clear();
   }, []);
 
   //when nowPlaying changes
