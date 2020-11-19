@@ -11,7 +11,7 @@ function BillboardTop100({ setSearchTerm }) {
   const [loading, setLoading] = React.useState(true);
   const dataLoaded = () => {
     setLoading(false);
-  }
+  };
 
   React.useEffect(() => {
     (async () => {
@@ -26,8 +26,8 @@ function BillboardTop100({ setSearchTerm }) {
         Billboard Top 100
       </Typography>
 
-      <Grid align="center" style={{display: loading ? "block" : "none"}}>
-          <LoadingAnimation size="600px" speed="5" />
+      <Grid align="center" style={{ display: loading ? "block" : "none" }}>
+        <LoadingAnimation size="600px" speed="5" />
       </Grid>
 
       <Grid container direction="column" spacing={1}>
