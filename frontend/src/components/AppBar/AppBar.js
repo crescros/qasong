@@ -1,5 +1,5 @@
-import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect, useState } from "react";
 import { AppBar, Toolbar, IconButton, Box } from "@material-ui/core";
 import VideoSearch from "./VideoSearch/VideoSearch";
 import MobileMenu from "./MobileMenu/MobileMenu";
@@ -12,6 +12,9 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+  },
+  backdropFilter: {
+    backdropFilter: "blur(4px) brightness(85%)",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -27,11 +30,26 @@ export default function PrimarySearchAppBar({
   setDarkMode,
   isLoading,
 }) {
+  const [scrollTop, setScrollTop] = useState(0);
+
   const classes = useStyles();
+
+  useEffect(() => {
+    const onScroll = (e) => {
+      setScrollTop(e.target.documentElement.scrollTop);
+    };
+
+    window.addEventListener("scroll", onScroll);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [scrollTop]);
 
   return (
     <div className={classes.grow}>
-      <AppBar color="transparent">
+      <AppBar
+        color="transparent"
+        className={scrollTop > 111 ? classes.backdropFilter : ""}
+      >
         <Toolbar>
           {/* Icon-logo */}
           <Link to="/">

@@ -18,10 +18,10 @@ const NowPlayingArea = React.lazy(() =>
 const darkTheme = createMuiTheme({
   palette: {
     background: {
-      default: "#000000",
+      default: "#000",
     },
     primary: {
-      main: "#000000",
+      main: "#000",
     },
     secondary: {
       main: "#FE9021",
@@ -37,7 +37,7 @@ const darkTheme = createMuiTheme({
 const lightTheme = createMuiTheme({
   palette: {
     background: {
-      default: "##f7f3f2",
+      default: "#f7f3f2",
     },
     primary: {
       main: "#fff",
