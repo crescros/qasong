@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   backdropFilter: {
     backdropFilter: "blur(4px) brightness(85%)",
   },
-  appbar:{
+  appbar: {
     transition: "backdrop-filter 2s",
   },
   menuButton: {
