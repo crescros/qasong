@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
   backdropFilter: {
     backdropFilter: "blur(4px) brightness(85%)",
+    transition: "backdrop-filter 2s"
   },
   menuButton: {
     marginRight: theme.spacing(2),
