@@ -29,7 +29,13 @@ function Playlist() {
         href="https://discord.com/invite/kczTtg8VDP"
         className={classes.playlist}
       >
-        <Grid container alignContent="center" justify="center" alignItems="center">
+        <Grid
+          container
+          alignContent="center"
+          justify="center"
+          alignItems="center"
+          align="center"
+        >
           <Grid item xs={12} sm={3}>
             <img className={classes.svg} src="./img/discord.svg"></img>
           </Grid>
