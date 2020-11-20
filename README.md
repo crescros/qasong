@@ -65,4 +65,4 @@ This project is currently under development and is scheduled for it's first rele
 
 please make a pull request to the `develop` branch of this repo
 
-for assistance working with this repo, contact us on discord [discord](https://discord.gg/b2gEwT8) or ping a contributer in an Issue. 
+for assistance working with this repo, contact us on [discord](https://discord.gg/b2gEwT8) or ping a contributer in an Issue. 
