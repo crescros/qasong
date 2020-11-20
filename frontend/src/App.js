@@ -166,50 +166,55 @@ const App = () => {
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
+      <div style={{
+        minHeight:"80vh"
+      }}>
 
-      <img
-        src=".\img\topCurve.svg"
-        width="465px"
-        style={{ position: "absolute", zIndex: -10000, maxWidth: "100%" }}
-      />
+        <img
+          src=".\img\topCurve.svg"
+          width="465px"
+          style={{ position: "absolute", zIndex: -10000, maxWidth: "100%" }}
+        />
 
-      {<div style={{ height: "72px" }}></div>}
+        {<div style={{ height: "72px" }}></div>}
 
-      <Routes
-        {...{
-          darkMode,
-          isLoading,
-          nowPlaying,
-          searchTerm,
-          setDarkMode,
-          setSearchTerm,
-          setVideos,
-          searchTableViewMode,
-          handleSubmitVideoSearch,
-          queue,
-          setNowPlaying,
-          setQueue,
-          videos,
-          setSearchTableViewMode,
-          addSongToQueue,
-        }}
-      />
-
-      {/* NOW PLAYING AREA */}
-      <Suspense fallback={<div />}>
-        <NowPlayingArea
+        <Routes
           {...{
-            skipSong,
-            previousSong,
+            darkMode,
+            isLoading,
             nowPlaying,
+            searchTerm,
+            setDarkMode,
+            setSearchTerm,
+            setVideos,
+            searchTableViewMode,
+            handleSubmitVideoSearch,
             queue,
-            videos,
             setNowPlaying,
-            getNextInQueue,
-            getPreviousInQueue,
+            setQueue,
+            videos,
+            setSearchTableViewMode,
+            addSongToQueue,
           }}
         />
-      </Suspense>
+
+        {/* NOW PLAYING AREA */}
+        <Suspense fallback={<div />}>
+          <NowPlayingArea
+            {...{
+              skipSong,
+              previousSong,
+              nowPlaying,
+              queue,
+              videos,
+              setNowPlaying,
+              getNextInQueue,
+              getPreviousInQueue,
+            }}
+          />
+        </Suspense>
+      </div>
+
       <img
         src=".\img\bottomCurve.svg"
         width="465px"
