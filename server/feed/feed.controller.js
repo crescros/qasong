@@ -1,6 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const mockFeed = require("../data/mockFeed.json");
+
+let mockFeed
+try {
+  mockFeed = require("../data/mockFeed.json");
+} catch (err) {
+  mockFeed = [];
+}
+
 const shuffle = require("../_helpers/functions");
 
 // routes
