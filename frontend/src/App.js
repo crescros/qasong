@@ -146,12 +146,7 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("queue", JSON.stringify(queue));
   }, [queue]);
-
-  // event listener for search input
-  const handleSearchTermInput = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
+  // hiiiiiiiiii(lol)iiiiiiiiiiiiiiiiiiiiiiiiii
   // event listener for search submit
   const handleSubmitVideoSearch = async (e) => {
     setIsLoading(true);
@@ -190,7 +185,6 @@ const App = () => {
           setSearchTerm,
           setVideos,
           searchTableViewMode,
-          handleSearchTermInput,
           handleSubmitVideoSearch,
           queue,
           setNowPlaying,
