@@ -12,7 +12,6 @@ import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import PauseIcon from "@material-ui/icons/Pause";
 import YouTube from "react-youtube";
 
-
 const useStyles = makeStyles((theme) => ({
   appBar: {
     top: "auto",
@@ -54,7 +53,7 @@ function Video({ nowPlaying, setNowPlaying, setIframeState }) {
     setIframeState(e.data);
   }
 
-  const id = nowPlaying.videoId
+  const id = nowPlaying.videoId;
 
   if (!id) return <div id="empty-div"></div>;
 
@@ -113,19 +112,17 @@ export default function BottomAppBar({
     return <div></div>;
   }
 
-
-
   return (
     <React.Fragment>
       <CssBaseline />
       <Video
-          {...{
-            nowPlaying,
-            setNowPlaying,
-            iframeState,
-            setIframeState,
-          }}
-        />
+        {...{
+          nowPlaying,
+          setNowPlaying,
+          iframeState,
+          setIframeState,
+        }}
+      />
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar className={classes.grow}>
           <Typography variant="caption">{nowPlaying.title}</Typography>

@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { getFeed } from "../../../functions";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import FeedItem from "./FeedItem/FeedItem";
-import LoadingAnimation from "../../LoadingAnimation/LoadingAnimation"
+import LoadingAnimation from "../../LoadingAnimation/LoadingAnimation";
 
 const useStyles = makeStyles({
   root: {
@@ -43,13 +43,9 @@ function FeaturedPlaylists({
       </Typography>
 
       {loading ? (
-        <Grid 
-          container 
-          justify="center"
-          style={{ paddingTop: '30px' }}
-          >
-          <LoadingAnimation size="300px"/>
-        </Grid> 
+        <Grid container justify="center" style={{ paddingTop: "30px" }}>
+          <LoadingAnimation size="300px" />
+        </Grid>
       ) : (
         <Box mx={2}>
           <Grid container direction="column" spacing={1}>
