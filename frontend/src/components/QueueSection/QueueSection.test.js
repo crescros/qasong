@@ -5,12 +5,12 @@ import QueueSection from "./QueueSection";
 
 describe("<QueueSection />", () => {
   it("renders an empty div if id is falsy", () => {
-    const wrapper = shallow(<QueueSection  queue={[{}]} />);
+    const wrapper = shallow(<QueueSection queue={[{}]} />);
     expect(wrapper.find("div")).toHaveLength(1);
   });
 
   it("renders the Youtube component if id is truthy", () => {
-    const wrapper = shallow(<QueueSection  queue={[{}]} />);
+    const wrapper = shallow(<QueueSection queue={[{}]} />);
     expect(wrapper.find(DndProvider)).toHaveLength(1);
   });
 });
