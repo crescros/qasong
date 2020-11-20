@@ -9,8 +9,9 @@ function LoadingAnimation({ size = 32, speed = 2 }) {
           animation: `spin ${speed}s linear infinite`,
           boxShadow: "0 0 30px red",
           borderRadius: "50%",
+          maxWidth: "100%",
         }}
-        src="./img/artistify-vinyl.png"
+        src="./img/qasong-vinyl.png"
         width={`${size}px`}
       />
     </Box>

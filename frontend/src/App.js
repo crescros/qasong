@@ -18,10 +18,10 @@ const NowPlayingArea = React.lazy(() =>
 const darkTheme = createMuiTheme({
   palette: {
     background: {
-      default: "#000000",
+      default: "#000",
     },
     primary: {
-      main: "#000000",
+      main: "#000",
     },
     secondary: {
       main: "#FE9021",
@@ -37,7 +37,7 @@ const darkTheme = createMuiTheme({
 const lightTheme = createMuiTheme({
   palette: {
     background: {
-      default: "##f7f3f2",
+      default: "#f7f3f2",
     },
     primary: {
       main: "#fff",
@@ -94,26 +94,28 @@ const App = () => {
 
   // runs once when app starts
   useEffect(() => {
-    (async () => {
-      // set dark mode from local storage
-      const userDarkMode = localStorage.getItem("userDarkMode");
-      if (userDarkMode === "false") {
-        setDarkMode(false);
-      }
+    // (async () => {
+    //   // set dark mode from local storage
+    //   const userDarkMode = localStorage.getItem("userDarkMode");
+    //   if (userDarkMode === "false") {
+    //     setDarkMode(false);
+    //   }
 
-      // set search list view mode from local storage
-      const userSearchTableViewMode = localStorage.getItem("userSearchTableViewMode");
-      if (userSearchTableViewMode === "true") {
-        setSearchTableViewMode(true);
-      }
+    //   // set search list view mode from local storage
+    //   const userSearchTableViewMode = localStorage.getItem("userSearchTableViewMode");
+    //   if (userSearchTableViewMode === "true") {
+    //     setSearchTableViewMode(true);
+    //   }
 
-      // if theres no queue in the url, get it from local storage
-      const storedQueue = localStorage.getItem("queue");
-      if (storedQueue) {
-        const localQueue = JSON.parse(storedQueue);
-        setQueue(localQueue);
-      }
-    })();
+    //   // if theres no queue in the url, get it from local storage
+    //   const storedQueue = localStorage.getItem("queue");
+    //   if (storedQueue) {
+    //     const localQueue = JSON.parse(storedQueue);
+    //     setQueue(localQueue);
+    //   }
+    // })();
+
+    localStorage.clear();
   }, []);
 
   //when nowPlaying changes

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography, IconButton } from "@material-ui/core";
+import { Grid, Typography, IconButton, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { getFeed } from "../../../functions";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
@@ -39,25 +39,27 @@ function FeaturedPlaylists({
         </IconButton>
       </Typography>
 
-      <Grid container direction="column" spacing={1}>
-        {feedItems.map((playlist) => {
-          return (
-            <FeedItem
-              key={playlist.id}
-              {...{
-                playlist,
-                setQueue,
-                setQueueName,
-                setNowPlaying,
-                setShowQueue,
-                nowPlaying,
-                queue,
-                addSongToQueue,
-              }}
-            />
-          );
-        })}
-      </Grid>
+      <Box mx={2}>
+        <Grid container direction="column" spacing={1}>
+          {feedItems.map((playlist) => {
+            return (
+              <FeedItem
+                key={playlist.id}
+                {...{
+                  playlist,
+                  setQueue,
+                  setQueueName,
+                  setNowPlaying,
+                  setShowQueue,
+                  nowPlaying,
+                  queue,
+                  addSongToQueue,
+                }}
+              />
+            );
+          })}
+        </Grid>
+      </Box>
     </div>
   );
 }
