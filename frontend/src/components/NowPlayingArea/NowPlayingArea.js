@@ -1,22 +1,32 @@
 import React, { useState } from "react";
+
+// material ui
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
-import AppBar from "@material-ui/core/AppBar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
+import {
+  Typography,
+  Box,
+  CssBaseline,
+  Toolbar,
+  AppBar,
+  Grid,
+  IconButton,
+  Link,
+} from "@material-ui/core";
+import {
+  Stop as StopIcon,
+  PlayArrow as PlayArrowIcon,
+  Pause as PauseIcon,
+} from "@material-ui/icons";
+
+// components
 import SkipSongButton from "./SkipSongButton/SkipSongButton";
 import PreviousSongButton from "./PreviousSongButton/PreviousSongButton";
-import StopIcon from "@material-ui/icons/Stop";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import PauseIcon from "@material-ui/icons/Pause";
-import YouTube from "react-youtube";
+import YoutubeIframe from "./YoutubeIframe/YoutubeIframe";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
     top: "auto",
     bottom: 0,
-    height: 75,
     borderTop: "2px solid",
     borderColor: theme.palette.secondary.main,
   },
@@ -27,51 +37,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Video({ nowPlaying, setNowPlaying, setIframeState }) {
-  const youtubePlayerOptions = {
-    height: "0px",
-    width: "100%",
-    playerVars: {
-      // https://developers.google.com/youtube/player_parameters
-      autoplay: 1,
-      playsinline: 1,
-      iv_load_policy: 3,
-      color: "white",
-      enablejsapi: 1,
-      origin:
-        process.env.NODE_ENV === "production"
-          ? "https://artistify-2.appspot.com/"
-          : "http://localhost:8080",
-    },
-  };
-
-  function handleVideoEnd() {
-    setNowPlaying(null);
-  }
-
-  function handleStateChange(e) {
-    setIframeState(e.data);
-  }
-
-  const id = nowPlaying.videoId;
-
-  if (!id) return <div id="empty-div"></div>;
-
-  return (
-    <YouTube
-      videoId={id}
-      opts={youtubePlayerOptions}
-      onEnd={handleVideoEnd}
-      // onError
-      // onReady
-      // onPause
-      // onPlay
-      // onPlaybackQualityChange
-      // onPlaybackRateChange
-      onStateChange={handleStateChange}
-    />
-  );
-}
 export default function BottomAppBar({
   nowPlaying,
   setNowPlaying,
@@ -82,6 +47,7 @@ export default function BottomAppBar({
 }) {
   const classes = useStyles();
   const [iframeState, setIframeState] = useState();
+  const [progressSeconds, setProgressSeconds] = useState(0);
 
   const nextTitle = getNextInQueue()?.title;
   const previousTitle = getPreviousInQueue()?.title;
@@ -112,10 +78,16 @@ export default function BottomAppBar({
     return <div></div>;
   }
 
+  const isPlaying = iframeState === 1;
+
+  if (isPlaying) {
+    setProgressSeconds(1);
+  }
+
   return (
     <React.Fragment>
       <CssBaseline />
-      <Video
+      <YoutubeIframe
         {...{
           nowPlaying,
           setNowPlaying,
@@ -124,33 +96,51 @@ export default function BottomAppBar({
         }}
       />
       <AppBar position="fixed" color="primary" className={classes.appBar}>
-        <Toolbar className={classes.grow}>
-          <Typography variant="caption">{nowPlaying.title}</Typography>
-          <IconButton onClick={stopVideo} color="secondary">
-            <StopIcon />
-          </IconButton>
-          <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />
+        <Grid container justify="center" alignItems="center" alignContent="center">
+          <Grid item xs={12} sm={4}>
+            <Typography align="center">{nowPlaying.title}</Typography>
+          </Grid>
 
-          <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
+          <Grid item xs={12} sm={4}>
+            <Toolbar className={classes.grow}>
+              <IconButton onClick={stopVideo} color="secondary">
+                <StopIcon />
+              </IconButton>
+              <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />
 
-          {iframeState === 1 ? (
-            <IconButton color="secondary" onClick={pauseVideo}>
-              <PauseIcon />
-            </IconButton>
-          ) : (
-            <IconButton color="secondary" onClick={startVideo}>
-              <PlayArrowIcon />
-            </IconButton>
-          )}
+              <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
 
-          <Typography color="secondary">00:00/{nowPlaying.duration.timestamp}</Typography>
+              {isPlaying ? (
+                <IconButton color="secondary" onClick={pauseVideo}>
+                  <PauseIcon />
+                </IconButton>
+              ) : (
+                <IconButton color="secondary" onClick={startVideo}>
+                  <PlayArrowIcon />
+                </IconButton>
+              )}
 
-          {nextTitle && (
-            <Typography color="textSecondary" variant="caption">
-              next: {nextTitle}
-            </Typography>
-          )}
-        </Toolbar>
+              <Typography align="center" color="secondary">
+                00:0{progressSeconds}/{nowPlaying.duration.timestamp}
+              </Typography>
+            </Toolbar>
+          </Grid>
+
+          <Grid item xs={12} sm={4}>
+            {nextTitle && (
+              <Box pl={3} align="center">
+                <Link
+                  component="button"
+                  variant="body2"
+                  onClick={skipSong}
+                  color="textSecondary"
+                >
+                  next: {nextTitle}
+                </Link>
+              </Box>
+            )}
+          </Grid>
+        </Grid>
       </AppBar>
     </React.Fragment>
   );

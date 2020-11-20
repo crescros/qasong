@@ -14,7 +14,6 @@ const apiLimiter = rateLimit({
 
 // database connection
 // const con = require('./database/connection.js')
-// con.connect()
 
 // initialize express
 const app = express();
@@ -26,6 +25,7 @@ app.use(bodyParser.json());
 app.use(errorHandler);
 
 // api endpoints
+app.use("/api/users", require("./users/users.controller"), apiLimiter);
 app.use("/api/feed", require("./feed/feed.controller"), apiLimiter);
 app.use("/api/search", require("./search/search.controller"), apiLimiter);
 app.use("/api/billboard", require("./billboard/billboard.controller"), apiLimiter);

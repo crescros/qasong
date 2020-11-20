@@ -6,7 +6,6 @@ import HmaksPlaylist from "./HmaksPlaylist/HmaksPlaylist";
 function FeedItem({
   playlist,
   setQueue,
-  setQueueName,
   setNowPlaying,
   setShowQueue,
   nowPlaying,
@@ -20,7 +19,6 @@ function FeedItem({
         {...{
           playlist,
           setQueue,
-          setQueueName,
           setNowPlaying,
           setShowQueue,
           nowPlaying,
@@ -42,7 +40,6 @@ function FeedItem({
       {...{
         playlist,
         setQueue,
-        setQueueName,
         setNowPlaying,
         setShowQueue,
         nowPlaying,

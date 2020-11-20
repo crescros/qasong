@@ -23,8 +23,6 @@ function Routes({
   searchTableViewMode,
   handleSubmitVideoSearch,
   queue,
-  queueName,
-  setQueueName,
   setNowPlaying,
   setQueue,
   videos,
@@ -79,10 +77,8 @@ function Routes({
                 {...{
                   nowPlaying,
                   queue,
-                  queueName,
                   setNowPlaying,
                   setQueue,
-                  setQueueName,
                 }}
               />
             </Suspense>
@@ -92,10 +88,8 @@ function Routes({
               <HomeScreen
                 {...{
                   setQueue,
-                  setQueueName,
                   setNowPlaying,
                   nowPlaying,
-                  queueName,
                   isLoading,
                   queue,
                   addSongToQueue,

@@ -12,7 +12,7 @@ import ShuffleButton from "./ShuffleButton/ShuffleButton";
 import ClearButton from "./ClearButton/ClearButton";
 import DisplayModeButton from "./DisplayModeButton/DisplayModeButton";
 
-function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue, queueName }) {
+function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
   const [displayMode, setDisplayMode] = useState("list");
 
   const handleClickQueueItem = (qid) => {
@@ -44,7 +44,7 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue, queueName })
         <Grid container alignItems="center">
           <Grid item>
             <Typography variant="h5">
-              {queue.length > 0 && `${queue.length} songs - ${queueName}`}
+              {queue.length > 0 && `${queue.length} songs`}
             </Typography>
           </Grid>
           <Grid item>

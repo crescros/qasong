@@ -47,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
 function Playlist({
   playlist,
   setQueue,
-  setQueueName,
   setNowPlaying,
   nowPlaying,
   queue,
@@ -58,7 +57,6 @@ function Playlist({
   function handlePlaylistClick() {
     setQueue(playlist.queue);
     setNowPlaying(playlist.queue[0]);
-    setQueueName(playlist.name);
   }
 
   function handleAddToQueueClick() {
@@ -69,7 +67,6 @@ function Playlist({
     });
 
     setQueue([...queue, ...songsNotAlreadyInQueue]);
-    setQueueName(playlist.name);
   }
 
   function handleStopSong(e) {
