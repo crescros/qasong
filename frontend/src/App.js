@@ -7,9 +7,6 @@ import { ThemeProvider } from "@material-ui/styles";
 import Routes from "./routes";
 
 // lazy load components
-const YoutubeIframeArea = React.lazy(() =>
-  import("./components/YoutubeIframeArea/YoutubeIframeArea")
-);
 const NowPlayingArea = React.lazy(() =>
   import("./components/NowPlayingArea/NowPlayingArea")
 );
@@ -62,7 +59,6 @@ const App = () => {
   const [queue, setQueue] = useState([]);
   const [videos, setVideos] = useState([]);
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
-  const [iframeState, setIframeState] = useState();
 
   function skipSong() {
     const i = queue.findIndex((item) => item.qid === currentQid);
@@ -205,18 +201,6 @@ const App = () => {
         }}
       />
 
-      {/* YOUTUBE IFRAME */}
-      <Suspense fallback={<div />}>
-        <YoutubeIframeArea
-          {...{
-            nowPlaying,
-            setNowPlaying,
-            iframeState,
-            setIframeState,
-          }}
-        />
-      </Suspense>
-
       {/* NOW PLAYING AREA */}
       <Suspense fallback={<div />}>
         <NowPlayingArea
@@ -229,7 +213,6 @@ const App = () => {
             setNowPlaying,
             getNextInQueue,
             getPreviousInQueue,
-            iframeState,
           }}
         />
       </Suspense>

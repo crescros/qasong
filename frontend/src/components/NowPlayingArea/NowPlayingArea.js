@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
@@ -10,6 +10,8 @@ import PreviousSongButton from "./PreviousSongButton/PreviousSongButton";
 import StopIcon from "@material-ui/icons/Stop";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import PauseIcon from "@material-ui/icons/Pause";
+import YouTube from "react-youtube";
+
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -26,15 +28,61 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function Video({ nowPlaying, setNowPlaying, setIframeState }) {
+  const youtubePlayerOptions = {
+    height: "0px",
+    width: "100%",
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+      playsinline: 1,
+      iv_load_policy: 3,
+      color: "white",
+      enablejsapi: 1,
+      origin:
+        process.env.NODE_ENV === "production"
+          ? "https://artistify-2.appspot.com/"
+          : "http://localhost:8080",
+    },
+  };
+
+  function handleVideoEnd() {
+    setNowPlaying(null);
+  }
+
+  function handleStateChange(e) {
+    setIframeState(e.data);
+  }
+
+  const id = nowPlaying.videoId
+
+  if (!id) return <div id="empty-div"></div>;
+
+  return (
+    <YouTube
+      videoId={id}
+      opts={youtubePlayerOptions}
+      onEnd={handleVideoEnd}
+      // onError
+      // onReady
+      // onPause
+      // onPlay
+      // onPlaybackQualityChange
+      // onPlaybackRateChange
+      onStateChange={handleStateChange}
+    />
+  );
+}
 export default function BottomAppBar({
   nowPlaying,
+  setNowPlaying,
   previousSong,
   skipSong,
   getNextInQueue,
   getPreviousInQueue,
-  iframeState,
 }) {
   const classes = useStyles();
+  const [iframeState, setIframeState] = useState();
 
   const nextTitle = getNextInQueue()?.title;
   const previousTitle = getPreviousInQueue()?.title;
@@ -65,9 +113,19 @@ export default function BottomAppBar({
     return <div></div>;
   }
 
+
+
   return (
     <React.Fragment>
       <CssBaseline />
+      <Video
+          {...{
+            nowPlaying,
+            setNowPlaying,
+            iframeState,
+            setIframeState,
+          }}
+        />
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar className={classes.grow}>
           <Typography variant="caption">{nowPlaying.title}</Typography>
