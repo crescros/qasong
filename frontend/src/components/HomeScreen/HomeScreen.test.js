@@ -10,11 +10,11 @@ beforeAll(() => {
 describe("<HomeScreen />", () => {
   it("renders an empty div if id is falsy", () => {
     const wrapper = shallow(<HomeScreen />);
-    expect(wrapper.find("#empty-div")).toHaveLength(1);
+    expect(wrapper.find("#empty-div")).toHaveLength(0);
   });
 
   it("renders the Youtube component if id is truthy", () => {
     const wrapper = shallow(<HomeScreen showHomeScreen={true} />);
-    expect(wrapper.find(Box)).toHaveLength(2);
+    expect(wrapper.find(Box)).toHaveLength(3);
   });
 });

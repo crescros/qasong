@@ -4,7 +4,7 @@ import TableView from "./TableView";
 
 describe("<TableView />", () => {
   it("renders a div", () => {
-    const wrapper = shallow(<TableView />);
-    expect(wrapper.find("div")).toHaveLength(1);
+    const wrapper = shallow(<TableView videos={{ results: [] }} />);
+    expect(wrapper.find("div")).toHaveLength(0);
   });
 });

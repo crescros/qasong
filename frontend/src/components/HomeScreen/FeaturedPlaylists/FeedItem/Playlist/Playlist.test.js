@@ -4,7 +4,7 @@ import Playlist from "./Playlist";
 
 describe("<Playlist />", () => {
   it("renders a div", () => {
-    const wrapper = shallow(<Playlist playlist={{ id: "3" }} />);
+    const wrapper = shallow(<Playlist queue={[]} playlist={{ id: "3", queue: [] }} />);
     expect(wrapper.find(<div />)).toHaveLength(0);
   });
 });

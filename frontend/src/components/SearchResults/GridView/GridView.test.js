@@ -4,7 +4,7 @@ import GridView from "./GridView";
 
 describe("<GridView />", () => {
   it("renders a div", () => {
-    const wrapper = shallow(<GridView />);
-    expect(wrapper.find("div")).toHaveLength(1);
+    const wrapper = shallow(<GridView videos={{ results: [] }} />);
+    expect(wrapper.find("div")).toHaveLength(0);
   });
 });
