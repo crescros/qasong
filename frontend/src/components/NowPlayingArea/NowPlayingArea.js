@@ -47,7 +47,7 @@ export default function BottomAppBar({
 }) {
   const classes = useStyles();
   const [iframeState, setIframeState] = useState();
-  const [progressSeconds, setProgressSeconds] = useState(0);
+  // const [progressSeconds, setProgressSeconds] = useState(0);
 
   const nextTitle = getNextInQueue()?.title;
   const previousTitle = getPreviousInQueue()?.title;
@@ -79,10 +79,6 @@ export default function BottomAppBar({
   }
 
   const isPlaying = iframeState === 1;
-
-  if (isPlaying) {
-    setProgressSeconds(1);
-  }
 
   return (
     <React.Fragment>
@@ -121,7 +117,7 @@ export default function BottomAppBar({
               )}
 
               <Typography align="center" color="secondary">
-                00:0{progressSeconds}/{nowPlaying.duration.timestamp}
+                00:0{0}/{nowPlaying.duration.timestamp}
               </Typography>
             </Toolbar>
           </Grid>
