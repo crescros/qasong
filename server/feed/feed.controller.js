@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-let mockFeed
+let mockFeed;
 try {
   mockFeed = require("../data/mockFeed.json");
 } catch (err) {
