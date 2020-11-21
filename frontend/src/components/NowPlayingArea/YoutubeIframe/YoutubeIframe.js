@@ -3,7 +3,7 @@ import YouTube from "react-youtube";
 
 export default function Video({ nowPlaying, setNowPlaying, setIframeState }) {
   const youtubePlayerOptions = {
-    height: "0px",
+    height: "4px",
     width: "100%",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters

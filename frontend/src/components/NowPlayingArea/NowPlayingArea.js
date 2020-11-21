@@ -22,6 +22,7 @@ import {
 import SkipSongButton from "./SkipSongButton/SkipSongButton";
 import PreviousSongButton from "./PreviousSongButton/PreviousSongButton";
 import YoutubeIframe from "./YoutubeIframe/YoutubeIframe";
+import ProgressText from "./ProgressText/ProgressText";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -78,6 +79,7 @@ export default function BottomAppBar({
     return <div></div>;
   }
 
+  const isStopped = iframeState === -1;
   const isPlaying = iframeState === 1;
 
   return (
@@ -116,9 +118,11 @@ export default function BottomAppBar({
                 </IconButton>
               )}
 
-              <Typography align="center" color="secondary">
-                00:0{0}/{nowPlaying.duration.timestamp}
-              </Typography>
+              <ProgressText
+                isActive={isPlaying}
+                isReset={isStopped}
+                total={nowPlaying.duration.timestamp}
+              />
             </Toolbar>
           </Grid>
 

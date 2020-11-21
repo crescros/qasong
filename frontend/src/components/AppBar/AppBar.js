@@ -93,8 +93,8 @@ export default function PrimarySearchAppBar({
           <div className={classes.grow} />
 
           {/* Menus */}
-          <DesktopMenu {...{ queue, darkMode, setDarkMode }} />
-          <MobileMenu {...{ queue, darkMode, setDarkMode }} />
+          <DesktopMenu queueLength={queue.length} {...{ darkMode, setDarkMode }} />
+          <MobileMenu queueLength={queue.length} {...{ darkMode, setDarkMode }} />
         </Toolbar>
       </AppBar>
     </div>

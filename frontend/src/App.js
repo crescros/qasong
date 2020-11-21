@@ -166,10 +166,11 @@ const App = () => {
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
-      <div style={{
-        minHeight:"80vh"
-      }}>
-
+      <div
+        style={{
+          minHeight: "80vh",
+        }}
+      >
         <img
           src=".\img\topCurve.svg"
           width="465px"
