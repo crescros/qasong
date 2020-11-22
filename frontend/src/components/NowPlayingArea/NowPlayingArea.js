@@ -24,6 +24,7 @@ import PreviousSongButton from "./PreviousSongButton/PreviousSongButton";
 import YoutubeIframe from "./YoutubeIframe/YoutubeIframe";
 import ProgressText from "./ProgressText/ProgressText";
 
+
 const useStyles = makeStyles((theme) => ({
   appBar: {
     top: "auto",
@@ -106,8 +107,6 @@ export default function BottomAppBar({
               </IconButton>
               <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />
 
-              <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
-
               {isPlaying ? (
                 <IconButton color="secondary" onClick={pauseVideo}>
                   <PauseIcon />
@@ -117,6 +116,8 @@ export default function BottomAppBar({
                   <PlayArrowIcon />
                 </IconButton>
               )}
+        
+              <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
 
               <ProgressText
                 isActive={isPlaying}
