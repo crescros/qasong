@@ -23,7 +23,7 @@ import SkipSongButton from "./SkipSongButton/SkipSongButton";
 import PreviousSongButton from "./PreviousSongButton/PreviousSongButton";
 import YoutubeIframe from "./YoutubeIframe/YoutubeIframe";
 import ProgressText from "./ProgressText/ProgressText";
-
+import VolumeSlider from "./VolumeSlider/VolumeSlider";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -105,8 +105,9 @@ export default function BottomAppBar({
               <IconButton onClick={stopVideo} color="secondary">
                 <StopIcon />
               </IconButton>
+              {/* skip to previous */}
               <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />
-
+              {/* Pause or play current song */}
               {isPlaying ? (
                 <IconButton color="secondary" onClick={pauseVideo}>
                   <PauseIcon />
@@ -116,14 +117,16 @@ export default function BottomAppBar({
                   <PlayArrowIcon />
                 </IconButton>
               )}
-        
+              {/* Skip to next */}
               <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
-
+              {/* Current time progress */}
               <ProgressText
                 isActive={isPlaying}
                 isReset={isStopped}
                 total={nowPlaying.duration.timestamp}
               />
+              {/* Volume Slider */}
+              
             </Toolbar>
           </Grid>
 
