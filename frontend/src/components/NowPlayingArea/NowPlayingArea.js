@@ -23,7 +23,6 @@ import SkipSongButton from "./SkipSongButton/SkipSongButton";
 import PreviousSongButton from "./PreviousSongButton/PreviousSongButton";
 import YoutubeIframe from "./YoutubeIframe/YoutubeIframe";
 import ProgressText from "./ProgressText/ProgressText";
-import VolumeSlider from "./VolumeSlider/VolumeSlider";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -126,7 +125,6 @@ export default function BottomAppBar({
                 total={nowPlaying.duration.timestamp}
               />
               {/* Volume Slider */}
-              
             </Toolbar>
           </Grid>
 
