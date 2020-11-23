@@ -81,6 +81,7 @@ export default function BottomAppBar({
 
   const isStopped = iframeState === -1;
   const isPlaying = iframeState === 1;
+  const isQueue = nextTitle || previousTitle
 
   return (
     <React.Fragment>
@@ -104,19 +105,21 @@ export default function BottomAppBar({
               <IconButton onClick={stopVideo} color="secondary">
                 <StopIcon />
               </IconButton>
-              <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />
 
-              <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
+              {isQueue && <>
+                <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />
+                <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
+              </>}
 
               {isPlaying ? (
                 <IconButton color="secondary" onClick={pauseVideo}>
                   <PauseIcon />
                 </IconButton>
               ) : (
-                <IconButton color="secondary" onClick={startVideo}>
-                  <PlayArrowIcon />
-                </IconButton>
-              )}
+                  <IconButton color="secondary" onClick={startVideo}>
+                    <PlayArrowIcon />
+                  </IconButton>
+                )}
 
               <ProgressText
                 isActive={isPlaying}
