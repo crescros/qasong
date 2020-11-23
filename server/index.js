@@ -33,7 +33,6 @@ app.use("/api/env", (req, res) => res.send(process.env.NODE_ENV), apiLimiter);
 
 // frontend routes
 function serveReactApp(req, res) {
-
   // if (process.env.NODE_ENV !== "development"){
   //   if(!req.secure){
   //       res.redirect("https://" + req.headers.host + req.url);
