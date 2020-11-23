@@ -39,6 +39,7 @@ function serveReactApp(req, res) {
   //   }
   // }
 
+// eslint-disable-next-line no-unused-vars
   res.sendFile(path.join(__dirname, "../public", "index.html"));
 }
 
