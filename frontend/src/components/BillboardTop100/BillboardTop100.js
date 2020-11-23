@@ -13,6 +13,7 @@ function BillboardTop100({ setSearchTerm }) {
     setLoading(false);
   };
 
+  // load data from billboard api into state
   React.useEffect(() => {
     (async () => {
       const data = await getBillboardTop100();
@@ -33,7 +34,7 @@ function BillboardTop100({ setSearchTerm }) {
       <Grid container direction="column" spacing={1}>
         {billboard.data?.map((item) => {
           return (
-            <Grid item key={item.position} onLoad={dataLoaded}>
+            <Grid item key={item.rank} onLoad={dataLoaded}>
               <BillboardItem {...{ item, setSearchTerm }} />
             </Grid>
           );

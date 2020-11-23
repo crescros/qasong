@@ -42,8 +42,8 @@ the frontend should be live at localhost:8080
 the backend will be available at localhost:3016
 
 note: the frontend is currently hardwired to communicate with the production api.
-To see your backend changes in the frontend, you'll need to change the url in functions.js. 
-you should find the development url there commented out. 
+To see your backend changes in the frontend, you'll need to change the url in functions.js.
+you should find the development url there commented out.
 
 ## About the Application
 
@@ -61,8 +61,8 @@ This project is currently under development and is scheduled for it's first rele
 
 [Other Resources](https://team.qasong.com)
 
-## CONTRIBUTING 
+## CONTRIBUTING
 
 please make a pull request to the `develop` branch of this repo
 
-for assistance working with this repo, contact us on [discord](https://discord.gg/b2gEwT8) or ping a contributer in an Issue. 
+for assistance working with this repo, contact us on discord [discord](https://discord.gg/b2gEwT8) or ping a contributer in an Issue.

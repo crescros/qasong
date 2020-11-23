@@ -15,7 +15,6 @@ function HomeScreen({
   setQueue,
   setNowPlaying,
   nowPlaying,
-  setQueueName,
   isLoading,
   queue,
   addSongToQueue,
@@ -68,7 +67,6 @@ function HomeScreen({
                 setQueue,
                 setNowPlaying,
                 nowPlaying,
-                setQueueName,
                 queue,
                 addSongToQueue,
               }}

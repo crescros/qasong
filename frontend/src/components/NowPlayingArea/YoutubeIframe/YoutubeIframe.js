@@ -1,9 +1,9 @@
 import React from "react";
 import YouTube from "react-youtube";
 
-function Video({ id, setNowPlaying, setIframeState }) {
+export default function Video({ nowPlaying, setNowPlaying, setIframeState }) {
   const youtubePlayerOptions = {
-    height: "0px",
+    height: "4px",
     width: "100%",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
@@ -14,7 +14,7 @@ function Video({ id, setNowPlaying, setIframeState }) {
       enablejsapi: 1,
       origin:
         process.env.NODE_ENV === "production"
-          ? "https://artistify-2.appspot.com/"
+          ? "https://qasong.com/"
           : "http://localhost:8080",
     },
   };
@@ -26,6 +26,8 @@ function Video({ id, setNowPlaying, setIframeState }) {
   function handleStateChange(e) {
     setIframeState(e.data);
   }
+
+  const id = nowPlaying.videoId;
 
   if (!id) return <div id="empty-div"></div>;
 
@@ -44,5 +46,3 @@ function Video({ id, setNowPlaying, setIframeState }) {
     />
   );
 }
-
-export default Video;

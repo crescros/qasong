@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PrimarySearchAppBar({
-  handleSearchTermInput,
   handleSubmitVideoSearch,
+  setSearchTerm,
   searchTerm,
   queue,
   darkMode,
@@ -46,6 +46,10 @@ export default function PrimarySearchAppBar({
 
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollTop]);
+
+  const handleSearchTermInput = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <div className={classes.grow}>
@@ -89,8 +93,8 @@ export default function PrimarySearchAppBar({
           <div className={classes.grow} />
 
           {/* Menus */}
-          <DesktopMenu {...{ queue, darkMode, setDarkMode }} />
-          <MobileMenu {...{ queue, darkMode, setDarkMode }} />
+          <DesktopMenu queueLength={queue.length} {...{ darkMode, setDarkMode }} />
+          <MobileMenu queueLength={queue.length} {...{ darkMode, setDarkMode }} />
         </Toolbar>
       </AppBar>
     </div>

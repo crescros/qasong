@@ -7,9 +7,6 @@ import { ThemeProvider } from "@material-ui/styles";
 import Routes from "./routes";
 
 // lazy load components
-const YoutubeIframeArea = React.lazy(() =>
-  import("./components/YoutubeIframeArea/YoutubeIframeArea")
-);
 const NowPlayingArea = React.lazy(() =>
   import("./components/NowPlayingArea/NowPlayingArea")
 );
@@ -62,7 +59,6 @@ const App = () => {
   const [queue, setQueue] = useState([]);
   const [videos, setVideos] = useState([]);
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
-  const [iframeState, setIframeState] = useState();
 
   function skipSong() {
     const i = queue.findIndex((item) => item.qid === currentQid);
@@ -150,12 +146,7 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("queue", JSON.stringify(queue));
   }, [queue]);
-
-  // event listener for search input
-  const handleSearchTermInput = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
+  // hiiiiiiiiii(lol)iiiiiiiiiiiiiiiiiiiiiiiiii
   // event listener for search submit
   const handleSubmitVideoSearch = async (e) => {
     setIsLoading(true);
@@ -175,64 +166,56 @@ const App = () => {
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
-
-      <img
-        src=".\img\topCurve.svg"
-        width="465px"
-        style={{ position: "absolute", zIndex: -10000, maxWidth: "100%" }}
-      />
-
-      {<div style={{ height: "72px" }}></div>}
-
-      <Routes
-        {...{
-          darkMode,
-          isLoading,
-          nowPlaying,
-          searchTerm,
-          setDarkMode,
-          setSearchTerm,
-          setVideos,
-          searchTableViewMode,
-          handleSearchTermInput,
-          handleSubmitVideoSearch,
-          queue,
-          setNowPlaying,
-          setQueue,
-          videos,
-          setSearchTableViewMode,
-          addSongToQueue,
+      <div
+        style={{
+          minHeight: "80vh",
         }}
-      />
-
-      {/* YOUTUBE IFRAME */}
-      <Suspense fallback={<div />}>
-        <YoutubeIframeArea
-          {...{
-            nowPlaying,
-            setNowPlaying,
-            iframeState,
-            setIframeState,
-          }}
+      >
+        <img
+          src=".\img\topCurve.svg"
+          width="465px"
+          style={{ position: "absolute", zIndex: -10000, maxWidth: "100%" }}
         />
-      </Suspense>
 
-      {/* NOW PLAYING AREA */}
-      <Suspense fallback={<div />}>
-        <NowPlayingArea
+        {<div style={{ height: "72px" }}></div>}
+
+        <Routes
           {...{
-            skipSong,
-            previousSong,
+            darkMode,
+            isLoading,
             nowPlaying,
+            searchTerm,
+            setDarkMode,
+            setSearchTerm,
+            setVideos,
+            searchTableViewMode,
+            handleSubmitVideoSearch,
             queue,
-            videos,
             setNowPlaying,
-            getNextInQueue,
-            getPreviousInQueue,
-            iframeState,
+            setQueue,
+            videos,
+            setSearchTableViewMode,
+            addSongToQueue,
           }}
         />
-      </Suspense>
+
+        {/* NOW PLAYING AREA */}
+        <Suspense fallback={<div />}>
+          <NowPlayingArea
+            {...{
+              skipSong,
+              previousSong,
+              nowPlaying,
+              queue,
+              videos,
+              setNowPlaying,
+              getNextInQueue,
+              getPreviousInQueue,
+            }}
+          />
+        </Suspense>
+      </div>
+
       <img
         src=".\img\bottomCurve.svg"
         width="465px"

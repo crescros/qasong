@@ -21,11 +21,8 @@ function Routes({
   setVideos,
   user,
   searchTableViewMode,
-  handleSearchTermInput,
   handleSubmitVideoSearch,
   queue,
-  queueName,
-  setQueueName,
   setNowPlaying,
   setQueue,
   videos,
@@ -38,13 +35,12 @@ function Routes({
         <AppBar
           {...{
             darkMode,
-            handleSearchTermInput,
             handleSubmitVideoSearch,
             isLoading,
             queue,
             searchTerm,
-            setDarkMode,
             setSearchTerm,
+            setDarkMode,
             setVideos,
             user,
           }}
@@ -64,7 +60,6 @@ function Routes({
               <SearchResults
                 {...{
                   searchTableViewMode,
-                  handleSearchTermInput,
                   handleSubmitVideoSearch,
                   nowPlaying,
                   queue,
@@ -82,10 +77,8 @@ function Routes({
                 {...{
                   nowPlaying,
                   queue,
-                  queueName,
                   setNowPlaying,
                   setQueue,
-                  setQueueName,
                 }}
               />
             </Suspense>
@@ -94,14 +87,9 @@ function Routes({
             <Suspense fallback={<div />}>
               <HomeScreen
                 {...{
-                  handleSubmitVideoSearch,
-                  handleSearchTermInput,
-                  searchTerm,
                   setQueue,
-                  setQueueName,
                   setNowPlaying,
                   nowPlaying,
-                  queueName,
                   isLoading,
                   queue,
                   addSongToQueue,

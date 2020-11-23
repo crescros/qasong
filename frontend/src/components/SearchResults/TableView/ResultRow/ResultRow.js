@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { CardMedia, TableRow, TableCell, IconButton } from "@material-ui/core";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import { numberWithCommas } from "../../../../functions";
 import uuid from "react-uuid";
 import AddToQueueButton from "./AddToQueueButton/AddToQueueButton";
 
@@ -56,7 +57,7 @@ export default function ResultRow({ video, setNowPlaying, nowPlaying, queue, set
     <TableRow
       className={classes.row}
       key={video.videoId}
-      style={{ backgroundColor: playing && "#2ad156" }}
+      style={{ backgroundColor: playing && "#FE9021" }}
     >
       <TableCell>
         <IconButton onClick={handlePlayButton} aria-label="Play">
@@ -68,7 +69,7 @@ export default function ResultRow({ video, setNowPlaying, nowPlaying, queue, set
       </TableCell>
       <TableCell>{video.title}</TableCell>
       <TableCell>{video.author.name}</TableCell>
-      <TableCell>{video.views}</TableCell>
+      <TableCell>{numberWithCommas(video.views)}</TableCell>
       <TableCell>
         <CardMedia
           onClick={handlePlayButton}

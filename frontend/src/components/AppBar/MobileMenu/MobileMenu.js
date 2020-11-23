@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MobileMenu({ queue, darkMode, setDarkMode }) {
+function MobileMenu({ queueLength, darkMode, setDarkMode }) {
   const classes = useStyles();
 
   let history = useHistory();
@@ -40,6 +40,14 @@ function MobileMenu({ queue, darkMode, setDarkMode }) {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  function handleQueueButtonClick() {
+    history.push("/queue");
+  }
+
+  function handleDarkmodeButtonClick() {
+    setDarkMode(!darkMode);
+  }
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   return (
@@ -61,15 +69,12 @@ function MobileMenu({ queue, darkMode, setDarkMode }) {
       >
         {/* QUEUE */}
         <Tooltip
-          title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}
+          title={queueLength === 0 ? "Search for songs and add them to your queue" : ""}
         >
           <Box>
-            <MenuItem
-              disabled={queue.length === 0}
-              onClick={() => history.push("/queue")}
-            >
-              <IconButton disabled={queue.length === 0} target="_blank" color="inherit">
-                <Badge badgeContent={queue.length} color="secondary">
+            <MenuItem disabled={queueLength === 0} onClick={handleQueueButtonClick}>
+              <IconButton disabled={queueLength === 0} target="_blank" color="inherit">
+                <Badge badgeContent={queueLength} color="secondary">
                   <QueueMusicIcon style={{ fontSize: "40px" }} />
                 </Badge>
               </IconButton>
@@ -79,7 +84,7 @@ function MobileMenu({ queue, darkMode, setDarkMode }) {
         </Tooltip>
 
         {/* dark mode */}
-        <MenuItem onClick={() => setDarkMode(!darkMode)}>
+        <MenuItem onClick={handleDarkmodeButtonClick}>
           {/* dark mode slider mobile */}
           <Switch checked={darkMode} />
           <p>Dark Mode</p>
@@ -92,7 +97,7 @@ function MobileMenu({ queue, darkMode, setDarkMode }) {
         onClick={handleMobileMenuOpen}
         color="inherit"
       >
-        <Badge badgeContent={queue.length} color="secondary">
+        <Badge badgeContent={queueLength} color="secondary">
           <MoreIcon />
         </Badge>
       </IconButton>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Tooltip, Box, IconButton, Badge, Typography } from "@material-ui/core";
+import { Box, IconButton, Badge, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
@@ -16,41 +16,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function DesktopMenu({ queue, darkMode, setDarkMode }) {
+function DesktopMenu({ queueLength, darkMode, setDarkMode }) {
   let history = useHistory();
 
   const classes = useStyles();
 
+  function handleQueueButtonClick() {
+    history.push("/queue");
+  }
+
+  function handleDarkModeButtonClick() {
+    setDarkMode(!darkMode);
+  }
+
   return (
     <div className={classes.sectionDesktop} id="desktop-menu">
-      <Tooltip
-        title={queue.length === 0 ? "Search for songs and add them to your queue" : ""}
-      >
-        <Box>
-          <IconButton
-            edge="end"
-            title={"songs currently in the queue"}
-            color={"inherit"}
-            target="_blank"
-            onClick={() => {
-              history.push("/queue");
-            }}
-          >
-            <Box mb={1}>
-              <Typography>queue</Typography>
-            </Box>
-            <Badge badgeContent={queue.length} color="secondary">
-              <QueueMusicIcon style={{ fontSize: "40px" }} />
-            </Badge>
-          </IconButton>
-        </Box>
-      </Tooltip>
+      <Box mr={3}>
+        <IconButton
+          edge="end"
+          title="view songs currently in the queue"
+          color="inherit"
+          onClick={handleQueueButtonClick}
+        >
+          <Box mb={1}>
+            <Typography>queue</Typography>
+          </Box>
+          <Badge badgeContent={queueLength} color="secondary">
+            <QueueMusicIcon />
+          </Badge>
+        </IconButton>
+      </Box>
 
       <IconButton
         edge="end"
         title="toggle light/dark theme"
-        onClick={() => setDarkMode(!darkMode)}
-        target="_blank"
+        onClick={handleDarkModeButtonClick}
       >
         {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
       </IconButton>

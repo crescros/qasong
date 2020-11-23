@@ -1,21 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+
+// material ui
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
-import AppBar from "@material-ui/core/AppBar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
+import {
+  Typography,
+  Box,
+  CssBaseline,
+  Toolbar,
+  AppBar,
+  Grid,
+  IconButton,
+  Link,
+} from "@material-ui/core";
+import {
+  Stop as StopIcon,
+  PlayArrow as PlayArrowIcon,
+  Pause as PauseIcon,
+} from "@material-ui/icons";
+
+// components
 import SkipSongButton from "./SkipSongButton/SkipSongButton";
 import PreviousSongButton from "./PreviousSongButton/PreviousSongButton";
-import StopIcon from "@material-ui/icons/Stop";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import PauseIcon from "@material-ui/icons/Pause";
+import YoutubeIframe from "./YoutubeIframe/YoutubeIframe";
+import ProgressText from "./ProgressText/ProgressText";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
     top: "auto",
     bottom: 0,
-    height: 75,
     borderTop: "2px solid",
     borderColor: theme.palette.secondary.main,
   },
@@ -28,13 +40,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BottomAppBar({
   nowPlaying,
+  setNowPlaying,
   previousSong,
   skipSong,
   getNextInQueue,
   getPreviousInQueue,
-  iframeState,
 }) {
   const classes = useStyles();
+  const [iframeState, setIframeState] = useState();
+  // const [progressSeconds, setProgressSeconds] = useState(0);
 
   const nextTitle = getNextInQueue()?.title;
   const previousTitle = getPreviousInQueue()?.title;
@@ -65,37 +79,76 @@ export default function BottomAppBar({
     return <div></div>;
   }
 
+  const isStopped = iframeState === -1;
+  const isPlaying = iframeState === 1;
+  const isQueue = nextTitle || previousTitle;
+
   return (
     <React.Fragment>
       <CssBaseline />
+      <YoutubeIframe
+        {...{
+          nowPlaying,
+          setNowPlaying,
+          iframeState,
+          setIframeState,
+        }}
+      />
       <AppBar position="fixed" color="primary" className={classes.appBar}>
-        <Toolbar className={classes.grow}>
-          <Typography variant="caption">{nowPlaying.title}</Typography>
-          <IconButton onClick={stopVideo} color="secondary">
-            <StopIcon />
-          </IconButton>
-          <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />
+        <Grid container justify="center" alignItems="center" alignContent="center">
+          <Grid item xs={12} sm={4}>
+            <Typography align="center">{nowPlaying.title}</Typography>
+          </Grid>
 
-          <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
+          <Grid item xs={12} sm={4}>
+            <Toolbar className={classes.grow}>
+              <IconButton onClick={stopVideo} color="secondary">
+                <StopIcon />
+              </IconButton>
 
-          {iframeState === 1 ? (
-            <IconButton color="secondary" onClick={pauseVideo}>
-              <PauseIcon />
-            </IconButton>
-          ) : (
-            <IconButton color="secondary" onClick={startVideo}>
-              <PlayArrowIcon />
-            </IconButton>
-          )}
+              {isQueue && (
+                <>
+                  <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />
+                  <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
+                </>
+              )}
 
-          <Typography color="secondary">00:00/{nowPlaying.duration.timestamp}</Typography>
+              {isPlaying ? (
+                <IconButton color="secondary" onClick={pauseVideo}>
+                  <PauseIcon />
+                </IconButton>
+              ) : (
+                <IconButton color="secondary" onClick={startVideo}>
+                  <PlayArrowIcon />
+                </IconButton>
+              )}
+              {/* Skip to next */}
+              <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
+              {/* Current time progress */}
+              <ProgressText
+                isActive={isPlaying}
+                isReset={isStopped}
+                total={nowPlaying.duration.timestamp}
+              />
+              {/* Volume Slider */}
+            </Toolbar>
+          </Grid>
 
-          {nextTitle && (
-            <Typography color="textSecondary" variant="caption">
-              next: {nextTitle}
-            </Typography>
-          )}
-        </Toolbar>
+          <Grid item xs={12} sm={4}>
+            {nextTitle && (
+              <Box pl={3} align="center">
+                <Link
+                  component="button"
+                  variant="body2"
+                  onClick={skipSong}
+                  color="textSecondary"
+                >
+                  next: {nextTitle}
+                </Link>
+              </Box>
+            )}
+          </Grid>
+        </Grid>
       </AppBar>
     </React.Fragment>
   );
