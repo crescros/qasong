@@ -18,7 +18,6 @@ const apiLimiter = rateLimit({
 // initialize express
 const app = express();
 app.use(cors());
-app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // app.use(jwt());
@@ -44,6 +43,7 @@ app.get("/search", (req, res) => {
 app.get("/", (req, res) => {
   res.sendFile("public/index.html");
 });
+app.use(express.static("public"));
 
 // start server
 const port = process.env.PORT || 3016;
