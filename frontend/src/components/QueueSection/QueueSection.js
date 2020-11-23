@@ -35,7 +35,7 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
   );
 
   if (!queue.length > 0) {
-    return <div>no queue</div>;
+    return <Typography align="center">no queue</Typography>;
   }
 
   return (
