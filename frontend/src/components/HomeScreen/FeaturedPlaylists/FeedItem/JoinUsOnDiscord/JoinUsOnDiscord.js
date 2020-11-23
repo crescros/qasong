@@ -25,10 +25,7 @@ function Playlist() {
 
   return (
     <Grid key={"discord"} item>
-      <CardActionArea
-        href="https://discord.com/invite/kczTtg8VDP"
-        className={classes.playlist}
-      >
+      <CardActionArea href="https://discord.gg/VnpcrtYnrS" className={classes.playlist}>
         <Grid
           container
           alignContent="center"

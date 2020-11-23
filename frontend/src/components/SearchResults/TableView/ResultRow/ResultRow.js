@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { CardMedia, TableRow, TableCell, IconButton } from "@material-ui/core";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import { numberWithCommas } from "../../../../functions"
+import { numberWithCommas } from "../../../../functions";
 import uuid from "react-uuid";
 import AddToQueueButton from "./AddToQueueButton/AddToQueueButton";
 
