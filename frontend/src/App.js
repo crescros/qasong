@@ -5,6 +5,7 @@ import { CssBaseline } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import Routes from "./routes";
+import footer from ".footer"
 
 // lazy load components
 const YoutubeIframeArea = React.lazy(() =>
@@ -233,6 +234,13 @@ const App = () => {
           }}
         />
       </Suspense>
+    const App = ()=>{
+   return (
+       <div className="App">
+           <Footer/>
+       </div>
+   )
+}
       <img
         src=".\img\bottomCurve.svg"
         width="465px"
