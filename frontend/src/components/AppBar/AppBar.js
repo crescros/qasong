@@ -26,8 +26,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PrimarySearchAppBar({
   handleSubmitVideoSearch,
-  setSearchTerm,
-  searchTerm,
   queue,
   darkMode,
   setDarkMode,
@@ -73,9 +71,7 @@ export default function PrimarySearchAppBar({
 
           {/* Search bar */}
           <VideoSearch
-            setSearchTerm={setSearchTerm}
             handleSubmitVideoSearch={handleSubmitVideoSearch}
-            searchTerm={searchTerm}
             style={{
               margin: "0 auto",
               maxWidth: 800,

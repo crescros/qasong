@@ -4,12 +4,12 @@ import { getYoutubeIdFromSearch } from "./functions";
 import { CssBaseline } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import Routes from "./routes";
 
 // lazy load components
 const NowPlayingArea = React.lazy(() =>
   import("./components/NowPlayingArea/NowPlayingArea")
 );
+const Routes = React.lazy(() => import("./routes"))
 
 // DARK MODE
 const darkTheme = createMuiTheme({
@@ -149,13 +149,12 @@ const App = () => {
   // event listener for search submit
   const handleSubmitVideoSearch = async (e) => {
     setIsLoading(true);
-    
-    
+
     if (e) {
       e.preventDefault();
     }
 
-    const searchTerm = e.target.qasongsearch.value
+    const searchTerm = e.target.qasongsearch.value;
 
     const results = await getYoutubeIdFromSearch(searchTerm);
     setVideos({
@@ -181,23 +180,25 @@ const App = () => {
 
         {<div style={{ height: "72px" }}></div>}
 
-        <Routes
-          {...{
-            darkMode,
-            isLoading,
-            nowPlaying,
-            setDarkMode,
-            setVideos,
-            searchTableViewMode,
-            handleSubmitVideoSearch,
-            queue,
-            setNowPlaying,
-            setQueue,
-            videos,
-            setSearchTableViewMode,
-            addSongToQueue,
-          }}
-        />
+        <Suspense fallback={<div />}>
+          <Routes
+            {...{
+              darkMode,
+              isLoading,
+              nowPlaying,
+              setDarkMode,
+              setVideos,
+              searchTableViewMode,
+              handleSubmitVideoSearch,
+              queue,
+              setNowPlaying,
+              setQueue,
+              videos,
+              setSearchTableViewMode,
+              addSongToQueue,
+            }}
+          />
+        </Suspense>
 
         {/* NOW PLAYING AREA */}
         <Suspense fallback={<div />}>

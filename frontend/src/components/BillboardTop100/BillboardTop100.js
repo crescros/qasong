@@ -13,10 +13,10 @@ function BillboardTop100() {
     setLoading(false);
   };
 
-  function setSearchTerm(text){
-    const qasongSearchInput = document.querySelector("#qasongsearch")
+  function setSearchTerm(text) {
+    const qasongSearchInput = document.querySelector("#qasongsearch");
 
-    qasongSearchInput.value = text
+    qasongSearchInput.value = text;
   }
 
   // load data from billboard api into state

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
-import FeaturedPlaylists from "./FeaturedPlaylists/FeaturedPlaylists";
-import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
+const FeaturedPlaylists = React.lazy(() => import("./FeaturedPlaylists/FeaturedPlaylists"));
 
 const useStyles = makeStyles((theme) => ({
   link: {
@@ -62,15 +62,17 @@ function HomeScreen({
         <Grid item>{isLoading && <LoadingAnimation size="32px" />}</Grid>
         <Grid item>
           <Box mt={12}>
-            <FeaturedPlaylists
-              {...{
-                setQueue,
-                setNowPlaying,
-                nowPlaying,
-                queue,
-                addSongToQueue,
-              }}
-            />
+            <Suspense>
+              <FeaturedPlaylists
+                {...{
+                  setQueue,
+                  setNowPlaying,
+                  nowPlaying,
+                  queue,
+                  addSongToQueue,
+                }}
+              />
+            </Suspense>
           </Box>
         </Grid>
       </Grid>

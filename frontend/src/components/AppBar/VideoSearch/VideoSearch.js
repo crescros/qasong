@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 function VideoSearch({ handleSubmitVideoSearch }) {
   const classes = useStyles();
   let history = useHistory();
-  const [searchTerm, setSearchTerm ] = React.useState()
+  const [searchTerm, setSearchTerm] = React.useState();
 
   const handleSearchTermInput = (e) => {
     setSearchTerm(e.target.value);
