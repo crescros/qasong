@@ -10,7 +10,7 @@ const QueueSection = React.lazy(() => import("./components/QueueSection/QueueSec
 const BillboardTop100 = React.lazy(() =>
   import("./components/BillboardTop100/BillboardTop100")
 );
-
+// so what d
 function Routes({
   darkMode,
   isLoading,

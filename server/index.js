@@ -1,6 +1,7 @@
 // import dependencies
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const bodyParser = require("body-parser");
 const errorHandler = require("./_helpers/error-handler");
 const rateLimit = require("express-rate-limit");
@@ -31,18 +32,21 @@ app.use("/api/billboard", require("./billboard/billboard.controller"), apiLimite
 app.use("/api/env", (req, res) => res.send(process.env.NODE_ENV), apiLimiter);
 
 // frontend routes
-app.get("/billboard", (req, res) => {
-  res.sendFile("public/index.html");
-});
-app.get("/queue", (req, res) => {
-  res.sendFile("public/index.html");
-});
-app.get("/search", (req, res) => {
-  res.sendFile("public/index.html");
-});
-app.get("/", (req, res) => {
-  res.sendFile("public/index.html");
-});
+function serveReactApp(req, res) {
+
+  // if (process.env.NODE_ENV !== "development"){
+  //   if(!req.secure){
+  //       res.redirect("https://" + req.headers.host + req.url);
+  //   }
+  // }
+
+  res.sendFile(path.join(__dirname, "../public", "index.html"));
+}
+
+app.get("/", serveReactApp);
+app.get("/billboard", serveReactApp);
+app.get("/queue", serveReactApp);
+app.get("/search", serveReactApp);
 app.use(express.static("public"));
 
 // start server
