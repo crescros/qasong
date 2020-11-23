@@ -18,10 +18,10 @@ const NowPlayingArea = React.lazy(() =>
 const darkTheme = createMuiTheme({
   palette: {
     background: {
-      default: "#000000",
+      default: "#000",
     },
     primary: {
-      main: "#000000",
+      main: "#000",
     },
     secondary: {
       main: "#FE9021",
@@ -37,7 +37,7 @@ const darkTheme = createMuiTheme({
 const lightTheme = createMuiTheme({
   palette: {
     background: {
-      default: "##f7f3f2",
+      default: "#f7f3f2",
     },
     primary: {
       main: "#fff",
@@ -62,6 +62,7 @@ const App = () => {
   const [queue, setQueue] = useState([]);
   const [videos, setVideos] = useState([]);
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
+  const [iframeState, setIframeState] = useState();
 
   function skipSong() {
     const i = queue.findIndex((item) => item.qid === currentQid);
@@ -71,13 +72,19 @@ const App = () => {
 
   function previousSong() {
     const i = queue.findIndex((item) => item.qid === currentQid);
-    const nextInQueue = queue[i - 1];
-    setNowPlaying(nextInQueue);
+    const previousInQueue = queue[i - 1];
+    setNowPlaying(previousInQueue);
   }
 
   function getNextInQueue() {
     const i = queue.findIndex((item) => item.qid === currentQid);
     const nextInQueue = queue[i + 1];
+    return nextInQueue;
+  }
+
+  function getPreviousInQueue() {
+    const i = queue.findIndex((item) => item.qid === currentQid);
+    const nextInQueue = queue[i - 1];
     return nextInQueue;
   }
 
@@ -87,26 +94,28 @@ const App = () => {
 
   // runs once when app starts
   useEffect(() => {
-    (async () => {
-      // set dark mode from local storage
-      const userDarkMode = localStorage.getItem("userDarkMode");
-      if (userDarkMode === "false") {
-        setDarkMode(false);
-      }
+    // (async () => {
+    //   // set dark mode from local storage
+    //   const userDarkMode = localStorage.getItem("userDarkMode");
+    //   if (userDarkMode === "false") {
+    //     setDarkMode(false);
+    //   }
 
-      // set search list view mode from local storage
-      const userSearchTableViewMode = localStorage.getItem("userSearchTableViewMode");
-      if (userSearchTableViewMode === "true") {
-        setSearchTableViewMode(true);
-      }
+    //   // set search list view mode from local storage
+    //   const userSearchTableViewMode = localStorage.getItem("userSearchTableViewMode");
+    //   if (userSearchTableViewMode === "true") {
+    //     setSearchTableViewMode(true);
+    //   }
 
-      // if theres no queue in the url, get it from local storage
-      const storedQueue = localStorage.getItem("queue");
-      if (storedQueue) {
-        const localQueue = JSON.parse(storedQueue);
-        setQueue(localQueue);
-      }
-    })();
+    //   // if theres no queue in the url, get it from local storage
+    //   const storedQueue = localStorage.getItem("queue");
+    //   if (storedQueue) {
+    //     const localQueue = JSON.parse(storedQueue);
+    //     setQueue(localQueue);
+    //   }
+    // })();
+
+    localStorage.clear();
   }, []);
 
   //when nowPlaying changes
@@ -168,7 +177,7 @@ const App = () => {
       <CssBaseline />
 
       <img
-        src=".\img\leftCurve.svg"
+        src=".\img\topCurve.svg"
         width="465px"
         style={{ position: "absolute", zIndex: -10000, maxWidth: "100%" }}
       />
@@ -202,6 +211,8 @@ const App = () => {
           {...{
             nowPlaying,
             setNowPlaying,
+            iframeState,
+            setIframeState,
           }}
         />
       </Suspense>
@@ -217,9 +228,16 @@ const App = () => {
             videos,
             setNowPlaying,
             getNextInQueue,
+            getPreviousInQueue,
+            iframeState,
           }}
         />
       </Suspense>
+      <img
+        src=".\img\bottomCurve.svg"
+        width="465px"
+        style={{ position: "absolute", zIndex: -10000, maxWidth: "100%", right: "0%" }}
+      />
     </ThemeProvider>
   );
 };
