@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: `0 0 30px ${theme.palette.secondary.main}`,
     borderRadius: "50%",
     maxWidth: "100%",
+    marginBottom: "35px",
   },
 }));
 

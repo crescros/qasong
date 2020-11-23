@@ -122,12 +122,15 @@ export default function BottomAppBar({
                   <PlayArrowIcon />
                 </IconButton>
               )}
-
+              {/* Skip to next */}
+              <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
+              {/* Current time progress */}
               <ProgressText
                 isActive={isPlaying}
                 isReset={isStopped}
                 total={nowPlaying.duration.timestamp}
               />
+              {/* Volume Slider */}
             </Toolbar>
           </Grid>
 
