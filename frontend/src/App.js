@@ -9,7 +9,7 @@ import { ThemeProvider } from "@material-ui/styles";
 const NowPlayingArea = React.lazy(() =>
   import("./components/NowPlayingArea/NowPlayingArea")
 );
-const Routes = React.lazy(() => import("./routes"))
+const Routes = React.lazy(() => import("./routes"));
 
 // DARK MODE
 const darkTheme = createMuiTheme({

@@ -3,7 +3,9 @@ import { Box, Grid, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
-const FeaturedPlaylists = React.lazy(() => import("./FeaturedPlaylists/FeaturedPlaylists"));
+const FeaturedPlaylists = React.lazy(() =>
+  import("./FeaturedPlaylists/FeaturedPlaylists")
+);
 
 const useStyles = makeStyles((theme) => ({
   link: {
