@@ -79,7 +79,13 @@ function Playlist({
       return (
         <PlaylistItem
           key={song.qid}
-          {...{ song, handleStopSong, nowPlaying, setNowPlaying, addSongToQueue }}
+          {...{
+            song,
+            handleStopSong,
+            nowPlaying,
+            setNowPlaying,
+            addSongToQueue
+          }}
         />
       );
     });
