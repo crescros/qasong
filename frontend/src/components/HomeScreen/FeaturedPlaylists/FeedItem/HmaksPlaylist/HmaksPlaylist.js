@@ -35,15 +35,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const socialLinks = [
-//   {
-//     name: "Spotify",
-//     url:
-//       "https://open.spotify.com/artist/3nSzAb7gPqal1yRAi2qbbc?si=eHxjQMkpTmWIeejAyv18KA",
-//     icon: <i className="fab fa-spotify"></i>,
-//   },
-// ];
-
 function Playlist({
   playlist,
   setQueue,
@@ -84,7 +75,7 @@ function Playlist({
             handleStopSong,
             nowPlaying,
             setNowPlaying,
-            addSongToQueue
+            addSongToQueue,
           }}
         />
       );
