@@ -5,13 +5,19 @@ import { Grid, Typography } from "@material-ui/core";
 
 import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
 
-function BillboardTop100({ setSearchTerm }) {
+function BillboardTop100() {
   const [billboard, setBillboard] = React.useState([]);
 
   const [loading, setLoading] = React.useState(true);
   const dataLoaded = () => {
     setLoading(false);
   };
+
+  function setSearchTerm(text){
+    const qasongSearchInput = document.querySelector("#qasongsearch")
+
+    qasongSearchInput.value = text
+  }
 
   // load data from billboard api into state
   React.useEffect(() => {

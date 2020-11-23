@@ -47,9 +47,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function VideoSearch({ handleSubmitVideoSearch, handleSearchTermInput, searchTerm }) {
+function VideoSearch({ handleSubmitVideoSearch }) {
   const classes = useStyles();
   let history = useHistory();
+  const [searchTerm, setSearchTerm ] = React.useState()
+
+  const handleSearchTermInput = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <div className={classes.search}>
@@ -63,6 +68,8 @@ function VideoSearch({ handleSubmitVideoSearch, handleSearchTermInput, searchTer
         }}
       >
         <InputBase
+          id="qasongsearch"
+          name="qasongsearch"
           onChange={handleSearchTermInput}
           placeholder="search music…"
           autoFocus={true}

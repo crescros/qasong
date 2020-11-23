@@ -47,10 +47,6 @@ export default function PrimarySearchAppBar({
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollTop]);
 
-  const handleSearchTermInput = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
   return (
     <div className={classes.grow}>
       <AppBar
@@ -77,7 +73,7 @@ export default function PrimarySearchAppBar({
 
           {/* Search bar */}
           <VideoSearch
-            handleSearchTermInput={handleSearchTermInput}
+            setSearchTerm={setSearchTerm}
             handleSubmitVideoSearch={handleSubmitVideoSearch}
             searchTerm={searchTerm}
             style={{

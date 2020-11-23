@@ -55,7 +55,6 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [nowPlaying, setNowPlaying] = useState();
-  const [searchTerm, setSearchTerm] = useState("");
   const [queue, setQueue] = useState([]);
   const [videos, setVideos] = useState([]);
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
@@ -146,16 +145,19 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("queue", JSON.stringify(queue));
   }, [queue]);
-  // hiiiiiiiiii(lol)iiiiiiiiiiiiiiiiiiiiiiiiii
+
   // event listener for search submit
   const handleSubmitVideoSearch = async (e) => {
     setIsLoading(true);
-
+    
+    
     if (e) {
       e.preventDefault();
     }
+
+    const searchTerm = e.target.qasongsearch.value
+
     const results = await getYoutubeIdFromSearch(searchTerm);
-    setSearchTerm("");
     setVideos({
       searchTerm: searchTerm,
       results: results,
@@ -184,9 +186,7 @@ const App = () => {
             darkMode,
             isLoading,
             nowPlaying,
-            searchTerm,
             setDarkMode,
-            setSearchTerm,
             setVideos,
             searchTableViewMode,
             handleSubmitVideoSearch,

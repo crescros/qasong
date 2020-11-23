@@ -10,14 +10,12 @@ const QueueSection = React.lazy(() => import("./components/QueueSection/QueueSec
 const BillboardTop100 = React.lazy(() =>
   import("./components/BillboardTop100/BillboardTop100")
 );
-// so what d
+
 function Routes({
   darkMode,
   isLoading,
   nowPlaying,
-  searchTerm,
   setDarkMode,
-  setSearchTerm,
   setVideos,
   user,
   searchTableViewMode,
@@ -38,8 +36,6 @@ function Routes({
             handleSubmitVideoSearch,
             isLoading,
             queue,
-            searchTerm,
-            setSearchTerm,
             setDarkMode,
             setVideos,
             user,
@@ -52,7 +48,7 @@ function Routes({
         <Switch>
           <Route path="/billboard">
             <Suspense fallback={<div />}>
-              <BillboardTop100 {...{ setSearchTerm }} />
+              <BillboardTop100 />
             </Suspense>
           </Route>
           <Route path="/search">
