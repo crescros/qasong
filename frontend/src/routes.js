@@ -47,7 +47,6 @@ function Routes({
         {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
         <Switch>
-
           {/* billboard top 100 */}
           <Route path="/billboard">
             <Suspense fallback={<div />}>
@@ -98,6 +97,7 @@ function Routes({
                   isLoading,
                   queue,
                   addSongToQueue,
+                  darkMode,
                 }}
               />
             </Suspense>

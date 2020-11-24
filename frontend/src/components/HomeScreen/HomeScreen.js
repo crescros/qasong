@@ -1,17 +1,10 @@
 import React, { Suspense } from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
 import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
+
 const FeaturedPlaylists = React.lazy(() =>
   import("./FeaturedPlaylists/FeaturedPlaylists")
 );
-
-const useStyles = makeStyles((theme) => ({
-  link: {
-    color: theme.palette.secondary.main,
-  },
-}));
 
 function HomeScreen({
   setQueue,
@@ -20,8 +13,12 @@ function HomeScreen({
   isLoading,
   queue,
   addSongToQueue,
+  darkMode,
 }) {
-  const classes = useStyles();
+  const ytDevLogoUrl =
+    "https://developers.google.com/" +
+    `youtube/images/developed-with-youtube-lowercase-${darkMode ? "light" : "dark"}.png`;
+
   return (
     <Box mt={4}>
       <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
@@ -54,11 +51,25 @@ function HomeScreen({
         </Grid>
 
         <Grid item>
-          <Link to="/billboard" className={classes.link}>
-            <Typography variant="h4" color="secondary">
-              Billboard Top 100
+          <Box mx={4}>
+            <Typography variant="h6">What is Qasong?</Typography>
+
+            <Typography>Qasong is an ad free music streaming</Typography>
+
+            <img
+              style={{
+                maxWidth: "100%",
+                width: "400px",
+              }}
+              src={ytDevLogoUrl}
+            />
+
+            <Typography gutterBottom>
+              if you&rsquo;re interested in contributing join or discord at discordlink
             </Typography>
-          </Link>
+
+            <Typography>or open source github something github.com</Typography>
+          </Box>
         </Grid>
 
         <Grid item>{isLoading && <LoadingAnimation size="32px" />}</Grid>
