@@ -10,6 +10,7 @@ const QueueSection = React.lazy(() => import("./components/QueueSection/QueueSec
 const BillboardTop100 = React.lazy(() =>
   import("./components/BillboardTop100/BillboardTop100")
 );
+import NotFound from "./components/NotFound/NotFound";
 
 function Routes({
   darkMode,
@@ -92,6 +93,9 @@ function Routes({
                 }}
               />
             </Suspense>
+          </Route>
+          <Route>
+            <NotFound />
           </Route>
         </Switch>
       </div>

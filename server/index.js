@@ -25,7 +25,6 @@ app.use(bodyParser.json());
 app.use(errorHandler);
 
 // api endpoints
-// app.use("/api/users", require("./users/users.controller"), apiLimiter);
 app.use("/api/feed", require("./feed/feed.controller"), apiLimiter);
 app.use("/api/search", require("./search/search.controller"), apiLimiter);
 app.use("/api/billboard", require("./billboard/billboard.controller"), apiLimiter);
@@ -33,21 +32,12 @@ app.use("/api/env", (req, res) => res.send(process.env.NODE_ENV), apiLimiter);
 
 // frontend routes
 function serveReactApp(req, res) {
-  // if (process.env.NODE_ENV !== "development"){
-  //   if(!req.secure){
-  //       res.redirect("https://" + req.headers.host + req.url);
-  //   }
-  // }
-
   // eslint-disable-next-line no-undef
   res.sendFile(path.join(__dirname, "../public", "index.html"));
 }
 
-app.get("/", serveReactApp);
-app.get("/billboard", serveReactApp);
-app.get("/queue", serveReactApp);
-app.get("/search", serveReactApp);
 app.use(express.static("public"));
+app.get("*", serveReactApp);
 
 // start server
 const port = process.env.PORT || 3016;
