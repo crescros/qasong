@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
 import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
+import WelcomeWindow from "./WelcomeWindow/WelcomeWindow";
 
 const FeaturedPlaylists = React.lazy(() =>
   import("./FeaturedPlaylists/FeaturedPlaylists")
@@ -15,12 +16,10 @@ function HomeScreen({
   addSongToQueue,
   darkMode,
 }) {
-  const ytDevLogoUrl =
-    "https://developers.google.com/" +
-    `youtube/images/developed-with-youtube-lowercase-${darkMode ? "light" : "dark"}.png`;
-
   return (
     <Box mt={4}>
+      <WelcomeWindow {...{ darkMode }} />
+
       <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
         <Grid item>
           <Typography
@@ -47,29 +46,7 @@ function HomeScreen({
         </Grid>
 
         <Grid item>
-          <Box p={3}></Box>
-        </Grid>
-
-        <Grid item>
-          <Box mx={4}>
-            <Typography variant="h6">What is Qasong?</Typography>
-
-            <Typography>Qasong is an ad free music streaming</Typography>
-
-            <img
-              style={{
-                maxWidth: "100%",
-                width: "400px",
-              }}
-              src={ytDevLogoUrl}
-            />
-
-            <Typography gutterBottom>
-              if you&rsquo;re interested in contributing join or discord at discordlink
-            </Typography>
-
-            <Typography>or open source github something github.com</Typography>
-          </Box>
+          <Box p={1}></Box>
         </Grid>
 
         <Grid item>{isLoading && <LoadingAnimation size="32px" />}</Grid>

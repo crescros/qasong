@@ -1,8 +1,7 @@
 import React from "react";
-import { Grid, Typography, IconButton, Box } from "@material-ui/core";
+import { Grid, Typography, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { getFeed } from "../../../functions";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import FeedItem from "./FeedItem/FeedItem";
 import LoadingAnimation from "../../LoadingAnimation/LoadingAnimation";
 
@@ -37,9 +36,6 @@ function FeaturedPlaylists({
     <div className={classes.root}>
       <Typography align="center" variant="h4" color="textSecondary">
         Featured playlists
-        <IconButton>
-          <MoreVertIcon color="disabled" />
-        </IconButton>
       </Typography>
 
       {loading ? (
