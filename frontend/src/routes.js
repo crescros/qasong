@@ -47,11 +47,15 @@ function Routes({
         {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
         <Switch>
+
+          {/* billboard top 100 */}
           <Route path="/billboard">
             <Suspense fallback={<div />}>
               <BillboardTop100 />
             </Suspense>
           </Route>
+
+          {/* search */}
           <Route path="/search">
             <Suspense fallback={<div />}>
               <SearchResults
@@ -68,6 +72,8 @@ function Routes({
               />
             </Suspense>
           </Route>
+
+          {/* queue */}
           <Route path="/queue">
             <Suspense fallback={<div />}>
               <QueueSection
@@ -80,6 +86,8 @@ function Routes({
               />
             </Suspense>
           </Route>
+
+          {/* landing page */}
           <Route exact path="/">
             <Suspense fallback={<div />}>
               <HomeScreen
@@ -94,6 +102,8 @@ function Routes({
               />
             </Suspense>
           </Route>
+
+          {/* 404 page */}
           <Route>
             <NotFound />
           </Route>
