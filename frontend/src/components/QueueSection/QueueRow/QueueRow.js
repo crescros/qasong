@@ -8,7 +8,7 @@ import DragHandleIcon from "@material-ui/icons/DragHandle";
 
 import { IconButton, Grid, Typography } from "@material-ui/core";
 
-const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1
+const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1;
 
 const useStyles = makeStyles((theme) => ({
   row: {

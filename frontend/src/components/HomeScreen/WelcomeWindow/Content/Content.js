@@ -133,9 +133,11 @@ function Content() {
 
       <Box p={2} />
 
-      <Grid container justify="center" alignItems="center" >
+      <Grid container justify="center" alignItems="center">
         <Grid item>
-          <Typography align="center" variant="caption" color="textSecondary">Qasong team 2020</Typography>
+          <Typography align="center" variant="caption" color="textSecondary">
+            Qasong team 2020
+          </Typography>
         </Grid>
         <Grid item>
           <img src="./img/qasong.svg" width="32px" />

@@ -11,8 +11,7 @@ import {
 import uuid from "react-uuid";
 import AddToQueueButton from "./AddToQueueButton/AddToQueueButton";
 
-const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1
-
+const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1;
 
 const useStyles = makeStyles((theme) => ({
   card: {

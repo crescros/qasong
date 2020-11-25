@@ -13,15 +13,11 @@ const apiLimiter = rateLimit({
   max: 20,
 });
 
-// database connection
-// const con = require('./database/connection.js')
-
 // initialize express
 const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.use(jwt());
 app.use(errorHandler);
 
 // api endpoints
@@ -36,7 +32,7 @@ function serveReactApp(req, res) {
   res.sendFile(path.join(__dirname, "../public", "index.html"));
 }
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "../public")));
 app.get("*", serveReactApp);
 
 // start server

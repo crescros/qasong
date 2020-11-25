@@ -15,7 +15,7 @@ import {
 import { formatVideoTitle } from "../../../functions";
 import ClearIcon from "@material-ui/icons/Clear";
 
-const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1
+const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1;
 
 const useStyles = makeStyles((theme) => ({
   card: {

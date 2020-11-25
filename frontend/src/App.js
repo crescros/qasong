@@ -5,9 +5,9 @@ import { CssBaseline } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 
-const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1
+const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1;
 
-console.log(qasongOrange)
+console.log(qasongOrange);
 // lazy load components
 const NowPlayingArea = React.lazy(() =>
   import("./components/NowPlayingArea/NowPlayingArea")
