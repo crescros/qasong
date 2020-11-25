@@ -53,7 +53,7 @@ This project is currently under development and is scheduled for it's first rele
 
 ## Links
 
-[Qasong Team Discord](https://discord.gg/b2gEwT8)
+[Qasong Team Discord](https://discord.gg/VnpcrtYnrS)
 
 [Qasong Web App](https://qasong.com)
 

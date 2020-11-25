@@ -4,12 +4,12 @@ import { getYoutubeIdFromSearch } from "./functions";
 import { CssBaseline } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import Routes from "./routes";
 
 // lazy load components
 const NowPlayingArea = React.lazy(() =>
   import("./components/NowPlayingArea/NowPlayingArea")
 );
+const Routes = React.lazy(() => import("./routes"));
 
 // DARK MODE
 const darkTheme = createMuiTheme({
@@ -55,7 +55,6 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [nowPlaying, setNowPlaying] = useState();
-  const [searchTerm, setSearchTerm] = useState("");
   const [queue, setQueue] = useState([]);
   const [videos, setVideos] = useState([]);
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
@@ -146,7 +145,7 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("queue", JSON.stringify(queue));
   }, [queue]);
-  // hiiiiiiiiii(lol)iiiiiiiiiiiiiiiiiiiiiiiiii
+
   // event listener for search submit
   const handleSubmitVideoSearch = async (e) => {
     setIsLoading(true);
@@ -154,8 +153,10 @@ const App = () => {
     if (e) {
       e.preventDefault();
     }
+
+    const searchTerm = e.target.qasongsearch.value;
+
     const results = await getYoutubeIdFromSearch(searchTerm);
-    setSearchTerm("");
     setVideos({
       searchTerm: searchTerm,
       results: results,
@@ -179,25 +180,25 @@ const App = () => {
 
         {<div style={{ height: "72px" }}></div>}
 
-        <Routes
-          {...{
-            darkMode,
-            isLoading,
-            nowPlaying,
-            searchTerm,
-            setDarkMode,
-            setSearchTerm,
-            setVideos,
-            searchTableViewMode,
-            handleSubmitVideoSearch,
-            queue,
-            setNowPlaying,
-            setQueue,
-            videos,
-            setSearchTableViewMode,
-            addSongToQueue,
-          }}
-        />
+        <Suspense fallback={<div />}>
+          <Routes
+            {...{
+              darkMode,
+              isLoading,
+              nowPlaying,
+              setDarkMode,
+              setVideos,
+              searchTableViewMode,
+              handleSubmitVideoSearch,
+              queue,
+              setNowPlaying,
+              setQueue,
+              videos,
+              setSearchTableViewMode,
+              addSongToQueue,
+            }}
+          />
+        </Suspense>
 
         {/* NOW PLAYING AREA */}
         <Suspense fallback={<div />}>

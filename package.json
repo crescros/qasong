@@ -53,13 +53,13 @@
   "devDependencies": {
     "concurrently": "^5.3.0",
     "cypress-dotenv": "^1.2.2",
-    "eslint": "^7.10.0",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.4.0",
-    "nodemon": "^2.0.4",
     "electron": "^11.0.1",
     "electron-builder": "^22.9.1",
-    "prettier": "^2.1.2"
+    "eslint": "^7.14.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.0"
   },
   "dependencies": {
     "axios": "^0.21.0",
@@ -74,7 +74,7 @@
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "rootpath": "^0.1.2",
-    "start-server-and-test": "^1.11.5",
+    "start-server-and-test": "^1.11.6",
     "uuid": "^8.3.0",
     "yt-search": "^2.3.2"
   },

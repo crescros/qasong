@@ -10,14 +10,13 @@ const QueueSection = React.lazy(() => import("./components/QueueSection/QueueSec
 const BillboardTop100 = React.lazy(() =>
   import("./components/BillboardTop100/BillboardTop100")
 );
+import NotFound from "./components/NotFound/NotFound";
 
 function Routes({
   darkMode,
   isLoading,
   nowPlaying,
-  searchTerm,
   setDarkMode,
-  setSearchTerm,
   setVideos,
   user,
   searchTableViewMode,
@@ -38,8 +37,6 @@ function Routes({
             handleSubmitVideoSearch,
             isLoading,
             queue,
-            searchTerm,
-            setSearchTerm,
             setDarkMode,
             setVideos,
             user,
@@ -50,11 +47,14 @@ function Routes({
         {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
         <Switch>
+          {/* billboard top 100 */}
           <Route path="/billboard">
             <Suspense fallback={<div />}>
-              <BillboardTop100 {...{ setSearchTerm }} />
+              <BillboardTop100 />
             </Suspense>
           </Route>
+
+          {/* search */}
           <Route path="/search">
             <Suspense fallback={<div />}>
               <SearchResults
@@ -71,6 +71,8 @@ function Routes({
               />
             </Suspense>
           </Route>
+
+          {/* queue */}
           <Route path="/queue">
             <Suspense fallback={<div />}>
               <QueueSection
@@ -83,6 +85,8 @@ function Routes({
               />
             </Suspense>
           </Route>
+
+          {/* landing page */}
           <Route exact path="/">
             <Suspense fallback={<div />}>
               <HomeScreen
@@ -93,9 +97,15 @@ function Routes({
                   isLoading,
                   queue,
                   addSongToQueue,
+                  darkMode,
                 }}
               />
             </Suspense>
+          </Route>
+
+          {/* 404 page */}
+          <Route>
+            <NotFound />
           </Route>
         </Switch>
       </div>

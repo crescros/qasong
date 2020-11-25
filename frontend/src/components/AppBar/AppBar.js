@@ -26,8 +26,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PrimarySearchAppBar({
   handleSubmitVideoSearch,
-  setSearchTerm,
-  searchTerm,
   queue,
   darkMode,
   setDarkMode,
@@ -46,10 +44,6 @@ export default function PrimarySearchAppBar({
 
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollTop]);
-
-  const handleSearchTermInput = (e) => {
-    setSearchTerm(e.target.value);
-  };
 
   return (
     <div className={classes.grow}>
@@ -77,9 +71,7 @@ export default function PrimarySearchAppBar({
 
           {/* Search bar */}
           <VideoSearch
-            handleSearchTermInput={handleSearchTermInput}
             handleSubmitVideoSearch={handleSubmitVideoSearch}
-            searchTerm={searchTerm}
             style={{
               margin: "0 auto",
               maxWidth: 800,

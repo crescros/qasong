@@ -57,7 +57,7 @@ export default function BottomAppBar({
   function iframeCommand(command, args = "") {
     const ytIframe = document.querySelector("iframe");
     ytIframe.contentWindow.postMessage(
-      '{"event":"command","func":"' + command + '","args":"' + args + '"}',
+      `{"event":"command","func":"${command}","args":"${args}"}`,
       "*"
     );
   }
