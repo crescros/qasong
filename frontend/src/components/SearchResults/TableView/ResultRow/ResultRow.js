@@ -6,6 +6,8 @@ import { numberWithCommas } from "../../../../functions";
 import uuid from "react-uuid";
 import AddToQueueButton from "./AddToQueueButton/AddToQueueButton";
 
+const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1
+
 const useStyles = makeStyles({
   row: {
     backgroundColor: "transparent",
@@ -57,7 +59,7 @@ export default function ResultRow({ video, setNowPlaying, nowPlaying, queue, set
     <TableRow
       className={classes.row}
       key={video.videoId}
-      style={{ backgroundColor: playing && "#FE9021" }}
+      style={{ backgroundColor: playing && qasongOrange }}
     >
       <TableCell>
         <IconButton onClick={handlePlayButton} aria-label="Play">

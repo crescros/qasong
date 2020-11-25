@@ -15,6 +15,8 @@ import {
 import { formatVideoTitle } from "../../../functions";
 import ClearIcon from "@material-ui/icons/Clear";
 
+const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1
+
 const useStyles = makeStyles((theme) => ({
   card: {
     cursor: "move",
@@ -117,7 +119,7 @@ export default function ImgMediaCard({
       ref={ref}
       className={classes.card}
       style={{
-        backgroundColor: (nowPlaying && nowPlaying.qid) === qid && "#FE9021",
+        backgroundColor: (nowPlaying && nowPlaying.qid) === qid && qasongOrange,
         opacity,
       }}
     >

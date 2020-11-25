@@ -8,6 +8,8 @@ import DragHandleIcon from "@material-ui/icons/DragHandle";
 
 import { IconButton, Grid, Typography } from "@material-ui/core";
 
+const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1
+
 const useStyles = makeStyles((theme) => ({
   row: {
     position: "relative",
@@ -111,7 +113,7 @@ export default function ImgMediaCard({
       alignItems="center"
       ref={preview}
       style={{
-        backgroundColor: (nowPlaying && nowPlaying.qid) === qid && "#FE9021",
+        backgroundColor: (nowPlaying && nowPlaying.qid) === qid && qasongOrange,
         opacity,
       }}
     >

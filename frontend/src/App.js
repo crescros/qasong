@@ -5,6 +5,9 @@ import { CssBaseline } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 
+const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1
+
+console.log(qasongOrange)
 // lazy load components
 const NowPlayingArea = React.lazy(() =>
   import("./components/NowPlayingArea/NowPlayingArea")
@@ -21,7 +24,7 @@ const darkTheme = createMuiTheme({
       main: "#000",
     },
     secondary: {
-      main: "#FE9021",
+      main: qasongOrange,
       dark: "#fff",
       contrastText: "#fff",
     },
@@ -40,7 +43,7 @@ const lightTheme = createMuiTheme({
       main: "#fff",
     },
     secondary: {
-      main: "#FE9021",
+      main: qasongOrange,
       dark: "#fff",
       contrastText: "#fff",
     },
@@ -86,32 +89,6 @@ const App = () => {
   function addSongToQueue(song) {
     setQueue(queue.concat(song));
   }
-
-  // runs once when app starts
-  useEffect(() => {
-    // (async () => {
-    //   // set dark mode from local storage
-    //   const userDarkMode = localStorage.getItem("userDarkMode");
-    //   if (userDarkMode === "false") {
-    //     setDarkMode(false);
-    //   }
-
-    //   // set search list view mode from local storage
-    //   const userSearchTableViewMode = localStorage.getItem("userSearchTableViewMode");
-    //   if (userSearchTableViewMode === "true") {
-    //     setSearchTableViewMode(true);
-    //   }
-
-    //   // if theres no queue in the url, get it from local storage
-    //   const storedQueue = localStorage.getItem("queue");
-    //   if (storedQueue) {
-    //     const localQueue = JSON.parse(storedQueue);
-    //     setQueue(localQueue);
-    //   }
-    // })();
-
-    localStorage.clear();
-  }, []);
 
   //when nowPlaying changes
   useEffect(() => {
