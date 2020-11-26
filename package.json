@@ -7,7 +7,7 @@
   "scripts": {
     "build": "cd frontend && npm run build",
     "cy:run": "npx cypress run",
-    "deploy": "npm run build && gcloud app deploy",
+    "deploy": "npm run build && gcloud app deploy --project qasong",
     "dev": "npm i && concurrently --kill-others \"npm run dev:frontend\" \"npm run dev:server\"",
     "dev:frontend": "cd frontend && npm i && npm start",
     "dev:server": "npm i && nodemon ./server/index.js",
@@ -73,6 +73,7 @@
     "immutability-helper": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
+    "nocache": "^2.1.0",
     "rootpath": "^0.1.2",
     "start-server-and-test": "^1.11.6",
     "uuid": "^8.3.0",

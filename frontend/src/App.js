@@ -60,7 +60,7 @@ const App = () => {
   const [queue, setQueue] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
-  const [showAboutUs, setShowAboutUs] = useState(true);
+  const [showAboutUs, setShowAboutUs] = useState(!localStorage.getItem("returningUser"));
 
   function skipSong() {
     const i = queue.findIndex((item) => item.qid === currentQid);
@@ -89,6 +89,13 @@ const App = () => {
   function addSongToQueue(song) {
     setQueue(queue.concat(song));
   }
+
+  //when app starts
+  useEffect(() => {
+    setTimeout(() => {
+      localStorage.setItem("returningUser", true);
+    }, 10000);
+  }, []);
 
   //when nowPlaying changes
   useEffect(() => {

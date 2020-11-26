@@ -20,8 +20,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(errorHandler);
 
-const nocache = require('nocache')
-app.use(nocache())
+const nocache = require("nocache");
+app.use(nocache());
+app.set('etag', false); 
 
 // api endpoints
 app.use("/api/feed", require("./feed/feed.controller"), apiLimiter);
@@ -35,8 +36,12 @@ function serveReactApp(req, res) {
   res.sendFile(path.join(__dirname, "../public", "index.html"));
 }
 // eslint-disable-next-line no-undef
+app.get("/", serveReactApp);
+app.get("/billboard", serveReactApp);
+app.get("/queue", serveReactApp);
+app.get("/search", serveReactApp);
+
 app.use(express.static(path.join(__dirname, "../public")));
-app.get("*", serveReactApp);
 
 // start server
 const port = process.env.PORT || 3016;
