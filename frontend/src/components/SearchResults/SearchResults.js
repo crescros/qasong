@@ -3,8 +3,6 @@ import TableView from "./TableView/TableView";
 import GridView from "./GridView/GridView";
 
 function SearchResults({
-  handleSearchTermInput,
-  handleSubmitVideoSearch,
   nowPlaying,
   queue,
   setNowPlaying,
@@ -30,8 +28,6 @@ function SearchResults({
         <Suspense fallback={<div />}>
           <TableView
             {...{
-              handleSearchTermInput,
-              handleSubmitVideoSearch,
               nowPlaying,
               queue,
               setNowPlaying,
@@ -45,8 +41,6 @@ function SearchResults({
         <Suspense fallback={<div />}>
           <GridView
             {...{
-              handleSearchTermInput,
-              handleSubmitVideoSearch,
               nowPlaying,
               queue,
               setNowPlaying,

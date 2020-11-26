@@ -160,20 +160,20 @@ const App = () => {
         <Suspense fallback={<div />}>
           <Routes
             {...{
+              addSongToQueue,
               darkMode,
+              handleSubmitVideoSearch,
               isLoading,
               nowPlaying,
-              setDarkMode,
-              searchTableViewMode,
-              handleSubmitVideoSearch,
               queue,
+              searchResults,
+              searchTableViewMode,
+              setDarkMode,
               setNowPlaying,
               setQueue,
-              searchResults,
               setSearchTableViewMode,
-              addSongToQueue,
-              showAboutUs,
               setShowAboutUs,
+              showAboutUs,
             }}
           />
         </Suspense>

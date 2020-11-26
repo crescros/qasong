@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar({
+export default function QasongAppBar({
   handleSubmitVideoSearch,
   queue,
   darkMode,

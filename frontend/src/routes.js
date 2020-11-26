@@ -13,21 +13,20 @@ const BillboardTop100 = React.lazy(() =>
 import NotFound from "./components/NotFound/NotFound";
 
 function Routes({
+  addSongToQueue,
   darkMode,
+  handleSubmitVideoSearch,
   isLoading,
   nowPlaying,
-  setDarkMode,
-  user,
-  searchTableViewMode,
-  handleSubmitVideoSearch,
   queue,
+  setDarkMode,
+  searchTableViewMode,
+  searchResults,
   setNowPlaying,
   setQueue,
-  searchResults,
   setSearchTableViewMode,
-  addSongToQueue,
-  showAboutUs,
   setShowAboutUs,
+  showAboutUs,
 }) {
   return (
     <Router>
@@ -39,7 +38,6 @@ function Routes({
             isLoading,
             queue,
             setDarkMode,
-            user,
             showAboutUs,
             setShowAboutUs,
           }}
@@ -61,11 +59,10 @@ function Routes({
             <Suspense fallback={<div />}>
               <SearchResults
                 {...{
-                  searchTableViewMode,
-                  handleSubmitVideoSearch,
                   nowPlaying,
                   queue,
                   setNowPlaying,
+                  searchTableViewMode,
                   setQueue,
                   searchResults,
                   setSearchTableViewMode,

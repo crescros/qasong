@@ -20,6 +20,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(errorHandler);
 
+const nocache = require('nocache')
+app.use(nocache())
+
 // api endpoints
 app.use("/api/feed", require("./feed/feed.controller"), apiLimiter);
 app.use("/api/search", require("./search/search.controller"), apiLimiter);
@@ -31,7 +34,6 @@ function serveReactApp(req, res) {
   // eslint-disable-next-line no-undef
   res.sendFile(path.join(__dirname, "../public", "index.html"));
 }
-
 // eslint-disable-next-line no-undef
 app.use(express.static(path.join(__dirname, "../public")));
 app.get("*", serveReactApp);
