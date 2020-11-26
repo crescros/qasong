@@ -24,39 +24,6 @@ export function getYoutubeIdFromSearch(search) {
     });
 }
 
-export function authenticateUser(username, password) {
-  const postBody = {
-    username: username,
-    password: password,
-  };
-
-  return axios
-    .post(baseUrl + "api/users/authenticate", postBody)
-    .then((result) => {
-      setDefaultToken(result.data.token);
-      return result;
-    })
-    .catch((error) => {
-      return error;
-    });
-}
-
-export function createUser(username, password) {
-  const postBody = {
-    username: username,
-    password: password,
-  };
-
-  return axios
-    .post(baseUrl + "api/users/create", postBody)
-    .then((result) => {
-      return result;
-    })
-    .catch((error) => {
-      return error;
-    });
-}
-
 export function getNodeEnvironment() {
   return axios
     .get(baseUrl + "api/env")

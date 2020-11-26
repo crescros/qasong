@@ -7,7 +7,6 @@ import { ThemeProvider } from "@material-ui/styles";
 
 const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1;
 
-console.log(qasongOrange);
 // lazy load components
 const NowPlayingArea = React.lazy(() =>
   import("./components/NowPlayingArea/NowPlayingArea")
@@ -59,8 +58,9 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [nowPlaying, setNowPlaying] = useState();
   const [queue, setQueue] = useState([]);
-  const [videos, setVideos] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
+  const [showAboutUs, setShowAboutUs] = useState(true);
 
   function skipSong() {
     const i = queue.findIndex((item) => item.qid === currentQid);
@@ -134,7 +134,7 @@ const App = () => {
     const searchTerm = e.target.qasongsearch.value;
 
     const results = await getYoutubeIdFromSearch(searchTerm);
-    setVideos({
+    setSearchResults({
       searchTerm: searchTerm,
       results: results,
     });
@@ -164,15 +164,16 @@ const App = () => {
               isLoading,
               nowPlaying,
               setDarkMode,
-              setVideos,
               searchTableViewMode,
               handleSubmitVideoSearch,
               queue,
               setNowPlaying,
               setQueue,
-              videos,
+              searchResults,
               setSearchTableViewMode,
               addSongToQueue,
+              showAboutUs,
+              setShowAboutUs,
             }}
           />
         </Suspense>
@@ -185,7 +186,7 @@ const App = () => {
               previousSong,
               nowPlaying,
               queue,
-              videos,
+              searchResults,
               setNowPlaying,
               getNextInQueue,
               getPreviousInQueue,

@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Menu,
-  Tooltip,
-  Box,
-  IconButton,
-  MenuItem,
-  Badge,
-  Switch,
-} from "@material-ui/core";
+import { Menu, IconButton, MenuItem, Badge, Switch } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
@@ -15,16 +7,13 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 
 import { useHistory } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   sectionMobile: {
     display: "flex",
-    [theme.breakpoints.up("md")]: {
-      display: "none",
-    },
   },
-}));
+});
 
-function MobileMenu({ queueLength, darkMode, setDarkMode }) {
+function MobileMenu({ queueLength, darkMode, setDarkMode, setShowAboutUs }) {
   const classes = useStyles();
 
   let history = useHistory();
@@ -48,6 +37,9 @@ function MobileMenu({ queueLength, darkMode, setDarkMode }) {
   function handleDarkmodeButtonClick() {
     setDarkMode(!darkMode);
   }
+  function handleAboutUsClick() {
+    setShowAboutUs(true);
+  }
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   return (
@@ -68,28 +60,25 @@ function MobileMenu({ queueLength, darkMode, setDarkMode }) {
         onClose={handleMobileMenuClose}
       >
         {/* QUEUE */}
-        <Tooltip
-          title={queueLength === 0 ? "Search for songs and add them to your queue" : ""}
-        >
-          <Box>
-            <MenuItem disabled={queueLength === 0} onClick={handleQueueButtonClick}>
-              <IconButton disabled={queueLength === 0} target="_blank" color="inherit">
-                <Badge badgeContent={queueLength} color="secondary">
-                  <QueueMusicIcon style={{ fontSize: "40px" }} />
-                </Badge>
-              </IconButton>
-              <p>queue</p>
-            </MenuItem>
-          </Box>
-        </Tooltip>
+
+        <MenuItem onClick={handleQueueButtonClick}>
+          <IconButton target="_blank" color="inherit" size="small">
+            <Badge badgeContent={queueLength} color="secondary">
+              <QueueMusicIcon style={{ fontSize: "40px" }} />
+            </Badge>
+          </IconButton>
+          queue
+        </MenuItem>
 
         {/* dark mode */}
         <MenuItem onClick={handleDarkmodeButtonClick}>
-          {/* dark mode slider mobile */}
           <Switch checked={darkMode} />
-          <p>Dark Mode</p>
+          dark mode
         </MenuItem>
+
+        <MenuItem onClick={handleAboutUsClick}>about us</MenuItem>
       </Menu>
+
       <IconButton
         aria-label="show more"
         aria-controls={mobileMenuId}

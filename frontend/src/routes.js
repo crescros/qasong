@@ -17,16 +17,17 @@ function Routes({
   isLoading,
   nowPlaying,
   setDarkMode,
-  setVideos,
   user,
   searchTableViewMode,
   handleSubmitVideoSearch,
   queue,
   setNowPlaying,
   setQueue,
-  videos,
+  searchResults,
   setSearchTableViewMode,
   addSongToQueue,
+  showAboutUs,
+  setShowAboutUs,
 }) {
   return (
     <Router>
@@ -38,8 +39,9 @@ function Routes({
             isLoading,
             queue,
             setDarkMode,
-            setVideos,
             user,
+            showAboutUs,
+            setShowAboutUs,
           }}
         />
       </Suspense>
@@ -65,7 +67,7 @@ function Routes({
                   queue,
                   setNowPlaying,
                   setQueue,
-                  videos,
+                  searchResults,
                   setSearchTableViewMode,
                 }}
               />
@@ -97,7 +99,8 @@ function Routes({
                   isLoading,
                   queue,
                   addSongToQueue,
-                  darkMode,
+                  showAboutUs,
+                  setShowAboutUs,
                 }}
               />
             </Suspense>

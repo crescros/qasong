@@ -9,11 +9,18 @@ function SearchResults({
   queue,
   setNowPlaying,
   setQueue,
-  videos,
+  searchResults,
   searchTableViewMode,
   setSearchTableViewMode,
 }) {
-  if (!(videos && videos.results && videos.results.length > 0 && videos.searchTerm)) {
+  if (
+    !(
+      searchResults &&
+      searchResults.results &&
+      searchResults.results.length > 0 &&
+      searchResults.searchTerm
+    )
+  ) {
     return <div></div>;
   }
 
@@ -29,7 +36,7 @@ function SearchResults({
               queue,
               setNowPlaying,
               setQueue,
-              videos,
+              searchResults,
               setSearchTableViewMode,
             }}
           />
@@ -44,7 +51,7 @@ function SearchResults({
               queue,
               setNowPlaying,
               setQueue,
-              videos,
+              searchResults,
               setSearchTableViewMode,
             }}
           />

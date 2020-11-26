@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import MobileMenu from "./MobileMenu";
+import MobileMenu from "./Menu";
 
 describe("<MobileMenu />", () => {
   it("renders a div", () => {

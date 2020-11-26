@@ -86,6 +86,7 @@ export default function BottomAppBar({
   return (
     <React.Fragment>
       <CssBaseline />
+
       <YoutubeIframe
         {...{
           nowPlaying,
@@ -94,6 +95,7 @@ export default function BottomAppBar({
           setIframeState,
         }}
       />
+
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Grid container justify="center" alignItems="center" alignContent="center">
           <Grid item xs={12} sm={4}>

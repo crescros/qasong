@@ -21,24 +21,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TransitionsModal({ darkMode }) {
+export default function TransitionsModal({ showAboutUs, setShowAboutUs }) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
 
   //   const handleOpen = () => {
   //     setOpen(true);
   //   };
 
   const handleClose = () => {
-    setOpen(false);
+    setShowAboutUs(false);
   };
 
   return (
     <div>
-      <Dialog className={classes.modal} open={open} onClose={handleClose}>
-        <Fade in={open}>
+      <Dialog className={classes.modal} open={showAboutUs} onClose={handleClose}>
+        <Fade in={showAboutUs}>
           <div className={classes.paper}>
-            <WelcomeWindowContent {...{ darkMode }} />
+            <WelcomeWindowContent />
           </div>
         </Fade>
       </Dialog>

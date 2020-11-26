@@ -2,8 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
 import { AppBar, Toolbar, IconButton, Box } from "@material-ui/core";
 import VideoSearch from "./VideoSearch/VideoSearch";
-import MobileMenu from "./MobileMenu/MobileMenu";
-import DesktopMenu from "./DesktopMenu/DesktopMenu";
+import Menu from "./Menu/Menu";
 import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
 
 // import UserSection from "./UserSection/UserSection";
@@ -30,6 +29,8 @@ export default function PrimarySearchAppBar({
   darkMode,
   setDarkMode,
   isLoading,
+  showAboutUs,
+  setShowAboutUs,
 }) {
   const [scrollTop, setScrollTop] = useState(0);
 
@@ -85,8 +86,15 @@ export default function PrimarySearchAppBar({
           <div className={classes.grow} />
 
           {/* Menus */}
-          <DesktopMenu queueLength={queue.length} {...{ darkMode, setDarkMode }} />
-          <MobileMenu queueLength={queue.length} {...{ darkMode, setDarkMode }} />
+          <Menu
+            queueLength={queue.length}
+            {...{
+              darkMode,
+              setDarkMode,
+              showAboutUs,
+              setShowAboutUs,
+            }}
+          />
         </Toolbar>
       </AppBar>
     </div>
