@@ -22,7 +22,7 @@ app.use(errorHandler);
 
 const nocache = require("nocache");
 app.use(nocache());
-app.set('etag', false); 
+app.set("etag", false);
 
 // api endpoints
 app.use("/api/feed", require("./feed/feed.controller"), apiLimiter);

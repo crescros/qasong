@@ -96,10 +96,9 @@ const App = () => {
       localStorage.setItem("returningUser", true);
     }, 10000);
 
-    let storedQueue = localStorage.getItem("queue") || []
+    let storedQueue = localStorage.getItem("queue") || [];
 
-    setQueue(JSON.parse(storedQueue))
-
+    setQueue(JSON.parse(storedQueue));
   }, []);
 
   //when nowPlaying changes
