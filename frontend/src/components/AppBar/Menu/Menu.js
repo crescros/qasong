@@ -34,11 +34,17 @@ function MobileMenu({ queueLength, darkMode, setDarkMode, setShowAboutUs }) {
     history.push("/queue");
   }
 
+  function handleBillboardClick() {
+    history.push("/billboard");
+  }
+
   function handleDarkmodeButtonClick() {
     setDarkMode(!darkMode);
   }
+
   function handleAboutUsClick() {
     setShowAboutUs(true);
+    history.push("/");
   }
 
   const mobileMenuId = "primary-search-account-menu-mobile";
@@ -62,21 +68,22 @@ function MobileMenu({ queueLength, darkMode, setDarkMode, setShowAboutUs }) {
         {/* QUEUE */}
 
         <MenuItem onClick={handleQueueButtonClick}>
+          queue
           <IconButton target="_blank" color="inherit" size="small">
             <Badge badgeContent={queueLength} color="secondary">
-              <QueueMusicIcon style={{ fontSize: "40px" }} />
+              <QueueMusicIcon />
             </Badge>
           </IconButton>
-          queue
         </MenuItem>
 
         {/* dark mode */}
         <MenuItem onClick={handleDarkmodeButtonClick}>
-          <Switch checked={darkMode} />
           dark mode
+          <Switch checked={darkMode} />
         </MenuItem>
 
         <MenuItem onClick={handleAboutUsClick}>about us</MenuItem>
+        <MenuItem onClick={handleBillboardClick}>billboard top 100</MenuItem>
       </Menu>
 
       <IconButton
