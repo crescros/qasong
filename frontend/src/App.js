@@ -98,8 +98,8 @@ const App = () => {
 
     let storedQueue = localStorage.getItem("queue");
 
-    if (storedQueue){
-      setQueue(JSON.parse(storedQueue))
+    if (storedQueue) {
+      setQueue(JSON.parse(storedQueue));
     }
   }, []);
 
