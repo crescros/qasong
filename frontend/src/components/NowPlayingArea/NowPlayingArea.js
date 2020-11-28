@@ -125,7 +125,6 @@ export default function BottomAppBar({
                 </IconButton>
               )}
               {/* Skip to next */}
-              <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
               {/* Current time progress */}
               <ProgressText
                 isActive={isPlaying}
