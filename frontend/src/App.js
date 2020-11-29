@@ -93,7 +93,7 @@ const App = () => {
   // event listener for search submit
   const handleSubmitVideoSearch = async (e) => {
     setIsLoading(true);
-    setSearchResults({})
+    setSearchResults({});
 
     if (e) {
       e.preventDefault();
@@ -154,8 +154,6 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("queue", JSON.stringify(queue));
   }, [queue]);
-
-
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
