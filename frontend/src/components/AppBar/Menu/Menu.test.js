@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import EnvironmentBadges from "./EnvironmentBadges";
+import MobileMenu from "./Menu";
 
-describe("<EnvironmentBadges />", () => {
+describe("<MobileMenu />", () => {
   it("renders a div", () => {
-    const wrapper = shallow(<EnvironmentBadges />);
+    const wrapper = shallow(<MobileMenu queue={[]} />);
     expect(wrapper.find("div")).toHaveLength(1);
   });
 });

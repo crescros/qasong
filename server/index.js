@@ -13,16 +13,16 @@ const apiLimiter = rateLimit({
   max: 20,
 });
 
-// database connection
-// const con = require('./database/connection.js')
-
 // initialize express
 const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.use(jwt());
 app.use(errorHandler);
+
+const nocache = require("nocache");
+app.use(nocache());
+app.set("etag", false);
 
 // api endpoints
 app.use("/api/feed", require("./feed/feed.controller"), apiLimiter);
@@ -35,9 +35,13 @@ function serveReactApp(req, res) {
   // eslint-disable-next-line no-undef
   res.sendFile(path.join(__dirname, "../public", "index.html"));
 }
+// eslint-disable-next-line no-undef
+app.get("/", serveReactApp);
+app.get("/billboard", serveReactApp);
+app.get("/queue", serveReactApp);
+app.get("/search", serveReactApp);
 
-app.use(express.static("public"));
-app.get("*", serveReactApp);
+app.use(express.static(path.join(__dirname, "../public")));
 
 // start server
 const port = process.env.PORT || 3016;

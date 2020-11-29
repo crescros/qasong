@@ -3,17 +3,22 @@ import TableView from "./TableView/TableView";
 import GridView from "./GridView/GridView";
 
 function SearchResults({
-  handleSearchTermInput,
-  handleSubmitVideoSearch,
   nowPlaying,
   queue,
   setNowPlaying,
   setQueue,
-  videos,
+  searchResults,
   searchTableViewMode,
   setSearchTableViewMode,
 }) {
-  if (!(videos && videos.results && videos.results.length > 0 && videos.searchTerm)) {
+  if (
+    !(
+      searchResults &&
+      searchResults.results &&
+      searchResults.results.length > 0 &&
+      searchResults.searchTerm
+    )
+  ) {
     return <div></div>;
   }
 
@@ -23,13 +28,11 @@ function SearchResults({
         <Suspense fallback={<div />}>
           <TableView
             {...{
-              handleSearchTermInput,
-              handleSubmitVideoSearch,
               nowPlaying,
               queue,
               setNowPlaying,
               setQueue,
-              videos,
+              searchResults,
               setSearchTableViewMode,
             }}
           />
@@ -38,13 +41,11 @@ function SearchResults({
         <Suspense fallback={<div />}>
           <GridView
             {...{
-              handleSearchTermInput,
-              handleSubmitVideoSearch,
               nowPlaying,
               queue,
               setNowPlaying,
               setQueue,
-              videos,
+              searchResults,
               setSearchTableViewMode,
             }}
           />

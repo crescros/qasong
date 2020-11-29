@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Box, Link } from "@material-ui/core";
+import { Typography, Box, Link, Grid } from "@material-ui/core";
 
 function getDaysRemaining() {
   const releaseDate = "12/20/2020";
@@ -72,7 +72,7 @@ function Content() {
         or add them to your queue to start building a playlist{" "}
       </Typography>
 
-      <Box p={4} />
+      <Box p={3} />
 
       <Typography align="center" variant="h4" gutterBottom>
         Qasong Development
@@ -85,7 +85,7 @@ function Content() {
 
       <Box p={2} />
 
-      <Typography align="center" variant="h5" gutterBottom>
+      <Typography align="center" variant="h5">
         Currently Under Development
       </Typography>
       <Typography align="center">Qasong is currently under development, so</Typography>
@@ -103,7 +103,7 @@ function Content() {
 
       <Box p={2} />
 
-      <Typography align="center" variant="h5" gutterBottom>
+      <Typography align="center" variant="h5">
         Who made this?
       </Typography>
       <Typography align="center">Code for qasong.com is created by</Typography>
@@ -120,7 +120,7 @@ function Content() {
 
       <Box p={1} />
 
-      <Typography align="center" variant="h5" gutterBottom>
+      <Typography align="center" variant="h5">
         Contact the developers
       </Typography>
       <Typography align="center">To request a feature, report a bug, or</Typography>
@@ -130,6 +130,19 @@ function Content() {
           join us on Discord.
         </Link>
       </Typography>
+
+      <Box p={2} />
+
+      <Grid container justify="center" alignItems="center">
+        <Grid item>
+          <Typography align="center" variant="caption" color="textSecondary">
+            Qasong team 2020
+          </Typography>
+        </Grid>
+        <Grid item>
+          <img src="./img/qasong.svg" width="32px" />
+        </Grid>
+      </Grid>
     </Box>
   );
 }

@@ -14,11 +14,17 @@ function HomeScreen({
   isLoading,
   queue,
   addSongToQueue,
-  darkMode,
+  showAboutUs,
+  setShowAboutUs,
 }) {
   return (
     <Box mt={4}>
-      <WelcomeWindow {...{ darkMode }} />
+      <WelcomeWindow
+        {...{
+          showAboutUs,
+          setShowAboutUs,
+        }}
+      />
 
       <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
         <Grid item>

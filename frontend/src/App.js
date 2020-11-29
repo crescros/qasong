@@ -5,6 +5,8 @@ import { CssBaseline } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 
+const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1;
+
 // lazy load components
 const NowPlayingArea = React.lazy(() =>
   import("./components/NowPlayingArea/NowPlayingArea")
@@ -21,7 +23,7 @@ const darkTheme = createMuiTheme({
       main: "#000",
     },
     secondary: {
-      main: "#FE9021",
+      main: qasongOrange,
       dark: "#fff",
       contrastText: "#fff",
     },
@@ -40,7 +42,7 @@ const lightTheme = createMuiTheme({
       main: "#fff",
     },
     secondary: {
-      main: "#FE9021",
+      main: qasongOrange,
       dark: "#fff",
       contrastText: "#fff",
     },
@@ -56,8 +58,9 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [nowPlaying, setNowPlaying] = useState();
   const [queue, setQueue] = useState([]);
-  const [videos, setVideos] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
+  const [showAboutUs, setShowAboutUs] = useState(!localStorage.getItem("returningUser"));
 
   function skipSong() {
     const i = queue.findIndex((item) => item.qid === currentQid);
@@ -87,30 +90,17 @@ const App = () => {
     setQueue(queue.concat(song));
   }
 
-  // runs once when app starts
+  //when app starts
   useEffect(() => {
-    // (async () => {
-    //   // set dark mode from local storage
-    //   const userDarkMode = localStorage.getItem("userDarkMode");
-    //   if (userDarkMode === "false") {
-    //     setDarkMode(false);
-    //   }
+    setTimeout(() => {
+      localStorage.setItem("returningUser", true);
+    }, 10000);
 
-    //   // set search list view mode from local storage
-    //   const userSearchTableViewMode = localStorage.getItem("userSearchTableViewMode");
-    //   if (userSearchTableViewMode === "true") {
-    //     setSearchTableViewMode(true);
-    //   }
+    let storedQueue = localStorage.getItem("queue");
 
-    //   // if theres no queue in the url, get it from local storage
-    //   const storedQueue = localStorage.getItem("queue");
-    //   if (storedQueue) {
-    //     const localQueue = JSON.parse(storedQueue);
-    //     setQueue(localQueue);
-    //   }
-    // })();
-
-    localStorage.clear();
+    if (storedQueue) {
+      setQueue(JSON.parse(storedQueue));
+    }
   }, []);
 
   //when nowPlaying changes
@@ -157,7 +147,7 @@ const App = () => {
     const searchTerm = e.target.qasongsearch.value;
 
     const results = await getYoutubeIdFromSearch(searchTerm);
-    setVideos({
+    setSearchResults({
       searchTerm: searchTerm,
       results: results,
     });
@@ -183,19 +173,20 @@ const App = () => {
         <Suspense fallback={<div />}>
           <Routes
             {...{
+              addSongToQueue,
               darkMode,
+              handleSubmitVideoSearch,
               isLoading,
               nowPlaying,
-              setDarkMode,
-              setVideos,
-              searchTableViewMode,
-              handleSubmitVideoSearch,
               queue,
+              searchResults,
+              searchTableViewMode,
+              setDarkMode,
               setNowPlaying,
               setQueue,
-              videos,
               setSearchTableViewMode,
-              addSongToQueue,
+              setShowAboutUs,
+              showAboutUs,
             }}
           />
         </Suspense>
@@ -208,7 +199,7 @@ const App = () => {
               previousSong,
               nowPlaying,
               queue,
-              videos,
+              searchResults,
               setNowPlaying,
               getNextInQueue,
               getPreviousInQueue,

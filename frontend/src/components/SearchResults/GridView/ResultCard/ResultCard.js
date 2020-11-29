@@ -11,6 +11,8 @@ import {
 import uuid from "react-uuid";
 import AddToQueueButton from "./AddToQueueButton/AddToQueueButton";
 
+const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1;
+
 const useStyles = makeStyles((theme) => ({
   card: {
     position: "relative",
@@ -82,7 +84,7 @@ export default function ResultCard({
   return (
     <Card
       className={classes.card}
-      style={{ backgroundColor: playing && "#FE9021" }}
+      style={{ backgroundColor: playing && qasongOrange }}
       onClick={handlePlayButton}
     >
       <CardActionArea>

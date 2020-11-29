@@ -16,7 +16,7 @@ import VideoRow from "./ResultRow/ResultRow";
 import GridOnIcon from "@material-ui/icons/GridOn";
 
 function TableView({
-  videos,
+  searchResults,
   nowPlaying,
   setNowPlaying,
   queue,
@@ -31,7 +31,7 @@ function TableView({
     >
       <Box m={2}>
         <Typography>
-          Search Results for <i>{videos.searchTerm}</i>
+          Search Results for <i>{searchResults.searchTerm}</i>
         </Typography>
         <IconButton
           edge="end"
@@ -56,7 +56,7 @@ function TableView({
               </TableRow>
             </TableHead>
             <TableBody>
-              {videos.results.map((video) => {
+              {searchResults.results.map((video) => {
                 return (
                   <VideoRow
                     key={video.videoId}
