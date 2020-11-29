@@ -65,7 +65,7 @@
     "axios": "^0.21.0",
     "billboard-top-100": "^2.5.9",
     "cors": "^2.8.5",
-    "cypress": "^5.4.0",
+    "cypress": "^6.0.0",
     "dotenv": "^8.2.0",
     "electron-is-dev": "^1.2.0",
     "express": "^4.17.1",
