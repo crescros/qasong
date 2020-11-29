@@ -90,6 +90,25 @@ const App = () => {
     setQueue(queue.concat(song));
   }
 
+  // event listener for search submit
+  const handleSubmitVideoSearch = async (e) => {
+    setIsLoading(true);
+    setSearchResults({})
+
+    if (e) {
+      e.preventDefault();
+    }
+
+    const searchTerm = e.target.qasongsearch.value;
+
+    const results = await getYoutubeIdFromSearch(searchTerm);
+    setSearchResults({
+      searchTerm: searchTerm,
+      results: results,
+    });
+    setIsLoading(false);
+  };
+
   //when app starts
   useEffect(() => {
     setTimeout(() => {
@@ -136,23 +155,7 @@ const App = () => {
     localStorage.setItem("queue", JSON.stringify(queue));
   }, [queue]);
 
-  // event listener for search submit
-  const handleSubmitVideoSearch = async (e) => {
-    setIsLoading(true);
 
-    if (e) {
-      e.preventDefault();
-    }
-
-    const searchTerm = e.target.qasongsearch.value;
-
-    const results = await getYoutubeIdFromSearch(searchTerm);
-    setSearchResults({
-      searchTerm: searchTerm,
-      results: results,
-    });
-    setIsLoading(false);
-  };
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
