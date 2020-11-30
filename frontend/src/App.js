@@ -99,7 +99,7 @@ const App = () => {
       e.preventDefault();
     }
 
-    let qasongsearch = document.querySelector("#qasongsearch")
+    let qasongsearch = document.querySelector("#qasongsearch");
 
     const searchTerm = qasongsearch.value;
 
