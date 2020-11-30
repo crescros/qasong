@@ -99,7 +99,9 @@ const App = () => {
       e.preventDefault();
     }
 
-    const searchTerm = e.target.qasongsearch.value;
+    let qasongsearch = document.querySelector("#qasongsearch")
+
+    const searchTerm = qasongsearch.value;
 
     const results = await getYoutubeIdFromSearch(searchTerm);
     setSearchResults({

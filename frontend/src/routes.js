@@ -50,7 +50,7 @@ function Routes({
           {/* billboard top 100 */}
           <Route path="/billboard">
             <Suspense fallback={<div />}>
-              <BillboardTop100 />
+              <BillboardTop100 {...{ handleSubmitVideoSearch }} />
             </Suspense>
           </Route>
 
