@@ -13,9 +13,11 @@ import {
   IconButton,
   Link,
 } from "@material-ui/core";
+import {
+  PlayArrow as PlayArrowIcon,
+  Pause as PauseIcon
+} from "@material-ui/icons";
 
-import { PlayArrow as PlayArrowIcon, Pause as PauseIcon } from "@material-ui/icons";
-import SettingsBackupRestoreIcon from "@material-ui/icons/SettingsBackupRestore";
 
 // qasong components
 import SkipSongButton from "./SkipSongButton/SkipSongButton";
@@ -29,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
     top: "auto",
     bottom: 0,
     borderTop: "2px solid",
+    paddingTop: theme.spacing(1),
     borderColor: theme.palette.secondary.main,
   },
   grow: {
@@ -47,45 +50,32 @@ export default function BottomAppBar({
   getPreviousInQueue,
 }) {
   const classes = useStyles();
+
   const [songProgress, setSongProgress] = useState(0);
-  const [volume, setVolume] = useState(0.1);
-  // const [progressSeconds, setProgressSeconds] = useState(0);
+  const [volume, setVolume] = useState(0.9);
+  const [playing, setPlaying] = useState(true);
 
   const nextTitle = getNextInQueue()?.title;
   const previousTitle = getPreviousInQueue()?.title;
 
-  // send an event to ytIframe
-  function iframeCommand(command, args = "") {
-    const ytIframe = document.querySelector("iframe");
-    ytIframe.contentWindow.postMessage(
-      `{"event":"command","func":"${command}","args":"${args}"}`,
-      "*"
-    );
-  }
-
   // pauses the video
   function pauseVideo() {
-    iframeCommand("pauseVideo");
+    setPlaying(false)
   }
   // starts the video
   function startVideo() {
-    iframeCommand("playVideo");
-  }
-  // stops the video
-  function restartVideo() {
-    iframeCommand("stopVideo");
+    setPlaying(true)
   }
 
   // called everytime the video progress changes
   function handleProgress(e) {
     const currentTime = e.playedSeconds;
     const totalTime = nowPlaying.duration.seconds;
-    const percentProgress = (currentTime / totalTime) * 100;
 
-    setSongProgress(percentProgress);
+    setSongProgress(Math.round(currentTime));
 
-    if (percentProgress >= 99){
-      skipSong()
+    if (currentTime >= totalTime - 3) {
+      skipSong();
     }
   }
 
@@ -105,41 +95,45 @@ export default function BottomAppBar({
           setNowPlaying,
           handleProgress,
           volume,
+          playing
         }}
       />
 
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Grid container justify="center" alignItems="center" alignContent="center">
-          <Grid item xs={12}>
-            <VolumeController {...{volume, setVolume}} />
+
+          <Grid item xs={7}>
           </Grid>
-          <Grid item xs={12}>
-            <ProgressBar value={songProgress} />
+          <Grid item xs={4}>
+            <VolumeController {...{ volume, setVolume }} />
           </Grid>
+          <Grid item xs={1}>
+          </Grid>
+
+
+          <Grid item xs={12}>
+            <ProgressBar {...{ songProgress }} songDuration={nowPlaying.duration.seconds} />
+          </Grid>
+
           <Grid item xs={12} sm={4}>
             <Typography align="center">{nowPlaying.title}</Typography>
           </Grid>
 
           <Grid item xs={12} sm={4}>
             <Toolbar className={classes.grow}>
-              <IconButton onClick={restartVideo} color="secondary">
-                <SettingsBackupRestoreIcon />
-              </IconButton>
+              {isQueue && <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />}
 
-              {isQueue && (
-                <>
-                  <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />
-                  <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
-                </>
-              )}
+              {playing ?
+                <IconButton color="secondary" onClick={pauseVideo}>
+                  <PauseIcon />
+                </IconButton>
+                :
+                <IconButton color="secondary" onClick={startVideo}>
+                  <PlayArrowIcon />
+                </IconButton>
+              }
 
-              <IconButton color="secondary" onClick={pauseVideo}>
-                <PauseIcon />
-              </IconButton>
-
-              <IconButton color="secondary" onClick={startVideo}>
-                <PlayArrowIcon />
-              </IconButton>
+              {isQueue && <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />}
             </Toolbar>
           </Grid>
 

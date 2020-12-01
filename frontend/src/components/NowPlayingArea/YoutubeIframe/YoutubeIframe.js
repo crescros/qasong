@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import ReactPlayer from "react-player";
 
-export default function Video({ nowPlaying, handleProgress, volume }) {
+export default function Video({ nowPlaying, handleProgress, volume, playing }) {
   const playerRef = useRef(null);
   const id = nowPlaying.videoId;
   if (!id) return <div id="empty-div"></div>;
@@ -10,10 +10,10 @@ export default function Video({ nowPlaying, handleProgress, volume }) {
     <ReactPlayer
       ref={playerRef}
       width="100%"
-      height="100%"
+      height="0px"
       url={"https://www.youtube.com/watch?v=" + id}
       // pip={pip}
-      playing={true}
+      playing={playing}
       // controls={false}
       // light={light}
       // loop={loop}

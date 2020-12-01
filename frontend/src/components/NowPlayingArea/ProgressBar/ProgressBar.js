@@ -1,11 +1,22 @@
 import React from "react";
-import Box from "@material-ui/core/Box";
-import Slider from "@material-ui/core/Slider";
+import { Slider, Typography, Grid, Box } from "@material-ui/core";
 
-function ProgressBar({ value }) {
+import { formatSeconds } from "../../../functions"
+
+function ProgressBar({ songProgress, songDuration }) {
   return (
     <Box px={3}>
-      <Slider color="secondary" value={value} />
+      <Grid container spacing={2}>
+        <Grid item>
+          <Typography color="secondary">{formatSeconds(songProgress)}</Typography>
+        </Grid>
+        <Grid item xs>
+          <Slider color="secondary" value={songProgress} max={songDuration} />
+        </Grid>
+        <Grid item>
+          <Typography color="textSecondary">{formatSeconds(songDuration)}</Typography>
+        </Grid>
+      </Grid>
     </Box>
   );
 }
