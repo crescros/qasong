@@ -56,9 +56,9 @@ export default function BottomAppBar({
   const nextTitle = getNextInQueue()?.title;
   const previousTitle = getPreviousInQueue()?.title;
 
-  useEffect(()=>{
-    setPlaying(true)
-  }, [nowPlaying])
+  useEffect(() => {
+    setPlaying(true);
+  }, [nowPlaying]);
 
   // pauses the video
   function pauseVideo() {

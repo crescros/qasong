@@ -118,6 +118,10 @@ function Playlist({
           </Link>
         </Typography>
 
+        {
+          playlist.author && <Typography variant="h6" align="center" color="textSecondary">{playlist.author}</Typography>
+        }
+
         <Typography color="textSecondary" align="center">
           {playlist.queue.length} songs, {duration}
         </Typography>
