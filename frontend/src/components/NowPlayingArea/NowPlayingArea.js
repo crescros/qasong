@@ -1,5 +1,5 @@
 // react
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 // material ui
 import { makeStyles } from "@material-ui/core/styles";
@@ -51,6 +51,8 @@ export default function BottomAppBar({
   const [volume, setVolume] = useState(0.9);
   const [playing, setPlaying] = useState(true);
 
+  const playerRef = useRef(null);
+
   const nextTitle = getNextInQueue()?.title;
   const previousTitle = getPreviousInQueue()?.title;
 
@@ -61,6 +63,10 @@ export default function BottomAppBar({
   // starts the video
   function startVideo() {
     setPlaying(true);
+  }
+
+  function changeTime(seconds) {
+    playerRef.current.seekTo(seconds);
   }
 
   // called everytime the video progress changes
@@ -92,6 +98,7 @@ export default function BottomAppBar({
           handleProgress,
           volume,
           playing,
+          playerRef,
         }}
       />
 
@@ -105,7 +112,7 @@ export default function BottomAppBar({
 
           <Grid item xs={12}>
             <ProgressBar
-              {...{ songProgress }}
+              {...{ songProgress, changeTime }}
               songDuration={nowPlaying.duration.seconds}
             />
           </Grid>

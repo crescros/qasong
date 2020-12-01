@@ -3,7 +3,11 @@ import { Slider, Typography, Grid, Box } from "@material-ui/core";
 
 import { formatSeconds } from "../../../functions";
 
-function ProgressBar({ songProgress, songDuration }) {
+function ProgressBar({ songProgress, songDuration, changeTime }) {
+  function handleChange(e, newValue) {
+    changeTime(newValue);
+  }
+
   return (
     <Box px={3}>
       <Grid container spacing={2}>
@@ -11,7 +15,12 @@ function ProgressBar({ songProgress, songDuration }) {
           <Typography color="secondary">{formatSeconds(songProgress)}</Typography>
         </Grid>
         <Grid item xs>
-          <Slider color="secondary" value={songProgress} max={songDuration} />
+          <Slider
+            color="secondary"
+            value={songProgress}
+            max={songDuration}
+            onChange={handleChange}
+          />
         </Grid>
         <Grid item>
           <Typography color="textSecondary">{formatSeconds(songDuration)}</Typography>

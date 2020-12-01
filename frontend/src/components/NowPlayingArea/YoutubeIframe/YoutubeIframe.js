@@ -1,8 +1,13 @@
-import React, { useRef } from "react";
+import React from "react";
 import ReactPlayer from "react-player";
 
-export default function Video({ nowPlaying, handleProgress, volume, playing }) {
-  const playerRef = useRef(null);
+export default function Video({
+  nowPlaying,
+  handleProgress,
+  volume,
+  playing,
+  playerRef,
+}) {
   const id = nowPlaying.videoId;
   if (!id) return <div id="empty-div"></div>;
 
@@ -14,7 +19,7 @@ export default function Video({ nowPlaying, handleProgress, volume, playing }) {
       url={"https://www.youtube.com/watch?v=" + id}
       // pip={pip}
       playing={playing}
-      // controls={false}
+      controls={false}
       // light={light}
       // loop={loop}
       // playbackRate={playbackRate}
