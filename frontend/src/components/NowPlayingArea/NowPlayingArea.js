@@ -1,3 +1,4 @@
+// react
 import React, { useState } from "react";
 
 // material ui
@@ -12,17 +13,15 @@ import {
   IconButton,
   Link,
 } from "@material-ui/core";
-import {
-  Stop as StopIcon,
-  PlayArrow as PlayArrowIcon,
-  Pause as PauseIcon,
-} from "@material-ui/icons";
 
-// components
+import { PlayArrow as PlayArrowIcon, Pause as PauseIcon } from "@material-ui/icons";
+import SettingsBackupRestoreIcon from "@material-ui/icons/SettingsBackupRestore";
+
+// qasong components
 import SkipSongButton from "./SkipSongButton/SkipSongButton";
 import PreviousSongButton from "./PreviousSongButton/PreviousSongButton";
 import YoutubeIframe from "./YoutubeIframe/YoutubeIframe";
-import ProgressText from "./ProgressText/ProgressText";
+import ProgessBar from "./ProgressBar/ProgressBar";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -47,7 +46,7 @@ export default function BottomAppBar({
   getPreviousInQueue,
 }) {
   const classes = useStyles();
-  const [iframeState, setIframeState] = useState();
+  const [songProgress, setSongProgress] = useState(0);
   // const [progressSeconds, setProgressSeconds] = useState(0);
 
   const nextTitle = getNextInQueue()?.title;
@@ -71,16 +70,23 @@ export default function BottomAppBar({
     iframeCommand("playVideo");
   }
   // stops the video
-  function stopVideo() {
+  function restartVideo() {
     iframeCommand("stopVideo");
+  }
+
+  // called everytime the video progress changes
+  function handleProgress(e) {
+    const currentTime = e.playedSeconds;
+    const totalTime = nowPlaying.duration.seconds;
+    const percentProgress = (currentTime / totalTime) * 100;
+
+    setSongProgress(percentProgress);
   }
 
   if (!nowPlaying || !nowPlaying.title) {
     return <div></div>;
   }
 
-  const isStopped = iframeState === -1;
-  const isPlaying = iframeState === 1;
   const isQueue = nextTitle || previousTitle;
 
   return (
@@ -91,21 +97,23 @@ export default function BottomAppBar({
         {...{
           nowPlaying,
           setNowPlaying,
-          iframeState,
-          setIframeState,
+          handleProgress,
         }}
       />
 
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Grid container justify="center" alignItems="center" alignContent="center">
+          <Grid item xs={12}>
+            <ProgessBar value={songProgress} />
+          </Grid>
           <Grid item xs={12} sm={4}>
             <Typography align="center">{nowPlaying.title}</Typography>
           </Grid>
 
           <Grid item xs={12} sm={4}>
             <Toolbar className={classes.grow}>
-              <IconButton onClick={stopVideo} color="secondary">
-                <StopIcon />
+              <IconButton onClick={restartVideo} color="secondary">
+                <SettingsBackupRestoreIcon />
               </IconButton>
 
               {isQueue && (
@@ -115,22 +123,17 @@ export default function BottomAppBar({
                 </>
               )}
 
-              {isPlaying ? (
-                <IconButton color="secondary" onClick={pauseVideo}>
-                  <PauseIcon />
-                </IconButton>
-              ) : (
-                <IconButton color="secondary" onClick={startVideo}>
-                  <PlayArrowIcon />
-                </IconButton>
-              )}
+              <IconButton color="secondary" onClick={pauseVideo}>
+                <PauseIcon />
+              </IconButton>
+
+              <IconButton color="secondary" onClick={startVideo}>
+                <PlayArrowIcon />
+              </IconButton>
+
               {/* Skip to next */}
               {/* Current time progress */}
-              <ProgressText
-                isActive={isPlaying}
-                isReset={isStopped}
-                total={nowPlaying.duration.timestamp}
-              />
+
               {/* Volume Slider */}
             </Toolbar>
           </Grid>
