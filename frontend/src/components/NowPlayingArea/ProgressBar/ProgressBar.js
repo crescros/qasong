@@ -1,7 +1,7 @@
 import React from "react";
 import { Slider, Typography, Grid, Box } from "@material-ui/core";
 
-import { formatSeconds } from "../../../functions"
+import { formatSeconds } from "../../../functions";
 
 function ProgressBar({ songProgress, songDuration }) {
   return (

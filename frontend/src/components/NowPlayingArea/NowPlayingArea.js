@@ -13,11 +13,7 @@ import {
   IconButton,
   Link,
 } from "@material-ui/core";
-import {
-  PlayArrow as PlayArrowIcon,
-  Pause as PauseIcon
-} from "@material-ui/icons";
-
+import { PlayArrow as PlayArrowIcon, Pause as PauseIcon } from "@material-ui/icons";
 
 // qasong components
 import SkipSongButton from "./SkipSongButton/SkipSongButton";
@@ -60,11 +56,11 @@ export default function BottomAppBar({
 
   // pauses the video
   function pauseVideo() {
-    setPlaying(false)
+    setPlaying(false);
   }
   // starts the video
   function startVideo() {
-    setPlaying(true)
+    setPlaying(true);
   }
 
   // called everytime the video progress changes
@@ -95,24 +91,23 @@ export default function BottomAppBar({
           setNowPlaying,
           handleProgress,
           volume,
-          playing
+          playing,
         }}
       />
 
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Grid container justify="center" alignItems="center" alignContent="center">
-
-          <Grid item xs={7}>
-          </Grid>
+          <Grid item xs={7}></Grid>
           <Grid item xs={4}>
             <VolumeController {...{ volume, setVolume }} />
           </Grid>
-          <Grid item xs={1}>
-          </Grid>
-
+          <Grid item xs={1}></Grid>
 
           <Grid item xs={12}>
-            <ProgressBar {...{ songProgress }} songDuration={nowPlaying.duration.seconds} />
+            <ProgressBar
+              {...{ songProgress }}
+              songDuration={nowPlaying.duration.seconds}
+            />
           </Grid>
 
           <Grid item xs={12} sm={4}>
@@ -121,17 +116,19 @@ export default function BottomAppBar({
 
           <Grid item xs={12} sm={4}>
             <Toolbar className={classes.grow}>
-              {isQueue && <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />}
+              {isQueue && (
+                <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />
+              )}
 
-              {playing ?
+              {playing ? (
                 <IconButton color="secondary" onClick={pauseVideo}>
                   <PauseIcon />
                 </IconButton>
-                :
+              ) : (
                 <IconButton color="secondary" onClick={startVideo}>
                   <PlayArrowIcon />
                 </IconButton>
-              }
+              )}
 
               {isQueue && <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />}
             </Toolbar>
