@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
-import { Typography, Box, Grid } from "@material-ui/core";
+import { IconButton, Typography, Box, Grid } from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
 import QueueCard from "./QueueCard/QueueCard";
 import QueueRow from "./QueueRow/QueueRow";
 import { DndProvider } from "react-dnd";
@@ -11,6 +12,9 @@ import PlayQueueButton from "./PlayQueueButton/PlayQueueButton";
 import ShuffleButton from "./ShuffleButton/ShuffleButton";
 import ClearButton from "./ClearButton/ClearButton";
 import DisplayModeButton from "./DisplayModeButton/DisplayModeButton";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import DragHandleIcon from "@material-ui/icons/DragHandle";
+import { Queue as QueueIcon } from "@material-ui/icons";
 
 function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
   const [displayMode, setDisplayMode] = useState("list");
@@ -35,7 +39,67 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
   );
 
   if (!queue.length > 0) {
-    return <Typography align="center">no queue</Typography>;
+    return (
+      <div style={{ maxWidth: "800px", margin: "0 auto 200px auto" }}>
+        <Typography align="center">
+          <i> No queue exists. </i>
+          Click
+          <IconButton disabled>
+            <QueueIcon />
+          </IconButton>
+          icon to add song to your queue.
+        </Typography>
+
+        <Box m={3}>
+          <Grid container alignItems="center">
+            <Grid item>
+              <Typography variant="h5">
+                <Skeleton variant="text" width={100} height={50} />
+              </Typography>
+            </Grid>
+            <Grid item>
+              <PlayQueueButton disabled />
+            </Grid>
+            <Grid item>
+              <ShuffleButton disabled />
+            </Grid>
+            <Grid item>
+              <DisplayModeButton disabled />
+            </Grid>
+            <Grid item>
+              <ClearButton disabled />
+            </Grid>
+          </Grid>
+        </Box>
+
+        {[1, 2, 3].map((index) => {
+          return (
+            <Grid container key={index}>
+              <Grid item xs={1}>
+                <IconButton disabled>
+                  <PlayArrowIcon />
+                </IconButton>
+              </Grid>
+              <Grid item xs={9}>
+                <Typography>
+                  <Skeleton variant="text" width={300} height={50} />
+                </Typography>
+              </Grid>
+              <Grid item xs={1}>
+                <IconButton disabled>
+                  <DragHandleIcon />
+                </IconButton>
+              </Grid>
+              <Grid item xs={1}>
+                <Typography>
+                  <Skeleton variant="text" width={100} height={50} />
+                </Typography>
+              </Grid>
+            </Grid>
+          );
+        })}
+      </div>
+    );
   }
 
   return (

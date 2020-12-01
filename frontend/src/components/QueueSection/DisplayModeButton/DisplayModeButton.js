@@ -2,7 +2,8 @@ import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 import ViewComfyIcon from "@material-ui/icons/ViewComfy";
 import TocIcon from "@material-ui/icons/Toc";
-function ClearQueueButton({ displayMode, setDisplayMode }) {
+
+function ClearQueueButton({ disabled, displayMode, setDisplayMode }) {
   function handleClick() {
     if (displayMode === "list") {
       setDisplayMode("grid");
@@ -14,6 +15,7 @@ function ClearQueueButton({ displayMode, setDisplayMode }) {
     <IconButton
       edge="end"
       title="toggle between list/grid view"
+      disabled={disabled}
       onClick={handleClick}
       target="_blank"
       color="secondary"
