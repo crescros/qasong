@@ -21,7 +21,8 @@ import SettingsBackupRestoreIcon from "@material-ui/icons/SettingsBackupRestore"
 import SkipSongButton from "./SkipSongButton/SkipSongButton";
 import PreviousSongButton from "./PreviousSongButton/PreviousSongButton";
 import YoutubeIframe from "./YoutubeIframe/YoutubeIframe";
-import ProgessBar from "./ProgressBar/ProgressBar";
+import ProgressBar from "./ProgressBar/ProgressBar";
+import VolumeController from "./VolumeController/VolumeController";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -47,6 +48,7 @@ export default function BottomAppBar({
 }) {
   const classes = useStyles();
   const [songProgress, setSongProgress] = useState(0);
+  const [volume, setVolume] = useState(0.1);
   // const [progressSeconds, setProgressSeconds] = useState(0);
 
   const nextTitle = getNextInQueue()?.title;
@@ -81,6 +83,10 @@ export default function BottomAppBar({
     const percentProgress = (currentTime / totalTime) * 100;
 
     setSongProgress(percentProgress);
+
+    if (percentProgress >= 99){
+      skipSong()
+    }
   }
 
   if (!nowPlaying || !nowPlaying.title) {
@@ -98,13 +104,17 @@ export default function BottomAppBar({
           nowPlaying,
           setNowPlaying,
           handleProgress,
+          volume,
         }}
       />
 
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Grid container justify="center" alignItems="center" alignContent="center">
           <Grid item xs={12}>
-            <ProgessBar value={songProgress} />
+            <VolumeController {...{volume, setVolume}} />
+          </Grid>
+          <Grid item xs={12}>
+            <ProgressBar value={songProgress} />
           </Grid>
           <Grid item xs={12} sm={4}>
             <Typography align="center">{nowPlaying.title}</Typography>
@@ -130,11 +140,6 @@ export default function BottomAppBar({
               <IconButton color="secondary" onClick={startVideo}>
                 <PlayArrowIcon />
               </IconButton>
-
-              {/* Skip to next */}
-              {/* Current time progress */}
-
-              {/* Volume Slider */}
             </Toolbar>
           </Grid>
 

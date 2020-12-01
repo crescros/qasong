@@ -64,7 +64,7 @@ function BillboardTop100({ handleSubmitVideoSearch }) {
           })
         ) : (
           <Box mt={4}>
-            <LoadingAnimation size="600px" speed="5" />
+            <LoadingAnimation size="240px" speed="5" />
           </Box>
         )}
       </Grid>

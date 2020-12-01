@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import ReactPlayer from "react-player";
 
-export default function Video({ nowPlaying, handleProgress }) {
+export default function Video({ nowPlaying, handleProgress, volume }) {
   const playerRef = useRef(null);
   const id = nowPlaying.videoId;
   if (!id) return <div id="empty-div"></div>;
@@ -18,7 +18,7 @@ export default function Video({ nowPlaying, handleProgress }) {
       // light={light}
       // loop={loop}
       // playbackRate={playbackRate}
-      // volume={volume}
+      volume={volume}
       // muted={muted}
       onProgress={handleProgress}
       config={{
