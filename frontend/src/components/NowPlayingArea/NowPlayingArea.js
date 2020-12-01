@@ -1,5 +1,5 @@
 // react
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 // material ui
 import { makeStyles } from "@material-ui/core/styles";
@@ -55,6 +55,10 @@ export default function BottomAppBar({
 
   const nextTitle = getNextInQueue()?.title;
   const previousTitle = getPreviousInQueue()?.title;
+
+  useEffect(()=>{
+    setPlaying(true)
+  }, [nowPlaying])
 
   // pauses the video
   function pauseVideo() {
