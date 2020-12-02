@@ -38,6 +38,10 @@ function MobileMenu({ queueLength, darkMode, setDarkMode, setShowAboutUs }) {
     history.push("/billboard");
   }
 
+  function handlePlaylistClick() {
+    history.push("/playlists");
+  }
+
   function handleDarkmodeButtonClick() {
     setDarkMode(!darkMode);
   }
@@ -84,6 +88,7 @@ function MobileMenu({ queueLength, darkMode, setDarkMode, setShowAboutUs }) {
 
         <MenuItem onClick={handleAboutUsClick}>about us</MenuItem>
         <MenuItem onClick={handleBillboardClick}>billboard top 100</MenuItem>
+        <MenuItem onClick={handlePlaylistClick}>my playlists</MenuItem>
       </Menu>
 
       <IconButton

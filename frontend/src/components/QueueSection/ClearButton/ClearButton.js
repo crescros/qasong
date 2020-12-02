@@ -15,6 +15,7 @@ function ShareButton({ disabled, queue, setQueue }) {
     <IconButton
       edge="end"
       title="Clear the entire queue"
+      size="small"
       disabled={disabled}
       onClick={handleClick}
       target="_blank"

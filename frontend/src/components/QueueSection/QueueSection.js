@@ -14,6 +14,7 @@ import ClearButton from "./ClearButton/ClearButton";
 import DisplayModeButton from "./DisplayModeButton/DisplayModeButton";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import DragHandleIcon from "@material-ui/icons/DragHandle";
+import SaveIcon from '@material-ui/icons/Save';
 import { Queue as QueueIcon } from "@material-ui/icons";
 
 function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
@@ -120,6 +121,12 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
           <Grid item>
             <DisplayModeButton {...{ displayMode, setDisplayMode }} />
           </Grid>
+          <Grid item>
+            <IconButton>
+              <SaveIcon size="small" />
+            </IconButton>
+          </Grid>
+
           <Grid item>
             <ClearButton {...{ setQueue }} />
           </Grid>
