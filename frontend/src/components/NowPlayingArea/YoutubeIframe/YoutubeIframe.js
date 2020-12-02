@@ -7,6 +7,7 @@ export default function Video({
   volume,
   playing,
   playerRef,
+  playbackRate,
 }) {
   const id = nowPlaying.videoId;
   if (!id) return <div id="empty-div"></div>;
@@ -22,7 +23,7 @@ export default function Video({
       controls={false}
       // light={light}
       // loop={loop}
-      // playbackRate={playbackRate}
+      playbackRate={playbackRate}
       volume={volume}
       // muted={muted}
       onProgress={handleProgress}

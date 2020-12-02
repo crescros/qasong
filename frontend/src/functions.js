@@ -126,7 +126,8 @@ export function numberWithCommas(x) {
 }
 
 export function formatSeconds(seconds) {
-  let minutes = Math.round(seconds / 60);
+  let hours = Math.floor(seconds / 3600);
+  let minutes = Math.floor((seconds % 3600) / 60);
   let remainingSeconds = seconds % 60;
 
   if (minutes === 0) {
@@ -141,5 +142,9 @@ export function formatSeconds(seconds) {
     remainingSeconds = "0" + remainingSeconds;
   }
 
-  return `${minutes}:${remainingSeconds}`;
+  if (hours) {
+    return `${hours}:${minutes}:${remainingSeconds}`;
+  } else {
+    return `${minutes}:${remainingSeconds}`;
+  }
 }

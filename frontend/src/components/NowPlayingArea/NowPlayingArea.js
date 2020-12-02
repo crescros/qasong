@@ -50,6 +50,7 @@ export default function BottomAppBar({
   const [songProgress, setSongProgress] = useState(0);
   const [volume, setVolume] = useState(0.9);
   const [playing, setPlaying] = useState(true);
+  const [playbackRate] = useState(1);
 
   const playerRef = useRef(null);
 
@@ -103,6 +104,7 @@ export default function BottomAppBar({
           volume,
           playing,
           playerRef,
+          playbackRate,
         }}
       />
 
