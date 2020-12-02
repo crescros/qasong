@@ -14,7 +14,7 @@ import ClearButton from "./ClearButton/ClearButton";
 import DisplayModeButton from "./DisplayModeButton/DisplayModeButton";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import DragHandleIcon from "@material-ui/icons/DragHandle";
-import SaveIcon from '@material-ui/icons/Save';
+import SaveIcon from "@material-ui/icons/Save";
 import { Queue as QueueIcon } from "@material-ui/icons";
 
 function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {

@@ -7,7 +7,9 @@ const SearchResults = React.lazy(() =>
 const HomeScreen = React.lazy(() => import("./components/HomeScreen/HomeScreen"));
 const AppBar = React.lazy(() => import("./components/AppBar/AppBar"));
 const QueueSection = React.lazy(() => import("./components/QueueSection/QueueSection"));
-const PlaylistSection = React.lazy(() => import("./components/PlaylistSection/PlaylistSection"));
+const PlaylistSection = React.lazy(() =>
+  import("./components/PlaylistSection/PlaylistSection")
+);
 const BillboardTop100 = React.lazy(() =>
   import("./components/BillboardTop100/BillboardTop100")
 );
@@ -89,9 +91,7 @@ function Routes({
           {/* playlists */}
           <Route path="/playlists">
             <Suspense fallback={<div />}>
-              <PlaylistSection
-     
-              />
+              <PlaylistSection />
             </Suspense>
           </Route>
 
