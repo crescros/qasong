@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import VideoSearch from "./VideoSearch";
+import MusicSearch from "./MusicSearch";
 
-describe("<VideoSearch />", () => {
+describe("<MusicSearch />", () => {
   it("renders a form", () => {
-    const wrapper = shallow(<VideoSearch />);
+    const wrapper = shallow(<MusicSearch />);
     expect(wrapper.find("form")).toHaveLength(1);
   });
 });

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// react
+import React, { useState, useRef, useEffect } from "react";
 
 // material ui
 import { makeStyles } from "@material-ui/core/styles";
@@ -12,23 +13,21 @@ import {
   IconButton,
   Link,
 } from "@material-ui/core";
-import {
-  Stop as StopIcon,
-  PlayArrow as PlayArrowIcon,
-  Pause as PauseIcon,
-} from "@material-ui/icons";
+import { PlayArrow as PlayArrowIcon, Pause as PauseIcon } from "@material-ui/icons";
 
-// components
+// qasong components
 import SkipSongButton from "./SkipSongButton/SkipSongButton";
 import PreviousSongButton from "./PreviousSongButton/PreviousSongButton";
 import YoutubeIframe from "./YoutubeIframe/YoutubeIframe";
-import ProgressText from "./ProgressText/ProgressText";
+import ProgressBar from "./ProgressBar/ProgressBar";
+import VolumeController from "./VolumeController/VolumeController";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
     top: "auto",
     bottom: 0,
     borderTop: "2px solid",
+    paddingTop: theme.spacing(1),
     borderColor: theme.palette.secondary.main,
   },
   grow: {
@@ -47,40 +46,50 @@ export default function BottomAppBar({
   getPreviousInQueue,
 }) {
   const classes = useStyles();
-  const [iframeState, setIframeState] = useState();
-  // const [progressSeconds, setProgressSeconds] = useState(0);
+
+  const [songProgress, setSongProgress] = useState(0);
+  const [volume, setVolume] = useState(0.9);
+  const [playing, setPlaying] = useState(true);
+  const [playbackRate] = useState(1);
+
+  const playerRef = useRef(null);
 
   const nextTitle = getNextInQueue()?.title;
   const previousTitle = getPreviousInQueue()?.title;
 
-  // send an event to ytIframe
-  function iframeCommand(command, args = "") {
-    const ytIframe = document.querySelector("iframe");
-    ytIframe.contentWindow.postMessage(
-      `{"event":"command","func":"${command}","args":"${args}"}`,
-      "*"
-    );
-  }
+  useEffect(() => {
+    setPlaying(true);
+  }, [nowPlaying]);
 
   // pauses the video
   function pauseVideo() {
-    iframeCommand("pauseVideo");
+    setPlaying(false);
   }
   // starts the video
   function startVideo() {
-    iframeCommand("playVideo");
+    setPlaying(true);
   }
-  // stops the video
-  function stopVideo() {
-    iframeCommand("stopVideo");
+
+  function changeTime(seconds) {
+    playerRef.current.seekTo(seconds);
+  }
+
+  // called everytime the video progress changes
+  function handleProgress(e) {
+    const currentTime = e.playedSeconds;
+    const totalTime = nowPlaying.duration.seconds;
+
+    setSongProgress(Math.round(currentTime));
+
+    if (currentTime >= totalTime - 3) {
+      skipSong();
+    }
   }
 
   if (!nowPlaying || !nowPlaying.title) {
     return <div></div>;
   }
 
-  const isStopped = iframeState === -1;
-  const isPlaying = iframeState === 1;
   const isQueue = nextTitle || previousTitle;
 
   return (
@@ -91,31 +100,40 @@ export default function BottomAppBar({
         {...{
           nowPlaying,
           setNowPlaying,
-          iframeState,
-          setIframeState,
+          handleProgress,
+          volume,
+          playing,
+          playerRef,
+          playbackRate,
         }}
       />
 
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Grid container justify="center" alignItems="center" alignContent="center">
+          <Grid item xs={7}></Grid>
+          <Grid item xs={4}>
+            <VolumeController {...{ volume, setVolume }} />
+          </Grid>
+          <Grid item xs={1}></Grid>
+
+          <Grid item xs={12}>
+            <ProgressBar
+              {...{ songProgress, changeTime }}
+              songDuration={nowPlaying.duration.seconds}
+            />
+          </Grid>
+
           <Grid item xs={12} sm={4}>
             <Typography align="center">{nowPlaying.title}</Typography>
           </Grid>
 
           <Grid item xs={12} sm={4}>
             <Toolbar className={classes.grow}>
-              <IconButton onClick={stopVideo} color="secondary">
-                <StopIcon />
-              </IconButton>
-
               {isQueue && (
-                <>
-                  <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />
-                  <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />
-                </>
+                <PreviousSongButton disabled={!previousTitle} {...{ previousSong }} />
               )}
 
-              {isPlaying ? (
+              {playing ? (
                 <IconButton color="secondary" onClick={pauseVideo}>
                   <PauseIcon />
                 </IconButton>
@@ -124,14 +142,8 @@ export default function BottomAppBar({
                   <PlayArrowIcon />
                 </IconButton>
               )}
-              {/* Skip to next */}
-              {/* Current time progress */}
-              <ProgressText
-                isActive={isPlaying}
-                isReset={isStopped}
-                total={nowPlaying.duration.timestamp}
-              />
-              {/* Volume Slider */}
+
+              {isQueue && <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />}
             </Toolbar>
           </Grid>
 

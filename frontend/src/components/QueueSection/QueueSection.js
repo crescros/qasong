@@ -1,22 +1,45 @@
+// react
 import React, { useCallback, useState } from "react";
-import { Typography, Box, Grid } from "@material-ui/core";
-import QueueCard from "./QueueCard/QueueCard";
-import QueueRow from "./QueueRow/QueueRow";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
 import { isMobile } from "react-device-detect";
 import update from "immutability-helper";
+import uuid from "react-uuid";
+
+// material-ui
+import { IconButton, Typography, Box, Grid } from "@material-ui/core";
+import {
+  Queue as QueueIcon,
+  Save as SaveIcon,
+  DragHandle as DragHandleIcon,
+  PlayArrow as PlayArrowIcon,
+} from "@material-ui/icons";
+import Skeleton from "@material-ui/lab/Skeleton";
+
+// qasong components
+import { addPlaylist } from "../../functions";
+import DisplayModeButton from "./DisplayModeButton/DisplayModeButton";
+import QueueCard from "./QueueCard/QueueCard";
+import QueueRow from "./QueueRow/QueueRow";
 import PlayQueueButton from "./PlayQueueButton/PlayQueueButton";
 import ShuffleButton from "./ShuffleButton/ShuffleButton";
 import ClearButton from "./ClearButton/ClearButton";
-import DisplayModeButton from "./DisplayModeButton/DisplayModeButton";
 
 function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
   const [displayMode, setDisplayMode] = useState("list");
 
   const handleClickQueueItem = (qid) => {
     setNowPlaying(queue.find((item) => item.qid === qid));
+  };
+
+  const handleClickSave = () => {
+    addPlaylist({
+      id: uuid(),
+      name: "new playlist",
+      queue: queue,
+      image: queue[0].image,
+    });
   };
 
   const moveCard = useCallback(
@@ -35,7 +58,67 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
   );
 
   if (!queue.length > 0) {
-    return <Typography align="center">no queue</Typography>;
+    return (
+      <div style={{ maxWidth: "800px", margin: "0 auto 200px auto" }}>
+        <Typography align="center">
+          <i> No queue exists. </i>
+          Click
+          <IconButton disabled>
+            <QueueIcon />
+          </IconButton>
+          icon to add song to your queue.
+        </Typography>
+
+        <Box m={3}>
+          <Grid container alignItems="center">
+            <Grid item>
+              <Typography variant="h5">
+                <Skeleton variant="text" width={100} height={50} />
+              </Typography>
+            </Grid>
+            <Grid item>
+              <PlayQueueButton disabled />
+            </Grid>
+            <Grid item>
+              <ShuffleButton disabled />
+            </Grid>
+            <Grid item>
+              <DisplayModeButton disabled />
+            </Grid>
+            <Grid item>
+              <ClearButton disabled />
+            </Grid>
+          </Grid>
+        </Box>
+
+        {[1, 2, 3].map((index) => {
+          return (
+            <Grid container key={index}>
+              <Grid item xs={1}>
+                <IconButton disabled>
+                  <PlayArrowIcon />
+                </IconButton>
+              </Grid>
+              <Grid item xs={9}>
+                <Typography>
+                  <Skeleton variant="text" width={300} height={50} />
+                </Typography>
+              </Grid>
+              <Grid item xs={1}>
+                <IconButton disabled>
+                  <DragHandleIcon />
+                </IconButton>
+              </Grid>
+              <Grid item xs={1}>
+                <Typography>
+                  <Skeleton variant="text" width={100} height={50} />
+                </Typography>
+              </Grid>
+            </Grid>
+          );
+        })}
+      </div>
+    );
   }
 
   return (
@@ -56,6 +139,12 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
           <Grid item>
             <DisplayModeButton {...{ displayMode, setDisplayMode }} />
           </Grid>
+          <Grid item>
+            <IconButton>
+              <SaveIcon size="small" onClick={handleClickSave} />
+            </IconButton>
+          </Grid>
+
           <Grid item>
             <ClearButton {...{ setQueue }} />
           </Grid>

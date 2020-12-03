@@ -7,6 +7,9 @@ const SearchResults = React.lazy(() =>
 const HomeScreen = React.lazy(() => import("./components/HomeScreen/HomeScreen"));
 const AppBar = React.lazy(() => import("./components/AppBar/AppBar"));
 const QueueSection = React.lazy(() => import("./components/QueueSection/QueueSection"));
+const PlaylistSection = React.lazy(() =>
+  import("./components/PlaylistSection/PlaylistSection")
+);
 const BillboardTop100 = React.lazy(() =>
   import("./components/BillboardTop100/BillboardTop100")
 );
@@ -15,7 +18,7 @@ import NotFound from "./components/NotFound/NotFound";
 function Routes({
   addSongToQueue,
   darkMode,
-  handleSubmitVideoSearch,
+  handleSubmitMusicSearch,
   isLoading,
   nowPlaying,
   queue,
@@ -34,8 +37,7 @@ function Routes({
         <AppBar
           {...{
             darkMode,
-            handleSubmitVideoSearch,
-            isLoading,
+            handleSubmitMusicSearch,
             queue,
             setDarkMode,
             showAboutUs,
@@ -50,7 +52,7 @@ function Routes({
           {/* billboard top 100 */}
           <Route path="/billboard">
             <Suspense fallback={<div />}>
-              <BillboardTop100 />
+              <BillboardTop100 {...{ handleSubmitMusicSearch }} />
             </Suspense>
           </Route>
 
@@ -60,6 +62,7 @@ function Routes({
               <SearchResults
                 {...{
                   nowPlaying,
+                  isLoading,
                   queue,
                   setNowPlaying,
                   searchTableViewMode,
@@ -82,6 +85,13 @@ function Routes({
                   setQueue,
                 }}
               />
+            </Suspense>
+          </Route>
+
+          {/* playlists */}
+          <Route path="/playlists">
+            <Suspense fallback={<div />}>
+              <PlaylistSection />
             </Suspense>
           </Route>
 

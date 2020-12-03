@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// API CALLS TO QASONG SERVER
+
 const baseUrl = process.env.REACT_APP_ARTISTIFY_URL; // prod url
 // const baseUrl = "./"; // prod url
 // const baseUrl = "http://localhost:3016/"; // dev url
@@ -48,14 +50,6 @@ export function getBillboardTop100() {
     });
 }
 
-export function formatVideoTitle(name) {
-  if (name.length < 40) {
-    return name;
-  } else {
-    return name.substr(0, 40) + "...";
-  }
-}
-
 export function getQueueFromIds(search) {
   return axios
     .get(baseUrl + "api/search/ids?" + search)
@@ -78,6 +72,62 @@ export function getFeed() {
       alert(error + " " + error.response && error.response.data);
       return [];
     });
+}
+
+// PLAYLISTS
+
+export function getPlaylists() {
+  const storedPlaylists = localStorage.getItem("playlists");
+
+  if (!storedPlaylists) {
+    localStorage.setItem("playlists", "[]");
+    return getPlaylists();
+  }
+
+  return JSON.parse(storedPlaylists);
+}
+
+export function updatePlaylists(playlists) {
+  localStorage.setItem("playlists", JSON.stringify(playlists));
+}
+
+export function getPlaylist(id) {
+  const playlist = getPlaylists().find((playlist) => playlist.id === id);
+  return playlist;
+}
+
+export function addPlaylist(newPlaylist) {
+  const playlists = getPlaylists().concat(newPlaylist);
+  updatePlaylists(playlists);
+  return playlists;
+}
+
+export function updatePlaylist(id, updatedPlaylist) {
+  const playlists = getPlaylists().map((playlist) => {
+    if (playlist.id === id) {
+      return updatedPlaylist;
+    } else {
+      return playlist;
+    }
+  });
+  updatePlaylists(playlists);
+  return playlists;
+}
+
+export function removePlaylist(id) {
+  const playlists = getPlaylists().filter((playlist) => playlist.id !== id);
+  updatePlaylists(playlists);
+  location.reload();
+  return playlists;
+}
+
+// OTHER
+export function formatVideoTitle(name) {
+  if (name.length < 40) {
+    return name;
+  } else {
+    return name.substr(0, 40) + "...";
+  }
 }
 
 export function copyCurrentURL() {
@@ -123,4 +173,28 @@ export function numberWithCommas(x) {
   if (!x) return "";
 
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+export function formatSeconds(seconds) {
+  let hours = Math.floor(seconds / 3600);
+  let minutes = Math.floor((seconds % 3600) / 60);
+  let remainingSeconds = seconds % 60;
+
+  if (minutes === 0) {
+    minutes = "00";
+  } else if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+
+  if (remainingSeconds === 0) {
+    remainingSeconds = "00";
+  } else if (remainingSeconds < 10) {
+    remainingSeconds = "0" + remainingSeconds;
+  }
+
+  if (hours) {
+    return `${hours}:${minutes}:${remainingSeconds}`;
+  } else {
+    return `${minutes}:${remainingSeconds}`;
+  }
 }

@@ -1,17 +1,12 @@
 import React from "react";
 import { getBillboardTop100 } from "../../functions";
 import BillboardItem from "./BillboardTop100Item/BillboardTop100Item";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, Box } from "@material-ui/core";
 
 import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
 
-function BillboardTop100() {
+function BillboardTop100({ handleSubmitVideoSearch }) {
   const [billboard, setBillboard] = React.useState([]);
-
-  const [loading, setLoading] = React.useState(true);
-  const dataLoaded = () => {
-    setLoading(false);
-  };
 
   function setSearchTerm(text) {
     const qasongSearchInput = document.querySelector("#qasongsearch");
@@ -27,24 +22,51 @@ function BillboardTop100() {
     })();
   }, []);
 
+  const currentDate = new Date(billboard.data?.week);
+
+  const displayDate = currentDate.toLocaleDateString({
+    year: "numeric",
+    month: "long",
+    day: "long",
+    weekday: "long",
+  });
+
+  const remainingTime = new Date(billboard.data?.nextWeek.date) - currentDate;
+
+  const remainingDays = Math.floor(remainingTime / (60 * 60 * 24 * 1000));
+
   return (
     <>
-      <Typography align="center" variant="h1" gutterBottom>
+      <Typography align="center" variant="h1">
         Billboard Top 100
       </Typography>
 
-      <Grid align="center" style={{ display: loading ? "block" : "none" }}>
-        <LoadingAnimation size="600px" speed="5" />
-      </Grid>
+      {billboard.data && (
+        <>
+          <Typography align="center" variant="h4">
+            {displayDate}
+          </Typography>
+          <Typography color="textSecondary" align="center" gutterBottom>
+            next update in {remainingDays} days
+          </Typography>
+          <Box m={4} />
+        </>
+      )}
 
-      <Grid container direction="column" spacing={1}>
-        {billboard.data?.map((item) => {
-          return (
-            <Grid item key={item.rank} onLoad={dataLoaded}>
-              <BillboardItem {...{ item, setSearchTerm }} />
-            </Grid>
-          );
-        })}
+      <Grid container direction="column" spacing={1} align="center ">
+        {billboard.data ? (
+          billboard.data.songs.map((item) => {
+            return (
+              <Grid item key={item.rank}>
+                <BillboardItem {...{ item, setSearchTerm, handleSubmitVideoSearch }} />
+              </Grid>
+            );
+          })
+        ) : (
+          <Box mt={4}>
+            <LoadingAnimation size="240px" speed="5" />
+          </Box>
+        )}
       </Grid>
     </>
   );

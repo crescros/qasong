@@ -1,9 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
-import { AppBar, Toolbar, IconButton, Box } from "@material-ui/core";
-import VideoSearch from "./VideoSearch/VideoSearch";
+import { AppBar, Toolbar, IconButton } from "@material-ui/core";
+import MusicSearch from "./MusicSearch/MusicSearch";
 import Menu from "./Menu/Menu";
-import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
 
 // import UserSection from "./UserSection/UserSection";
 import { Link } from "react-router-dom";
@@ -24,11 +23,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function QasongAppBar({
-  handleSubmitVideoSearch,
+  handleSubmitMusicSearch,
   queue,
   darkMode,
   setDarkMode,
-  isLoading,
   showAboutUs,
   setShowAboutUs,
 }) {
@@ -71,16 +69,13 @@ export default function QasongAppBar({
           </Link>
 
           {/* Search bar */}
-          <VideoSearch
-            handleSubmitVideoSearch={handleSubmitVideoSearch}
+          <MusicSearch
+            handleSubmitMusicSearch={handleSubmitMusicSearch}
             style={{
               margin: "0 auto",
               maxWidth: 800,
             }}
           />
-
-          {/* Search Bar Loading Indicator */}
-          <Box mx={2}> {isLoading && <LoadingAnimation size="32px" />} </Box>
 
           {/* responsive spacer */}
           <div className={classes.grow} />

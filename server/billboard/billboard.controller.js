@@ -9,6 +9,6 @@ module.exports = router;
 
 function getFeed(req, res) {
   getChart((err, chart) => {
-    res.json(chart.songs);
+    res.json(chart);
   });
 }

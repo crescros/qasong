@@ -1,5 +1,5 @@
 import React from "react";
-import Playlist from "./Playlist/Playlist";
+import Playlist from "../../../PlaylistSection/Playlist/Playlist";
 import JoinUsOnDiscord from "./JoinUsOnDiscord/JoinUsOnDiscord";
 import HmaksPlaylist from "./HmaksPlaylist/HmaksPlaylist";
 

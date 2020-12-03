@@ -13,7 +13,7 @@ import {
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
 import { makeStyles } from "@material-ui/core/styles";
-import PlaylistItem from "../Playlist/PlaylistItem/PlaylistItem";
+import PlaylistItem from "../../../../PlaylistSection/Playlist/PlaylistItem/PlaylistItem";
 import { getDurationFromQueue } from "../../../../../functions";
 
 const useStyles = makeStyles((theme) => ({

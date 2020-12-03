@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography, Box } from "@material-ui/core";
+import { Grid, Typography, Box, Select, MenuItem, InputLabel } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { getFeed } from "../../../functions";
 import FeedItem from "./FeedItem/FeedItem";
@@ -8,6 +8,9 @@ import LoadingAnimation from "../../LoadingAnimation/LoadingAnimation";
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
+  },
+  tagSelect: {
+    width: "150px",
   },
 });
 
@@ -23,6 +26,7 @@ function FeaturedPlaylists({
   const classes = useStyles();
   const [feedItems, setFeedItems] = React.useState([]);
   const [loading, setLoading] = React.useState([]);
+  const [tags, setTag] = React.useState("");
 
   React.useEffect(() => {
     (async () => {
@@ -32,6 +36,17 @@ function FeaturedPlaylists({
       setLoading(false);
     })();
   }, []);
+
+  const listOfTag = [];
+  feedItems.map((playlist) => {
+    if (!playlist.tags) return null;
+
+    playlist.tags.map((tag) => {
+      if (tag !== "hmak" && tag !== "discord-ad" && !listOfTag.includes(tag))
+        listOfTag.push(tag);
+    });
+  });
+
   return (
     <div className={classes.root}>
       <Typography align="center" variant="h4" color="textSecondary">
@@ -44,23 +59,42 @@ function FeaturedPlaylists({
         </Grid>
       ) : (
         <Box mx={2}>
+          <InputLabel id="tag-label">Tag</InputLabel>
+          <Select
+            className={classes.tagSelect}
+            labelId="tag-label"
+            id="tag-select"
+            value={tags}
+            onChange={(e) => setTag(e.target.value)}
+          >
+            {listOfTag.map((tag, index) => {
+              return (
+                <MenuItem key={index} value={tag}>
+                  {tag}
+                </MenuItem>
+              );
+            })}
+          </Select>
+
           <Grid container direction="column" spacing={1}>
             {feedItems.map((playlist) => {
-              return (
-                <FeedItem
-                  key={playlist.id}
-                  {...{
-                    playlist,
-                    setQueue,
-                    setQueueName,
-                    setNowPlaying,
-                    setShowQueue,
-                    nowPlaying,
-                    queue,
-                    addSongToQueue,
-                  }}
-                />
-              );
+              if (!tags || (playlist.tags && playlist.tags.includes(tags))) {
+                return (
+                  <FeedItem
+                    key={playlist.id}
+                    {...{
+                      playlist,
+                      setQueue,
+                      setQueueName,
+                      setNowPlaying,
+                      setShowQueue,
+                      nowPlaying,
+                      queue,
+                      addSongToQueue,
+                    }}
+                  />
+                );
+              }
             })}
           </Grid>
         </Box>
