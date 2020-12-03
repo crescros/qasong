@@ -40,6 +40,7 @@ app.get("/", serveReactApp);
 app.get("/billboard", serveReactApp);
 app.get("/queue", serveReactApp);
 app.get("/search", serveReactApp);
+app.get("/playlists", serveReactApp);
 
 app.use(express.static(path.join(__dirname, "../public")));
 
