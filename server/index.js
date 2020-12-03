@@ -28,6 +28,7 @@ app.set("etag", false);
 app.use("/api/feed", require("./feed/feed.controller"), apiLimiter);
 app.use("/api/search", require("./search/search.controller"), apiLimiter);
 app.use("/api/billboard", require("./billboard/billboard.controller"), apiLimiter);
+app.use("/api/discord", require("./discord/discord.controller"), apiLimiter);
 app.use("/api/env", (req, res) => res.send(process.env.NODE_ENV), apiLimiter);
 
 // frontend routes
