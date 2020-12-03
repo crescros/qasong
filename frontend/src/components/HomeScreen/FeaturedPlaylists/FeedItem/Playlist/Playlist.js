@@ -30,15 +30,17 @@ const useStyles = makeStyles((theme) => ({
   img: {
     margin: "auto",
     display: "block",
-    maxWidth: "100%",
-    maxHeight: "100%",
+    maxWidth: "75%",
+    maxHeight: "75%",
   },
 }));
+  if (!PLaylist.length > 0) {
+    return <Typography align="center">no queue</Typography>;
+  }
 
 function Playlist({
   playlist,
   setQueue,
-  setQueueName,
   setNowPlaying,
   nowPlaying,
   queue,
@@ -50,7 +52,6 @@ function Playlist({
   function handlePlaylistClick() {
     setQueue(playlist.queue);
     setNowPlaying(playlist.queue[0]);
-    setQueueName(playlist.name);
   }
 
   function handleAddToQueueClick() {
@@ -61,7 +62,6 @@ function Playlist({
     });
 
     setQueue([...queue, ...songsNotAlreadyInQueue]);
-    setQueueName(playlist.name);
   }
 
   function handleStopSong(e) {
@@ -97,70 +97,58 @@ function Playlist({
     <Grid
       key={playlist.id}
       container
+      alignItems="center"
       item
       className={classes.playlist}
       data-playlist_id={playlist.id}
     >
-      <Grid item xs={12}>
+      <Grid item xs={4}>
         <Box align="center">
           <ButtonBase onClick={handlePlaylistClick}>
             <img className={classes.img} alt="complex" src={playlist.image} />
           </ButtonBase>
         </Box>
       </Grid>
-      <Grid item xs container spacing={2} alignContent="center">
-        <Grid item xs={12}>
-          <Box pl={2}>
-            <Typography gutterBottom>
-              <Link
-                color="textPrimary"
-                component="button"
-                variant="h4"
-                onClick={handlePlaylistClick}
-              >
-                {playlist.name}
-              </Link>
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={6}>
-          <Box pl={2}>
-            <Typography color="textSecondary">
-              {playlist.queue.length} songs, {duration}
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={6}>
-          <Box align="right">
-            <IconButton title="play playlist" onClick={handlePlaylistClick}>
-              <PlayArrowIcon />
-            </IconButton>
-            <IconButton title="add playlist to queue" onClick={handleAddToQueueClick}>
-              <AddToPhotosIcon />
-            </IconButton>
-          </Box>
-        </Grid>
+      <Grid item xs={8}>
+        <Typography gutterBottom align="center">
+          <Link
+            color="textPrimary"
+            component="button"
+            variant="h4"
+            onClick={handlePlaylistClick}
+          >
+            {playlist.name}
+          </Link>
+        </Typography>
 
-        <Grid item xs={12}>
-          <List>
-            {collapsed ? <CollapsedPlaylist /> : <UncollapsedPlaylist />}
-            <ListItem
-              onClick={() => setCollapsed(!collapsed)}
-              key="collapseControl"
-              button
-            >
-              <ListItemText
-                disableTypography
-                color="secondary"
-                primary={
-                  <Typography color="secondary">
-                    {collapsed ? "...See More" : "See Less"}
-                  </Typography>
-                }
-              />
-            </ListItem>
-          </List>
-        </Grid>
+        <Typography color="textSecondary" align="center">
+          {playlist.queue.length} songs, {duration}
+        </Typography>
+
+        <Box align="center">
+          <IconButton title="play playlist" onClick={handlePlaylistClick}>
+            <PlayArrowIcon />
+          </IconButton>
+          <IconButton title="add playlist to queue" onClick={handleAddToQueueClick}>
+            <AddToPhotosIcon />
+          </IconButton>
+        </Box>
+      </Grid>
+      <Grid item xs={12}>
+        <List>
+          {collapsed ? <CollapsedPlaylist /> : <UncollapsedPlaylist />}
+          <ListItem onClick={() => setCollapsed(!collapsed)} key="collapseControl" button>
+            <ListItemText
+              disableTypography
+              color="secondary"
+              primary={
+                <Typography color="secondary" align="center">
+                  {collapsed ? "...See More" : "See Less"}
+                </Typography>
+              }
+            />
+          </ListItem>
+        </List>
       </Grid>
     </Grid>
   );
