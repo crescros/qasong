@@ -13,8 +13,10 @@ import {
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
 import { makeStyles } from "@material-ui/core/styles";
+import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
+
 import PlaylistItem from "./PlaylistItem/PlaylistItem";
-import { getDurationFromQueue } from "../../../../../functions";
+import { getDurationFromQueue, removePlaylist } from "../../../functions";
 
 const useStyles = makeStyles((theme) => ({
   playlist: {
@@ -42,6 +44,7 @@ function Playlist({
   nowPlaying,
   queue,
   addSongToQueue,
+  editable,
 }) {
   const classes = useStyles();
   const [collapsed, setCollapsed] = React.useState(true);
@@ -59,6 +62,10 @@ function Playlist({
     });
 
     setQueue([...queue, ...songsNotAlreadyInQueue]);
+  }
+
+  function handleDeleteClick(playlistId) {
+    removePlaylist(playlistId);
   }
 
   function handleStopSong(e) {
@@ -136,6 +143,15 @@ function Playlist({
           <IconButton title="add playlist to queue" onClick={handleAddToQueueClick}>
             <AddToPhotosIcon />
           </IconButton>
+
+          {editable && (
+            <IconButton
+              title="delete playlist from storage"
+              onClick={() => handleDeleteClick(playlist.id)}
+            >
+              <DeleteOutlineIcon />
+            </IconButton>
+          )}
         </Box>
       </Grid>
       <Grid item xs={12}>

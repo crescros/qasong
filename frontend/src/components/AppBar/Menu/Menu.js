@@ -79,6 +79,8 @@ function MobileMenu({ queueLength, darkMode, setDarkMode, setShowAboutUs }) {
             </Badge>
           </IconButton>
         </MenuItem>
+        <MenuItem onClick={handlePlaylistClick}>playlists</MenuItem>
+        <MenuItem onClick={handleBillboardClick}>billboard top 100</MenuItem>
 
         {/* dark mode */}
         <MenuItem onClick={handleDarkmodeButtonClick}>
@@ -87,8 +89,6 @@ function MobileMenu({ queueLength, darkMode, setDarkMode, setShowAboutUs }) {
         </MenuItem>
 
         <MenuItem onClick={handleAboutUsClick}>about us</MenuItem>
-        <MenuItem onClick={handleBillboardClick}>billboard top 100</MenuItem>
-        <MenuItem onClick={handlePlaylistClick}>my playlists</MenuItem>
       </Menu>
 
       <IconButton

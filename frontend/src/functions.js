@@ -79,13 +79,16 @@ export function getFeed() {
 export function getPlaylists() {
   const storedPlaylists = localStorage.getItem("playlists");
 
-  // if user has no playlists record in their local storage
   if (!storedPlaylists) {
     localStorage.setItem("playlists", "[]");
     return getPlaylists();
   }
 
   return JSON.parse(storedPlaylists);
+}
+
+export function updatePlaylists(playlists) {
+  localStorage.setItem("playlists", JSON.stringify(playlists));
 }
 
 export function getPlaylist(id) {
@@ -95,7 +98,7 @@ export function getPlaylist(id) {
 
 export function addPlaylist(newPlaylist) {
   const playlists = getPlaylists().concat(newPlaylist);
-  localStorage.setItem("playlists", playlists);
+  updatePlaylists(playlists);
   return playlists;
 }
 
@@ -107,13 +110,14 @@ export function updatePlaylist(id, updatedPlaylist) {
       return playlist;
     }
   });
-  localStorage.setItem("playlists", playlists);
+  updatePlaylists(playlists);
   return playlists;
 }
 
 export function removePlaylist(id) {
   const playlists = getPlaylists().filter((playlist) => playlist.id !== id);
-  localStorage.setItem("playlists", playlists);
+  updatePlaylists(playlists);
+  location.reload();
   return playlists;
 }
 

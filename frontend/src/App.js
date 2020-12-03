@@ -91,7 +91,7 @@ const App = () => {
   }
 
   // event listener for search submit
-  const handleSubmitVideoSearch = async (e) => {
+  const handleSubmitMusicSearch = async (e) => {
     setIsLoading(true);
     setSearchResults({});
 
@@ -178,7 +178,7 @@ const App = () => {
             {...{
               addSongToQueue,
               darkMode,
-              handleSubmitVideoSearch,
+              handleSubmitMusicSearch,
               isLoading,
               nowPlaying,
               queue,

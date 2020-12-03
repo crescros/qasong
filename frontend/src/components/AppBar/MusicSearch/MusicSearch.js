@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function VideoSearch({ handleSubmitVideoSearch }) {
+function MusicSearch({ handleSubmitMusicSearch }) {
   const classes = useStyles();
   let history = useHistory();
   const [searchTerm, setSearchTerm] = React.useState();
@@ -64,7 +64,7 @@ function VideoSearch({ handleSubmitVideoSearch }) {
       <form
         onSubmit={(e) => {
           history.push("/search");
-          handleSubmitVideoSearch(e);
+          handleSubmitMusicSearch(e);
         }}
       >
         <InputBase
@@ -85,4 +85,4 @@ function VideoSearch({ handleSubmitVideoSearch }) {
   );
 }
 
-export default VideoSearch;
+export default MusicSearch;

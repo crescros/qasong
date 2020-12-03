@@ -18,7 +18,7 @@ import NotFound from "./components/NotFound/NotFound";
 function Routes({
   addSongToQueue,
   darkMode,
-  handleSubmitVideoSearch,
+  handleSubmitMusicSearch,
   isLoading,
   nowPlaying,
   queue,
@@ -37,8 +37,7 @@ function Routes({
         <AppBar
           {...{
             darkMode,
-            handleSubmitVideoSearch,
-            isLoading,
+            handleSubmitMusicSearch,
             queue,
             setDarkMode,
             showAboutUs,
@@ -53,7 +52,7 @@ function Routes({
           {/* billboard top 100 */}
           <Route path="/billboard">
             <Suspense fallback={<div />}>
-              <BillboardTop100 {...{ handleSubmitVideoSearch }} />
+              <BillboardTop100 {...{ handleSubmitMusicSearch }} />
             </Suspense>
           </Route>
 
@@ -63,6 +62,7 @@ function Routes({
               <SearchResults
                 {...{
                   nowPlaying,
+                  isLoading,
                   queue,
                   setNowPlaying,
                   searchTableViewMode,
