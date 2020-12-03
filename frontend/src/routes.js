@@ -91,7 +91,13 @@ function Routes({
           {/* playlists */}
           <Route path="/playlists">
             <Suspense fallback={<div />}>
-              <PlaylistSection />
+              <PlaylistSection {...{
+                setQueue,
+                setNowPlaying,
+                nowPlaying,
+                queue,
+                addSongToQueue,
+              }} />
             </Suspense>
           </Route>
 
