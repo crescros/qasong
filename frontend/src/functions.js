@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// API CALLS TO QASONG SERVER
+
 const baseUrl = process.env.REACT_APP_ARTISTIFY_URL; // prod url
 // const baseUrl = "./"; // prod url
 // const baseUrl = "http://localhost:3016/"; // dev url
@@ -48,14 +50,6 @@ export function getBillboardTop100() {
     });
 }
 
-export function formatVideoTitle(name) {
-  if (name.length < 40) {
-    return name;
-  } else {
-    return name.substr(0, 40) + "...";
-  }
-}
-
 export function getQueueFromIds(search) {
   return axios
     .get(baseUrl + "api/search/ids?" + search)
@@ -78,6 +72,58 @@ export function getFeed() {
       alert(error + " " + error.response && error.response.data);
       return [];
     });
+}
+
+// PLAYLISTS
+
+export function getPlaylists() {
+  const storedPlaylists = localStorage.getItem("playlists");
+
+  // if user has no playlists record in their local storage
+  if (!storedPlaylists) {
+    localStorage.setItem("playlists", "[]");
+    return getPlaylists();
+  }
+
+  return JSON.parse(storedPlaylists);
+}
+
+export function getPlaylist(id) {
+  const playlist = getPlaylists().find((playlist) => playlist.id === id);
+  return playlist;
+}
+
+export function addPlaylist(newPlaylist) {
+  const playlists = getPlaylists().concat(newPlaylist);
+  localStorage.setItem("playlists", playlists);
+  return playlists;
+}
+
+export function updatePlaylist(id, updatedPlaylist) {
+  const playlists = getPlaylists().map((playlist) => {
+    if (playlist.id === id) {
+      return updatedPlaylist;
+    } else {
+      return playlist;
+    }
+  });
+  localStorage.setItem("playlists", playlists);
+  return playlists;
+}
+
+export function removePlaylist(id) {
+  const playlists = getPlaylists().filter((playlist) => playlist.id !== id);
+  localStorage.setItem("playlists", playlists);
+  return playlists;
+}
+
+// OTHER
+export function formatVideoTitle(name) {
+  if (name.length < 40) {
+    return name;
+  } else {
+    return name.substr(0, 40) + "...";
+  }
 }
 
 export function copyCurrentURL() {

@@ -10,8 +10,8 @@ const useStyles = makeStyles({
     flexGrow: 1,
   },
   tagSelect: {
-    width: '150px'
-  }
+    width: "150px",
+  },
 });
 
 function FeaturedPlaylists({
@@ -26,7 +26,7 @@ function FeaturedPlaylists({
   const classes = useStyles();
   const [feedItems, setFeedItems] = React.useState([]);
   const [loading, setLoading] = React.useState([]);
-  const [tags, setTag] = React.useState('');
+  const [tags, setTag] = React.useState("");
 
   React.useEffect(() => {
     (async () => {
@@ -39,12 +39,13 @@ function FeaturedPlaylists({
 
   const listOfTag = [];
   feedItems.map((playlist) => {
-    if (!playlist.tags) return null
+    if (!playlist.tags) return null;
 
     playlist.tags.map((tag) => {
-      if (tag !== "hmak" && tag !== "discord-ad" && !listOfTag.includes(tag)) listOfTag.push(tag)
-    })
-  })
+      if (tag !== "hmak" && tag !== "discord-ad" && !listOfTag.includes(tag))
+        listOfTag.push(tag);
+    });
+  });
 
   return (
     <div className={classes.root}>
@@ -58,18 +59,22 @@ function FeaturedPlaylists({
         </Grid>
       ) : (
         <Box mx={2}>
-            <InputLabel id="tag-label">Tag</InputLabel>
-            <Select
-              className={classes.tagSelect}
-              labelId="tag-label"
-              id="tag-select"
-              value={tags}
-              onChange={e => setTag(e.target.value)}
-            >
-              {listOfTag.map((tag, index) => {
-                return <MenuItem key={index} value={tag}>{tag}</MenuItem>
-              })}
-            </Select>
+          <InputLabel id="tag-label">Tag</InputLabel>
+          <Select
+            className={classes.tagSelect}
+            labelId="tag-label"
+            id="tag-select"
+            value={tags}
+            onChange={(e) => setTag(e.target.value)}
+          >
+            {listOfTag.map((tag, index) => {
+              return (
+                <MenuItem key={index} value={tag}>
+                  {tag}
+                </MenuItem>
+              );
+            })}
+          </Select>
 
           <Grid container direction="column" spacing={1}>
             {feedItems.map((playlist) => {
