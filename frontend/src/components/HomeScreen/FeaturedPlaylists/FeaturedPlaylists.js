@@ -26,8 +26,8 @@ function FeaturedPlaylists({
   const classes = useStyles();
   const [feedItems, setFeedItems] = React.useState([]);
   const [loading, setLoading] = React.useState([]);
-  const [tags, setTag] = React.useState("");
-
+  const [tags, setTag] = React.useState("No Tag");
+  
   React.useEffect(() => {
     (async () => {
       setLoading(true);
@@ -67,6 +67,7 @@ function FeaturedPlaylists({
             value={tags}
             onChange={(e) => setTag(e.target.value)}
           >
+            <MenuItem value="No Tag">No Tag</MenuItem>
             {listOfTag.map((tag, index) => {
               return (
                 <MenuItem key={index} value={tag}>
@@ -78,7 +79,7 @@ function FeaturedPlaylists({
 
           <Grid container direction="column" spacing={1}>
             {feedItems.map((playlist) => {
-              if (!tags || (playlist.tags && playlist.tags.includes(tags))) {
+              if (tags === "No Tag" || (playlist.tags && playlist.tags.includes(tags))) {
                 return (
                   <FeedItem
                     key={playlist.id}
