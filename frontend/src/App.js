@@ -61,6 +61,7 @@ const App = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
   const [showAboutUs, setShowAboutUs] = useState(!localStorage.getItem("returningUser"));
+  const [showSettings, setShowSettings] = useState(false);
 
   function skipSong() {
     const i = queue.findIndex((item) => item.qid === currentQid);
@@ -190,6 +191,8 @@ const App = () => {
               setSearchTableViewMode,
               setShowAboutUs,
               showAboutUs,
+              showSettings,
+              setShowSettings,
             }}
           />
         </Suspense>
