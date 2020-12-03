@@ -89,7 +89,6 @@ function Playlist({
   }
 
   const duration = getDurationFromQueue(playlist.queue);
-
   return (
     <Grid
       key={playlist.id}
@@ -127,7 +126,9 @@ function Playlist({
         <Typography color="textSecondary" align="center">
           {playlist.queue.length} songs, {duration}
         </Typography>
-
+        <Typography color="textSecondary" align="center">
+          { playlist.tags ? playlist.tags.toString().replace(/,/gi, ' ') : ""}
+        </Typography>
         <Box align="center">
           <IconButton title="play playlist" onClick={handlePlaylistClick}>
             <PlayArrowIcon />
