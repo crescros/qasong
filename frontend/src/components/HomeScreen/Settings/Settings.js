@@ -38,7 +38,7 @@ export default function TransitionsModal({
   darkMode,
   setDarkMode,
   playbackRate,
-  setPlaybackRate
+  setPlaybackRate,
 }) {
   const classes = useStyles();
 
@@ -50,9 +50,8 @@ export default function TransitionsModal({
     setDarkMode(!darkMode);
   }
 
-  function handleChangePlaybackRate(e){
-    console.log(e.target.value)
-    setPlaybackRate(e.target.value)
+  function handleChangePlaybackRate(e) {
+    setPlaybackRate(e.target.value);
   }
 
   // function handleChangeLanguage(e){

@@ -33,7 +33,7 @@ function Routes({
   showSettings,
   setShowSettings,
   playbackRate,
-  setPlaybackRate
+  setPlaybackRate,
 }) {
   return (
     <Router>

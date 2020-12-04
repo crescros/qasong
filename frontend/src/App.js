@@ -63,7 +63,6 @@ const App = () => {
   const [showAboutUs, setShowAboutUs] = useState(!localStorage.getItem("returningUser"));
   const [showSettings, setShowSettings] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(1);
-  
 
   function skipSong() {
     const i = queue.findIndex((item) => item.qid === currentQid);
@@ -196,7 +195,7 @@ const App = () => {
               showSettings,
               setShowSettings,
               playbackRate,
-              setPlaybackRate
+              setPlaybackRate,
             }}
           />
         </Suspense>
@@ -213,7 +212,7 @@ const App = () => {
               setNowPlaying,
               getNextInQueue,
               getPreviousInQueue,
-              playbackRate
+              playbackRate,
             }}
           />
         </Suspense>

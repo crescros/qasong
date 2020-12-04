@@ -44,7 +44,7 @@ export default function BottomAppBar({
   skipSong,
   getNextInQueue,
   getPreviousInQueue,
-  playbackRate
+  playbackRate,
 }) {
   const classes = useStyles();
 
