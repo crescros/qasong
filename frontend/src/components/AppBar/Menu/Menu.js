@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, IconButton, MenuItem, Badge, Switch } from "@material-ui/core";
+import { Menu, IconButton, MenuItem, Badge } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";

@@ -21,6 +21,8 @@ function HomeScreen({
   setShowSettings,
   darkMode,
   setDarkMode,
+  playbackRate,
+  setPlaybackRate
 }) {
   return (
     <Box mt={4}>
@@ -37,6 +39,8 @@ function HomeScreen({
           setShowSettings,
           darkMode,
           setDarkMode,
+          setPlaybackRate,
+          playbackRate
         }}
       />
 

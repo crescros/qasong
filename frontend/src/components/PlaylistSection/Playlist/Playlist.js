@@ -114,19 +114,13 @@ function Playlist({
       className={classes.playlist}
       data-playlist_id={playlist.id}
     >
-      <Grid item xs={4}>
-        <Box align="center">
-          <ButtonBase onClick={handlePlaylistClick}>
-            <img className={classes.img} alt="complex" src={playlist.image} />
-          </ButtonBase>
-        </Box>
-      </Grid>
+      {/* name column */}
       <Grid item xs={8}>
         <Typography gutterBottom align="center">
           <Link
             color="textPrimary"
             component="button"
-            variant="h4"
+            variant="h5"
             onClick={handlePlaylistClick}
           >
             {playlist.name}
@@ -168,6 +162,16 @@ function Playlist({
           )}
         </Box>
       </Grid>
+
+      {/* image column */}
+      <Grid item xs={4}>
+        <Box align="center">
+          <ButtonBase onClick={handlePlaylistClick}>
+            <img className={classes.img} alt="complex" src={playlist.image} />
+          </ButtonBase>
+        </Box>
+      </Grid>
+
       <Grid item xs={12}>
         <List>
           {collapsed ? <CollapsedPlaylist /> : <UncollapsedPlaylist />}

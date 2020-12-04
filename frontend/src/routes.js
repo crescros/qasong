@@ -32,6 +32,8 @@ function Routes({
   showAboutUs,
   showSettings,
   setShowSettings,
+  playbackRate,
+  setPlaybackRate
 }) {
   return (
     <Router>
@@ -121,6 +123,8 @@ function Routes({
                   showSettings,
                   setShowSettings,
                   darkMode,
+                  playbackRate,
+                  setPlaybackRate,
                   setDarkMode,
                 }}
               />

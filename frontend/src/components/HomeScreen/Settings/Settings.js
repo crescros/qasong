@@ -1,6 +1,15 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Dialog, Fade, Typography, Switch, FormControlLabel, Select, MenuItem, Grid } from "@material-ui/core";
+import {
+  Dialog,
+  Fade,
+  Typography,
+  Switch,
+  FormControlLabel,
+  Select,
+  MenuItem,
+  Grid,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -18,12 +27,19 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
   select: {
-    marginLeft: '20px',
-    minWidth: '75px'
-  }
+    marginLeft: "20px",
+    minWidth: "75px",
+  },
 }));
 
-export default function TransitionsModal({ showSettings, setShowSettings,  darkMode, setDarkMode }) {
+export default function TransitionsModal({
+  showSettings,
+  setShowSettings,
+  darkMode,
+  setDarkMode,
+  playbackRate,
+  setPlaybackRate
+}) {
   const classes = useStyles();
 
   const handleClose = () => {
@@ -33,7 +49,17 @@ export default function TransitionsModal({ showSettings, setShowSettings,  darkM
   function handleDarkmodeButtonClick() {
     setDarkMode(!darkMode);
   }
-  
+
+  function handleChangePlaybackRate(e){
+    console.log(e.target.value)
+    setPlaybackRate(e.target.value)
+  }
+
+  // function handleChangeLanguage(e){
+  //   console.log(e)
+  //   setSelectedLanguage(e.target.value)
+  // }
+
   return (
     <div>
       <Dialog className={classes.modal} open={showSettings} onClose={handleClose}>
@@ -47,7 +73,9 @@ export default function TransitionsModal({ showSettings, setShowSettings,  darkM
               <Grid>
                 {/* dark mode */}
                 <FormControlLabel
-                  control={<Switch onChange={handleDarkmodeButtonClick} checked={darkMode} />}
+                  control={
+                    <Switch onChange={handleDarkmodeButtonClick} checked={darkMode} />
+                  }
                   label="Dark Mode"
                   labelPlacement="start"
                 />
@@ -61,11 +89,11 @@ export default function TransitionsModal({ showSettings, setShowSettings,  darkM
                     <Select
                       className={classes.select}
                       defaultValue={1}
-                      // value={speed}
-                      // onChange={handleChange}
+                      value={playbackRate}
+                      onChange={handleChangePlaybackRate}
                     >
                       <MenuItem value={0.25}>0.25</MenuItem>
-                      <MenuItem value={0.50}>0.50</MenuItem>
+                      <MenuItem value={0.5}>0.50</MenuItem>
                       <MenuItem value={0.75}>0.75</MenuItem>
                       <MenuItem value={1}>normal</MenuItem>
                       <MenuItem value={1.25}>1.25</MenuItem>
@@ -78,26 +106,23 @@ export default function TransitionsModal({ showSettings, setShowSettings,  darkM
               </Grid>
 
               <Grid>
-                <FormControlLabel
+                {/* <FormControlLabel
                   label="Language"
                   labelPlacement="start"
                   control={
                     <Select
                       className={classes.select}
-                      defaultValue='english'
-                      // value={speed}
-                      // onChange={handleChange}
+                      defaultValue="en"
+                      value={selectedLanguage}
+                      onChange={handleChangeLanguage}
                     >
-                      <MenuItem value='english'>english</MenuItem>
-                      <MenuItem value='spanish'>spanish</MenuItem>
-                      <MenuItem value='chinese'>chinese</MenuItem>
-                      <MenuItem value='french'>french</MenuItem>
+                      <MenuItem value="en">english</MenuItem>
+                      <MenuItem value="ro">romanian</MenuItem>
                     </Select>
                   }
-                />
+                /> */}
               </Grid>
             </Grid>
-
           </div>
         </Fade>
       </Dialog>
