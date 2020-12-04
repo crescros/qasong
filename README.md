@@ -52,14 +52,15 @@ Qasong provides an alternate user interface for listening to music from youtube.
 This project is currently under development and is scheduled for it's first release on December 20th, 2020.
 
 ## Links
-
+Join us on Discord
 [Qasong Team Discord](https://discord.gg/VnpcrtYnrS)
 
+Production URL
 [Qasong Web App](https://qasong.com)
 
-[Google App Direct URL](https://qasong.appspot.com)
-
-[Other Resources](https://team.qasong.com)
+Alternate URLS provided by our cloud host
+[Alternate URL 1](https://qasong.appspot.com)
+[Alternate URL 2](https://qasong.ew.r.appspot.com/)
 
 ## CONTRIBUTING
 

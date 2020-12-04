@@ -17,7 +17,13 @@ module.exports = router;
 let feedItems = shuffle(mockFeed);
 
 feedItems = feedItems.map((playlist) => {
-  playlist.queue = playlist.queue?.map((song) => {
+
+  if (!playlist.queue){
+    return playlist
+  }
+
+
+  playlist.queue = playlist.queue.map((song) => {
     const { description, ...everythingElse } = song;
     description;
     return everythingElse;
