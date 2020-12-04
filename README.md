@@ -70,4 +70,3 @@ you should find the development url there commented out.
 please make a pull request to the `develop` branch of this repo
 
 for assistance working with this repo, contact us on discord [discord](https://discord.gg/b2gEwT8) or ping a contributer in an Issue.
-

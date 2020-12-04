@@ -8,7 +8,12 @@ router.post("/", postMessage);
 module.exports = router;
 
 function postMessage(req, res) {
-  console.log(req.body.content);
+  
+  const postBody = {
+    // content: [],
+    content: req.body,
+    // content: "📦 a user submitted a playlist:\n```" + req.body.content + "```",
+  }
 
   axios({
     method: "post",
@@ -16,11 +21,7 @@ function postMessage(req, res) {
     headers: {
       "Content-Type": "application/json",
     },
-    data: {
-      // content: [],
-      content: JSON.stringify(req.body),
-      // content: "📦 a user submitted a playlist:\n```" + req.body.content + "```",
-    },
+    data: JSON.stringify(postBody),
   })
     .then((data) => {
       console.log(data.body);
