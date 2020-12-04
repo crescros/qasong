@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Grid,
-  Typography,
-  Box,
-  Button,
-} from "@material-ui/core";
+import { Grid, Typography, Box, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { getFeed } from "../../../functions";
 import FeedItem from "./FeedItem/FeedItem";
