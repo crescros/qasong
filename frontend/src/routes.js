@@ -30,6 +30,8 @@ function Routes({
   setSearchTableViewMode,
   setShowAboutUs,
   showAboutUs,
+  showSettings,
+  setShowSettings,
 }) {
   return (
     <Router>
@@ -39,9 +41,9 @@ function Routes({
             darkMode,
             handleSubmitMusicSearch,
             queue,
-            setDarkMode,
             showAboutUs,
             setShowAboutUs,
+            setShowSettings,
           }}
         />
       </Suspense>
@@ -116,6 +118,10 @@ function Routes({
                   addSongToQueue,
                   showAboutUs,
                   setShowAboutUs,
+                  showSettings,
+                  setShowSettings,
+                  darkMode,
+                  setDarkMode,
                 }}
               />
             </Suspense>
