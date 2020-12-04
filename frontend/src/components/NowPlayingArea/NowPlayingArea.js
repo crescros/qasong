@@ -44,13 +44,13 @@ export default function BottomAppBar({
   skipSong,
   getNextInQueue,
   getPreviousInQueue,
+  playbackRate,
 }) {
   const classes = useStyles();
 
   const [songProgress, setSongProgress] = useState(0);
   const [volume, setVolume] = useState(0.9);
   const [playing, setPlaying] = useState(true);
-  const [playbackRate] = useState(1);
 
   const playerRef = useRef(null);
 

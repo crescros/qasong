@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, IconButton, MenuItem, Badge, Switch } from "@material-ui/core";
+import { Menu, IconButton, MenuItem, Badge } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import QueueMusicIcon from "@material-ui/icons/QueueMusic";
@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-function MobileMenu({ queueLength, darkMode, setDarkMode, setShowAboutUs }) {
+function MobileMenu({ queueLength, setShowAboutUs, setShowSettings }) {
   const classes = useStyles();
 
   let history = useHistory();
@@ -42,8 +42,9 @@ function MobileMenu({ queueLength, darkMode, setDarkMode, setShowAboutUs }) {
     history.push("/playlists");
   }
 
-  function handleDarkmodeButtonClick() {
-    setDarkMode(!darkMode);
+  function handleSettingsClick() {
+    setShowSettings(true);
+    history.push("/");
   }
 
   function handleAboutUsClick() {
@@ -81,13 +82,7 @@ function MobileMenu({ queueLength, darkMode, setDarkMode, setShowAboutUs }) {
         </MenuItem>
         <MenuItem onClick={handlePlaylistClick}>playlists</MenuItem>
         <MenuItem onClick={handleBillboardClick}>billboard top 100</MenuItem>
-
-        {/* dark mode */}
-        <MenuItem onClick={handleDarkmodeButtonClick}>
-          dark mode
-          <Switch checked={darkMode} />
-        </MenuItem>
-
+        <MenuItem onClick={handleSettingsClick}>settings</MenuItem>
         <MenuItem onClick={handleAboutUsClick}>about us</MenuItem>
       </Menu>
 

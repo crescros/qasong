@@ -3,8 +3,8 @@ import axios from "axios";
 // API CALLS TO QASONG SERVER
 
 const baseUrl = process.env.REACT_APP_ARTISTIFY_URL; // prod url
-// const baseUrl = "./"; // prod url
 // const baseUrl = "http://localhost:3016/"; // dev url
+// const baseUrl = "./"; // prod url
 
 export function setDefaultToken(token) {
   axios.defaults.headers.common["Authorization"] = "Bearer " + token;
@@ -62,9 +62,9 @@ export function getQueueFromIds(search) {
     });
 }
 
-export function getFeed() {
+export function getFeed(pageNumber = 1) {
   return axios
-    .get(baseUrl + "api/feed")
+    .get(baseUrl + "api/feed/?page=" + pageNumber)
     .then((result) => {
       return result.data;
     })
@@ -119,6 +119,33 @@ export function removePlaylist(id) {
   updatePlaylists(playlists);
   location.reload();
   return playlists;
+}
+
+export function postPlaylistToDiscord(id) {
+  let playlist = getPlaylist(id);
+
+  playlist.queue = playlist.queue.map((song) => {
+    const { description, ...songWithoutDescription } = song;
+    description;
+    return {
+      ...songWithoutDescription,
+    };
+  });
+
+  console.log(playlist);
+
+  axios({
+    method: "POST",
+    url: baseUrl + "api/discord",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: JSON.stringify(playlist),
+  }).catch((e) => {
+    console.log(e);
+  });
+
+  return true;
 }
 
 // OTHER

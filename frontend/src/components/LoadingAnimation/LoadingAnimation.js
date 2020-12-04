@@ -21,7 +21,7 @@ function LoadingAnimation({ size = 32, speed = 2 }) {
         style={{
           animation: `spin ${speed}s linear infinite`,
         }}
-        src="./img/qasong-vinyl.png"
+        src="./img/qasong-vinyl.jpg"
         width={`${size}px`}
       />
     </Box>

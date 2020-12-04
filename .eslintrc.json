@@ -17,6 +17,7 @@
     "no-var": "error",
     "quotes": ["warn", "double"],
     "no-console": "warn",
-    "no-undef": "warn"
+    "no-undef": "warn",
+    "no-unused-vars": "warn"
   }
 }
