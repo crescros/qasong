@@ -75,7 +75,7 @@ function HomeScreen({
 
         <Grid item>{isLoading && <LoadingAnimation size="32px" />}</Grid>
         <Grid item>
-          <Box mt={12}>
+          <Box mt={14}>
             <Suspense>
               <FeaturedPlaylists
                 {...{

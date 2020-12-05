@@ -18,14 +18,11 @@ export default function Video({
       width="100%"
       height="0px"
       url={"https://www.youtube.com/watch?v=" + id}
-      // pip={pip}
       playing={playing}
       controls={false}
-      // light={light}
-      // loop={loop}
+      loop={false}
       playbackRate={playbackRate}
       volume={volume}
-      // muted={muted}
       onProgress={handleProgress}
       config={{
         youtube: {

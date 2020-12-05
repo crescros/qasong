@@ -7,7 +7,7 @@
   "scripts": {
     "build": "cd frontend && npm run build",
     "cy:run": "npx cypress run",
-    "deploy": "npm run build && gcloud app deploy --project qasong",
+    "deploy": "npm run build && gcloud app deploy --project qasong --quiet",
     "dev": "npm i && concurrently --kill-others \"npm run dev:frontend\" \"npm run dev:server\"",
     "dev:frontend": "cd frontend && npm i && npm start",
     "dev:server": "npm i && nodemon ./server/index.js",
