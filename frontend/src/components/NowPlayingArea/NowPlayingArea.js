@@ -108,14 +108,8 @@ export default function BottomAppBar({
         }}
       />
 
-      <AppBar position="fixed" color="primary" className={classes.appBar}>
+      <AppBar position="fixed" color="default" className={classes.appBar}>
         <Grid container justify="center" alignItems="center" alignContent="center">
-          <Grid item xs={7}></Grid>
-          <Grid item xs={4}>
-            <VolumeController {...{ volume, setVolume }} />
-          </Grid>
-          <Grid item xs={1}></Grid>
-
           <Grid item xs={12}>
             <ProgressBar
               {...{ songProgress, changeTime }}
@@ -144,6 +138,8 @@ export default function BottomAppBar({
               )}
 
               {isQueue && <SkipSongButton disabled={!nextTitle} {...{ skipSong }} />}
+
+              <VolumeController {...{ volume, setVolume }} />
             </Toolbar>
           </Grid>
 

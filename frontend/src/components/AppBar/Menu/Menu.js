@@ -94,7 +94,7 @@ function MobileMenu({ queueLength, setShowAboutUs, setShowSettings }) {
         color="inherit"
       >
         <Badge badgeContent={queueLength} color="secondary">
-          <MoreIcon />
+          <MoreIcon style={{ fontSize: 36 }} />
         </Badge>
       </IconButton>
     </div>
