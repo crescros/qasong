@@ -18,7 +18,7 @@ function ClearQueueButton({ disabled, displayMode, setDisplayMode }) {
       disabled={disabled}
       onClick={handleClick}
       target="_blank"
-      color="secondary"
+      color={disabled ? "inherit" : "secondary"}
     >
       {displayMode === "list" ? <ViewComfyIcon /> : <TocIcon />}
     </IconButton>
