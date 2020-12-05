@@ -8,12 +8,19 @@ router.post("/", postMessage);
 module.exports = router;
 
 function postMessage(req, res) {
+<<<<<<< HEAD
   
+=======
+>>>>>>> master
   const postBody = {
     // content: [],
     content: req.body,
     // content: "📦 a user submitted a playlist:\n```" + req.body.content + "```",
+<<<<<<< HEAD
   }
+=======
+  };
+>>>>>>> master
 
   axios({
     method: "post",
