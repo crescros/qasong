@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     borderTop: "2px solid",
     paddingTop: theme.spacing(1),
     borderColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.background.default,
   },
   grow: {
     display: "flex",
@@ -108,7 +109,7 @@ export default function BottomAppBar({
         }}
       />
 
-      <AppBar position="fixed" color="default" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar}>
         <Grid container justify="center" alignItems="center" alignContent="center">
           <Grid item xs={12}>
             <ProgressBar
