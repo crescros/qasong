@@ -8,26 +8,9 @@ router.post("/", postMessage);
 module.exports = router;
 
 function postMessage(req, res) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  
-=======
->>>>>>> master
-=======
->>>>>>> 8f87ee0e22169eecd0c6e17e8c015917601b58d7
   const postBody = {
-    // content: [],
-    content: req.body,
-    // content: "📦 a user submitted a playlist:\n```" + req.body.content + "```",
-<<<<<<< HEAD
-<<<<<<< HEAD
-  }
-=======
+    content: "📦 a user submitted a playlist:\n```" + req.body + "```",
   };
->>>>>>> master
-=======
-  };
->>>>>>> 8f87ee0e22169eecd0c6e17e8c015917601b58d7
 
   axios({
     method: "post",

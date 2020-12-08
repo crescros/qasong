@@ -13,9 +13,9 @@ import {
   IconButton,
   Link,
 } from "@material-ui/core";
-import {  Pause as PauseIcon } from "@material-ui/icons";
-import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
-import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
+// import { Pause as PauseIcon } from "@material-ui/icons";
+import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
+import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 
 // qasong components
 import SkipSongButton from "./SkipSongButton/SkipSongButton";
@@ -113,7 +113,6 @@ export default function BottomAppBar({
 
       <AppBar position="fixed" className={classes.appBar}>
         <Grid container justify="center" alignItems="center" alignContent="center">
-
           <Grid item xs={12} sm={4}>
             <Typography align="center">{nowPlaying.title}</Typography>
           </Grid>
@@ -121,29 +120,36 @@ export default function BottomAppBar({
           <Grid item xs={12} sm={4}>
             <Toolbar className={classes.grow}>
               {isQueue && (
-                <PreviousSongButton style={{fontSize : 25 }} disabled={!previousTitle} {...{ previousSong }} />
+                <PreviousSongButton
+                  style={{ fontSize: 25 }}
+                  disabled={!previousTitle}
+                  {...{ previousSong }}
+                />
               )}
 
               {playing ? (
                 <IconButton color="secondary" onClick={pauseVideo}>
-                  <PauseCircleOutlineIcon style={{fontSize : 40}} />
+                  <PauseCircleOutlineIcon style={{ fontSize: 40 }} />
                 </IconButton>
               ) : (
                 <IconButton color="secondary" onClick={startVideo}>
-                  <PlayCircleOutlineIcon style={{fontSize : 40}}/>
+                  <PlayCircleOutlineIcon style={{ fontSize: 40 }} />
                 </IconButton>
               )}
 
-              {isQueue && <SkipSongButton style={{fontSize : 25 }}  disabled={!nextTitle} {...{ skipSong }} />}
-
-              
+              {isQueue && (
+                <SkipSongButton
+                  style={{ fontSize: 25 }}
+                  disabled={!nextTitle}
+                  {...{ skipSong }}
+                />
+              )}
             </Toolbar>
             <ProgressBar
               {...{ songProgress, changeTime }}
               songDuration={nowPlaying.duration.seconds}
             />
           </Grid>
-
 
           <Grid item xs={12} sm={4}>
             {nextTitle && (

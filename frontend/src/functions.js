@@ -132,8 +132,6 @@ export function postPlaylistToDiscord(id) {
     };
   });
 
-  console.log(playlist);
-
   axios({
     method: "POST",
     url: baseUrl + "api/discord",
