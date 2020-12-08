@@ -139,7 +139,6 @@ export default function ImgMediaCard({
         <Tooltip title="remove from queue">
           <IconButton
             edge="end"
-            color="secondary"
             onClick={removeQueueItem}
             size="small"
             style={{ color: "red", background: "#00000080" }}

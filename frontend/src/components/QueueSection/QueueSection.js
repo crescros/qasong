@@ -141,10 +141,9 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
           </Grid>
           <Grid item>
             <IconButton>
-              <SaveIcon size="small" onClick={handleClickSave} />
+              <SaveIcon color="secondary" size="small" onClick={handleClickSave} />
             </IconButton>
           </Grid>
-
           <Grid item>
             <ClearButton {...{ setQueue }} />
           </Grid>
