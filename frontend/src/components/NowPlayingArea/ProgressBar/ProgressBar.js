@@ -12,7 +12,9 @@ function ProgressBar({ songProgress, songDuration, changeTime }) {
     <Box px={3}>
       <Grid container spacing={2}>
         <Grid item>
-          <Typography color="secondary">{formatSeconds(songProgress)}</Typography>
+          <Typography style={{ fontSize: 12 }} color="textSecondary">
+            {formatSeconds(songProgress)}
+          </Typography>
         </Grid>
         <Grid item xs>
           <Slider
@@ -23,7 +25,9 @@ function ProgressBar({ songProgress, songDuration, changeTime }) {
           />
         </Grid>
         <Grid item>
-          <Typography color="textSecondary">{formatSeconds(songDuration)}</Typography>
+          <Typography style={{ fontSize: 12 }} color="textSecondary">
+            {formatSeconds(songDuration)}
+          </Typography>
         </Grid>
       </Grid>
     </Box>

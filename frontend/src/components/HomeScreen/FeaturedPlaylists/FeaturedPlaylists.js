@@ -31,13 +31,13 @@ function FeaturedPlaylists({
   const [nextPage, setNextPage] = React.useState(2);
 
   //set up scroll listener for bottom of the page
-  React.useEffect(() => {
-    document.addEventListener("scroll", function () {
-      if (window.scrollY + window.innerHeight > document.body.scrollHeight) {
-        setPage(nextPage);
-      }
-    });
-  }, []);
+  // React.useEffect(() => {
+  //   document.addEventListener("scroll", function () {
+  //     if (window.scrollY + window.innerHeight > document.body.scrollHeight) {
+  //       setPage(nextPage);
+  //     }
+  //   });
+  // }, []);
 
   //when user changes page
   React.useEffect(() => {

@@ -17,7 +17,7 @@ const Routes = React.lazy(() => import("./routes"));
 const darkTheme = createMuiTheme({
   palette: {
     background: {
-      default: "#000",
+      default: "#141414",
     },
     primary: {
       main: "#000",
@@ -36,7 +36,7 @@ const darkTheme = createMuiTheme({
 const lightTheme = createMuiTheme({
   palette: {
     background: {
-      default: "#f7f3f2",
+      default: "#ebebeb",
     },
     primary: {
       main: "#fff",

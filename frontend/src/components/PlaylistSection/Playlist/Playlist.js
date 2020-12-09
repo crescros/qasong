@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 500,
     margin: "auto",
     padding: theme.spacing(4),
-    borderRadius: theme.spacing(2),
+    borderRadius: theme.spacing(3),
     marginBottom: theme.spacing(2),
     marginTop: theme.spacing(2),
   },
