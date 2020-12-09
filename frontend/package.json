@@ -5,7 +5,7 @@
   "author": "qasong-team",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "start": "webpack serve --config ./webpack.config.js --mode development",
     "build": "webpack -p --config ./webpack.config.js --mode production",
     "lint": "eslint ./src/**/*.js ./src/**/*.jsx --no-error-on-unmatched-pattern",
     "lint:fix": "eslint --fix",
