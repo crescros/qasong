@@ -1,11 +1,13 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
+    target_branch: develop
     directory: "/"
     schedule:
       interval: "daily"
 
   - package-ecosystem: "npm"
+    target_branch: develop
     directory: "/frontend"
     schedule:
       interval: "daily"
