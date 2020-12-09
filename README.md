@@ -1,6 +1,26 @@
 # Qasong
 
-## Frontend-only development
+![Tests](https://github.com/IanWalston/qasong/workflows/Node.js%20CI/badge.svg)
+
+## About the Application
+
+Qasong provides an alternate user interface for listening to music from youtube.
+
+This project is currently under development and is scheduled for it's first release on December 20th, 2020.
+
+## Links
+
+Join us on Discord
+[Qasong Team Discord](https://discord.gg/VnpcrtYnrS)
+
+Production URL
+[Qasong Web App](https://qasong.com)
+
+Alternate URLS provided by our cloud host
+[Alternate URL 1](https://qasong.appspot.com)
+[Alternate URL 2](https://qasong.ew.r.appspot.com/)
+
+### Frontend-only development
 
 enter the frontend folder
 
@@ -16,7 +36,7 @@ start react frontend
 
 the frontend should be live in dev mode at localhost:8080
 
-## Backend-only development
+### Backend-only development
 
 install dependencies
 
@@ -32,7 +52,7 @@ this will only enable the api. if you want to see the frontend served by the ser
 
 `npm run build`
 
-## Full development environment
+### Full development environment
 
 install all packages and start both front and backend in dev mode
 
@@ -44,22 +64,6 @@ the backend will be available at localhost:3016
 note: the frontend is currently hardwired to communicate with the production api.
 To see your backend changes in the frontend, you'll need to change the url in functions.js.
 you should find the development url there commented out.
-
-## About the Application
-
-Qasong provides an alternate user interface for listening to music from youtube.
-
-This project is currently under development and is scheduled for it's first release on December 20th, 2020.
-
-## Links
-
-[Qasong Team Discord](https://discord.gg/VnpcrtYnrS)
-
-[Qasong Web App](https://qasong.com)
-
-[Google App Direct URL](https://qasong.appspot.com)
-
-[Other Resources](https://team.qasong.com)
 
 ## CONTRIBUTING
 

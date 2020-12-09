@@ -30,6 +30,10 @@ function Routes({
   setSearchTableViewMode,
   setShowAboutUs,
   showAboutUs,
+  showSettings,
+  setShowSettings,
+  playbackRate,
+  setPlaybackRate,
 }) {
   return (
     <Router>
@@ -39,9 +43,9 @@ function Routes({
             darkMode,
             handleSubmitMusicSearch,
             queue,
-            setDarkMode,
             showAboutUs,
             setShowAboutUs,
+            setShowSettings,
           }}
         />
       </Suspense>
@@ -91,7 +95,15 @@ function Routes({
           {/* playlists */}
           <Route path="/playlists">
             <Suspense fallback={<div />}>
-              <PlaylistSection />
+              <PlaylistSection
+                {...{
+                  setQueue,
+                  setNowPlaying,
+                  nowPlaying,
+                  queue,
+                  addSongToQueue,
+                }}
+              />
             </Suspense>
           </Route>
 
@@ -108,6 +120,12 @@ function Routes({
                   addSongToQueue,
                   showAboutUs,
                   setShowAboutUs,
+                  showSettings,
+                  setShowSettings,
+                  darkMode,
+                  playbackRate,
+                  setPlaybackRate,
+                  setDarkMode,
                 }}
               />
             </Suspense>

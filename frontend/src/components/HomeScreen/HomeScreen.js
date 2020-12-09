@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
 import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
 import WelcomeWindow from "./WelcomeWindow/WelcomeWindow";
+import Settings from "./Settings/Settings";
 
 const FeaturedPlaylists = React.lazy(() =>
   import("./FeaturedPlaylists/FeaturedPlaylists")
@@ -16,6 +17,12 @@ function HomeScreen({
   addSongToQueue,
   showAboutUs,
   setShowAboutUs,
+  showSettings,
+  setShowSettings,
+  darkMode,
+  setDarkMode,
+  playbackRate,
+  setPlaybackRate,
 }) {
   return (
     <Box mt={4}>
@@ -23,6 +30,17 @@ function HomeScreen({
         {...{
           showAboutUs,
           setShowAboutUs,
+        }}
+      />
+
+      <Settings
+        {...{
+          showSettings,
+          setShowSettings,
+          darkMode,
+          setDarkMode,
+          setPlaybackRate,
+          playbackRate,
         }}
       />
 

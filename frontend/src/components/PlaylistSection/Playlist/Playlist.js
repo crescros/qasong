@@ -14,9 +14,14 @@ import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
 import { makeStyles } from "@material-ui/core/styles";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
 import PlaylistItem from "./PlaylistItem/PlaylistItem";
-import { getDurationFromQueue, removePlaylist } from "../../../functions";
+import {
+  getDurationFromQueue,
+  postPlaylistToDiscord,
+  removePlaylist,
+} from "../../../functions";
 
 const useStyles = makeStyles((theme) => ({
   playlist: {
@@ -68,6 +73,10 @@ function Playlist({
     removePlaylist(playlistId);
   }
 
+  function handleUploadClick(playlistId) {
+    postPlaylistToDiscord(playlistId);
+  }
+
   function handleStopSong(e) {
     e.stopPropagation();
     setNowPlaying({});
@@ -105,19 +114,13 @@ function Playlist({
       className={classes.playlist}
       data-playlist_id={playlist.id}
     >
-      <Grid item xs={4}>
-        <Box align="center">
-          <ButtonBase onClick={handlePlaylistClick}>
-            <img className={classes.img} alt="complex" src={playlist.image} />
-          </ButtonBase>
-        </Box>
-      </Grid>
+      {/* name column */}
       <Grid item xs={8}>
         <Typography gutterBottom align="center">
           <Link
             color="textPrimary"
             component="button"
-            variant="h4"
+            variant="h5"
             onClick={handlePlaylistClick}
           >
             {playlist.name}
@@ -145,15 +148,30 @@ function Playlist({
           </IconButton>
 
           {editable && (
-            <IconButton
-              title="delete playlist from storage"
-              onClick={() => handleDeleteClick(playlist.id)}
-            >
-              <DeleteOutlineIcon />
-            </IconButton>
+            <>
+              <IconButton
+                title="delete playlist from storage"
+                onClick={() => handleDeleteClick(playlist.id)}
+              >
+                <DeleteOutlineIcon />
+              </IconButton>
+              <IconButton onClick={() => handleUploadClick(playlist.id)}>
+                <CloudUploadIcon />
+              </IconButton>
+            </>
           )}
         </Box>
       </Grid>
+
+      {/* image column */}
+      <Grid item xs={4}>
+        <Box align="center">
+          <ButtonBase onClick={handlePlaylistClick}>
+            <img className={classes.img} alt="complex" src={playlist.image} />
+          </ButtonBase>
+        </Box>
+      </Grid>
+
       <Grid item xs={12}>
         <List>
           {collapsed ? <CollapsedPlaylist /> : <UncollapsedPlaylist />}

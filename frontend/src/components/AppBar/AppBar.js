@@ -26,9 +26,9 @@ export default function QasongAppBar({
   handleSubmitMusicSearch,
   queue,
   darkMode,
-  setDarkMode,
   showAboutUs,
   setShowAboutUs,
+  setShowSettings,
 }) {
   const [scrollTop, setScrollTop] = useState(0);
 
@@ -84,10 +84,9 @@ export default function QasongAppBar({
           <Menu
             queueLength={queue.length}
             {...{
-              darkMode,
-              setDarkMode,
               showAboutUs,
               setShowAboutUs,
+              setShowSettings,
             }}
           />
         </Toolbar>
