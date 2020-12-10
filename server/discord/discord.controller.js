@@ -20,10 +20,10 @@ function postMessage(req, res) {
     },
     data: JSON.stringify(postBody),
   })
-    .then((data) => {
+    .then(() => {
       // console.log(data.body);
     })
-    .catch((err) => {
+    .catch(() => {
       // console.log(err.message);
     });
 
