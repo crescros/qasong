@@ -43,13 +43,12 @@ function FeaturedPlaylists({
   React.useEffect(() => {
     (async () => {
       setLoading(true);
-      console.log("loading page " + page);
+
       const feed = await getFeed(page);
-      console.log(feed.nextPage);
+
       setFeedItems(feedItems.concat(feed.results));
       setNextPage(feed.nextPage);
       setLoading(false);
-      console.log("done loading page " + page);
     })();
   }, [page]);
 

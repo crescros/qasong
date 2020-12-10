@@ -7,9 +7,9 @@ package-lock.json
 .vs
 
 # react-build
-public/bundle.js
-public/*.bundle.js
-public/js/**.*
+frontend/build/static/bundle.js
+frontend/build/static/*.bundle.js
+frontned/build/static/js/**.*
 
 # cypress
 cypress/videos

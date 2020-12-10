@@ -1,10 +1,6 @@
 import axios from "axios";
 
-// API CALLS TO QASONG SERVER
-
-const baseUrl = process.env.REACT_APP_ARTISTIFY_URL; // prod url
-// const baseUrl = "http://localhost:3016/"; // dev url
-// const baseUrl = "./"; // prod url
+const baseUrl = process.env.REACT_APP_API_URL;
 
 export function setDefaultToken(token) {
   axios.defaults.headers.common["Authorization"] = "Bearer " + token;
@@ -140,7 +136,8 @@ export function postPlaylistToDiscord(id) {
     },
     data: JSON.stringify(playlist),
   }).catch((e) => {
-    console.log(e);
+    // console.log(e);
+    e;
   });
 
   return true;

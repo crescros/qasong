@@ -168,7 +168,7 @@ const App = () => {
         }}
       >
         <img
-          src=".\img\topCurve.svg"
+          src=".\static\img\topCurve.svg"
           width="465px"
           style={{ position: "absolute", zIndex: -10000, maxWidth: "100%" }}
         />
@@ -219,7 +219,7 @@ const App = () => {
       </div>
 
       <img
-        src=".\img\bottomCurve.svg"
+        src=".\static\img\bottomCurve.svg"
         width="465px"
         style={{ position: "absolute", zIndex: -10000, maxWidth: "100%", right: "0%" }}
       />
