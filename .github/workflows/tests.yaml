@@ -17,10 +17,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
     - run: npm run install:frontend
-    - run: npm run build
     - run: npm run test:frontend
+    - run: npm run build
+    - run: npm install
     - run: npm run test:server
       env:
         CI: true
