@@ -1,7 +1,6 @@
 import React from "react";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { IconButton, Box } from "@material-ui/core";
-// import { clear } from "../../../functions";
 
 function ShareButton({ disabled }) {
   return (
