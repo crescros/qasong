@@ -5,8 +5,8 @@
   "author": "qasong-team",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack serve --config ./webpack.config.js --mode development",
-    "build": "webpack -p --config ./webpack.config.js --mode production",
+    "start": "webpack serve --config webpack/config.js --env env=dev",
+    "build": "webpack --config webpack/config.js --env env=prod",
     "lint": "eslint ./src/**/*.js ./src/**/*.jsx --no-error-on-unmatched-pattern",
     "lint:fix": "eslint --fix",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
@@ -40,6 +40,9 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "axios": "^0.21.0",
     "dotenv": "^8.2.0",
+    "dotenv-webpack": "^6.0.0",
+    "eslint-loader": "^4.0.2",
+    "html-webpack-plugin": "^4.5.0",
     "immutability-helper": "^3.1.1",
     "react": "^16.14.0",
     "react-device-detect": "^1.14.0",
@@ -51,7 +54,8 @@
     "react-router-dom": "^5.2.0",
     "react-uuid": "^1.0.2",
     "react-youtube": "^7.13.0",
-    "regenerator-runtime": "^0.13.7"
+    "regenerator-runtime": "^0.13.7",
+    "webpack-merge": "^5.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.7",
@@ -66,7 +70,7 @@
     "eslint-plugin-react": "^7.21.5",
     "jest": "^26.6.3",
     "prettier": "^2.2.0",
-    "webpack": "^4.44.2",
+    "webpack": "^5.10.0",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0"
   }

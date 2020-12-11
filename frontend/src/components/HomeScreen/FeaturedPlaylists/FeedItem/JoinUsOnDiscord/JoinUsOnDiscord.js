@@ -34,7 +34,7 @@ function Playlist() {
           align="center"
         >
           <Grid item xs={12} sm={3}>
-            <img className={classes.svg} src="./img/discord.svg"></img>
+            <img className={classes.svg} src="./static/img/discord.svg"></img>
           </Grid>
           <Grid item xs={12} sm={6}>
             <Typography align="center" color="secondary">
@@ -45,7 +45,7 @@ function Playlist() {
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3}>
-            <img width="80px" src="./img/qasong.svg"></img>
+            <img width="80px" src="./static/img/qasong.svg"></img>
           </Grid>
         </Grid>
       </CardActionArea>

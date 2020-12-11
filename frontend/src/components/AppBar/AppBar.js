@@ -60,7 +60,7 @@ export default function QasongAppBar({
               aria-label="Qasong logo"
             >
               <img
-                src=".\img\whiteLogo.png"
+                src=".\static\img\whiteLogo.png"
                 height="36px"
                 width="36px"
                 style={{ filter: `invert(${darkMode ? "0" : "1"})` }}

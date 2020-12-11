@@ -5,41 +5,39 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
 import { isMobile } from "react-device-detect";
 import update from "immutability-helper";
-import uuid from "react-uuid";
+import Alert from "@material-ui/lab/Alert";
 
 // material-ui
 import { IconButton, Typography, Box, Grid } from "@material-ui/core";
 import {
   Queue as QueueIcon,
-  Save as SaveIcon,
   DragHandle as DragHandleIcon,
   PlayArrow as PlayArrowIcon,
 } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 
 // qasong components
-import { addPlaylist } from "../../functions";
 import DisplayModeButton from "./DisplayModeButton/DisplayModeButton";
 import QueueCard from "./QueueCard/QueueCard";
 import QueueRow from "./QueueRow/QueueRow";
 import PlayQueueButton from "./PlayQueueButton/PlayQueueButton";
 import ShuffleButton from "./ShuffleButton/ShuffleButton";
 import ClearButton from "./ClearButton/ClearButton";
+import SaveQueueButton from "./SaveQueueButton/SaveQueueButton";
 
 function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
   const [displayMode, setDisplayMode] = useState("list");
+  const [displaySaved, setDisplaySaved] = useState(false);
 
   const handleClickQueueItem = (qid) => {
     setNowPlaying(queue.find((item) => item.qid === qid));
   };
 
   const handleClickSave = () => {
-    addPlaylist({
-      id: uuid(),
-      name: "new playlist",
-      queue: queue,
-      image: queue[0].image,
-    });
+    setDisplaySaved(true);
+    setTimeout(() => {
+      setDisplaySaved(false);
+    }, 3000);
   };
 
   const moveCard = useCallback(
@@ -86,6 +84,9 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
               <DisplayModeButton disabled />
             </Grid>
             <Grid item>
+              <SaveQueueButton disabled />
+            </Grid>
+            <Grid item>
               <ClearButton disabled />
             </Grid>
           </Grid>
@@ -124,7 +125,7 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
   return (
     <div style={{ maxWidth: "800px", margin: "0 auto 200px auto" }}>
       <Box m={3}>
-        <Grid container alignItems="center">
+        <Grid container alignItems="center" spacing={1}>
           <Grid item>
             <Typography variant="h5">
               {queue.length > 0 && `${queue.length} songs`}
@@ -139,14 +140,19 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
           <Grid item>
             <DisplayModeButton {...{ displayMode, setDisplayMode }} />
           </Grid>
-          <Grid item>
-            <IconButton>
-              <SaveIcon color="secondary" size="small" onClick={handleClickSave} />
-            </IconButton>
+          <Grid item onClick={handleClickSave}>
+            <SaveQueueButton {...{ queue }} />
           </Grid>
           <Grid item>
             <ClearButton {...{ setQueue }} />
           </Grid>
+          {displaySaved ? (
+            <Grid item md={5} xs={12} spacing={3}>
+              <Alert severity="success" color="warning" variant="outlined">
+                <i>Queue Has Been Successfully Saved</i>
+              </Alert>
+            </Grid>
+          ) : null}
         </Grid>
       </Box>
 

@@ -18,23 +18,10 @@
     "lint:fix": "eslint . --fix && cd frontend && eslint . --fix",
     "test": "npm run test:frontend && npm run build && npm run test:server",
     "test:frontend": "cd frontend && npm run test",
-    "test:server": "start-server-and-test start http://localhost:3016 cy:run",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "test:server": "start-server-and-test start http://localhost:3016 cy:run"
   },
   "engines": {
     "node": "12.x"
-  },
-  "build": {
-    "appId": "com.electron.qasong",
-    "files": "./public/**/*",
-    "win": {
-      "icon": "public/meta-icon.png"
-    },
-    "mac": {
-      "category": "public.app-category.music",
-      "icon": "public/meta-icon.png"
-    }
   },
   "repository": {
     "type": "git",
@@ -53,8 +40,6 @@
   "devDependencies": {
     "concurrently": "^5.3.0",
     "cypress-dotenv": "^1.2.2",
-    "electron": "^11.0.1",
-    "electron-builder": "^22.9.1",
     "eslint": "^7.14.0",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
