@@ -3,7 +3,7 @@
   "version": "0.7.0",
   "description": "serve qasong-frontend to clients, and provide video search functionality from youtube data api",
   "homepage": "./",
-  "main": "./public/electron.js",
+  "main": "./server/index.js",
   "scripts": {
     "build": "cd frontend && npm run build",
     "cy:run": "npx cypress run",
@@ -21,7 +21,7 @@
     "test:server": "start-server-and-test start http://localhost:3016 cy:run"
   },
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
   "repository": {
     "type": "git",
