@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-function MobileMenu({ queueLength, setShowAboutUs, setShowSettings }) {
+function MobileMenu({ queueLength, setShowAboutUs, setShowSettings, setShowImport }) {
   const classes = useStyles();
 
   let history = useHistory();
@@ -32,6 +32,11 @@ function MobileMenu({ queueLength, setShowAboutUs, setShowSettings }) {
 
   function handleQueueButtonClick() {
     history.push("/queue");
+  }
+
+  function handleImportClick() {
+    setShowImport(true);
+    history.push("/");
   }
 
   function handleBillboardClick() {
@@ -80,6 +85,7 @@ function MobileMenu({ queueLength, setShowAboutUs, setShowSettings }) {
             </Badge>
           </IconButton>
         </MenuItem>
+        <MenuItem onClick={handleImportClick}>import youtube playlist</MenuItem>
         <MenuItem onClick={handlePlaylistClick}>playlists</MenuItem>
         <MenuItem onClick={handleBillboardClick}>billboard top 100</MenuItem>
         <MenuItem onClick={handleSettingsClick}>settings</MenuItem>
