@@ -29,6 +29,7 @@ export default function QasongAppBar({
   showAboutUs,
   setShowAboutUs,
   setShowSettings,
+  setShowImport,
 }) {
   const [scrollTop, setScrollTop] = useState(0);
 
@@ -87,6 +88,7 @@ export default function QasongAppBar({
               showAboutUs,
               setShowAboutUs,
               setShowSettings,
+              setShowImport,
             }}
           />
         </Toolbar>

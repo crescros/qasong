@@ -220,3 +220,19 @@ export function formatSeconds(seconds) {
     return `${minutes}:${remainingSeconds}`;
   }
 }
+
+export function getYoutubePlaylist(url) {
+  if (!url) {
+    return [];
+  }
+
+  return axios
+    .get(baseUrl + "api/import?q=" + url)
+    .then((result) => {
+      return result;
+    })
+    .catch((error) => {
+      alert(error);
+      return [];
+    });
+}

@@ -34,6 +34,8 @@ function Routes({
   setShowSettings,
   playbackRate,
   setPlaybackRate,
+  showImport,
+  setShowImport,
 }) {
   return (
     <Router>
@@ -46,6 +48,7 @@ function Routes({
             showAboutUs,
             setShowAboutUs,
             setShowSettings,
+            setShowImport,
           }}
         />
       </Suspense>
@@ -126,6 +129,8 @@ function Routes({
                   playbackRate,
                   setPlaybackRate,
                   setDarkMode,
+                  showImport,
+                  setShowImport,
                 }}
               />
             </Suspense>

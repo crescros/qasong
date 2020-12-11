@@ -33,6 +33,7 @@ app.use("/api/feed", require("./feed/feed.controller"));
 app.use("/api/search", require("./search/search.controller"));
 app.use("/api/billboard", require("./billboard/billboard.controller"));
 app.use("/api/discord", require("./discord/discord.controller"));
+app.use("/api/import", require("./import/import.controller"));
 app.use("/api/env", (req, res) => res.send(process.env.NODE_ENV));
 
 // frontend routes

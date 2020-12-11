@@ -4,6 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 module.exports = {
   searchYoutube,
   searchYoutubeById,
+  searchYoutubePlaylist,
 };
 
 async function searchYoutube({ searchTerm }) {
@@ -31,4 +32,9 @@ async function searchYoutubeById({ ids }) {
 
     return queueValues;
   });
+}
+
+async function searchYoutubePlaylist({ ids }) {
+  const list = await yts({ listId: ids });
+  return list;
 }
