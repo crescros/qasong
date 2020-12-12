@@ -38,16 +38,16 @@ app.use("/api/env", (req, res) => res.send(process.env.NODE_ENV));
 // frontend routes
 function serveReactApp(req, res) {
   // eslint-disable-next-line no-undef
-  res.sendFile(path.join(__dirname, "../public", "index.html"));
+  res.sendFile(path.join(__dirname, "../frontend", "build", "static", "index.html"));
 }
-// eslint-disable-next-line no-undef
 app.get("/", serveReactApp);
 app.get("/billboard", serveReactApp);
 app.get("/queue", serveReactApp);
 app.get("/search", serveReactApp);
 app.get("/playlists", serveReactApp);
 
-app.use(express.static(path.join(__dirname, "../public")));
+// eslint-disable-next-line no-undef
+app.use(express.static(path.join(__dirname, "../frontend", "build")));
 
 // start server
 const port = process.env.PORT || 3016;

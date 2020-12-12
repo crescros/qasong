@@ -1,9 +1,9 @@
-if (process.env.NODE_ENV !== "development") {
-  // redirect to https
-  if (location.protocol === "http:") {
-    location.href = "https://qasong.com" + location.pathname;
-  }
-}
+// if (process.env.NODE_ENV !== "development") {
+//   // redirect to https
+//   if (location.protocol === "http:") {
+//     location.href = "https://qasong.com" + location.pathname;
+//   }
+// }
 
 import React from "react";
 import ReactDOM from "react-dom";
