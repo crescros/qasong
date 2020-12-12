@@ -140,7 +140,7 @@ function Content() {
           </Typography>
         </Grid>
         <Grid item>
-          <img src="./img/qasong.svg" width="32px" />
+          <img src="./static/img/qasong.svg" width="32px" />
         </Grid>
       </Grid>
     </Box>
