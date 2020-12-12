@@ -11,7 +11,7 @@ const nocache = require("nocache");
 
 // middleware config
 const apiLimiterConfig = rateLimit({ windowMs: 900000, max: 200 });
-const bodyParserConfig = { extended: false }
+const bodyParserConfig = { extended: false };
 
 // middleware
 rootpath();
