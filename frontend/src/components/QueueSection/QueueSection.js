@@ -9,6 +9,7 @@ import Alert from "@material-ui/lab/Alert";
 
 // material-ui
 import { IconButton, Typography, Box, Grid } from "@material-ui/core";
+
 import {
   Queue as QueueIcon,
   DragHandle as DragHandleIcon,
@@ -24,10 +25,16 @@ import PlayQueueButton from "./PlayQueueButton/PlayQueueButton";
 import ShuffleButton from "./ShuffleButton/ShuffleButton";
 import ClearButton from "./ClearButton/ClearButton";
 import SaveQueueButton from "./SaveQueueButton/SaveQueueButton";
+import ConfirmClearDialog from "./ConfirmClearDialog/ConfirmClearDialog";
 
 function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
   const [displayMode, setDisplayMode] = useState("list");
   const [displaySaved, setDisplaySaved] = useState(false);
+  const [confirmDialog, setConfirmDialog] = useState({
+    isOpen: false,
+    title: "",
+    subTitle: "",
+  });
 
   const handleClickQueueItem = (qid) => {
     setNowPlaying(queue.find((item) => item.qid === qid));
@@ -143,7 +150,16 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
           <Grid item onClick={handleClickSave}>
             <SaveQueueButton {...{ queue }} />
           </Grid>
-          <Grid item>
+          <Grid
+            item
+            onClick={() => {
+              setConfirmDialog({
+                isOpen: true,
+                title: "Are you sure you want to clear the queue?",
+                subTitle: "You can't undo this operation.",
+              });
+            }}
+          >
             <ClearButton {...{ setQueue }} />
           </Grid>
           {displaySaved ? (
@@ -154,6 +170,12 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
             </Grid>
           ) : null}
         </Grid>
+        <ConfirmClearDialog
+          queue={queue}
+          setQueue={setQueue}
+          confirmDialog={confirmDialog}
+          setConfirmDialog={setConfirmDialog}
+        />
       </Box>
 
       <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
