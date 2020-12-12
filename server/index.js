@@ -1,30 +1,27 @@
 // import dependencies
 const express = require("express");
 const path = require("path");
-
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const errorHandler = require("./_helpers/error-handler");
 const rateLimit = require("express-rate-limit");
+const dotenv = require("dotenv");
+const rootpath = require("rootpath");
+const nocache = require("nocache");
 
-require("dotenv").config();
-require("rootpath")();
+// middleware config
+const apiLimiterConfig = rateLimit({ windowMs: 900000, max: 200 });
+const bodyParserConfig = { extended: false }
 
-const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 200,
-});
-
-// initialize express
+// middleware
+rootpath();
+dotenv.config();
 const app = express();
-
-app.use(apiLimiter);
+app.use(apiLimiterConfig);
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded(bodyParserConfig));
 app.use(bodyParser.json());
 app.use(errorHandler);
-
-const nocache = require("nocache");
 app.use(nocache());
 app.set("etag", false);
 
@@ -40,6 +37,7 @@ function serveReactApp(req, res) {
   // eslint-disable-next-line no-undef
   res.sendFile(path.join(__dirname, "../frontend", "build", "static", "index.html"));
 }
+
 app.get("/", serveReactApp);
 app.get("/billboard", serveReactApp);
 app.get("/queue", serveReactApp);
