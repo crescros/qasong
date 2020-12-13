@@ -75,7 +75,6 @@ export default function TransitionsModal({ showImport, setShowImport, queue, set
     const songsNotAlreadyInQueue = playlist.data.filter((song) => {
       return !currentQids.includes(song.qid);
     });
-    console.log(songsNotAlreadyInQueue);
     setQueue([...queue, ...songsNotAlreadyInQueue]);
   }
 
@@ -100,7 +99,9 @@ export default function TransitionsModal({ showImport, setShowImport, queue, set
               </Grid>
               <Grid className={classes.space}>
                 {visible && (
-                  <Typography className={classes.error}>Invalid URL or Playlist Exceeds 100 Items</Typography>
+                  <Typography className={classes.error}>
+                    Invalid URL or Playlist Exceeds 100 Items
+                  </Typography>
                 )}
               </Grid>
               <Grid className={classes.format}>

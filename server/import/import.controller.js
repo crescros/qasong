@@ -1,5 +1,4 @@
 const express = require("express");
-const { searchYoutubePlaylist } = require("../search/search.service");
 const router = express.Router();
 const searchService = require("../search/search.service");
 
@@ -11,7 +10,7 @@ module.exports = router;
 function getPlaylist(req = "", res) {
   const input = req.query.q;
   // eslint-disable-next-line max-len
-  const regex = /(http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/playlist\?list=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?)/g;
+  const regex = /(http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/playlist\?list=|\.be\/)([\w\-_]*)(&(amp;)?‌[\w=]*)?)/g;
   const link = regex.exec(input);
 
   if (link) {
