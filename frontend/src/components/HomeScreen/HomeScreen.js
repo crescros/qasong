@@ -51,6 +51,8 @@ function HomeScreen({
         {...{
           showImport,
           setShowImport,
+          queue,
+          setQueue,
         }}
       />
 

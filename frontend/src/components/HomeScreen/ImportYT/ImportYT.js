@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Dialog, Fade, Typography, TextField, Button, Grid } from "@material-ui/core";
-//import ytlist from "youtube-playlist";
+import { getYoutubePlaylist } from "../../../functions";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -27,19 +27,24 @@ const useStyles = makeStyles((theme) => ({
     display: "grid",
     justifyContent: "center",
   },
+  space: {
+    paddingTop: "12px",
+    paddingBottom: "12px",
+  },
   error: {
     textAlign: "center",
     color: "red",
-    visibility: "hidden",
   },
 }));
 
-export default function TransitionsModal({ showImport, setShowImport }) {
+export default function TransitionsModal({ showImport, setShowImport, queue, setQueue }) {
   const classes = useStyles();
   const [playlistLink, setplaylistLink] = React.useState();
+  const [visible, setVisibility] = React.useState(false);
 
   const handleClose = () => {
     setShowImport(false);
+    setVisibility(false);
   };
 
   const handleInput = (url) => {
@@ -47,11 +52,32 @@ export default function TransitionsModal({ showImport, setShowImport }) {
   };
 
   const handleImportPlaylist = () => {
-    console.log(playlistLink);
-    // ytlist(playlistLink, "url").then((res) => {
-    //   console.log(res);
-    // });
+    if (playlistLink) {
+      // Pass URL to request for playlist object
+      getYoutubePlaylist(playlistLink).then((playlist) => {
+        if (playlist.data) {
+          handleAddPlaylistQueue(playlist);
+          // Close window after playlist returns
+          setplaylistLink();
+          handleClose();
+        } else {
+          setVisibility(true);
+        }
+      });
+    } else {
+      setVisibility(true);
+    }
   };
+
+  function handleAddPlaylistQueue(playlist) {
+    const currentQids = queue.map((song) => song.qid);
+
+    const songsNotAlreadyInQueue = playlist.data.filter((song) => {
+      return !currentQids.includes(song.qid);
+    });
+    console.log(songsNotAlreadyInQueue);
+    setQueue([...queue, ...songsNotAlreadyInQueue]);
+  }
 
   return (
     <div>
@@ -72,7 +98,11 @@ export default function TransitionsModal({ showImport, setShowImport }) {
                   fullWidth={true}
                 />
               </Grid>
-              <Typography className={classes.error}>Invalid URL</Typography>
+              <Grid className={classes.space}>
+                {visible && (
+                  <Typography className={classes.error}>Invalid URL or Playlist Exceeds 100 Items</Typography>
+                )}
+              </Grid>
               <Grid className={classes.format}>
                 <Button
                   className={classes.confirm}
