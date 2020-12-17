@@ -9,7 +9,6 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  Paper,
   IconButton,
 } from "@material-ui/core";
 import VideoRow from "./ResultRow/ResultRow";
@@ -43,7 +42,7 @@ function TableView({
         </IconButton>
       </Box>
       <Grid container justify="center" alignItems="center">
-        <TableContainer component={Paper}>
+        <TableContainer>
           <Table>
             <TableHead>
               <TableRow>
