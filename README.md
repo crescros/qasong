@@ -1,6 +1,18 @@
 # Qasong
 
-![Tests](https://github.com/IanWalston/qasong/workflows/Node.js%20CI/badge.svg)
+Test Workflow
+
+![Test Workflow](https://github.com/IanWalston/qasong/workflows/Node.js%20CI/badge.svg)
+
+React Test Coverage
+
+![React Test Coverage Branches](https://ianwalston.github.io/qasong/frontend/coverage/badge-branches.svg)
+
+![React Test Coverage Functions](https://ianwalston.github.io/qasong/frontend/coverage/badge-functions.svg)
+
+![React Test Coverage Lines](https://ianwalston.github.io/qasong/frontend/coverage/badge-lines.svg)
+
+![React Test Coverage Statements](https://ianwalston.github.io/qasong/frontend/coverage/badge-statements.svg)
 
 ## About the Application
 
