@@ -1,11 +1,10 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-import grey from "@material-ui/core/colors/grey";
 const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1;
 
 export const darkTheme = createMuiTheme({
   palette: {
     background: {
-      default: grey[900],
+      default: "#141414",
     },
     primary: {
       main: "#000",
@@ -23,7 +22,7 @@ export const darkTheme = createMuiTheme({
 export const lightTheme = createMuiTheme({
   palette: {
     background: {
-      default: grey[50],
+      default: "#ebebeb",
     },
     primary: {
       main: "#fff",
