@@ -5,6 +5,6 @@ describe("billboard page", () => {
     });
 
     it("shows loading animation", () => {
-        cy.get("#qasong-loading-animation")
-    })
-})
+        cy.get("#qasong-loading-animation");
+    });
+});

@@ -107,7 +107,7 @@ export default function ImgMediaCard({
     <Grid
       item
       container
-      className={classes.row}
+      className={classes.row + " qasong-queueitem"}
       onClick={() => onClickMusicRow(qid)}
       direction="row"
       alignItems="center"

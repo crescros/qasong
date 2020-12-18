@@ -17,8 +17,7 @@ describe("search page", () => {
 
     cy.get("#qasong-search-results", { timeout: 30000 });
 
-    cy.contains("Adele")
-
+    cy.contains("Adele");
   });
 
   it("clicking a search result causes the playbar to appear", () => {
@@ -30,8 +29,8 @@ describe("search page", () => {
 
     cy.get("#qasong-search-results", { timeout: 30000 });
 
-    cy.get(".MuiCard-root").first().click()
+    cy.get(".MuiCard-root").first().click();
 
-    cy.get("#qasong-playbar")
-  })
+    cy.get("#qasong-playbar");
+  });
 });
