@@ -3,7 +3,8 @@ import React, { useState, useEffect, Suspense } from "react";
 import { getYoutubeIdFromSearch } from "./functions";
 import { CssBaseline, Box } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
-import { darkTheme, lightTheme } from "./themes"
+import { darkTheme, lightTheme } from "./themes";
+import Curve from "./components/Curve/Curve.js";
 
 // lazy load components
 const NowPlayingArea = React.lazy(() =>
@@ -127,13 +128,9 @@ const App = () => {
           minHeight: "80vh",
         }}
       >
-        <img
-          src=".\static\img\topCurve.svg"
-          width="465px"
-          style={{ position: "absolute", zIndex: -10, maxWidth: "100%" }}
-        />
+        <Curve />
 
-        <Box style={{ height: "72px" }}/>
+        <Box style={{ height: "72px" }} />
 
         <Suspense fallback={<Box />}>
           <Routes
@@ -178,11 +175,7 @@ const App = () => {
         </Suspense>
       </Box>
 
-      <img
-        src=".\static\img\bottomCurve.svg"
-        width="465px"
-        style={{ position: "absolute", zIndex: -10, maxWidth: "100%", right: "0%" }}
-      />
+      <Curve align="right" />
     </ThemeProvider>
   );
 };
