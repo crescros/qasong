@@ -117,32 +117,6 @@ export function removePlaylist(id) {
   return playlists;
 }
 
-export function postPlaylistToDiscord(id) {
-  let playlist = getPlaylist(id);
-
-  playlist.queue = playlist.queue.map((song) => {
-    const { description, ...songWithoutDescription } = song;
-    description;
-    return {
-      ...songWithoutDescription,
-    };
-  });
-
-  axios({
-    method: "POST",
-    url: baseUrl + "api/discord",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: JSON.stringify(playlist),
-  }).catch((e) => {
-    // console.log(e);
-    e;
-  });
-
-  return true;
-}
-
 // OTHER
 export function formatVideoTitle(name) {
   if (name.length < 40) {
@@ -166,14 +140,14 @@ export function copyCurrentURL() {
 }
 
 export function shuffle(array) {
-  let tempArray = array;
+  let tempArray = [...array];
   tempArray.sort(() => Math.random() - 0.5);
-  return tempArray;
-}
 
-export function clear(array) {
-  array = [];
-  return array;
+  if (tempArray !== array) {
+    return tempArray;
+  } else {
+    return shuffle(array);
+  }
 }
 
 export function getDurationFromQueue(queue) {

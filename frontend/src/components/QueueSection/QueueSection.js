@@ -171,7 +171,6 @@ function QueueSection({ nowPlaying, setNowPlaying, queue, setQueue }) {
           ) : null}
         </Grid>
         <ConfirmClearDialog
-          queue={queue}
           setQueue={setQueue}
           confirmDialog={confirmDialog}
           setConfirmDialog={setConfirmDialog}

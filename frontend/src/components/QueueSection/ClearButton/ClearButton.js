@@ -2,7 +2,7 @@ import React from "react";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { IconButton, Box } from "@material-ui/core";
 
-function ShareButton({ disabled }) {
+function ClearButton({ disabled }) {
   return (
     <Box mt={1}>
       <IconButton
@@ -18,4 +18,4 @@ function ShareButton({ disabled }) {
   );
 }
 
-export default ShareButton;
+export default ClearButton;

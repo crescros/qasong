@@ -1,5 +1,4 @@
 import React from "react";
-import { clear } from "../../../functions";
 import {
   Dialog,
   DialogTitle,
@@ -10,10 +9,10 @@ import {
 } from "@material-ui/core";
 
 function ConfirmClearDialog(props) {
-  const { queue, setQueue, confirmDialog, setConfirmDialog } = props;
+  const { setQueue, confirmDialog, setConfirmDialog } = props;
 
   function handleClickYes() {
-    setQueue(clear(queue));
+    setQueue([]);
   }
 
   function handleClickNo() {

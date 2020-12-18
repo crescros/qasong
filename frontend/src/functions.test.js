@@ -1,5 +1,12 @@
-import { formatSeconds, numberWithCommas, formatVideoTitle } from "./functions";
+import {
+  formatSeconds,
+  numberWithCommas,
+  formatVideoTitle,
+  shuffle,
+  getDurationFromQueue
+} from "./functions";
 import { LoremIpsum } from "lorem-ipsum";
+
 const lorem = new LoremIpsum({});
 
 describe("format seconds", () => {
@@ -25,3 +32,25 @@ describe("format video title", () => {
     expect(formatVideoTitle(longSampleText)).toHaveLength(43);
   });
 });
+
+describe("shuffle", () => {
+  const testArray = [1, 2, 3, 4, 5, 6, 7]
+
+  it("does not alter length of array", () => {
+    expect(shuffle(testArray)).toHaveLength(7)
+  })
+
+  it("does not return the same array", () => {
+    expect(shuffle(testArray)).not.toEqual(testArray)
+  })
+})
+
+describe("getDurationFromQueue", () => {
+  const testQueue = [
+    { seconds: 180 },
+    { seconds: 180 },
+    { seconds: 180 }
+  ]
+
+  expect(getDurationFromQueue(testQueue)).toEqual("9 min")
+})
