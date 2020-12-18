@@ -9,7 +9,7 @@ function BillboardTop100({ handleSubmitVideoSearch }) {
   const [billboard, setBillboard] = React.useState([]);
 
   function setSearchTerm(text) {
-    const qasongSearchInput = document.querySelector("#qasongsearch");
+    const qasongSearchInput = document.querySelector("#qasong-search");
 
     qasongSearchInput.value = text;
   }

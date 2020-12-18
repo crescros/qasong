@@ -69,8 +69,8 @@ function MusicSearch({ handleSubmitMusicSearch }) {
         }}
       >
         <InputBase
-          id="qasongsearch"
-          name="qasongsearch"
+          id="qasong-search"
+          name="qasong-search"
           onChange={handleSearchTermInput}
           placeholder="search music…"
           autoFocus={true}

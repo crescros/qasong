@@ -36,7 +36,7 @@ function SearchResults({
   }
 
   return (
-    <>
+    <Box id="qasong-search-results">
       {searchTableViewMode ? (
         <Suspense fallback={<div />}>
           <TableView
@@ -64,7 +64,7 @@ function SearchResults({
           />
         </Suspense>
       )}
-    </>
+    </Box>
   );
 }
 
