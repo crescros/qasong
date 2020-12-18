@@ -27,7 +27,7 @@ logs/*
 .DS_Store
 
 # Istanbul Coverage
-frontend/coverage/*
+# frontend/coverage/*
 
 # electron
 dist/**/*
