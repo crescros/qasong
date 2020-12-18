@@ -10,7 +10,7 @@
     "lint": "eslint ./src/**/*.js ./src/**/*.jsx --no-error-on-unmatched-pattern",
     "lint:fix": "eslint --fix",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
-    "test": "jest --passWithNoTests --coverage"
+    "test": "jest --passWithNoTests --coverage && jest-coverage-badges"
   },
   "babel": {
     "presets": [
@@ -44,6 +44,7 @@
     "eslint-loader": "^4.0.2",
     "html-webpack-plugin": "^4.5.0",
     "immutability-helper": "^3.1.1",
+    "jest-coverage-badges": "^1.1.2",
     "react": "^16.14.0",
     "react-device-detect": "^1.14.0",
     "react-dnd": "^11.1.3",
@@ -60,6 +61,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.7",
     "@babel/preset-env": "^7.12.7",
+    "@olavoparno/jest-badges-readme": "^1.5.1",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.1",
     "enzyme": "^3.11.0",
@@ -69,6 +71,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
     "jest": "^26.6.3",
+    "lorem-ipsum": "^2.0.3",
     "prettier": "^2.2.0",
     "webpack": "^5.10.0",
     "webpack-cli": "^4.2.0",
