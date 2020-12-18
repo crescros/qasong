@@ -19,14 +19,13 @@
 #GitHub
 .github
 
-
 # Node.js dependencies:
 node_modules/
 package-lock.json
 
-
 # Frontend Development
-frontend/
+frontend/node_modules/
+frontend/package-lock.json
 
 # Testing
 cypress/

@@ -15,7 +15,7 @@ function LoadingAnimation({ size = 32, speed = 2 }) {
   const classes = useStyles();
 
   return (
-    <Box component="span">
+    <Box component="span" id="qasong-loading-animation">
       <img
         className={classes.img}
         style={{

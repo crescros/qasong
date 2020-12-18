@@ -21,6 +21,7 @@ function AddToQueueButton({ handleAddQueue }) {
     <Tooltip open={open} onClose={handleClose} title="added to queue">
       <IconButton
         onClick={handleClick}
+        className="qasong-addtoqueue"
         style={{ background: "#00000080", color: "white" }}
       >
         <QueueIcon />

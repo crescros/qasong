@@ -14,14 +14,9 @@ import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
 import { makeStyles } from "@material-ui/core/styles";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
 import PlaylistItem from "./PlaylistItem/PlaylistItem";
-import {
-  getDurationFromQueue,
-  postPlaylistToDiscord,
-  removePlaylist,
-} from "../../../functions";
+import { getDurationFromQueue, removePlaylist } from "../../../functions";
 
 const useStyles = makeStyles((theme) => ({
   playlist: {
@@ -71,10 +66,6 @@ function Playlist({
 
   function handleDeleteClick(playlistId) {
     removePlaylist(playlistId);
-  }
-
-  function handleUploadClick(playlistId) {
-    postPlaylistToDiscord(playlistId);
   }
 
   function handleStopSong(e) {
@@ -154,9 +145,6 @@ function Playlist({
                 onClick={() => handleDeleteClick(playlist.id)}
               >
                 <DeleteOutlineIcon />
-              </IconButton>
-              <IconButton onClick={() => handleUploadClick(playlist.id)}>
-                <CloudUploadIcon />
               </IconButton>
             </>
           )}

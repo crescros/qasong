@@ -2,4 +2,4 @@
 **/*.test.js
 
 
-build
+build/**/*

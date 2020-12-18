@@ -1,4 +1,13 @@
-runtime: nodejs12
+runtime: nodejs14
 
 env_variables:
   NODE_ENV: "production"
+
+handlers:
+- url: /static
+  static_dir: frontend/build/static
+
+- url: /.*
+  secure: always
+  redirect_http_response_code: 301
+  script: auto
