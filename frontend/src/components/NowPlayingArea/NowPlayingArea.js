@@ -115,7 +115,7 @@ export default function BottomAppBar({
         }}
       />
 
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar} id="qasong-playbar">
         <Grid container justify="center" alignItems="center" alignContent="center">
           <Grid item xs={12} sm={4}>
             <Typography align="center">{nowPlaying.title}</Typography>
