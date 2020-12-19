@@ -15,6 +15,6 @@ describe("<HomeScreen />", () => {
 
   it("renders the Youtube component if id is truthy", () => {
     const wrapper = shallow(<HomeScreen showHomeScreen={true} />);
-    expect(wrapper.find(Box)).toHaveLength(2);
+    expect(wrapper.find(Box)).toHaveLength(3);
   });
 });

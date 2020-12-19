@@ -7,7 +7,7 @@
   "scripts": {
     "build": "cd frontend && npm run build",
     "cy:run": "npx cypress run",
-    "deploy": "npm run build && gcloud app deploy --project qasong --quiet",
+    "deploy": "npm run lint:fix && npm run build && npm run test && gcloud app deploy --project qasong --quiet",
     "dev": "npm i && concurrently --kill-others \"npm run dev:frontend\" \"npm run dev:server\"",
     "dev:frontend": "cd frontend && npm i && npm start",
     "dev:server": "npm i && nodemon ./server/index.js",
@@ -16,7 +16,7 @@
     "start": "node ./server/index.js",
     "lint": "eslint . && cd frontend && npm run lint",
     "lint:fix": "eslint . --fix && cd frontend && eslint . --fix",
-    "test": "npm run test:frontend && npm run build && npm run test:server",
+    "test": "npm run test:frontend && npm run test:server",
     "test:frontend": "cd frontend && npm run test",
     "test:server": "start-server-and-test start http://localhost:3016 cy:run"
   },

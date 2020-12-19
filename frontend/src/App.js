@@ -1,55 +1,16 @@
 // load dependencies
 import React, { useState, useEffect, Suspense } from "react";
 import { getYoutubeIdFromSearch } from "./functions";
-import { CssBaseline } from "@material-ui/core";
-import { createMuiTheme } from "@material-ui/core/styles";
+import { CssBaseline, Box } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
-
-const qasongOrange = process.env.REACT_APP_QASONG_COLOR_1;
+import { darkTheme, lightTheme } from "./themes";
+import Curve from "./components/Curve/Curve.js";
 
 // lazy load components
 const NowPlayingArea = React.lazy(() =>
   import("./components/NowPlayingArea/NowPlayingArea")
 );
 const Routes = React.lazy(() => import("./routes"));
-
-// DARK MODE
-const darkTheme = createMuiTheme({
-  palette: {
-    background: {
-      default: "#141414",
-    },
-    primary: {
-      main: "#000",
-    },
-    secondary: {
-      main: qasongOrange,
-      dark: "#fff",
-      contrastText: "#fff",
-    },
-    type: "dark",
-  },
-  shadows: ["none"],
-});
-
-// LIGHT MODE
-const lightTheme = createMuiTheme({
-  palette: {
-    background: {
-      default: "#ebebeb",
-    },
-    primary: {
-      main: "#fff",
-    },
-    secondary: {
-      main: qasongOrange,
-      dark: "#fff",
-      contrastText: "#fff",
-    },
-    type: "light",
-  },
-  shadows: ["none"],
-});
 
 const App = () => {
   // APPLICATION LEVEL STATE
@@ -62,6 +23,7 @@ const App = () => {
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
   const [showAboutUs, setShowAboutUs] = useState(!localStorage.getItem("returningUser"));
   const [showSettings, setShowSettings] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(1);
 
   function skipSong() {
@@ -162,20 +124,16 @@ const App = () => {
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
-      <div
+      <Box
         style={{
           minHeight: "80vh",
         }}
       >
-        <img
-          src=".\static\img\topCurve.svg"
-          width="465px"
-          style={{ position: "absolute", zIndex: -10000, maxWidth: "100%" }}
-        />
+        <Curve />
 
-        {<div style={{ height: "72px" }}></div>}
+        <Box style={{ height: "72px" }} />
 
-        <Suspense fallback={<div />}>
+        <Suspense fallback={<Box />}>
           <Routes
             {...{
               addSongToQueue,
@@ -192,6 +150,8 @@ const App = () => {
               setSearchTableViewMode,
               setShowAboutUs,
               showAboutUs,
+              setShowFeedback,
+              showFeedback,
               showSettings,
               setShowSettings,
               playbackRate,
@@ -201,7 +161,7 @@ const App = () => {
         </Suspense>
 
         {/* NOW PLAYING AREA */}
-        <Suspense fallback={<div />}>
+        <Suspense fallback={<Box />}>
           <NowPlayingArea
             {...{
               skipSong,
@@ -216,13 +176,9 @@ const App = () => {
             }}
           />
         </Suspense>
-      </div>
+      </Box>
 
-      <img
-        src=".\static\img\bottomCurve.svg"
-        width="465px"
-        style={{ position: "absolute", zIndex: -10000, maxWidth: "100%", right: "0%" }}
-      />
+      <Curve align="right" />
     </ThemeProvider>
   );
 };

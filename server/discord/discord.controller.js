@@ -8,8 +8,17 @@ router.post("/", postMessage);
 module.exports = router;
 
 function postMessage(req, res) {
+  const textContent =
+    "📦 a user submitted feedback:\n> " +
+    req.body.message +
+    "\n\n" +
+    `The user was ${!req.body.mobile ? "not " : ""}using a mobile device` +
+    "\n" +
+    new Date().toLocaleString() +
+    "\n\n";
+
   const postBody = {
-    content: "📦 a user submitted a playlist:\n```" + req.body + "```",
+    content: textContent,
   };
 
   axios({
