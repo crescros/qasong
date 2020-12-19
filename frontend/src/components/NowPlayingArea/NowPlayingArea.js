@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   Typography,
   Box,
-  CssBaseline,
   Toolbar,
   AppBar,
   Grid,
@@ -31,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     borderTop: "2px solid",
     paddingTop: theme.spacing(1),
     borderColor: theme.palette.secondary.main,
-    backgroundColor: theme.palette.background.default,
+    backdropFilter: "blur(4px) brightness(85%)",
   },
   grow: {
     display: "flex",
@@ -101,8 +100,6 @@ export default function BottomAppBar({
 
   return (
     <React.Fragment>
-      <CssBaseline />
-
       <YoutubeIframe
         {...{
           nowPlaying,
@@ -115,7 +112,12 @@ export default function BottomAppBar({
         }}
       />
 
-      <AppBar position="fixed" className={classes.appBar} id="qasong-playbar">
+      <AppBar
+        color="transparent"
+        position="fixed"
+        className={classes.appBar}
+        id="qasong-playbar"
+      >
         <Grid container justify="center" alignItems="center" alignContent="center">
           <Grid item xs={12} sm={4}>
             <Typography align="center">{nowPlaying.title}</Typography>

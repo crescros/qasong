@@ -1,20 +1,20 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
-// import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
+import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
 import WelcomeWindow from "./WelcomeWindow/WelcomeWindow";
 import Settings from "./Settings/Settings";
 
-// const FeaturedPlaylists = React.lazy(() =>
-//   import("./FeaturedPlaylists/FeaturedPlaylists")
-// );
+const FeaturedPlaylists = React.lazy(() =>
+  import("./FeaturedPlaylists/FeaturedPlaylists")
+);
 
 function HomeScreen({
-  // setQueue,
-  // setNowPlaying,
-  // nowPlaying,
-  // isLoading,
-  // queue,
-  // addSongToQueue,
+  setQueue,
+  setNowPlaying,
+  nowPlaying,
+  isLoading,
+  queue,
+  addSongToQueue,
   showAboutUs,
   setShowAboutUs,
   showSettings,
@@ -70,10 +70,10 @@ function HomeScreen({
         </Grid>
 
         <Grid item>
-          <Box p={1}></Box>
+          <Box py={8}></Box>
         </Grid>
 
-        {/* <Grid item>{isLoading && <LoadingAnimation size="32px" />}</Grid>
+        <Grid item>{isLoading && <LoadingAnimation size="32px" />}</Grid>
         <Grid item>
           <Box mt={14}>
             <Suspense>
@@ -88,7 +88,7 @@ function HomeScreen({
               />
             </Suspense>
           </Box>
-        </Grid> */}
+        </Grid>
       </Grid>
     </Box>
   );
