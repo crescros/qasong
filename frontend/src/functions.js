@@ -72,7 +72,10 @@ export function getFeed(pageNumber = 1) {
 }
 
 export function postUserFeedback(text) {
-  const postData = { message: text, mobile: isMobile };
+  const postData = {
+    message: text,
+    mobile: isMobile,
+  };
 
   axios({
     method: "POST",
