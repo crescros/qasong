@@ -5,11 +5,11 @@ import { VolumeUp, VolumeDown } from "@material-ui/icons";
 
 const useStyles = makeStyles({
   root: {
-    width: 200,
+    // width: 200,
   },
 });
 
-function volumeBar({ volume, setVolume }) {
+function volumeBar({ volume, setVolume, condensed }) {
   function handleChange(e, newValue) {
     setVolume(newValue / 100);
   }
@@ -23,9 +23,11 @@ function volumeBar({ volume, setVolume }) {
         <Grid item xs align="center">
           <Slider color="secondary" value={volume * 100} onChange={handleChange} />
         </Grid>
-        <Grid item>
-          <VolumeUp onClick={() => setVolume(1)} />
-        </Grid>
+        {!condensed && (
+          <Grid item>
+            <VolumeUp onClick={() => setVolume(1)} />
+          </Grid>
+        )}
       </Grid>
     </Box>
   );

@@ -5,16 +5,16 @@ import React, { useState, useRef, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Typography,
-  Box,
   Toolbar,
   AppBar,
   Grid,
   IconButton,
+  Box,
   Link,
 } from "@material-ui/core";
-// import { Pause as PauseIcon } from "@material-ui/icons";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
+import { ExpandMore as CondenseIcon, ExpandLess as ExpandIcon } from "@material-ui/icons";
 
 // qasong components
 import SkipSongButton from "./SkipSongButton/SkipSongButton";
@@ -28,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
     top: "auto",
     bottom: 0,
     borderTop: "2px solid",
-    paddingTop: theme.spacing(1),
+    paddingTop: theme.spacing(0),
     borderColor: theme.palette.secondary.main,
-    backdropFilter: "blur(4px) brightness(85%)",
+    backdropFilter: "blur(4px) brightness(35%)",
   },
   grow: {
     display: "flex",
@@ -53,6 +53,7 @@ export default function BottomAppBar({
   const [songProgress, setSongProgress] = useState(0);
   const [volume, setVolume] = useState(0.9);
   const [playing, setPlaying] = useState(false);
+  const [condensed, setCondensed] = useState(false);
 
   const playerRef = useRef(null);
 
@@ -92,6 +93,10 @@ export default function BottomAppBar({
     }
   }
 
+  function handleToggleCondensed() {
+    setCondensed(!condensed);
+  }
+
   if (!nowPlaying || !nowPlaying.title) {
     return <div></div>;
   }
@@ -99,7 +104,7 @@ export default function BottomAppBar({
   const isQueue = nextTitle || previousTitle;
 
   return (
-    <React.Fragment>
+    <>
       <YoutubeIframe
         {...{
           nowPlaying,
@@ -119,11 +124,13 @@ export default function BottomAppBar({
         id="qasong-playbar"
       >
         <Grid container justify="center" alignItems="center" alignContent="center">
-          <Grid item xs={12} sm={4}>
-            <Typography align="center">{nowPlaying.title}</Typography>
+          <Grid item xs={condensed ? 6 : 12} sm={condensed ? 3 : 4}>
+            <Typography variant="body2" align="center">
+              {nowPlaying.title}
+            </Typography>
           </Grid>
 
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={condensed ? 6 : 12} sm={condensed ? 3 : 4}>
             <Toolbar className={classes.grow}>
               {isQueue && (
                 <PreviousSongButton
@@ -151,29 +158,62 @@ export default function BottomAppBar({
                 />
               )}
             </Toolbar>
-            <ProgressBar
-              {...{ songProgress, changeTime }}
-              songDuration={nowPlaying.duration.seconds}
-            />
           </Grid>
 
-          <Grid item xs={12} sm={4}>
-            {nextTitle && (
-              <Box pl={3} align="center">
-                <VolumeController {...{ volume, setVolume }} />
-                <Link
-                  component="button"
-                  variant="body2"
-                  onClick={skipSong}
-                  color="textSecondary"
-                >
-                  next: {nextTitle}
-                </Link>
+          {condensed ? (
+            <>
+              <Grid item xs={7} sm={3}>
+                <ProgressBar
+                  {...{ songProgress, changeTime }}
+                  songDuration={nowPlaying.duration.seconds}
+                />
+              </Grid>
+              <Grid item xs={4} sm={2}>
+                <VolumeController condensed={true} {...{ volume, setVolume }} />
+              </Grid>
+            </>
+          ) : (
+            <Grid item xs={11} sm={3}>
+              <Box align="center">
+                {nextTitle && (
+                  <Link
+                    component="button"
+                    variant="body2"
+                    onClick={skipSong}
+                    color="textSecondary"
+                  >
+                    next: {nextTitle}
+                  </Link>
+                )}
               </Box>
-            )}
+            </Grid>
+          )}
+
+          <Grid item xs={1}>
+            <Box align="right" mt={-4}>
+              <IconButton size="small" onClick={handleToggleCondensed}>
+                {condensed ? <ExpandIcon /> : <CondenseIcon />}
+              </IconButton>
+            </Box>
           </Grid>
+
+          {!condensed && (
+            <>
+              <Grid item xs={12} sm={4}></Grid>
+              <Grid item xs={12} sm={4}>
+                <ProgressBar
+                  {...{ songProgress, changeTime }}
+                  songDuration={nowPlaying.duration.seconds}
+                />
+              </Grid>
+              <Grid item xs={0} sm={2}></Grid>
+              <Grid item xs={12} sm={2}>
+                <VolumeController {...{ volume, setVolume }} />
+              </Grid>
+            </>
+          )}
         </Grid>
       </AppBar>
-    </React.Fragment>
+    </>
   );
 }
