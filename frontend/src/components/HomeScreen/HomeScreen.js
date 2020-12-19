@@ -3,6 +3,7 @@ import { Box, Grid, Typography } from "@material-ui/core";
 import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
 import WelcomeWindow from "./WelcomeWindow/WelcomeWindow";
 import Settings from "./Settings/Settings";
+import UserFeedback from "./UserFeedback/UserFeedback";
 
 const FeaturedPlaylists = React.lazy(() =>
   import("./FeaturedPlaylists/FeaturedPlaylists")
@@ -23,6 +24,8 @@ function HomeScreen({
   setDarkMode,
   playbackRate,
   setPlaybackRate,
+  showFeedback,
+  setShowFeedback,
 }) {
   return (
     <Box mt={4}>
@@ -41,6 +44,13 @@ function HomeScreen({
           setDarkMode,
           setPlaybackRate,
           playbackRate,
+        }}
+      />
+
+      <UserFeedback
+        {...{
+          showFeedback,
+          setShowFeedback,
         }}
       />
 

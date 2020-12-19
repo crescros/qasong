@@ -1,4 +1,5 @@
 import axios from "axios";
+import { isMobile } from "react-device-detect";
 
 const baseUrl = process.env.REACT_APP_API_URL;
 
@@ -68,6 +69,21 @@ export function getFeed(pageNumber = 1) {
       alert(error + " " + error.response && error.response.data);
       return [];
     });
+}
+
+export function postUserFeedback(text) {
+  const postData = { message: text, mobile: isMobile };
+
+  axios({
+    method: "POST",
+    url: baseUrl + "api/discord",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: JSON.stringify(postData),
+  }).catch((e) => {
+    console.log(e);
+  });
 }
 
 // PLAYLISTS

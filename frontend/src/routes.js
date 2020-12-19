@@ -34,6 +34,8 @@ function Routes({
   setShowSettings,
   playbackRate,
   setPlaybackRate,
+  setShowFeedback,
+  showFeedback,
 }) {
   return (
     <Router>
@@ -46,6 +48,7 @@ function Routes({
             showAboutUs,
             setShowAboutUs,
             setShowSettings,
+            setShowFeedback,
           }}
         />
       </Suspense>
@@ -119,6 +122,8 @@ function Routes({
                   queue,
                   addSongToQueue,
                   showAboutUs,
+                  setShowFeedback,
+                  showFeedback,
                   setShowAboutUs,
                   showSettings,
                   setShowSettings,

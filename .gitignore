@@ -31,3 +31,6 @@ frontend/coverage/lcov-report
 
 # electron
 dist/**/*
+
+# gcloud
+app.yaml

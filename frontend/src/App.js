@@ -23,6 +23,7 @@ const App = () => {
   const [searchTableViewMode, setSearchTableViewMode] = useState(false);
   const [showAboutUs, setShowAboutUs] = useState(!localStorage.getItem("returningUser"));
   const [showSettings, setShowSettings] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(1);
 
   function skipSong() {
@@ -149,6 +150,8 @@ const App = () => {
               setSearchTableViewMode,
               setShowAboutUs,
               showAboutUs,
+              setShowFeedback,
+              showFeedback,
               showSettings,
               setShowSettings,
               playbackRate,

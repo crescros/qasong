@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-function MobileMenu({ queueLength, setShowAboutUs, setShowSettings }) {
+function MobileMenu({ queueLength, setShowAboutUs, setShowSettings, setShowFeedback }) {
   const classes = useStyles();
 
   let history = useHistory();
@@ -52,6 +52,11 @@ function MobileMenu({ queueLength, setShowAboutUs, setShowSettings }) {
     history.push("/");
   }
 
+  function handleFeedbackClick() {
+    setShowFeedback(true);
+    history.push("/");
+  }
+
   const mobileMenuId = "primary-search-account-menu-mobile";
   return (
     <div className={classes.sectionMobile}>
@@ -83,6 +88,7 @@ function MobileMenu({ queueLength, setShowAboutUs, setShowSettings }) {
         <MenuItem onClick={handlePlaylistClick}>playlists</MenuItem>
         <MenuItem onClick={handleBillboardClick}>billboard top 100</MenuItem>
         <MenuItem onClick={handleSettingsClick}>settings</MenuItem>
+        <MenuItem onClick={handleFeedbackClick}>feedback</MenuItem>
         <MenuItem onClick={handleAboutUsClick}>about us</MenuItem>
       </Menu>
 
