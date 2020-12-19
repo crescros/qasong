@@ -1,16 +1,16 @@
 import React from "react";
 import { Typography, Box, Link, Grid } from "@material-ui/core";
 
-function getDaysRemaining() {
-  const releaseDate = "12/20/2020";
+// function getDaysRemaining() {
+//   const releaseDate = "12/20/2020";
 
-  const date1 = new Date();
-  const date2 = new Date(releaseDate);
+//   const date1 = new Date();
+//   const date2 = new Date(releaseDate);
 
-  const difference_In_Time = date2.getTime() - date1.getTime();
-  const difference_In_Days = difference_In_Time / (1000 * 3600 * 24);
-  return Math.round(difference_In_Days);
-}
+//   const difference_In_Time = date2.getTime() - date1.getTime();
+//   const difference_In_Days = difference_In_Time / (1000 * 3600 * 24);
+//   return Math.round(difference_In_Days);
+// }
 
 function Content() {
   return (
@@ -91,15 +91,6 @@ function Content() {
       <Typography align="center">Qasong is currently under development, so</Typography>
       <Typography align="center">some aspects of the application may be</Typography>
       <Typography align="center">unfinished or not functioning.</Typography>
-
-      <Box p={1} />
-
-      <Typography align="center" color="secondary">
-        The initial release is in {getDaysRemaining()} days on
-      </Typography>
-      <Typography align="center" color="secondary">
-        December 20th, 2020.
-      </Typography>
 
       <Box p={2} />
 
