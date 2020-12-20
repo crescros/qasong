@@ -85,7 +85,7 @@ export function postUserFeedback(text) {
     },
     data: JSON.stringify(postData),
   }).catch((e) => {
-    console.log(e);
+    throw e;
   });
 }
 

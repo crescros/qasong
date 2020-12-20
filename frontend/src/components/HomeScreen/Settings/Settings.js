@@ -19,12 +19,16 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
+    borderRadius: theme.spacing(2),
   },
   paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
+    backgroundColor: "transparent",
+    backdropFilter: `blur(8px) brightness(${
+      theme.palette.type === "dark" ? "55%" : "150%"
+    } )`,
+    boxShadow: "none",
     padding: theme.spacing(2, 4, 3),
+    borderRadius: theme.spacing(2),
   },
   select: {
     marginLeft: "20px",
@@ -60,52 +64,60 @@ export default function TransitionsModal({
   // }
 
   return (
-    <div>
-      <Dialog className={classes.modal} open={showSettings} onClose={handleClose}>
-        <Fade in={showSettings}>
-          <div className={classes.paper}>
-            <Typography gutterBottom variant="h4" align="center">
-              Settings
-            </Typography>
+    <Dialog
+      className={classes.modal}
+      open={showSettings}
+      onClose={handleClose}
+      PaperProps={{
+        classes: {
+          root: classes.paper,
+        },
+      }}
+    >
+      <Fade in={showSettings}>
+        <>
+          <Typography gutterBottom variant="h4" align="center">
+            Settings
+          </Typography>
+
+          <Grid>
+            <Grid>
+              {/* dark mode */}
+              <FormControlLabel
+                control={
+                  <Switch onChange={handleDarkmodeButtonClick} checked={darkMode} />
+                }
+                label="Dark Mode"
+                labelPlacement="start"
+              />
+            </Grid>
 
             <Grid>
-              <Grid>
-                {/* dark mode */}
-                <FormControlLabel
-                  control={
-                    <Switch onChange={handleDarkmodeButtonClick} checked={darkMode} />
-                  }
-                  label="Dark Mode"
-                  labelPlacement="start"
-                />
-              </Grid>
+              <FormControlLabel
+                label="Playback Speed"
+                labelPlacement="start"
+                control={
+                  <Select
+                    className={classes.select}
+                    defaultValue={1}
+                    value={playbackRate}
+                    onChange={handleChangePlaybackRate}
+                  >
+                    <MenuItem value={0.25}>0.25</MenuItem>
+                    <MenuItem value={0.5}>0.50</MenuItem>
+                    <MenuItem value={0.75}>0.75</MenuItem>
+                    <MenuItem value={1}>normal</MenuItem>
+                    <MenuItem value={1.25}>1.25</MenuItem>
+                    <MenuItem value={1.5}>1.5</MenuItem>
+                    <MenuItem value={1.75}>1.75</MenuItem>
+                    <MenuItem value={2}>2</MenuItem>
+                  </Select>
+                }
+              />
+            </Grid>
 
-              <Grid>
-                <FormControlLabel
-                  label="Playback Speed"
-                  labelPlacement="start"
-                  control={
-                    <Select
-                      className={classes.select}
-                      defaultValue={1}
-                      value={playbackRate}
-                      onChange={handleChangePlaybackRate}
-                    >
-                      <MenuItem value={0.25}>0.25</MenuItem>
-                      <MenuItem value={0.5}>0.50</MenuItem>
-                      <MenuItem value={0.75}>0.75</MenuItem>
-                      <MenuItem value={1}>normal</MenuItem>
-                      <MenuItem value={1.25}>1.25</MenuItem>
-                      <MenuItem value={1.5}>1.5</MenuItem>
-                      <MenuItem value={1.75}>1.75</MenuItem>
-                      <MenuItem value={2}>2</MenuItem>
-                    </Select>
-                  }
-                />
-              </Grid>
-
-              <Grid>
-                {/* <FormControlLabel
+            <Grid>
+              {/* <FormControlLabel
                   label="Language"
                   labelPlacement="start"
                   control={
@@ -120,11 +132,10 @@ export default function TransitionsModal({
                     </Select>
                   }
                 /> */}
-              </Grid>
             </Grid>
-          </div>
-        </Fade>
-      </Dialog>
-    </div>
+          </Grid>
+        </>
+      </Fade>
+    </Dialog>
   );
 }

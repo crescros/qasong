@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import { AppBar, Toolbar, IconButton } from "@material-ui/core";
 import MusicSearch from "./MusicSearch/MusicSearch";
 import Menu from "./Menu/Menu";
-
-// import UserSection from "./UserSection/UserSection";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -12,7 +10,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   backdropFilter: {
-    backdropFilter: "blur(4px) brightness(85%)",
+    backdropFilter: `blur(4px) brightness(${
+      theme.palette.type === "dark" ? "85%" : "115%"
+    } )`,
   },
   appbar: {
     transition: "backdrop-filter 2s",

@@ -7,11 +7,15 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 
 import { useHistory } from "react-router-dom";
 
-const useStyles = makeStyles({
-  sectionMobile: {
-    display: "flex",
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    backgroundColor: "transparent",
+    backdropFilter: `blur(2px) brightness(${
+      theme.palette.type === "dark" ? "45%" : "95%"
+    } )`,
+    boxShadow: "none",
   },
-});
+}));
 
 function MobileMenu({ queueLength, setShowAboutUs, setShowSettings, setShowFeedback }) {
   const classes = useStyles();
@@ -32,14 +36,17 @@ function MobileMenu({ queueLength, setShowAboutUs, setShowSettings, setShowFeedb
 
   function handleQueueButtonClick() {
     history.push("/queue");
+    handleMobileMenuClose();
   }
 
   function handleBillboardClick() {
     history.push("/billboard");
+    handleMobileMenuClose();
   }
 
   function handlePlaylistClick() {
     history.push("/playlists");
+    handleMobileMenuClose();
   }
 
   function handleSettingsClick() {
@@ -55,11 +62,12 @@ function MobileMenu({ queueLength, setShowAboutUs, setShowSettings, setShowFeedb
   function handleFeedbackClick() {
     setShowFeedback(true);
     history.push("/");
+    handleMobileMenuClose();
   }
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   return (
-    <div className={classes.sectionMobile}>
+    <div>
       <Menu
         anchorEl={mobileMoreAnchorEl}
         anchorOrigin={{
@@ -74,6 +82,7 @@ function MobileMenu({ queueLength, setShowAboutUs, setShowSettings, setShowFeedb
         }}
         open={isMobileMenuOpen}
         onClose={handleMobileMenuClose}
+        className={classes.backdrop}
       >
         {/* QUEUE */}
 

@@ -28,10 +28,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   img: {
-    margin: "auto",
     display: "block",
     maxWidth: "100%",
     maxHeight: "100%",
+    borderRadius: theme.spacing(2),
+    margin: theme.spacing(4),
   },
 }));
 
@@ -93,7 +94,7 @@ function Playlist({
       data-playlist_id={playlist.id}
     >
       <Grid item xs={12}>
-        <Box align="center">
+        <Box align="center" p={3} borderRadius={16}>
           <ButtonBase onClick={handlePlaylistClick}>
             <img className={classes.img} alt="complex" src={playlist.image} />
           </ButtonBase>
