@@ -36,14 +36,17 @@ function MobileMenu({ queueLength, setShowAboutUs, setShowSettings, setShowFeedb
 
   function handleQueueButtonClick() {
     history.push("/queue");
+    handleMobileMenuClose();
   }
 
   function handleBillboardClick() {
     history.push("/billboard");
+    handleMobileMenuClose();
   }
 
   function handlePlaylistClick() {
     history.push("/playlists");
+    handleMobileMenuClose();
   }
 
   function handleSettingsClick() {
@@ -59,6 +62,7 @@ function MobileMenu({ queueLength, setShowAboutUs, setShowSettings, setShowFeedb
   function handleFeedbackClick() {
     setShowFeedback(true);
     history.push("/");
+    handleMobileMenuClose();
   }
 
   const mobileMenuId = "primary-search-account-menu-mobile";

@@ -21,10 +21,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "0 0 16px 16px",
   },
   img: {
-    borderRadius: "0 14px 0 0",
-    margin: "0 0 0 auto",
-    height: theme.spacing(14),
-    width: theme.spacing(14),
+    margin: theme.spacing(2),
+    borderRadius: theme.spacing(2),
+    height: theme.spacing(9),
+    width: theme.spacing(9),
   },
 }));
 
@@ -68,27 +68,27 @@ function BillboardTop100Item({ item, setSearchTerm, handleSubmitVideoSearch }) {
   return (
     <Box align="center" className={classes.root} onClick={handleClick}>
       <Grid container justify="center">
-        <Grid item container xs={8} alignItems="center">
+        <Grid item container xs={9} alignItems="center">
           <Grid item xs={2}>
             <Typography variant="h5" color={rankColor}>
               {item.rank}
             </Typography>
           </Grid>
-
-          <Grid item xs={8}>
+          <Grid item xs={10}>
             <Typography variant="h5">{item.title}</Typography>
           </Grid>
           <Grid item xs={2}></Grid>
-
-          <Grid item xs={12}>
+          <Grid item xs={10}>
             <Typography color="textSecondary">by</Typography>
           </Grid>
-          <Grid item xs={12}>
-            <Typography variant="h6">{item.artist}</Typography>
+          <Grid item xs={2}></Grid>
+          <Grid item xs={10}>
+            <Typography variant="h6" color="secondary">
+              {item.artist}
+            </Typography>
           </Grid>
         </Grid>
-
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <Box align="right">
             <img className={classes.img} src={item.cover} />
           </Box>
@@ -100,7 +100,6 @@ function BillboardTop100Item({ item, setSearchTerm, handleSubmitVideoSearch }) {
               {rankDiffDisplay}
             </Typography>
           </Grid>
-
           {/* position details */}
           <Grid item xs={10}>
             <Typography variant="caption" align="left">

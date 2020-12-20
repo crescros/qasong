@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "transparent",
     backdropFilter: `blur(8px) brightness(${
-      theme.palette.type === "dark" ? "55%" : "150%"
+      theme.palette.type === "dark" ? "55%" : "365%"
     } )`,
     boxShadow: "none",
     padding: theme.spacing(2, 4, 3),
