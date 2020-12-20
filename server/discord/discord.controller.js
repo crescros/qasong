@@ -7,15 +7,26 @@ router.post("/", postMessage);
 
 module.exports = router;
 
+function cleanInput(text) {
+  return text
+    .replace(/@/g, "")
+    .replace(/#/g, "")
+    .replace(/`/g, "'")
+    .replace(/http:\/\//g, "")
+    .replace(/https:\/\//g, "");
+}
+
 function postMessage(req, res) {
+  const userMessage = cleanInput(req.body.message);
+
   const textContent =
-    "📦 a user submitted feedback:\n> " +
-    req.body.message +
-    "\n\n" +
-    `The user was ${!req.body.mobile ? "not " : ""}using a mobile device` +
-    "\n" +
+    "📦 a user submitted feedback at " +
     new Date().toLocaleString() +
-    "\n\n";
+    "\n" +
+    `The user was ${!req.body.mobile ? "not " : ""}using a mobile device` +
+    "\n\n" +
+    ">>> " +
+    userMessage;
 
   const postBody = {
     content: textContent,

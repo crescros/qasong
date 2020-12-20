@@ -27,6 +27,8 @@ export default function TransitionsModal({ showFeedback, setShowFeedback }) {
 
   const handlePost = () => {
     postUserFeedback(message);
+    alert("Thank you for the feedback!");
+    handleClose();
   };
 
   return (
