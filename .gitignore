@@ -28,6 +28,7 @@ logs/*
 
 # Istanbul Coverage
 frontend/coverage/lcov-report
+frontend/coverage/lcov.info
 
 # electron
 dist/**/*
