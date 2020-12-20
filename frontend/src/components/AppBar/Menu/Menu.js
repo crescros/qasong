@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   backdrop: {
     backgroundColor: "transparent",
     backdropFilter: `blur(2px) brightness(${
-      theme.palette.type === "dark" ? "45%" : "165%"
+      theme.palette.type === "dark" ? "45%" : "95%"
     } )`,
     boxShadow: "none",
   },
