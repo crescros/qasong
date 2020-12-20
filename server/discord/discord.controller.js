@@ -9,11 +9,11 @@ module.exports = router;
 
 function cleanInput(text) {
   return text
-    .replace("@", "")
-    .replace("#", "")
-    .replace("`", "'")
-    .replace("http://", "")
-    .replace("https://", "");
+    .replace(/@/g, "")
+    .replace(/#/g, "")
+    .replace(/`/g, "'")
+    .replace(/http:\/\//g, "")
+    .replace(/https:\/\//g, "");
 }
 
 function postMessage(req, res) {
