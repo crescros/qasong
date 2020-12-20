@@ -30,7 +30,9 @@ const useStyles = makeStyles((theme) => ({
     borderTop: "2px solid",
     paddingTop: theme.spacing(0),
     borderColor: theme.palette.secondary.main,
-    backdropFilter: "blur(4px) brightness(35%)",
+    backdropFilter: `blur(8px) brightness(${
+      theme.palette.type === "dark" ? "35%" : "185%"
+    })`,
   },
   grow: {
     display: "flex",

@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     display: "block",
     maxWidth: "75%",
     maxHeight: "75%",
+    borderRadius: theme.spacing(2),
   },
 }));
 
@@ -48,6 +49,10 @@ function Playlist({
 }) {
   const classes = useStyles();
   const [collapsed, setCollapsed] = React.useState(true);
+
+  function handleToggleCollapsed() {
+    setCollapsed(!collapsed);
+  }
 
   function handlePlaylistClick() {
     setQueue(playlist.queue);
@@ -163,17 +168,20 @@ function Playlist({
       <Grid item xs={12}>
         <List>
           {collapsed ? <CollapsedPlaylist /> : <UncollapsedPlaylist />}
-          <ListItem onClick={() => setCollapsed(!collapsed)} key="collapseControl" button>
-            <ListItemText
-              disableTypography
-              color="secondary"
-              primary={
-                <Typography color="secondary" align="center">
-                  {collapsed ? "...See More" : "See Less"}
-                </Typography>
-              }
-            />
-          </ListItem>
+
+          {playlist.queue.length > 4 && (
+            <ListItem onClick={handleToggleCollapsed} key="collapseControl" button>
+              <ListItemText
+                disableTypography
+                color="secondary"
+                primary={
+                  <Typography color="secondary" align="center">
+                    {collapsed ? "...See More" : "See Less"}
+                  </Typography>
+                }
+              />
+            </ListItem>
+          )}
         </List>
       </Grid>
     </Grid>

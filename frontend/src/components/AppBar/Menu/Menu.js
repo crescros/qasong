@@ -7,11 +7,15 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 
 import { useHistory } from "react-router-dom";
 
-const useStyles = makeStyles({
-  sectionMobile: {
-    display: "flex",
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    backgroundColor: "transparent",
+    backdropFilter: `blur(2px) brightness(${
+      theme.palette.type === "dark" ? "45%" : "165%"
+    } )`,
+    boxShadow: "none",
   },
-});
+}));
 
 function MobileMenu({ queueLength, setShowAboutUs, setShowSettings, setShowFeedback }) {
   const classes = useStyles();
@@ -59,7 +63,7 @@ function MobileMenu({ queueLength, setShowAboutUs, setShowSettings, setShowFeedb
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   return (
-    <div className={classes.sectionMobile}>
+    <div>
       <Menu
         anchorEl={mobileMoreAnchorEl}
         anchorOrigin={{
@@ -74,6 +78,7 @@ function MobileMenu({ queueLength, setShowAboutUs, setShowSettings, setShowFeedb
         }}
         open={isMobileMenuOpen}
         onClose={handleMobileMenuClose}
+        className={classes.backdrop}
       >
         {/* QUEUE */}
 

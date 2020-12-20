@@ -11,11 +11,14 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
+    background: "none",
   },
   paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
+    backgroundColor: "transparent",
+    backdropFilter: `blur(8px) brightness(${
+      theme.palette.type === "dark" ? "55%" : "150%"
+    } )`,
+    boxShadow: "none",
     padding: theme.spacing(2, 4, 3),
     overflowY: "scroll",
   },
@@ -33,14 +36,19 @@ export default function TransitionsModal({ showAboutUs, setShowAboutUs }) {
   };
 
   return (
-    <div>
-      <Dialog className={classes.modal} open={showAboutUs} onClose={handleClose}>
-        <Fade in={showAboutUs}>
-          <div className={classes.paper}>
-            <WelcomeWindowContent />
-          </div>
-        </Fade>
-      </Dialog>
-    </div>
+    <Dialog
+      className={classes.modal}
+      open={showAboutUs}
+      onClose={handleClose}
+      PaperProps={{
+        classes: {
+          root: classes.paper,
+        },
+      }}
+    >
+      <Fade in={showAboutUs}>
+        <WelcomeWindowContent />
+      </Fade>
+    </Dialog>
   );
 }
