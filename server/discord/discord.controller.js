@@ -13,24 +13,20 @@ function cleanInput(text) {
     .replace("#", "")
     .replace("`", "'")
     .replace("http://", "")
-    .replace("https://", "")
-
+    .replace("https://", "");
 }
 
-
 function postMessage(req, res) {
-
-
-  const userMessage = cleanInput(req.body.message)
+  const userMessage = cleanInput(req.body.message);
 
   const textContent =
     "📦 a user submitted feedback at " +
-    new Date().toLocaleString() + 
+    new Date().toLocaleString() +
     "\n" +
     `The user was ${!req.body.mobile ? "not " : ""}using a mobile device` +
     "\n\n" +
-    ">>> " + 
-    userMessage 
+    ">>> " +
+    userMessage;
 
   const postBody = {
     content: textContent,
