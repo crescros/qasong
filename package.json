@@ -50,6 +50,7 @@
   "dependencies": {
     "axios": "^0.21.0",
     "billboard-top-100": "^2.5.9",
+    "browser-detect": "^0.2.28",
     "cors": "^2.8.5",
     "cypress": "^6.1.0",
     "dotenv": "^8.2.0",

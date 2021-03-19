@@ -22,6 +22,7 @@ import PreviousSongButton from "./PreviousSongButton/PreviousSongButton";
 import YoutubeIframe from "./YoutubeIframe/YoutubeIframe";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import VolumeController from "./VolumeController/VolumeController";
+import browser from "browser-detect";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -38,6 +39,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+  },
+  firefox: {
+    top: "auto",
+    bottom: 0,
+    borderTop: "2px solid",
+    paddingTop: theme.spacing(0),
+    borderColor: theme.palette.secondary.main,
+    backgroundColor: "rgba(0, 0, 0, 0.9)",
   },
 }));
 
@@ -122,7 +131,7 @@ export default function BottomAppBar({
       <AppBar
         color="transparent"
         position="fixed"
-        className={classes.appBar}
+        className={browser().name === "firefox" ? classes.firefox : classes.appBar }
         id="qasong-playbar"
       >
         <Grid container justify="center" alignItems="center" alignContent="center">
