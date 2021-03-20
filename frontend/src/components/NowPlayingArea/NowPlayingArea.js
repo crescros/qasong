@@ -65,17 +65,19 @@ export default function BottomAppBar({
   const [volume, setVolume] = useState(0.9);
   const [playing, setPlaying] = useState(false);
   const [condensed, setCondensed] = useState(false);
-  setCondensed(false);
+
   const playerRef = useRef(null);
 
   const nextTitle = getNextInQueue()?.title;
   const previousTitle = getPreviousInQueue()?.title;
 
   useEffect(() => {
+    console.log(nowPlaying);
     if (nowPlaying && nowPlaying.videoId) {
       console.log(nowPlaying);
       setPlaying(true);
     } else {
+      setCondensed(false);
       setPlaying(false);
     }
   }, [nowPlaying]);
@@ -152,6 +154,9 @@ export default function BottomAppBar({
           <Grid item xs={condensed ? 6 : 12} sm={3} md={4}>
             <Typography variant="body2" align="center">
               {nowPlaying.title}
+            </Typography>
+            <Typography variant="body2" align="center">
+              {nowPlaying.author.name}
             </Typography>
           </Grid>
 
