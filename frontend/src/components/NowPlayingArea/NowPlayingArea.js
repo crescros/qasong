@@ -28,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     top: "auto",
     bottom: 0,
-    borderTop: "2px solid",
+    //borderTop: "2px solid",
     paddingTop: theme.spacing(0),
-    borderColor: theme.palette.secondary.main,
+    //borderColor: theme.palette.secondary.main,
     backdropFilter: `blur(8px) brightness(${
       theme.palette.type === "dark" ? "35%" : "185%"
     })`,
@@ -43,9 +43,9 @@ const useStyles = makeStyles((theme) => ({
   firefox: {
     top: "auto",
     bottom: 0,
-    borderTop: "2px solid",
+    //borderTop: "2px solid",
     paddingTop: theme.spacing(0),
-    borderColor: theme.palette.secondary.main,
+    //borderColor: theme.palette.secondary.main,
     backgroundColor: "rgba(0, 0, 0, 0.9)",
   },
 }));
@@ -73,6 +73,7 @@ export default function BottomAppBar({
 
   useEffect(() => {
     if (nowPlaying && nowPlaying.videoId) {
+      console.log(nowPlaying);
       setPlaying(true);
     } else {
       setPlaying(false);
@@ -131,11 +132,24 @@ export default function BottomAppBar({
       <AppBar
         color="transparent"
         position="fixed"
-        className={browser().name === "firefox" ? classes.firefox : classes.appBar }
+        className={browser().name === "firefox" ? classes.firefox : classes.appBar}
         id="qasong-playbar"
       >
         <Grid container justify="center" alignItems="center" alignContent="center">
-          <Grid item xs={condensed ? 6 : 12} sm={condensed ? 3 : 4}>
+          <Grid item xs={12}>
+            <ProgressBar
+              {...{ songProgress, changeTime }}
+              songDuration={nowPlaying.duration.seconds}
+            />
+          </Grid>
+          {!condensed && (
+            <Grid item xs={12} sm={2}>
+              <Box align="left">
+                <img src={nowPlaying.thumbnail} width="69px" height="69px"></img>
+              </Box>
+            </Grid>
+          )}
+          <Grid item xs={condensed ? 6 : 12} sm={condensed ? 3 : 2}>
             <Typography variant="body2" align="center">
               {nowPlaying.title}
             </Typography>
@@ -173,12 +187,6 @@ export default function BottomAppBar({
 
           {condensed ? (
             <>
-              <Grid item xs={7} sm={3}>
-                <ProgressBar
-                  {...{ songProgress, changeTime }}
-                  songDuration={nowPlaying.duration.seconds}
-                />
-              </Grid>
               <Grid item xs={4} sm={2}>
                 <VolumeController condensed={true} {...{ volume, setVolume }} />
               </Grid>
@@ -211,12 +219,6 @@ export default function BottomAppBar({
           {!condensed && (
             <>
               <Grid item xs={12} sm={0} md={4}></Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <ProgressBar
-                  {...{ songProgress, changeTime }}
-                  songDuration={nowPlaying.duration.seconds}
-                />
-              </Grid>
               <Grid item xs={0} sm={0} md={2}></Grid>
               <Grid item xs={12} sm={4} md={2}>
                 <VolumeController {...{ volume, setVolume }} />
