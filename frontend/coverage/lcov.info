@@ -67,7 +67,7 @@ FNDA:0,(anonymous_26)
 FNDA:1,formatVideoTitle
 FNDA:0,copyCurrentURL
 FNDA:2,shuffle
-FNDA:25,(anonymous_30)
+FNDA:27,(anonymous_30)
 FNDA:2,getDurationFromQueue
 FNDA:3,(anonymous_32)
 FNDA:2,numberWithCommas
@@ -131,7 +131,7 @@ DA:156,0
 DA:157,0
 DA:158,0
 DA:162,2
-DA:163,25
+DA:163,27
 DA:165,2
 DA:166,2
 DA:168,0
@@ -376,8 +376,10 @@ DA:24,0
 DA:25,0
 DA:28,0
 DA:29,0
-DA:32,0
-LF:10
+DA:30,0
+DA:31,0
+DA:34,0
+LF:12
 LH:1
 BRDA:10,0,0,0
 BRDA:10,0,1,0
