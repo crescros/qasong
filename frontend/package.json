@@ -39,6 +39,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "axios": "^0.21.0",
+    "browser-detect": "^0.2.28",
     "immutability-helper": "^3.1.1",
     "react": "^16.14.0",
     "react-device-detect": "^1.14.0",
