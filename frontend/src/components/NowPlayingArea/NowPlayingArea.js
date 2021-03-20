@@ -143,19 +143,19 @@ export default function BottomAppBar({
             />
           </Grid>
           {!condensed && (
-            <Grid item xs={12} sm={2}>
-              <Box align="left">
+            <Grid item xs={12} md={1} sm={2}>
+              <Box align="center">
                 <img src={nowPlaying.thumbnail} width="69px" height="69px"></img>
               </Box>
             </Grid>
           )}
-          <Grid item xs={condensed ? 6 : 12} sm={condensed ? 3 : 2}>
+          <Grid item xs={condensed ? 6 : 12} sm={3} md={4}>
             <Typography variant="body2" align="center">
               {nowPlaying.title}
             </Typography>
           </Grid>
 
-          <Grid item xs={condensed ? 6 : 12} sm={condensed ? 3 : 4}>
+          <Grid item xs={condensed ? 6 : 12} sm={condensed ? 3 : 2}>
             <Toolbar className={classes.grow}>
               {isQueue && (
                 <PreviousSongButton
@@ -184,47 +184,9 @@ export default function BottomAppBar({
               )}
             </Toolbar>
           </Grid>
-
-          {condensed ? (
-            <>
-              <Grid item xs={4} sm={2}>
-                <VolumeController condensed={true} {...{ volume, setVolume }} />
-              </Grid>
-            </>
-          ) : (
-            <Grid item xs={11} sm={3}>
-              <Box align="center">
-                {nextTitle && (
-                  <Link
-                    component="button"
-                    variant="body2"
-                    onClick={skipSong}
-                    color="textSecondary"
-                  >
-                    next: {nextTitle}
-                  </Link>
-                )}
-              </Box>
-            </Grid>
-          )}
-
-          <Grid item xs={1}>
-            <Box align="right" mt={-4}>
-              <IconButton size="small" onClick={handleToggleCondensed}>
-                {condensed ? <ExpandIcon /> : <CondenseIcon />}
-              </IconButton>
-            </Box>
+          <Grid item xs={11} sm={4}>
+            <VolumeController {...{ volume, setVolume }} />
           </Grid>
-
-          {!condensed && (
-            <>
-              <Grid item xs={12} sm={0} md={4}></Grid>
-              <Grid item xs={0} sm={0} md={2}></Grid>
-              <Grid item xs={12} sm={4} md={2}>
-                <VolumeController {...{ volume, setVolume }} />
-              </Grid>
-            </>
-          )}
         </Grid>
       </AppBar>
     </>
