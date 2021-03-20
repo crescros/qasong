@@ -11,13 +11,13 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
-    background: "none",
+    //background: "none",
   },
   paper: {
-    backgroundColor: "transparent",
-    backdropFilter: `blur(8px) brightness(${
+    //backgroundColor: "transparent",
+    /*backdropFilter: `blur(8px) brightness(${
       theme.palette.type === "dark" ? "55%" : "365%"
-    } )`,
+    } )`,*/
     boxShadow: "none",
     padding: theme.spacing(2, 4, 3),
     overflowY: "scroll",

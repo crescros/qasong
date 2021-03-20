@@ -1,4 +1,4 @@
-describe("billboard page", () => {
+xdescribe("billboard page", () => {
   beforeEach(() => {
     cy.viewport(550, 750);
     cy.visit("/billboard");

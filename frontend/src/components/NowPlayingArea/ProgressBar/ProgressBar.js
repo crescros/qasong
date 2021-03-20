@@ -1,7 +1,7 @@
 import React from "react";
-import { Slider, Typography, Grid, Box } from "@material-ui/core";
+import { Slider, Grid, Box } from "@material-ui/core";
 
-import { formatSeconds } from "../../../functions";
+//import { formatSeconds } from "../../../functions";
 
 function ProgressBar({ songProgress, songDuration, changeTime }) {
   function handleChange(e, newValue) {
@@ -11,11 +11,11 @@ function ProgressBar({ songProgress, songDuration, changeTime }) {
   return (
     <Box px={3}>
       <Grid container spacing={2}>
-        <Grid item>
+        {/*<Grid item>
           <Typography style={{ fontSize: 12 }} color="textSecondary">
             {formatSeconds(songProgress)}
           </Typography>
-        </Grid>
+        </Grid>*/}
         <Grid item xs>
           <Slider
             color="secondary"
@@ -24,11 +24,11 @@ function ProgressBar({ songProgress, songDuration, changeTime }) {
             onChange={handleChange}
           />
         </Grid>
-        <Grid item>
+        {/* <Grid item>
           <Typography style={{ fontSize: 12 }} color="textSecondary">
             {formatSeconds(songDuration)}
           </Typography>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Box>
   );
