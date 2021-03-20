@@ -10,11 +10,11 @@ import {
   Grid,
   IconButton,
   Box,
-  Link,
+  //Link,
 } from "@material-ui/core";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
-import { ExpandMore as CondenseIcon, ExpandLess as ExpandIcon } from "@material-ui/icons";
+//import { ExpandMore as CondenseIcon, ExpandLess as ExpandIcon } from "@material-ui/icons";
 
 // qasong components
 import SkipSongButton from "./SkipSongButton/SkipSongButton";
@@ -65,7 +65,7 @@ export default function BottomAppBar({
   const [volume, setVolume] = useState(0.9);
   const [playing, setPlaying] = useState(false);
   const [condensed, setCondensed] = useState(false);
-
+  setCondensed(false);
   const playerRef = useRef(null);
 
   const nextTitle = getNextInQueue()?.title;
@@ -105,9 +105,9 @@ export default function BottomAppBar({
     }
   }
 
-  function handleToggleCondensed() {
-    setCondensed(!condensed);
-  }
+  // function handleToggleCondensed() {
+  //   setCondensed(!condensed);
+  // }
 
   if (!nowPlaying || !nowPlaying.title) {
     return <div></div>;
