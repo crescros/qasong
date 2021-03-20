@@ -86,6 +86,12 @@ const App = () => {
     if (storedQueue) {
       setQueue(JSON.parse(storedQueue));
     }
+
+    let storedDarkMode = localStorage.getItem("userDarkMode");
+
+    if (storedDarkMode) {
+      setDarkMode(JSON.parse(storedDarkMode));
+    }
   }, []);
 
   //when nowPlaying changes
