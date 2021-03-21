@@ -159,7 +159,9 @@ export default function BottomAppBar({
               {nowPlaying.author.name}
             </Typography>
           </Grid>
-
+          <Grid item xs={12} sm={3}>
+            <VolumeController {...{ volume, setVolume }} />
+          </Grid>
           <Grid item xs={condensed ? 6 : 12} sm={condensed ? 3 : 2}>
             <Toolbar className={classes.grow}>
               {isQueue && (
@@ -188,9 +190,6 @@ export default function BottomAppBar({
                 />
               )}
             </Toolbar>
-          </Grid>
-          <Grid item xs={11} sm={4}>
-            <VolumeController {...{ volume, setVolume }} />
           </Grid>
         </Grid>
       </AppBar>

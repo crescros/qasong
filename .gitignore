@@ -2,7 +2,8 @@
 node_modules
 package-lock.json
 reactnative/
-
+.expo/
+web-build
 # vs code
 ./vscode
 .vs

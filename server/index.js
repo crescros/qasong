@@ -8,7 +8,7 @@ const rateLimit = require("express-rate-limit");
 const dotenv = require("dotenv");
 const rootpath = require("rootpath");
 const nocache = require("nocache");
-
+/* eslint-disable max-len */
 // middleware config
 const apiLimiterConfig = rateLimit({ windowMs: 900000, max: 200 });
 const bodyParserConfig = { extended: false };

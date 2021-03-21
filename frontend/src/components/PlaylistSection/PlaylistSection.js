@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Box } from "@material-ui/core";
+import { Typography, Box, Grid } from "@material-ui/core";
 import { getPlaylists } from "../../functions";
 import Playlist from "./Playlist/Playlist";
 
@@ -7,7 +7,15 @@ function PlaylistSection({ setQueue, setNowPlaying, nowPlaying, queue, addSongTo
   let playlists = getPlaylists();
 
   if (!playlists.length > 0) {
-    return <Typography align="center">no playlists </Typography>;
+    return (
+      <Grid>
+        <Grid item>
+          <Typography variant="h4" align="center">
+            😞 There are no playlists.
+          </Typography>
+        </Grid>
+      </Grid>
+    );
   }
 
   return (
