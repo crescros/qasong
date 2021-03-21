@@ -8,6 +8,9 @@ web-build
 ./vscode
 .vs
 
+# intellij idea
+.idea
+
 # react-build
 frontend/build/static/
 frontend/build/static/*bundle.js*
