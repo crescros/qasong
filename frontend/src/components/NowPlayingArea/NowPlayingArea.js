@@ -14,7 +14,7 @@ import {
 } from "@material-ui/core";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
-//import { ExpandMore as CondenseIcon, ExpandLess as ExpandIcon } from "@material-ui/icons";
+import Slide from "@material-ui/core/Slide";
 
 // qasong components
 import SkipSongButton from "./SkipSongButton/SkipSongButton";
@@ -130,69 +130,70 @@ export default function BottomAppBar({
           playbackRate,
         }}
       />
-
-      <AppBar
-        color="transparent"
-        position="fixed"
-        className={browser().name === "firefox" ? classes.firefox : classes.appBar}
-        id="qasong-playbar"
-      >
-        <Grid container justify="center" alignItems="center" alignContent="center">
-          <Grid item xs={12}>
-            <ProgressBar
-              {...{ songProgress, changeTime }}
-              songDuration={nowPlaying.duration.seconds}
-            />
-          </Grid>
-          {!condensed && (
-            <Grid item xs={12} md={1} sm={2}>
-              <Box align="center">
-                <img src={nowPlaying.thumbnail} width="69px" height="69px"></img>
-              </Box>
+      <Slide direction="up" in={Boolean(nowPlaying) && nowPlaying.title}>
+        <AppBar
+          color="transparent"
+          position="fixed"
+          className={browser().name === "firefox" ? classes.firefox : classes.appBar}
+          id="qasong-playbar"
+        >
+          <Grid container justify="center" alignItems="center" alignContent="center">
+            <Grid item xs={12}>
+              <ProgressBar
+                {...{ songProgress, changeTime }}
+                songDuration={nowPlaying.duration.seconds}
+              />
             </Grid>
-          )}
-          <Grid item xs={condensed ? 6 : 12} sm={3} md={4}>
-            <Typography variant="body2" align="center">
-              {nowPlaying.title}
-            </Typography>
-            <Typography variant="body2" align="center">
-              {nowPlaying.author.name}
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <VolumeController {...{ volume, setVolume }} />
-          </Grid>
-          <Grid item xs={condensed ? 6 : 12} sm={condensed ? 3 : 2}>
-            <Toolbar className={classes.grow}>
-              {isQueue && (
-                <PreviousSongButton
-                  style={{ fontSize: 25 }}
-                  disabled={!previousTitle}
-                  {...{ previousSong }}
-                />
-              )}
+            {!condensed && (
+              <Grid item xs={12} md={1} sm={2}>
+                <Box align="center">
+                  <img src={nowPlaying.thumbnail} width="69px" height="69px"></img>
+                </Box>
+              </Grid>
+            )}
+            <Grid item xs={condensed ? 6 : 12} sm={3} md={4}>
+              <Typography variant="body2" align="center">
+                {nowPlaying.title}
+              </Typography>
+              <Typography variant="body2" align="center">
+                {nowPlaying.author.name}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={3}>
+              <VolumeController {...{ volume, setVolume }} />
+            </Grid>
+            <Grid item xs={condensed ? 6 : 12} sm={condensed ? 3 : 2}>
+              <Toolbar className={classes.grow}>
+                {isQueue && (
+                  <PreviousSongButton
+                    style={{ fontSize: 25 }}
+                    disabled={!previousTitle}
+                    {...{ previousSong }}
+                  />
+                )}
 
-              {playing ? (
-                <IconButton color="secondary" onClick={pauseVideo}>
-                  <PauseCircleOutlineIcon style={{ fontSize: 40 }} />
-                </IconButton>
-              ) : (
-                <IconButton color="secondary" onClick={startVideo}>
-                  <PlayCircleOutlineIcon style={{ fontSize: 40 }} />
-                </IconButton>
-              )}
+                {playing ? (
+                  <IconButton color="secondary" onClick={pauseVideo}>
+                    <PauseCircleOutlineIcon style={{ fontSize: 40 }} />
+                  </IconButton>
+                ) : (
+                  <IconButton color="secondary" onClick={startVideo}>
+                    <PlayCircleOutlineIcon style={{ fontSize: 40 }} />
+                  </IconButton>
+                )}
 
-              {isQueue && (
-                <SkipSongButton
-                  style={{ fontSize: 25 }}
-                  disabled={!nextTitle}
-                  {...{ skipSong }}
-                />
-              )}
-            </Toolbar>
+                {isQueue && (
+                  <SkipSongButton
+                    style={{ fontSize: 25 }}
+                    disabled={!nextTitle}
+                    {...{ skipSong }}
+                  />
+                )}
+              </Toolbar>
+            </Grid>
           </Grid>
-        </Grid>
-      </AppBar>
+        </AppBar>
+      </Slide>
     </>
   );
 }

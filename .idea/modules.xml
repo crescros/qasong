@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/Downloads/adservio-master/.idea/adservio-master.iml" filepath="$USER_HOME$/Downloads/adservio-master/.idea/adservio-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/qasong.iml" filepath="$PROJECT_DIR$/.idea/qasong.iml" />
     </modules>
   </component>
