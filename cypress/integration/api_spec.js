@@ -1,4 +1,4 @@
-describe("seach endpoint", () => {
+xdescribe("seach endpoint", () => {
   it("responds", () => {
     cy.request("/api/search?q=hello").then((response) => {
       expect(response.body).to.exist;
@@ -7,7 +7,7 @@ describe("seach endpoint", () => {
   });
 });
 
-describe("env endpoint", () => {
+xdescribe("env endpoint", () => {
   it("responds", () => {
     cy.request("/api/env").then((response) => {
       expect(response.body).to.exist;
