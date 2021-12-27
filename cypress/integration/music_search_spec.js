@@ -1,4 +1,4 @@
-describe("search page", () => {
+xdescribe("search page", () => {
   beforeEach(() => {
     cy.viewport(550, 750);
     cy.visit("/search");
