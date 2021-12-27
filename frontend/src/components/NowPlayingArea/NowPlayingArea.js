@@ -72,9 +72,7 @@ export default function BottomAppBar({
   const previousTitle = getPreviousInQueue()?.title;
 
   useEffect(() => {
-    console.log(nowPlaying);
     if (nowPlaying && nowPlaying.videoId) {
-      console.log(nowPlaying);
       setPlaying(true);
     } else {
       setCondensed(false);

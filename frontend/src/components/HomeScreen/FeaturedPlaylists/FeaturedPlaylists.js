@@ -113,7 +113,7 @@ function FeaturedPlaylists({
           })}
         </Grid>
         {loading ? (
-          <Grid container justify="center" style={{ paddingTop: "30px" }}>
+          <Grid container justifyContent="center" style={{ paddingTop: "30px" }}>
             <LoadingAnimation size="300px" />
           </Grid>
         ) : (

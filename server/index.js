@@ -16,6 +16,8 @@ const bodyParserConfig = { extended: false };
 // middleware
 rootpath();
 dotenv.config();
+require("./mongo");
+require("./models");
 const app = express();
 app.use(apiLimiterConfig);
 app.use(cors());
@@ -30,6 +32,7 @@ app.use("/api/feed", require("./feed/feed.controller"));
 app.use("/api/search", require("./search/search.controller"));
 app.use("/api/billboard", require("./billboard/billboard.controller"));
 app.use("/api/discord", require("./discord/discord.controller"));
+app.use("/api/user", require("./user/user.controller"));
 app.use("/api/env", (req, res) => res.send(process.env.NODE_ENV));
 
 // frontend routes

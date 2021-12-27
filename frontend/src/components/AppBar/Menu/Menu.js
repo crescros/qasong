@@ -83,6 +83,7 @@ function MobileMenu({ queueLength, setShowAboutUs, setShowSettings, setShowFeedb
         open={isMobileMenuOpen}
         onClose={handleMobileMenuClose}
         className={classes.backdrop}
+        elevation={0}
       >
         {/* QUEUE */}
 
