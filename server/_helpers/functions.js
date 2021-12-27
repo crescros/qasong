@@ -11,7 +11,7 @@ function cleanInput(text) {
     .replace(/`/g, "'")
     .replace(/http:\/\//g, "")
     .replace(/https:\/\//g, "");
-};
+}
 
 module.exports.shuffle = shuffle;
 module.exports.cleanInput = cleanInput;

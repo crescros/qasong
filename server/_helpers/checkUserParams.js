@@ -1,17 +1,21 @@
 const { User } = require("../models");
 
 async function checkUserParams({ params }) {
-    if(!params) return { error: "params" };
-    if(!params.username || params.username.length < 5 && params.username.length > 32) return { error: "username" };
-    if(!params.email || params.email.kength < 5 && params.email.length > 255) return { error: "email" };
-    if(!params.password || params.password.length < 8) return { error: "password" };
-    if(!params.email.match(/@/)) return { error: "email" };
+  if (!params) return 'missing_params';
 
-    let res = await User.findOne({ username: params.username });
+  if (!params.username || params.username.length < 5 || params.username.length > 32)
+    return 'USERNAME';
 
-    if(res != null) return { error: "user/exists" }
+  if (!params.email || params.email.length < 5 || params.email.length > 255)
+    return 'EMAIL';
+  if (!params.email.match(/@/)) return 'EMAIL';
 
-    return { error: "none" };
+  if (!params.password || params.password.length < 8) return 'PASSWORD';
+
+  let res = await User.findOne({ username: params.username });
+  if (res != null) return 'USER_EXISTS';
+
+  return 'none';
 }
 
 module.exports = checkUserParams;

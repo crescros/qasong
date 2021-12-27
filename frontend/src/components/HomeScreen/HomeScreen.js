@@ -54,7 +54,13 @@ function HomeScreen({
         }}
       />
 
-      <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        spacing={1}
+      >
         <Grid item>
           <Typography
             align="center"

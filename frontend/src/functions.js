@@ -72,7 +72,6 @@ export function getFeed(pageNumber = 1) {
 }
 
 export function postUserFeedback(text) {
-  console.log(baseUrl);
   const postData = {
     message: text,
     mobile: isMobile,

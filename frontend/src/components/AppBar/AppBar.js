@@ -50,6 +50,7 @@ export default function QasongAppBar({
       <AppBar
         color="transparent"
         className={`${scrollTop > 111 ? classes.backdropFilter : ""} ${classes.appbar}`}
+        elevation={0}
       >
         <Toolbar>
           {/* Icon-logo */}
