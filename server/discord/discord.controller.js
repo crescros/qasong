@@ -1,20 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const { cleanInput } = require("../_helpers/functions");
 
 // routes
 router.post("/", postMessage);
 
 module.exports = router;
-
-function cleanInput(text) {
-  return text
-    .replace(/@/g, "")
-    .replace(/#/g, "")
-    .replace(/`/g, "'")
-    .replace(/http:\/\//g, "")
-    .replace(/https:\/\//g, "");
-}
 
 function postMessage(req, res) {
   const userMessage = cleanInput(req.body.message);
@@ -34,7 +26,8 @@ function postMessage(req, res) {
 
   axios({
     method: "post",
-    url: process.env.DISCORD_WEBHOOK_URL,
+    //url: process.env.DISCORD_WEBHOOK_URL,
+    url: "https://discordapp.com/api/webhooks/924796469641371672/wzyT3Z_3KetvxzOLT5SbbVpO4NsvmVPQnD4SraUR1f3GJKP9ogU0g_RwWFhBROBsfvVL",
     headers: {
       "Content-Type": "application/json",
     },

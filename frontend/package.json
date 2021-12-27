@@ -6,7 +6,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "start": "webpack serve --config webpack/config.js --env env=dev",
-    "build": "webpack --config webpack/config.js --env env=prod",
+    "build": "webpack --config webpack/config.js --env env=dev",
     "lint": "eslint ./src/**/*.js ./src/**/*.jsx --no-error-on-unmatched-pattern",
     "lint:fix": "eslint --fix",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
@@ -38,6 +38,7 @@
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
+    "@material-ui/styles": "^4.11.4",
     "axios": "^0.21.0",
     "browser-detect": "^0.2.28",
     "immutability-helper": "^3.1.1",

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const shuffle = require("../_helpers/functions");
+const { shuffle } = require("../_helpers/functions");
 
 let mockFeed;
 try {
