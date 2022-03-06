@@ -3,7 +3,7 @@
 Test Workflow
 
 ![Test Workflow](https://github.com/IanWalston/qasong/workflows/Node.js%20CI/badge.svg)
-![Cypress.io](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)](https://www.cypress.io/)
+![Cypress.io](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)]
 
 React Test Coverage
 
